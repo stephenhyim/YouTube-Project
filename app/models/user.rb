@@ -2,9 +2,10 @@ class User < ApplicationRecord
     validates :email, :session_token, :password_digest, presence: true, uniqueness: true
     validates :password, length:{minimum:6, allow_nil: true}
     validates :firstname, :lastname, :birthdate, :gender, presence: true
-    validates :nickname, uniqueness: true, presence: false
 
     after_initialize :ensure_session_token
+
+    before_validation :ensure_nickname
 
     attr_reader :password
 
@@ -37,4 +38,11 @@ class User < ApplicationRecord
     def ensure_session_token
         self.session_token ||= self.class.generate_session_token
     end
+
+    def ensure_nickname
+        if nickname.nil? 
+            self.nickname = firstname + ' ' + lastname
+        end
+    end
+
 end
