@@ -1,7 +1,8 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import { Route, Redirect, Switch, Link, Hashrouter } from 'react-router-dom';
-
+import { AuthRoute } from '../util/route_util';
+import { ProtecedRoute } from '../util/route_util';
 
 
 // import TopNavBarContainer from './top_nav_bar/top_nav_bar_container';
