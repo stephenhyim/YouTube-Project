@@ -2,22 +2,20 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { Route, Redirect, Switch, Link, Hashrouter } from 'react-router-dom';
 import { AuthRoute } from '../util/route_util';
-import { ProtecedRoute } from '../util/route_util';
+import { ProtectedRoute } from '../util/route_util';
 
 
-// import TopNavBarContainer from './top_nav_bar/top_nav_bar_container';
-import LandingPageContainer from './landing_page/landing_page_container';
+import TopNavBarContainer from './top_nav_bar/top_nav_bar_container';
+import LandingPage from './landing_page/landing_page';
 import SignupFormContainer from './session/signup_form_container';
 import LoginFormContainer from './session/login_form_container';
 
 const App = () => (
     <div>
         <header>
-            <Link to="/" className="header-link">
-                <h1>YouTube</h1>
-            </Link>
-            <LandingPageContainer />
+            <Route exact path = '/' component = {LandingPage} />
         </header>
+        {/* <Route exact path="/login" component={LoginFormContainer} /> */}
         <Switch>
             <AuthRoute exact path="/login" component={LoginFormContainer} />
             <AuthRoute exact path="/signup" component={SignupFormContainer} />

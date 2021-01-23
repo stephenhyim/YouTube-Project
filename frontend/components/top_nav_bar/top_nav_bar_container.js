@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import TopNavBar from './top_nav_bar';
 
-import { logout } from '../../actions/session_actions';
+import { login, signup, logout } from '../../actions/session_actions';
 
 const mSTP = (state, ownProps) => {
     return {
@@ -12,7 +12,9 @@ const mSTP = (state, ownProps) => {
 
 const mDTP = dispatch => {
     return {
-        logout: () => dispatch(logout())
+        login: user => dispatch(login(user)),
+        signup: user => dispatch(signup(user)),
+        logout: user => dispatch(logout(user))
     }
 }
 
