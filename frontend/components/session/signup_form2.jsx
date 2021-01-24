@@ -1,75 +1,22 @@
 import React from 'react';
-import {Link, withRouter } from 'react-router-dom';
-// import SignupForm2 from './signup_form2';
 
-class SignupForm extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      email: '',
-      password: '',
-      firstname: '',
-      lastname: '',
-      birthdate: '',
-      gender: '',
-      step: 1
-    };
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
 
-//   nextStep = () => {
-//       const { step } = this.state;
-//       this.setState({
-//           step: step + 1
-//       });
-//   }
-
-  update(field) {
-    return e => this.setState({
-      [field]: e.currentTarget.value
-    });
-  }
-
-  handleSubmit(e) {
-    e.preventDefault();
-    const user = Object.assign({}, this.state);
-    this.props.processForm(user);
-  }
-
-  renderErrors() {
-    return(
-      <ul>
-        {this.props.errors.map((error, i) => (
-          <li key={`error-${i}`}>
-            {error}
-          </li>
-        ))}
-      </ul>
-    );
-  }
-
-  render() {
-    // const { step } = this.state;
-    // const { firstname, lastname, email, password, birthdate, gender } = this.state;
-    // const values = { firstname, lastname, email, password, birthdate, gender }
+class SignupForm2 extends React.Component {
     
-    // switch (step) {
-    //     case 1:
-    //         return (
-    //             <SignUpForm2
-    //                 nextStep = {this.nextStep}
-    //                 values = {values}
-    //             />
-    //         )
-            
+    // continue = e => {
+    //     e.preventDefault();
+    //     this.props.nextStep();
     // }
 
-    return (
+
+    render() {
+        return (
       <div className="signup-form-container">
         <h2>Google Logo Placeholder</h2>
         <h2>Create your Google Account</h2>
         <h4>to continue to YouTube</h4>
             <form onSubmit={this.handleSubmit} className="signup-form-box">
+            Please {this.props.formType} or {this.props.navLink}
             {this.renderErrors()}
             <div className="signup-form">
                 <br/>
@@ -103,8 +50,9 @@ class SignupForm extends React.Component {
             </form>
       </div>
     );
-  }
+    }
 }
 
-// export default SignupForm;
-export default withRouter(SignupForm);
+export default SignupForm2;
+
+

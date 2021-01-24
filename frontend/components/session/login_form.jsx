@@ -41,15 +41,13 @@ class LoginForm extends React.Component {
     return (
       <div className="login-form-container">
         <h3>Google Logo Placeholder</h3>
+        {this.props.formType}
         <h4>to continue to YouTube</h4>
             <form onSubmit={this.handleSubmit} className="login-form-box">
-              {this.props.formType}
+              
               {this.renderErrors()}
                 <div className="login-form">
                 <br/>
-                  <span>
-                    <Link to='/signup'>Create account</Link>
-                  </span>  
                   <label>Email:
                   <input type="text"
                       value={this.state.email}
@@ -57,7 +55,11 @@ class LoginForm extends React.Component {
                       className="login-input"
                   />
                   </label>
-               
+                  <br/>
+                  <span>
+                    <Link to='/signup'>Create account</Link>
+                    <button className = "login-next-button">Next</button>
+                  </span>  
                 </div>
             </form> 
       </div>
@@ -66,3 +68,5 @@ class LoginForm extends React.Component {
 }
 
 export default withRouter(LoginForm);
+
+
