@@ -17,11 +17,11 @@ const TopNavBar = ({ currentUser, logout }) => {
 
 
   return (
-    <header className="nav-bar">
+    <header className="top-nav-bar">
       {/* <h1 className="logo">Youtube</h1> */}
-      <div>
+      <div className='top-nav-links'>
           <Link to = {`/`}>Youtube</Link>
-        {display}
+          {display}
       </div>
     </header>
   );

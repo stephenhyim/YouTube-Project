@@ -3,19 +3,19 @@ import {Link, withRouter } from 'react-router-dom';
 // import SignupForm2 from './signup_form2';
 
 class SignupForm extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      email: '',
-      password: '',
-      firstname: '',
-      lastname: '',
-      birthdate: '',
-      gender: '',
-      step: 1
-    };
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
+    
+//   constructor(props) {
+//     super(props);
+//     this.state = {
+//       email: '',
+//       password: '',
+//       firstname: '',
+//       lastname: '',
+//       birthdate: '',
+//       gender: '',
+//     };
+//     this.handleSubmit = this.handleSubmit.bind(this);
+//   }
 
 //   nextStep = () => {
 //       const { step } = this.state;
@@ -24,17 +24,22 @@ class SignupForm extends React.Component {
 //       });
 //   }
 
-  update(field) {
-    return e => this.setState({
-      [field]: e.currentTarget.value
-    });
-  }
+//   update(field) {
+//     return e => this.setState({
+//       [field]: e.currentTarget.value
+//     });
+//   }
 
-  handleSubmit(e) {
+//   handleSubmit(e) {
+//     e.preventDefault();
+//     const user = Object.assign({}, this.state);
+//     this.props.processForm(user);
+//   }
+
+continue = e => {
     e.preventDefault();
-    const user = Object.assign({}, this.state);
-    this.props.processForm(user);
-  }
+    this.props.nextStep();
+}
 
   renderErrors() {
     return(
@@ -63,7 +68,7 @@ class SignupForm extends React.Component {
     //         )
             
     // }
-
+    const {values } = this.props
     return (
       <div className="signup-form-container">
         <h2>Google Logo Placeholder</h2>
@@ -97,7 +102,7 @@ class SignupForm extends React.Component {
                 <br/>
                 <span>
                   <Link to='/login'>Sign in instead</Link>
-                  <button className = "signin-next-button">Next</button>
+                  <button className = "signin-next-button" onClick = {(e)=> this.continue()}>Next</button>
                 </span>  
             </div>
             </form>
@@ -108,3 +113,7 @@ class SignupForm extends React.Component {
 
 // export default SignupForm;
 export default withRouter(SignupForm);
+
+
+//on submit have some logic that checks the confirm password and password match
+// if true drop the confirm pw field to persist to the db

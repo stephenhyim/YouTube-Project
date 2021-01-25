@@ -386,7 +386,7 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
     value: function handleSubmit(e) {
       e.preventDefault();
       var user = Object.assign({}, this.state);
-      this.props.processForm(user);
+      this.props.login(user);
     }
   }, {
     key: "renderErrors",
@@ -472,152 +472,10 @@ var mDTP = function mDTP(dispatch) {
 /*!*****************************************************!*\
   !*** ./frontend/components/session/signup_form.jsx ***!
   \*****************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-
- // import SignupForm2 from './signup_form2';
-
-var SignupForm = /*#__PURE__*/function (_React$Component) {
-  _inherits(SignupForm, _React$Component);
-
-  var _super = _createSuper(SignupForm);
-
-  function SignupForm(props) {
-    var _this;
-
-    _classCallCheck(this, SignupForm);
-
-    _this = _super.call(this, props);
-    _this.state = {
-      email: '',
-      password: '',
-      firstname: '',
-      lastname: '',
-      birthdate: '',
-      gender: '',
-      step: 1
-    };
-    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
-    return _this;
-  } //   nextStep = () => {
-  //       const { step } = this.state;
-  //       this.setState({
-  //           step: step + 1
-  //       });
-  //   }
-
-
-  _createClass(SignupForm, [{
-    key: "update",
-    value: function update(field) {
-      var _this2 = this;
-
-      return function (e) {
-        return _this2.setState(_defineProperty({}, field, e.currentTarget.value));
-      };
-    }
-  }, {
-    key: "handleSubmit",
-    value: function handleSubmit(e) {
-      e.preventDefault();
-      var user = Object.assign({}, this.state);
-      this.props.processForm(user);
-    }
-  }, {
-    key: "renderErrors",
-    value: function renderErrors() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, this.props.errors.map(function (error, i) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-          key: "error-".concat(i)
-        }, error);
-      }));
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      // const { step } = this.state;
-      // const { firstname, lastname, email, password, birthdate, gender } = this.state;
-      // const values = { firstname, lastname, email, password, birthdate, gender }
-      // switch (step) {
-      //     case 1:
-      //         return (
-      //             <SignUpForm2
-      //                 nextStep = {this.nextStep}
-      //                 values = {values}
-      //             />
-      //         )
-      // }
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "signup-form-container"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Google Logo Placeholder"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Create your Google Account"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "to continue to YouTube"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-        onSubmit: this.handleSubmit,
-        className: "signup-form-box"
-      }, this.renderErrors(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "signup-form"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "First Name", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "text",
-        value: this.state.firstname,
-        onChange: this.update('firstname')
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Last Name", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "text",
-        value: this.state.lastname,
-        onChange: this.update('lastname')
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Your email address", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "text",
-        value: this.state.email,
-        onChange: this.update('email'),
-        className: "login-input"
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Password", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "password",
-        value: this.state.password,
-        onChange: this.update('password')
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Confirm", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "password",
-        value: this.state.password,
-        onChange: this.update('password')
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-        to: "/login"
-      }, "Sign in instead"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "signin-next-button"
-      }, "Next")))));
-    }
-  }]);
-
-  return SignupForm;
-}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component); // export default SignupForm;
-
-
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["withRouter"])(SignupForm));
+throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: /home/stephen/youtube/YouTube/frontend/components/session/signup_form.jsx: Support for the experimental syntax 'classProperties' isn't currently enabled (39:10):\n\n\u001b[0m \u001b[90m 37 | \u001b[39m\u001b[90m//   }\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 38 | \u001b[39m\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 39 | \u001b[39m\u001b[36mcontinue\u001b[39m \u001b[33m=\u001b[39m e \u001b[33m=>\u001b[39m {\u001b[0m\n\u001b[0m \u001b[90m    | \u001b[39m         \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 40 | \u001b[39m    e\u001b[33m.\u001b[39mpreventDefault()\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 41 | \u001b[39m    \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mprops\u001b[33m.\u001b[39mnextStep()\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 42 | \u001b[39m}\u001b[0m\n\nAdd @babel/plugin-proposal-class-properties (https://git.io/vb4SL) to the 'plugins' section of your Babel config to enable transformation.\nIf you want to leave it as-is, add @babel/plugin-syntax-class-properties (https://git.io/vb4yQ) to the 'plugins' section to enable parsing.\n    at Object._raise (/home/stephen/youtube/YouTube/node_modules/@babel/parser/lib/index.js:748:17)\n    at Object.raiseWithData (/home/stephen/youtube/YouTube/node_modules/@babel/parser/lib/index.js:741:17)\n    at Object.expectPlugin (/home/stephen/youtube/YouTube/node_modules/@babel/parser/lib/index.js:9106:18)\n    at Object.parseClassProperty (/home/stephen/youtube/YouTube/node_modules/@babel/parser/lib/index.js:12722:12)\n    at Object.pushClassProperty (/home/stephen/youtube/YouTube/node_modules/@babel/parser/lib/index.js:12690:30)\n    at Object.parseClassMemberWithIsStatic (/home/stephen/youtube/YouTube/node_modules/@babel/parser/lib/index.js:12595:14)\n    at Object.parseClassMember (/home/stephen/youtube/YouTube/node_modules/@babel/parser/lib/index.js:12532:10)\n    at withTopicForbiddingContext (/home/stephen/youtube/YouTube/node_modules/@babel/parser/lib/index.js:12477:14)\n    at Object.withTopicForbiddingContext (/home/stephen/youtube/YouTube/node_modules/@babel/parser/lib/index.js:11516:14)\n    at Object.parseClassBody (/home/stephen/youtube/YouTube/node_modules/@babel/parser/lib/index.js:12454:10)");
 
 /***/ }),
 
@@ -636,29 +494,56 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/session_actions */ "./frontend/actions/session_actions.js");
 /* harmony import */ var _signup_form__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./signup_form */ "./frontend/components/session/signup_form.jsx");
+/* harmony import */ var _signup_form__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_signup_form__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _signup_form_parent__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./signup_form_parent */ "./frontend/components/session/signup_form_parent.jsx");
+/* harmony import */ var _signup_form_parent__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_signup_form_parent__WEBPACK_IMPORTED_MODULE_5__);
 
 
 
 
 
+ // const mSTP = ({ errors }) => {
+//   return {
+//     errors: errors.session,
+//     formType: 'signup',
+//   };
+// };
+// const mDTP = dispatch => {
+//   return {
+//     processForm: (user) => dispatch(signup(user)),
+//   };
+// };
+// export default connect(mSTP, mDTP)(SignupForm);
+//TRIAL 2
 
 var mSTP = function mSTP(_ref) {
   var errors = _ref.errors;
   return {
     errors: errors.session,
-    formType: 'signup'
+    formType: 'Sign Up'
   };
 };
 
 var mDTP = function mDTP(dispatch) {
   return {
-    processForm: function processForm(user) {
+    signup: function signup(user) {
       return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_3__["signup"])(user));
     }
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mSTP, mDTP)(_signup_form__WEBPACK_IMPORTED_MODULE_4__["default"]));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mSTP, mDTP)(_signup_form_parent__WEBPACK_IMPORTED_MODULE_5___default.a));
+
+/***/ }),
+
+/***/ "./frontend/components/session/signup_form_parent.jsx":
+/*!************************************************************!*\
+  !*** ./frontend/components/session/signup_form_parent.jsx ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: /home/stephen/youtube/YouTube/frontend/components/session/signup_form_parent.jsx: Support for the experimental syntax 'classProperties' isn't currently enabled (20:14):\n\n\u001b[0m \u001b[90m 18 | \u001b[39m    }\u001b[0m\n\u001b[0m \u001b[90m 19 | \u001b[39m\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 20 | \u001b[39m    nextStep \u001b[33m=\u001b[39m () \u001b[33m=>\u001b[39m {\u001b[0m\n\u001b[0m \u001b[90m    | \u001b[39m             \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 21 | \u001b[39m        \u001b[36mconst\u001b[39m {step} \u001b[33m=\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mstate\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 22 | \u001b[39m        \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39msetState({\u001b[0m\n\u001b[0m \u001b[90m 23 | \u001b[39m            step\u001b[33m:\u001b[39m step \u001b[33m+\u001b[39m \u001b[35m1\u001b[39m\u001b[0m\n\nAdd @babel/plugin-proposal-class-properties (https://git.io/vb4SL) to the 'plugins' section of your Babel config to enable transformation.\nIf you want to leave it as-is, add @babel/plugin-syntax-class-properties (https://git.io/vb4yQ) to the 'plugins' section to enable parsing.\n    at Object._raise (/home/stephen/youtube/YouTube/node_modules/@babel/parser/lib/index.js:748:17)\n    at Object.raiseWithData (/home/stephen/youtube/YouTube/node_modules/@babel/parser/lib/index.js:741:17)\n    at Object.expectPlugin (/home/stephen/youtube/YouTube/node_modules/@babel/parser/lib/index.js:9106:18)\n    at Object.parseClassProperty (/home/stephen/youtube/YouTube/node_modules/@babel/parser/lib/index.js:12722:12)\n    at Object.pushClassProperty (/home/stephen/youtube/YouTube/node_modules/@babel/parser/lib/index.js:12690:30)\n    at Object.parseClassMemberWithIsStatic (/home/stephen/youtube/YouTube/node_modules/@babel/parser/lib/index.js:12595:14)\n    at Object.parseClassMember (/home/stephen/youtube/YouTube/node_modules/@babel/parser/lib/index.js:12532:10)\n    at withTopicForbiddingContext (/home/stephen/youtube/YouTube/node_modules/@babel/parser/lib/index.js:12477:14)\n    at Object.withTopicForbiddingContext (/home/stephen/youtube/YouTube/node_modules/@babel/parser/lib/index.js:11516:14)\n    at Object.parseClassBody (/home/stephen/youtube/YouTube/node_modules/@babel/parser/lib/index.js:12454:10)");
 
 /***/ }),
 
@@ -687,8 +572,10 @@ var TopNavBar = function TopNavBar(_ref) {
     to: "/login"
   }, "Sign in"));
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("header", {
-    className: "nav-bar"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    className: "top-nav-bar"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "top-nav-links"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: "/"
   }, "Youtube"), display));
 };
