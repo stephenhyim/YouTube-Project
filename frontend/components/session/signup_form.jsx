@@ -2,20 +2,19 @@ import React from 'react';
 import {Link, withRouter } from 'react-router-dom';
 // import SignupForm2 from './signup_form2';
 
+
 class SignupForm extends React.Component {
     
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-//       email: '',
-//       password: '',
-//       firstname: '',
-//       lastname: '',
-//       birthdate: '',
-//       gender: '',
-//     };
-//     this.handleSubmit = this.handleSubmit.bind(this);
-//   }
+  constructor(props) {
+    super(props);
+    // this.state = {
+      
+    //   step: 1
+    // };
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.continue = this.continue.bind(this);
+    // this.renderErrors = this.renderErrors.bind(this);
+  }
 
 //   nextStep = () => {
 //       const { step } = this.state;
@@ -24,85 +23,70 @@ class SignupForm extends React.Component {
 //       });
 //   }
 
-//   update(field) {
-//     return e => this.setState({
-//       [field]: e.currentTarget.value
-//     });
-//   }
+  // update(field) {
+  //   return e => this.setState({
+  //     [field]: e.currentTarget.value
+  //   });
+  // }
 
-//   handleSubmit(e) {
-//     e.preventDefault();
-//     const user = Object.assign({}, this.state);
-//     this.props.processForm(user);
-//   }
-
-continue = e => {
+  handleSubmit(e) {
     e.preventDefault();
-    this.props.nextStep();
-}
-
-  renderErrors() {
-    return(
-      <ul>
-        {this.props.errors.map((error, i) => (
-          <li key={`error-${i}`}>
-            {error}
-          </li>
-        ))}
-      </ul>
-    );
+    const user = Object.assign({}, this.state);
+    this.props.processForm(user);
   }
 
-  render() {
-    // const { step } = this.state;
-    // const { firstname, lastname, email, password, birthdate, gender } = this.state;
-    // const values = { firstname, lastname, email, password, birthdate, gender }
-    
-    // switch (step) {
-    //     case 1:
-    //         return (
-    //             <SignUpForm2
-    //                 nextStep = {this.nextStep}
-    //                 values = {values}
-    //             />
-    //         )
-            
-    // }
-    const {values } = this.props
+  continue(e) {
+      e.preventDefault();
+      this.props.nextStep();
+  }
+
+  // renderErrors() {
+  //   return(
+  //     <ul>
+  //       {this.props.errors.map((error, i) => (
+  //         <li key={`error-${i}`}>
+  //           {error}
+  //         </li>
+  //       ))}
+  //     </ul>
+  //   );
+  // }
+
+  render() { 
     return (
       <div className="signup-form-container">
         <h2>Google Logo Placeholder</h2>
         <h2>Create your Google Account</h2>
         <h4>to continue to YouTube</h4>
             <form onSubmit={this.handleSubmit} className="signup-form-box">
-            {this.renderErrors()}
+            {/* {this.renderErrors()} */}
             <div className="signup-form">
                 <br/>
                 <label>First Name
-                <input type="text" value = {this.state.firstname} onChange = {this.update('firstname')}/>
+                <input type="text" value = {this.props.firstname} onChange = {this.props.update('firstname')}/>
                 </label>
                 <label>Last Name
-                <input type="text" value = {this.state.lastname} onChange = {this.update('lastname')}/>
+                <input type="text" value = {this.props.lastname} onChange = {this.props.update('lastname')}/>
                 </label>
                 <br/>
                 <label>Your email address
                 <input type="text"
-                    value={this.state.email}
-                    onChange={this.update('email')}
+                    value={this.props.email}
+                    onChange={this.props.update('email')}
                     className="login-input"
                 />
                 </label>
                 <br/>
                 <label>Password
-                <input type="password" value = {this.state.password} onChange = {this.update('password')}/>
+                <input type="password" value = {this.props.password} onChange = {this.props.update('password')}/>
                 </label>
                 <label>Confirm
-                <input type="password" value = {this.state.password} onChange = {this.update('password')}/>
+                <input type="password" value = {this.props.password} onChange = {this.props.update('password')}/>
                 </label>
                 <br/>
                 <span>
                   <Link to='/login'>Sign in instead</Link>
-                  <button className = "signin-next-button" onClick = {(e)=> this.continue()}>Next</button>
+                  <button className = "signin-next-button" onClick = {this.continue}>Next</button>
                 </span>  
             </div>
             </form>

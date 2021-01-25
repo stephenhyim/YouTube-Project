@@ -1,9 +1,10 @@
 import React from 'react';
 import {Link, withRouter} from 'react-router-dom';
 import SignupForm from './signup_form'
+import SignupForm2 from './signup_form2'
 
 
-class SignupFormParent extends Component {
+class SignupFormParent extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -15,16 +16,20 @@ class SignupFormParent extends Component {
             gender: '',
             step: 1
         }
+        this.nextStep = this.nextStep.bind(this);
+        this.prevStep = this.prevStep.bind(this);
+        this.update = this.update.bind(this);
+
     }
 
-    nextStep = () => {
+    nextStep() {
         const {step} = this.state;
         this.setState({
             step: step + 1
         });
     }
 
-    prevStep = () => {
+    prevStep() {
         const {step} = this.state;
         this.setState({
             step: step - 1
@@ -35,7 +40,13 @@ class SignupFormParent extends Component {
         return e => this.setState({
           [field]: e.currentTarget.value
         });
-      }
+    }
+
+    handleSubmit(e) {
+        e.preventDefault();
+        const user = Object.assign({}, this.state);
+        this.props.processForm(user);
+    }
 
     render() {
         const {step} = this.state;
@@ -45,18 +56,25 @@ class SignupFormParent extends Component {
         switch(step) {
             case 1: 
                 return (
-                    <SignUpForm
+                    // <h1>SignUpForm1</h1>
+                    <SignupForm
                         nextStep = {this.nextStep}
                         update = {this.update}
-                        values = {values}
+                        // values = { values }
+                        
                     />
                 )
             case 2: 
                 return (
-                    <h1>SignUpForm2</h1>
+                    // <h1>SignUpForm2</h1>
+                    <SignupForm2 
+                        update = {this.update}
+                        prevStep = {this.prevStep}
+                        
+                    />
                 )
         }
     }
 }
 
-export default SignupFormParent;
+export default withRouter(SignupFormParent);

@@ -1,58 +1,91 @@
 import React from 'react';
+import {Link, withRouter } from 'react-router-dom';
+// import SignupForm2 from './signup_form2';
 
 
 class SignupForm2 extends React.Component {
     
-    // continue = e => {
-    //     e.preventDefault();
-    //     this.props.nextStep();
-    // }
+  constructor(props) {
+    super(props);
+    // this.state = {
+      
+    //   step: 1
+    // };
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.back = this.back.bind(this)
+    
+  }
 
+  back(e) {
+    e.preventDefault();
+    this.props.prevStep();
+  }
 
-    render() {
-        return (
+  handleSubmit(e) {
+    e.preventDefault();
+    const user = Object.assign({}, this.state);
+    this.props.signup(user);
+  }
+
+ 
+
+  // renderErrors() {
+  //   return(
+  //     <ul>
+  //       {this.props.errors.map((error, i) => (
+  //         <li key={`error-${i}`}>
+  //           {error}
+  //         </li>
+  //       ))}
+  //     </ul>
+  //   );
+  // }
+
+  render() { 
+    return (
       <div className="signup-form-container">
         <h2>Google Logo Placeholder</h2>
-        <h2>Create your Google Account</h2>
-        <h4>to continue to YouTube</h4>
+        <h2>{this.props.nickname}, welcome to Google</h2>
+        <h4>{this.props.email}</h4>
             <form onSubmit={this.handleSubmit} className="signup-form-box">
-            Please {this.props.formType} or {this.props.navLink}
-            {this.renderErrors()}
+            {/* {this.renderErrors()} */}
             <div className="signup-form">
                 <br/>
-                <label>First Name
-                <input type="text" value = {this.state.firstname} onChange = {this.update('firstname')}/>
-                </label>
-                <label>Last Name
-                <input type="text" value = {this.state.lastname} onChange = {this.update('lastname')}/>
+                <label>Your birthday
+                <input type="text" value = {this.props.birthdate} onChange = {this.props.update('birthdate')}/>
                 </label>
                 <br/>
+                <label>Gender
+                <input type="text" value = {this.props.gender} onChange = {this.props.update('gender')}/>
+                </label>
+                {/* <br/>
                 <label>Your email address
                 <input type="text"
-                    value={this.state.email}
-                    onChange={this.update('email')}
+                    value={this.props.email}
+                    onChange={this.props.update('email')}
                     className="login-input"
                 />
                 </label>
                 <br/>
                 <label>Password
-                <input type="password" value = {this.state.password} onChange = {this.update('password')}/>
+                <input type="password" value = {this.props.password} onChange = {this.props.update('password')}/>
                 </label>
                 <label>Confirm
-                <input type="password" value = {this.state.password} onChange = {this.update('password')}/>
+                <input type="password" value = {this.props.password} onChange = {this.props.update('password')}/>
                 </label>
+                <br/> */}
                 <br/>
                 <span>
-                  <Link to='/login'>Sign in instead</Link>
-                  <button className = "signin-next-button">Next</button>
+                  <button className = "signin-back-button" onClick = {this.back}>Back</button>
+                  <button className = "signin-next-button" onClick = {this.handleSubmit}>Next</button>
                 </span>  
             </div>
             </form>
       </div>
     );
-    }
+  }
 }
 
-export default SignupForm2;
-
+// export default SignupForm;
+export default withRouter(SignupForm2);
 
