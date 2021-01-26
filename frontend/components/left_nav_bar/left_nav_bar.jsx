@@ -10,12 +10,14 @@ class LeftNavBar extends React.Component {
         return (
             <div>
                 <h1>Left Nav Bar</h1>
-                <Link to ={`/`}>Home</Link>
-                <Link>Trending</Link>
-                <Link>Subscriptions</Link>
-                <Link>Library</Link>
-                <Link>History</Link>
-                <Link to = {`/login`}>SIGN IN</Link>
+                <ul className = 'left-nav-bar'>
+                    <Link to ={`/`}>Home</Link>
+                    <Link to ={`/`}>Trending</Link>
+                    <Link to ={`/`}>Subscriptions</Link>
+                    <Link to ={`/`}>Library</Link>
+                    <Link to ={`/`}>History</Link>
+                    <Link to = {`/login`}>SIGN IN</Link>
+                </ul>
             </div>
         )
     }
