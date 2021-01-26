@@ -13,6 +13,9 @@ class SignupFormParent extends React.Component {
             confirmPassword: '',
             firstname: '',
             lastname: '',
+            month: '',
+            day: '',
+            year: '',
             birthdate: '',
             gender: '',
             step: 1
