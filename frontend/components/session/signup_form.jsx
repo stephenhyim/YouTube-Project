@@ -13,7 +13,7 @@ class SignupForm extends React.Component {
     // };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.continue = this.continue.bind(this);
-    // this.renderErrors = this.renderErrors.bind(this);
+    this.renderErrors = this.renderErrors.bind(this);
   }
 
 //   nextStep = () => {
@@ -40,17 +40,17 @@ class SignupForm extends React.Component {
       this.props.nextStep();
   }
 
-  // renderErrors() {
-  //   return(
-  //     <ul>
-  //       {this.props.errors.map((error, i) => (
-  //         <li key={`error-${i}`}>
-  //           {error}
-  //         </li>
-  //       ))}
-  //     </ul>
-  //   );
-  // }
+  renderErrors() {
+    return(
+      <ul>
+        {this.props.errors.map((error, i) => (
+          <li key={`error-${i}`}>
+            {error}
+          </li>
+        ))}
+      </ul>
+    );
+  }
 
   render() { 
     return (
@@ -59,29 +59,29 @@ class SignupForm extends React.Component {
         <h2>Create your Google Account</h2>
         <h4>to continue to YouTube</h4>
             <form onSubmit={this.handleSubmit} className="signup-form-box">
-            {/* {this.renderErrors()} */}
+            {this.renderErrors()}
             <div className="signup-form">
                 <br/>
                 <label>First Name
-                <input type="text" value = {this.props.firstname} onChange = {this.props.update('firstname')}/>
+                <input type="text" value = {this.props.values.firstname} onChange = {this.props.update('firstname')}/>
                 </label>
                 <label>Last Name
-                <input type="text" value = {this.props.lastname} onChange = {this.props.update('lastname')}/>
+                <input type="text" value = {this.props.values.lastname} onChange = {this.props.update('lastname')}/>
                 </label>
                 <br/>
                 <label>Your email address
                 <input type="text"
-                    value={this.props.email}
+                    value={this.props.values.email}
                     onChange={this.props.update('email')}
                     className="login-input"
                 />
                 </label>
                 <br/>
                 <label>Password
-                <input type="password" value = {this.props.password} onChange = {this.props.update('password')}/>
+                <input type="password" value = {this.props.values.password} onChange = {this.props.update('password')}/>
                 </label>
                 <label>Confirm
-                <input type="password" value = {this.props.password} onChange = {this.props.update('password')}/>
+                <input type="password" value = {this.props.values.password} onChange = {this.props.update('password')}/>
                 </label>
                 <br/>
                 <span>

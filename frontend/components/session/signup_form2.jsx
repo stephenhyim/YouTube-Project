@@ -13,6 +13,7 @@ class SignupForm2 extends React.Component {
     // };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.back = this.back.bind(this)
+    this.renderErrors = this.renderErrors.bind(this);
     
   }
 
@@ -29,26 +30,26 @@ class SignupForm2 extends React.Component {
 
  
 
-  // renderErrors() {
-  //   return(
-  //     <ul>
-  //       {this.props.errors.map((error, i) => (
-  //         <li key={`error-${i}`}>
-  //           {error}
-  //         </li>
-  //       ))}
-  //     </ul>
-  //   );
-  // }
+  renderErrors() {
+    return(
+      <ul>
+        {this.props.errors.map((error, i) => (
+          <li key={`error-${i}`}>
+            {error}
+          </li>
+        ))}
+      </ul>
+    );
+  }
 
   render() { 
     return (
       <div className="signup-form-container">
         <h2>Google Logo Placeholder</h2>
-        <h2>{this.props.nickname}, welcome to Google</h2>
+        <h2>{this.props.firstname}, welcome to Google</h2>
         <h4>{this.props.email}</h4>
             <form onSubmit={this.handleSubmit} className="signup-form-box">
-            {/* {this.renderErrors()} */}
+            {this.renderErrors()}
             <div className="signup-form">
                 <br/>
                 <label>Your birthday

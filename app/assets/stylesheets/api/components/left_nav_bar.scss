@@ -1,0 +1,8 @@
+$font-stack: 'Roboto', sans-serif;
+
+
+.left-nav-bar {
+    font-family: $font-stack;
+    display: flex;
+    flex-direction: column;
+}

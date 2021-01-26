@@ -1,8 +1,28 @@
+$font-stack: 'Roboto', sans-serif;
 
-.top-nav-bar .top-nav-links{
+.top-nav-bar {
+    font-family: $font-stack;
+    background: black;
+    height: 56;
+}
+
+
+.top-nav-links {
     
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    text-decoration: none;
+    color: white;
+    
     
 }
+
+.top-nav-links .signin-btn {
+    border-color: blue;
+}
+
+.signin-btn {
+    border-color: blue;
+}
+

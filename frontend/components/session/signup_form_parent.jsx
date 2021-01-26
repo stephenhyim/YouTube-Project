@@ -55,12 +55,14 @@ class SignupFormParent extends React.Component {
         
         switch(step) {
             case 1: 
+            
                 return (
                     // <h1>SignUpForm1</h1>
                     <SignupForm
                         nextStep = {this.nextStep}
                         update = {this.update}
-                        // values = { values }
+                        values = { values }
+                        errors = { this.props.errors}
                         
                     />
                 )
@@ -70,7 +72,8 @@ class SignupFormParent extends React.Component {
                     <SignupForm2 
                         update = {this.update}
                         prevStep = {this.prevStep}
-                        
+                        signup = {this.props.signup}
+                        errors = { this.props.errors}
                     />
                 )
         }
