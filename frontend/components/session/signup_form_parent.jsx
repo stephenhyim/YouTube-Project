@@ -49,13 +49,13 @@ class SignupFormParent extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
         const user = Object.assign({}, this.state);
-        this.props.processForm(user);
+        this.props.signup(user);
     }
 
     render() {
         const {step} = this.state;
-        const {email, password, confirmPassword, firstname, lastname, birthdate, gender} = this.state;
-        const values =  {email, password, firstname, lastname, birthdate, gender}
+        const {email, password, confirmPassword, firstname, lastname, birthdate, month, day, year, gender} = this.state;
+        const values =  {email, password, firstname, lastname, birthdate, month, day, year, gender}
         
         switch(step) {
             case 1: 
@@ -76,12 +76,16 @@ class SignupFormParent extends React.Component {
                 return (
                     // <h1>SignUpForm2</h1>
                     <SignupForm2 
-                        
+                        // updatedBdayForm = {updatedBdayForm}
                         firstname = {firstname}
                         lastname = {lastname}
                         email = {email}
                         password = {password}
-                        gender = {gender}
+                        // birthdate = {birthdate}
+                        // month = {month}
+                        // day = {day}
+                        // year = {year}
+                        // gender = {gender}
                         prevStep = {this.prevStep}
                         signup = {this.props.signup}
                         errors = { this.props.errors}

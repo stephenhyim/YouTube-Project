@@ -12,6 +12,9 @@ class SignupForm2 extends React.Component {
       lastname: this.props.lastname,
       email: this.props.email,
       password: this.props.password,
+      month: '',
+      day: '',
+      year: '',
       birthdate: '',
       gender: ''
     };
@@ -21,7 +24,16 @@ class SignupForm2 extends React.Component {
     
   }
 
-  
+  // updatedBDayForm(){
+  //   return {
+  //     firstname: this.props.firstname,
+  //     lastname: this.props.lastname,
+  //     email: this.props.email,
+  //     password: this.props.password,
+  //     birthdate: `${this.props.year}-${this.props.month}-${this.props.day}`,
+  //     gender: this.props.gender
+  //   }
+  // }
 
   componentWillUnmount() {
     this.props.removeSessionErrors();
@@ -69,38 +81,44 @@ class SignupForm2 extends React.Component {
             <div className="signup-form">
                 <br/>
                 {/* <span>
-                  <label>Month
-                    <select id="month">
-                      <option value="January">January</option>
-                      <option value="February">February</option>
-                      <option value="March">March</option>
-                      <option value="April">April</option>
-                      <option value="May">May</option>
-                      <option value="June">June</option>
-                      <option value="July">July</option>
-                      <option value="August">August</option>
-                      <option value="September">September</option>
-                      <option value="October">October</option>
-                      <option value="November">November</option>
-                      <option value="Decemeber">Decemeber</option>
+                  <label for = 'month'>Month</label>
+                    <select id="month" value = {this.state.month} onChange = {this.update('month')}>
+                      <option value="Month">Month</option>
+                      <option value="01">January</option>
+                      <option value="02">February</option>
+                      <option value="03">March</option>
+                      <option value="04">April</option>
+                      <option value="05">May</option>
+                      <option value="06">June</option>
+                      <option value="07">July</option>
+                      <option value="08">August</option>
+                      <option value="09">September</option>
+                      <option value="10">October</option>
+                      <option value="11">November</option>
+                      <option value="12">Decemeber</option>
                     </select>
-                  </label>
                   <label>Day
-                    <input type="text" value=""/>
+                    <input type="text" value={this.state.day} onChange = {this.update('day')}/>
+                  </label>
+                  <label>Year
+                    <input type="text" value={this.state.year} onChange = {this.update('year')}/>
                   </label>
                 </span> */}
                 <label>Your birthday
                 <input type="text" value = {this.props.birthdate} onChange = {this.update('birthdate')}/>
                 </label>
                 <br/>
-                <label for = 'gender'>Gender</label>
-                <select id = 'gender' value = {this.props.value} onChange = {this.update('gender')}>
+                {/* <label for = 'gender'>Gender</label>
+                <select id = 'gender' value = {this.props.gender} onChange = {this.update('gender')}>
                   <option value = 'Gender'>Gender</option>
                   <option value = 'Female'>Female</option>
                   <option value = 'Male'>Male</option>
                   <option value = 'Rather not say'>Rather not say</option>
                   <option value = 'Custom'>Custom</option>
-                </select>
+                </select> */}
+                <label for = 'gender'>Gender
+                <input type="text" value = {this.props.gender} onChange = {this.update('gender')}/>
+                </label>
                 <br/>
                 <span>
                   <button className = "signin-back-button" onClick = {this.back}>Back</button>

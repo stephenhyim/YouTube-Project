@@ -19,7 +19,7 @@ const TopNavBar = ({ currentUser, logout }) => {
         <li><MdVideoCall/></li>
         <li><BsFillGrid3X3GapFill/></li>
         <li><AiFillBell/></li>
-        <p>Hello, {currentUser.username}</p>
+        <p>Hello, {currentUser.nickname}</p>
         <button onClick = {logout}>Log Out</button>
       </ul>
     </div>
