@@ -10,6 +10,7 @@ class SignupFormParent extends React.Component {
         this.state = {
             email: '',
             password: '',
+            confirmPassword: '',
             firstname: '',
             lastname: '',
             birthdate: '',
@@ -50,7 +51,7 @@ class SignupFormParent extends React.Component {
 
     render() {
         const {step} = this.state;
-        const {email, password, firstname, lastname, birthdate, gender} = this.state;
+        const {email, password, confirmPassword, firstname, lastname, birthdate, gender} = this.state;
         const values =  {email, password, firstname, lastname, birthdate, gender}
         
         switch(step) {

@@ -71,12 +71,12 @@ class SignupForm2 extends React.Component {
                 </label>
                 <br/>
                 <label for = 'gender'>Gender</label>
-                <select id = 'gender' value = {this.props.gender} onChange = {this.update('gender')}>
-                  <option>Gender</option>
-                  <option value = 'Female' onChange = {this.update('gender')}>Female</option>
-                  <option value = 'Male' onChange = {this.update('gender')}>Male</option>
-                  <option value = 'Rather not say' onChange = {this.update('gender')}>Rather not say</option>
-                  <option value = 'Custom' onChange = {this.update('gender')}>Custom</option>
+                <select id = 'gender' value = {this.props.value} onChange = {this.update('gender')}>
+                  <option value = 'Gender'>Gender</option>
+                  <option value = 'Female'>Female</option>
+                  <option value = 'Male'>Male</option>
+                  <option value = 'Rather not say'>Rather not say</option>
+                  <option value = 'Custom'>Custom</option>
                 </select>
                 {/* <label for = 'gender'>Gender
                 <input type="text" value = {this.props.gender} onChange = {this.update('gender')}/>

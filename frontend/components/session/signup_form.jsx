@@ -10,6 +10,7 @@ class SignupForm extends React.Component {
     this.state = {
       email: this.props.email,
       password: this.props.password,
+      confirmPassword: this.props.confirmPassword,
       firstname: this.props.firstname,
       lastname: this.props.lastname
     };
@@ -89,7 +90,7 @@ class SignupForm extends React.Component {
                 <input type="password" value = {this.props.values.password} onChange = {this.props.update('password')}/>
                 </label>
                 <label>Confirm
-                <input type="password" value = {this.props.values.password} onChange = {this.props.update('password')}/>
+                <input type="password" value = {this.props.values.confirmPassword} onChange = {this.props.update('confirmPassword')}/>
                 </label>
                 <br/>
                 <span>
