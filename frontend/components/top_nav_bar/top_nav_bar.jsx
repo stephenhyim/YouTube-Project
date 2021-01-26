@@ -10,12 +10,30 @@ import { AiFillBell, AiOutlineSearch } from "react-icons/ai";
 const TopNavBar = ({ currentUser, logout }) => {
   const display = currentUser ? (
     <div>
-      <p>Hello, {currentUser.username}</p>
-      <button onClick = {logout}>Log Out</button>
+      <ul className = 'logout-user-top-nav'>
+        <li><FaBars /></li>
+        <li><Link to = {`/`}><FaYoutube/></Link></li>
+        <li><input type = 'text' placeholder = 'Search' /></li>
+        <li><AiOutlineSearch/></li>
+        <li><BsFillMicFill/></li>
+        <li><MdVideoCall/></li>
+        <li><BsFillGrid3X3GapFill/></li>
+        <li><AiFillBell/></li>
+        <p>Hello, {currentUser.username}</p>
+        <button onClick = {logout}>Log Out</button>
+      </ul>
     </div>
   ) : (
     <div>
-      <Link className="signin-btn" to="/login">Sign in</Link>
+      <ul className = 'logout-user-top-nav'>
+        <li><FaBars /></li>
+        <li><Link to = {`/`}><FaYoutube/></Link></li>
+        <li><input type = 'text' placeholder = 'Search' /></li>
+        <li className = 'search-bar'><AiOutlineSearch/></li>
+        <li><BsFillMicFill/></li>
+        <li><BsFillGrid3X3GapFill/></li>
+        <li><Link className="signin-btn" to="/login">Sign in</Link></li>
+      </ul>
     </div>
   );
 
@@ -25,14 +43,6 @@ const TopNavBar = ({ currentUser, logout }) => {
     <header className="top-nav-bar">
       <div>
         <ul className='top-nav-links'>
-          <li><FaBars /></li>
-          <li><Link to = {`/`}><FaYoutube/></Link></li>
-          <li><input type = 'text' placeholder = 'Search' /></li>
-          <li><AiOutlineSearch/></li>
-          <li><BsFillMicFill/></li>
-          <li><MdVideoCall/></li>
-          <li><BsFillGrid3X3GapFill/></li>
-          <li><AiFillBell/></li>
           <li>{display}</li>
         </ul>
       </div>

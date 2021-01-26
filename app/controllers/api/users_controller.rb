@@ -1,6 +1,7 @@
 class Api::UsersController < ApplicationController
     def create
         @user = User.new(user_params)
+        @user.birthdate = Date.new(2001,2,3) #remove this later
       # debugger
       if @user.save
         # debugger
@@ -11,10 +12,11 @@ class Api::UsersController < ApplicationController
       end
     end
 
-    private
+  private
 
     def user_params
-      params.require(:user).permit(:email, :password, :firstname, :lastname, :birthdate, :gender, :nickname)
+      params.require(:user).permit(:email, :password, :firstname, :lastname, :gender)
     end
+    # add birthdate & nickname back to strong params
 
 end

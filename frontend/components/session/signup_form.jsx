@@ -7,14 +7,18 @@ class SignupForm extends React.Component {
     
   constructor(props) {
     super(props);
-    // this.state = {
-      
-    //   step: 1
-    // };
+    this.state = {
+      email: this.props.email,
+      password: this.props.password,
+      firstname: this.props.firstname,
+      lastname: this.props.lastname
+    };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.continue = this.continue.bind(this);
     this.renderErrors = this.renderErrors.bind(this);
   }
+
+//can use 'this.props....' from mstp and mdtp (access to parts of state)
 
 //   nextStep = () => {
 //       const { step } = this.state;
@@ -28,11 +32,14 @@ class SignupForm extends React.Component {
   //     [field]: e.currentTarget.value
   //   });
   // }
+  componentWillUnmount() {
+    this.props.removeSessionErrors();
+  }
 
   handleSubmit(e) {
     e.preventDefault();
     const user = Object.assign({}, this.state);
-    this.props.processForm(user);
+    this.props.signup(user);
   }
 
   continue(e) {
@@ -53,6 +60,7 @@ class SignupForm extends React.Component {
   }
 
   render() { 
+    debugger
     return (
       <div className="signup-form-container">
         <h2>Google Logo Placeholder</h2>
