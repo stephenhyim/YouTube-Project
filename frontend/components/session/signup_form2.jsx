@@ -21,6 +21,8 @@ class SignupForm2 extends React.Component {
     
   }
 
+  
+
   componentWillUnmount() {
     this.props.removeSessionErrors();
   }
@@ -66,21 +68,39 @@ class SignupForm2 extends React.Component {
             {this.renderErrors()}
             <div className="signup-form">
                 <br/>
+                {/* <span>
+                  <label>Month
+                    <select id="month">
+                      <option value="January">January</option>
+                      <option value="February">February</option>
+                      <option value="March">March</option>
+                      <option value="April">April</option>
+                      <option value="May">May</option>
+                      <option value="June">June</option>
+                      <option value="July">July</option>
+                      <option value="August">August</option>
+                      <option value="September">September</option>
+                      <option value="October">October</option>
+                      <option value="November">November</option>
+                      <option value="Decemeber">Decemeber</option>
+                    </select>
+                  </label>
+                  <label>Day
+                    <input type="text" value=""/>
+                  </label>
+                </span> */}
                 <label>Your birthday
                 <input type="text" value = {this.props.birthdate} onChange = {this.update('birthdate')}/>
                 </label>
                 <br/>
                 <label for = 'gender'>Gender</label>
-                <select id = 'gender' value = {this.props.gender} onChange = {this.update('gender')}>
-                  <option>Gender</option>
-                  <option value = 'Female' onChange = {this.update('gender')}>Female</option>
-                  <option value = 'Male' onChange = {this.update('gender')}>Male</option>
-                  <option value = 'Rather not say' onChange = {this.update('gender')}>Rather not say</option>
-                  <option value = 'Custom' onChange = {this.update('gender')}>Custom</option>
+                <select id = 'gender' value = {this.props.value} onChange = {this.update('gender')}>
+                  <option value = 'Gender'>Gender</option>
+                  <option value = 'Female'>Female</option>
+                  <option value = 'Male'>Male</option>
+                  <option value = 'Rather not say'>Rather not say</option>
+                  <option value = 'Custom'>Custom</option>
                 </select>
-                {/* <label for = 'gender'>Gender
-                <input type="text" value = {this.props.gender} onChange = {this.update('gender')}/>
-                </label> */}
                 <br/>
                 <span>
                   <button className = "signin-back-button" onClick = {this.back}>Back</button>
