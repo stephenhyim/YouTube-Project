@@ -10,22 +10,7 @@ import SignupFormParent from './signup_form_parent';
 
 
 
-// const mSTP = ({ errors }) => {
-//   return {
-//     errors: errors.session,
-//     formType: 'signup',
-//   };
-// };
 
-// const mDTP = dispatch => {
-//   return {
-//     processForm: (user) => dispatch(signup(user)),
-//   };
-// };
-
-// export default connect(mSTP, mDTP)(SignupForm);
-
-//TRIAL 2
 const mSTP = ( state, ownProps) => {
   return {
     errors: state.errors.session,
@@ -34,7 +19,7 @@ const mSTP = ( state, ownProps) => {
 };
 
 const mDTP = dispatch => {
-  debugger
+  // debugger
   return {
     signup: (user) => dispatch(signup(user)),
     removeSessionErrors: () => dispatch(removeSessionErrors())

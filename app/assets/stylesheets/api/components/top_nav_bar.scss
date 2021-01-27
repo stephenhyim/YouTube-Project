@@ -17,31 +17,80 @@ $font-stack: 'Roboto', sans-serif;
     
 }
 
-.loggedout-top-nav {
+// .loggedout-top-nav {
     
-    display: flex;
+//     display: flex;
 
-    // .div {
-    //     display:flex;
-    //     justify-content: space-between;
-    // }
+//     // .div {
+//     //     display:flex;
+//     //     justify-content: space-between;
+//     // }
     
     
-    .left-top-nav, .center-top-nav, .right-top-nav {
-        display: flex;
-        // justify-content: space-between; WHY IS THIS NOT SPACING THEM?
-        font-size: 20px;
+//     .left-top-nav, .center-top-nav, .right-top-nav {
+//         display: flex;
+//         // justify-content: space-between; WHY IS THIS NOT SPACING THEM?
+//         font-size: 20px;
         
 
+//     }
+
+//     // ul {
+//     //     align-content: center;
+//     // }
+
+// }
+
+
+.loggedout-top-nav {
+    display: flex;
+    div {
+        flex-direction: row;
     }
+}
 
-    // ul {
-    //     align-content: center;
-    // }
-
+.left-icon-container {
+    display: flex;
+    ul {
+        flex-direction: row;
+    }
 }
 
 
+.search-bar-container {
+    display: flex;
+    ul {
+        flex-direction: row;
+    }
+}
+
+
+.right-icon-container {
+    display: flex;
+    ul {
+        flex-direction: row;
+    }
+}
+
+
+.signin-container {
+    border: 2px solid blue;
+    display: flex;
+
+    ul {
+        flex-direction: row;
+    }
+}
+
+.signin-btn {
+    
+    color: white;
+    text-decoration: none;
+}
+
+.signin-btn :visited {
+    color: white;
+}
 
 
 
