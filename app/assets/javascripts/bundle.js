@@ -508,41 +508,13 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
 
   var _super = _createSuper(LoginForm);
 
-  function LoginForm(props) {
-    var _this;
-
+  function LoginForm() {
     _classCallCheck(this, LoginForm);
 
-    _this = _super.call(this, props);
-    _this.state = {
-      email: _this.props.email,
-      password: _this.props.password
-    };
-    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
-    _this["continue"] = _this["continue"].bind(_assertThisInitialized(_this));
-    _this.renderErrors = _this.renderErrors.bind(_assertThisInitialized(_this));
-    return _this;
+    return _super.apply(this, arguments);
   }
 
   _createClass(LoginForm, [{
-    key: "componentWillUnmount",
-    value: function componentWillUnmount() {
-      this.props.removeSessionErrors();
-    }
-  }, {
-    key: "handleSubmit",
-    value: function handleSubmit(e) {
-      e.preventDefault();
-      var user = Object.assign({}, this.state);
-      this.props.login(user);
-    }
-  }, {
-    key: "continue",
-    value: function _continue(e) {
-      e.preventDefault();
-      this.props.nextStep();
-    }
-  }, {
     key: "renderErrors",
     value: function renderErrors() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, this.props.errors.map(function (error, i) {
@@ -555,17 +527,17 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
     key: "render",
     value: function render() {
       debugger;
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Google Logo Placeholder"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, this.props.formType), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "to continue to YouTube"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-        onSubmit: this.handleSubmit
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Google Logo Placeholder"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, this.props.formType), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "to continue to YouTube"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "login-form-box"
       }, this.renderErrors(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Email", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
         value: this.props.values.email,
         onChange: this.props.update('email')
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         to: "/signup"
-      }, "Create account"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      }, "Create account"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "login-next-button",
-        onClick: this["continue"]
+        onClick: this.props.nextStep
       }, "Next")))));
     }
   }]);
@@ -591,8 +563,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -622,44 +592,13 @@ var LoginForm2 = /*#__PURE__*/function (_React$Component) {
 
   var _super = _createSuper(LoginForm2);
 
-  function LoginForm2(props) {
-    var _this;
-
+  function LoginForm2() {
     _classCallCheck(this, LoginForm2);
 
-    _this = _super.call(this, props);
-    _this.state = {
-      email: _this.props.email,
-      password: ''
-    };
-    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
-    _this.renderErrors = _this.renderErrors.bind(_assertThisInitialized(_this));
-    return _this;
+    return _super.apply(this, arguments);
   }
 
   _createClass(LoginForm2, [{
-    key: "componentWillUnmount",
-    value: function componentWillUnmount() {
-      this.props.removeSessionErrors();
-    }
-  }, {
-    key: "handleSubmit",
-    value: function handleSubmit(e) {
-      e.preventDefault();
-      debugger;
-      var user = Object.assign({}, this.state);
-      this.props.login(user);
-    }
-  }, {
-    key: "update",
-    value: function update(field) {
-      var _this2 = this;
-
-      return function (e) {
-        return _this2.setState(_defineProperty({}, field, e.currentTarget.value));
-      };
-    }
-  }, {
     key: "renderErrors",
     value: function renderErrors() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, this.props.errors.map(function (error, i) {
@@ -674,18 +613,16 @@ var LoginForm2 = /*#__PURE__*/function (_React$Component) {
       debugger;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "signup-form-container"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Google Logo Placeholder"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, " Hi ", this.props.firstname), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, this.props.email), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-        onSubmit: this.handleSubmit,
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Google Logo Placeholder"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, " Hi ", this.props.firstname), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, this.props.email), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "login-form-box"
       }, this.renderErrors(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "signup-form"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Enter your password", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "password",
-        value: this.props.value,
-        onChange: this.update('password')
+        value: this.props.password,
+        onChange: this.props.update('password')
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "Forgot password?"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "login-next-button",
-        onClick: this.handleSubmit
+        className: "login-next-button"
       }, "Next")))));
     }
   }]);
@@ -802,6 +739,7 @@ var LoginFormParent = /*#__PURE__*/function (_React$Component) {
     _this.nextStep = _this.nextStep.bind(_assertThisInitialized(_this));
     _this.prevStep = _this.prevStep.bind(_assertThisInitialized(_this));
     _this.update = _this.update.bind(_assertThisInitialized(_this));
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -835,7 +773,12 @@ var LoginFormParent = /*#__PURE__*/function (_React$Component) {
     value: function handleSubmit(e) {
       e.preventDefault();
       var user = Object.assign({}, this.state);
-      this.props.signup(user);
+      this.props.login(user);
+    }
+  }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      this.props.removeSessionErrors();
     }
   }, {
     key: "render",
@@ -848,42 +791,48 @@ var LoginFormParent = /*#__PURE__*/function (_React$Component) {
         email: email,
         password: password
       };
+      var formpage;
 
       switch (step) {
         case 1:
-          return (
-            /*#__PURE__*/
-            // <h1>SignUpForm1</h1>
-            react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_login_form__WEBPACK_IMPORTED_MODULE_2__["default"], {
-              nextStep: this.nextStep,
-              update: this.update,
-              values: values // {...values} - look into this option for future
-              ,
-              errors: this.props.errors,
-              removeSessionErrors: this.props.removeSessionErrors
-            })
-          );
+          formpage =
+          /*#__PURE__*/
+          // <h1>SignUpForm1</h1>
+          react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_login_form__WEBPACK_IMPORTED_MODULE_2__["default"], {
+            nextStep: this.nextStep,
+            update: this.update,
+            values: values // {...values} - look into this option for future
+            ,
+            errors: this.props.errors,
+            removeSessionErrors: this.props.removeSessionErrors
+          });
+          break;
 
         case 2:
-          return (
-            /*#__PURE__*/
-            // <h1>SignUpForm2</h1>
-            react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_login_form2__WEBPACK_IMPORTED_MODULE_3__["default"] // updatedBdayForm = {updatedBdayForm}
-            , {
-              email: email,
-              password: password // birthdate = {birthdate}
-              // month = {month}
-              // day = {day}
-              // year = {year}
-              // gender = {gender}
-              ,
-              prevStep: this.prevStep,
-              login: this.props.login,
-              errors: this.props.errors,
-              removeSessionErrors: this.props.removeSessionErrors
-            })
-          );
+          formpage =
+          /*#__PURE__*/
+          // <h1>SignUpForm2</h1>
+          react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_login_form2__WEBPACK_IMPORTED_MODULE_3__["default"] // updatedBdayForm = {updatedBdayForm}
+          , {
+            email: email,
+            password: password // birthdate = {birthdate}
+            // month = {month}
+            // day = {day}
+            // year = {year}
+            // gender = {gender}
+            ,
+            prevStep: this.prevStep,
+            update: this.update,
+            login: this.props.login,
+            errors: this.props.errors,
+            removeSessionErrors: this.props.removeSessionErrors
+          });
+          break;
       }
+
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        onSubmit: this.handleSubmit
+      }, formpage);
     }
   }]);
 
@@ -958,8 +907,7 @@ var SignupForm = /*#__PURE__*/function (_React$Component) {
       debugger;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "signup-form-container"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Google Logo Placeholder"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Create your Google Account"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "to continue to YouTube"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-        onSubmit: this.props.nextStep,
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Google Logo Placeholder"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Create your Google Account"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "to continue to YouTube"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "signup-form-box"
       }, this.renderErrors(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "signup-form"
@@ -986,9 +934,9 @@ var SignupForm = /*#__PURE__*/function (_React$Component) {
         onChange: this.props.update('confirmPassword')
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         to: "/login"
-      }, "Sign in instead"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "signin-next-button",
-        onSubmit: this.props.nextStep
+      }, "Sign in instead"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        onClick: this.props.nextStep,
+        className: "signin-next-button"
       }, "Next")))));
     }
   }]);
@@ -1075,27 +1023,25 @@ var SignupForm2 = /*#__PURE__*/function (_React$Component) {
       debugger;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "signup-form-container"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Google Logo Placeholder"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, this.props.firstname, ", welcome to Google"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, this.props.email), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-        onSubmit: this.handleSubmit,
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Google Logo Placeholder"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, this.props.firstname, ", welcome to Google"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, this.props.email), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "signup-form-box"
       }, this.renderErrors(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "signup-form"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Your birthday", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
         value: this.props.birthdate,
-        onChange: this.update('birthdate')
+        onChange: this.props.update('birthdate')
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-        "for": "gender"
+        htmlFor: "gender"
       }, "Gender", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
         value: this.props.gender,
-        onChange: this.update('gender')
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "signin-back-button",
-        onClick: this.back
+        onChange: this.props.update('gender')
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "signin-div",
+        onClick: this.props.prevStep
       }, "Back"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "signin-next-button",
-        onClick: this.handleSubmit
+        className: "signin-next-button"
       }, "Next")))));
     }
   }]);
@@ -1290,46 +1236,51 @@ var SignupFormParent = /*#__PURE__*/function (_React$Component) {
         year: year,
         gender: gender
       };
+      var formpage;
 
       switch (step) {
         case 1:
-          return (
-            /*#__PURE__*/
-            // <h1>SignUpForm1</h1>
-            react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_signup_form__WEBPACK_IMPORTED_MODULE_2__["default"], {
-              nextStep: this.nextStep,
-              update: this.update,
-              values: values // {...values} - look into this option for future
-              ,
-              errors: this.props.errors,
-              removeSessionErrors: this.props.removeSessionErrors
-            })
-          );
+          formpage =
+          /*#__PURE__*/
+          // <h1>SignUpForm1</h1>
+          react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_signup_form__WEBPACK_IMPORTED_MODULE_2__["default"], {
+            nextStep: this.nextStep,
+            update: this.update,
+            values: values // {...values} - look into this option for future
+            ,
+            errors: this.props.errors,
+            removeSessionErrors: this.props.removeSessionErrors
+          });
+          break;
 
         case 2:
-          return (
-            /*#__PURE__*/
-            // <h1>SignUpForm2</h1>
-            react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_signup_form2__WEBPACK_IMPORTED_MODULE_3__["default"] // updatedBdayForm = {updatedBdayForm}
-            , {
-              firstname: firstname,
-              lastname: lastname,
-              email: email,
-              password: password // birthdate = {birthdate}
-              // month = {month}
-              // day = {day}
-              // year = {year}
-              // gender = {gender}
-              ,
-              prevStep: this.prevStep,
-              handleSubmit: this.handleSubmit,
-              update: this.update,
-              signup: this.props.signup,
-              errors: this.props.errors,
-              removeSessionErrors: this.props.removeSessionErrors
-            })
-          );
+          formpage =
+          /*#__PURE__*/
+          // <h1>SignUpForm2</h1>
+          react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_signup_form2__WEBPACK_IMPORTED_MODULE_3__["default"] // updatedBdayForm = {updatedBdayForm}
+          , {
+            firstname: firstname,
+            lastname: lastname,
+            email: email,
+            password: password // birthdate = {birthdate}
+            // month = {month}
+            // day = {day}
+            // year = {year}
+            // gender = {gender}
+            ,
+            prevStep: this.prevStep,
+            handleSubmit: this.handleSubmit,
+            update: this.update,
+            signup: this.props.signup,
+            errors: this.props.errors,
+            removeSessionErrors: this.props.removeSessionErrors
+          });
+          break;
       }
+
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        onSubmit: this.handleSubmit
+      }, formpage);
     }
   }]);
 
@@ -1436,7 +1387,7 @@ var TopNavBar = function TopNavBar(_ref) {
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     className: "signin-btn",
     to: "/login"
-  }, "Sign in")))));
+  }, "SIGN IN")))));
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("header", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "top-nav-bar"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {

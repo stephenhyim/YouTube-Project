@@ -28,7 +28,7 @@ class SignupForm extends React.Component {
         <h2>Google Logo Placeholder</h2>
         <h2>Create your Google Account</h2>
         <h4>to continue to YouTube</h4>
-            <form onSubmit={this.props.nextStep} className="signup-form-box">
+            <div className="signup-form-box">
             {this.renderErrors()}
             <div className="signup-form">
                 <br/>
@@ -56,10 +56,10 @@ class SignupForm extends React.Component {
                 <br/>
                 <span>
                   <Link to='/login'>Sign in instead</Link>
-                  <button className = "signin-next-button" onSubmit = {this.props.nextStep}>Next</button>
+                  <div onClick = {this.props.nextStep} className = "signin-next-button">Next</div>
                 </span>  
             </div>
-            </form>
+            </div>
       </div>
     );
   }

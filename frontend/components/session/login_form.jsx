@@ -5,32 +5,7 @@ import {Link, withRouter } from 'react-router-dom';
 
 class LoginForm extends React.Component {
     
-  constructor(props) {
-    super(props);
-    this.state = {
-      email: this.props.email,
-      password: this.props.password,
-    };
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.continue = this.continue.bind(this);
-    this.renderErrors = this.renderErrors.bind(this);
-  }
-
-
-  componentWillUnmount() {
-    this.props.removeSessionErrors();
-  }
-
-  handleSubmit(e) {
-    e.preventDefault();
-    const user = Object.assign({}, this.state);
-    this.props.login(user);
-  }
-
-  continue(e) {
-      e.preventDefault();
-      this.props.nextStep();
-  }
+ 
 
   renderErrors() {
     return(
@@ -51,7 +26,7 @@ class LoginForm extends React.Component {
         <h2>Google Logo Placeholder</h2>
         <h2>{this.props.formType}</h2>
         <h4>to continue to YouTube</h4>
-            <form onSubmit={this.handleSubmit}>
+            <div className = 'login-form-box'>
             {this.renderErrors()}
             <div>
                 <br/>
@@ -61,10 +36,10 @@ class LoginForm extends React.Component {
                 <br/>
                 <span>
                   <Link to='/signup'>Create account</Link>
-                  <button className = "login-next-button" onClick = {this.continue}>Next</button>
+                  <div className = "login-next-button" onClick = {this.props.nextStep}>Next</div>
                 </span>  
             </div>
-            </form>
+            </div>
       </div>
     );
   }

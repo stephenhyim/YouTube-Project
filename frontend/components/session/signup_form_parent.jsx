@@ -60,12 +60,13 @@ class SignupFormParent extends React.Component {
         const {step} = this.state;
         const {email, password, confirmPassword, firstname, lastname, birthdate, month, day, year, gender} = this.state;
         const values =  {email, password, firstname, lastname, birthdate, month, day, year, gender}
-        
+        let formpage
         switch(step) {
             case 1: 
             
-                return (
+                formpage = (
                     // <h1>SignUpForm1</h1>
+                    
                     <SignupForm
                         nextStep = {this.nextStep}
                         update = {this.update}
@@ -75,9 +76,11 @@ class SignupFormParent extends React.Component {
                         removeSessionErrors = { this.props.removeSessionErrors }
                         
                     />
+                    
                 )
+                break;
             case 2: 
-                return (
+                formpage = (
                     // <h1>SignUpForm2</h1>
                     <SignupForm2 
                         // updatedBdayForm = {updatedBdayForm}
@@ -98,7 +101,13 @@ class SignupFormParent extends React.Component {
                         removeSessionErrors = { this.props.removeSessionErrors }
                     />
                 )
+                break;
         }
+        return (
+            <form onSubmit={this.handleSubmit}>
+                {formpage}
+            </form>
+        )
     }
 }
 

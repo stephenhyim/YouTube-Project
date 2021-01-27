@@ -64,7 +64,7 @@ const TopNavBar = ({ currentUser, logout }) => {
         </span>
         <span className = 'signin-container'>
           <ul><i className="fas fa-user"></i></ul>
-          <ul><Link className="signin-btn" to="/login">Sign in</Link></ul>
+          <ul><Link className="signin-btn" to="/login">SIGN IN</Link></ul>
         </span>
       </div>
       

@@ -45,6 +45,18 @@ $font-stack: 'Roboto', sans-serif;
 .right-top-nav {
     display: flex;
     justify-content: space-around;
+    
+
+    span {
+        display: flex;
+        justify-content: space-around;
+        width: 100px;
+    }
+}
+
+.signin-container {
+    border: 2px solid blue;
+    
 }
 
 

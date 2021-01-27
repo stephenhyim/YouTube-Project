@@ -39,7 +39,7 @@ class SignupForm2 extends React.Component {
         <h2>Google Logo Placeholder</h2>
         <h2>{this.props.firstname}, welcome to Google</h2>
         <h4>{this.props.email}</h4>
-            <form onSubmit={this.handleSubmit} className="signup-form-box">
+            <div className="signup-form-box">
             {this.renderErrors()}
             <div className="signup-form">
                 <br/>
@@ -68,7 +68,7 @@ class SignupForm2 extends React.Component {
                   </label>
                 </span> */}
                 <label>Your birthday
-                <input type="text" value = {this.props.birthdate} onChange = {this.update('birthdate')}/>
+                <input type="text" value = {this.props.birthdate} onChange = {this.props.update('birthdate')}/>
                 </label>
                 <br/>
                 {/* <label for = 'gender'>Gender</label>
@@ -79,16 +79,16 @@ class SignupForm2 extends React.Component {
                   <option value = 'Rather not say'>Rather not say</option>
                   <option value = 'Custom'>Custom</option>
                 </select> */}
-                <label for = 'gender'>Gender
-                <input type="text" value = {this.props.gender} onChange = {this.update('gender')}/>
+                <label htmlFor = 'gender'>Gender
+                <input type="text" value = {this.props.gender} onChange = {this.props.update('gender')}/>
                 </label>
                 <br/>
                 <span>
-                  <button className = "signin-back-button" onClick = {this.back}>Back</button>
-                  <button className = "signin-next-button" onClick = {this.handleSubmit}>Next</button>
+                  <div className = "signin-div" onClick = {this.props.prevStep}>Back</div>
+                  <button className = "signin-next-button" >Next</button>
                 </span>  
             </div>
-            </form>
+            </div>
       </div>
     );
   }
