@@ -5,24 +5,7 @@ import {Link, withRouter } from 'react-router-dom';
 
 class SignupForm2 extends React.Component {
     
-  constructor(props) {
-    super(props);
-    this.state = {
-      firstname: this.props.firstname,
-      lastname: this.props.lastname,
-      email: this.props.email,
-      password: this.props.password,
-      month: '',
-      day: '',
-      year: '',
-      birthdate: '',
-      gender: ''
-    };
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.back = this.back.bind(this)
-    this.renderErrors = this.renderErrors.bind(this);
-    
-  }
+  
 
   // updatedBDayForm(){
   //   return {
@@ -35,27 +18,7 @@ class SignupForm2 extends React.Component {
   //   }
   // }
 
-  componentWillUnmount() {
-    this.props.removeSessionErrors();
-  }
 
-  back(e) {
-    e.preventDefault();
-    this.props.prevStep();
-  }
-
-  handleSubmit(e) {
-    e.preventDefault();
-    debugger
-    const user = Object.assign({}, this.state);
-    this.props.signup(user);
-  }
-
-  update(field) {
-    return e => this.setState({
-      [field]: e.currentTarget.value
-    });
-  }
 
   renderErrors() {
     return(

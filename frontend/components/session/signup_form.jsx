@@ -5,48 +5,7 @@ import {Link, withRouter } from 'react-router-dom';
 
 class SignupForm extends React.Component {
     
-  constructor(props) {
-    super(props);
-    this.state = {
-      email: this.props.email,
-      password: this.props.password,
-      confirmPassword: this.props.confirmPassword,
-      firstname: this.props.firstname,
-      lastname: this.props.lastname
-    };
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.continue = this.continue.bind(this);
-    this.renderErrors = this.renderErrors.bind(this);
-  }
-
-//can use 'this.props....' from mstp and mdtp (access to parts of state)
-
-//   nextStep = () => {
-//       const { step } = this.state;
-//       this.setState({
-//           step: step + 1
-//       });
-//   }
-
-  // update(field) {
-  //   return e => this.setState({
-  //     [field]: e.currentTarget.value
-  //   });
-  // }
-  componentWillUnmount() {
-    this.props.removeSessionErrors();
-  }
-
-  handleSubmit(e) {
-    e.preventDefault();
-    const user = Object.assign({}, this.state);
-    this.props.signup(user);
-  }
-
-  continue(e) {
-      e.preventDefault();
-      this.props.nextStep();
-  }
+ 
 
   renderErrors() {
     return(
@@ -60,6 +19,8 @@ class SignupForm extends React.Component {
     );
   }
 
+  // need to target errors for specific fields
+
   render() { 
     debugger
     return (
@@ -67,7 +28,7 @@ class SignupForm extends React.Component {
         <h2>Google Logo Placeholder</h2>
         <h2>Create your Google Account</h2>
         <h4>to continue to YouTube</h4>
-            <form onSubmit={this.handleSubmit} className="signup-form-box">
+            <form onSubmit={this.props.nextStep} className="signup-form-box">
             {this.renderErrors()}
             <div className="signup-form">
                 <br/>
@@ -95,7 +56,7 @@ class SignupForm extends React.Component {
                 <br/>
                 <span>
                   <Link to='/login'>Sign in instead</Link>
-                  <button className = "signin-next-button" onClick = {this.continue}>Next</button>
+                  <button className = "signin-next-button" onSubmit = {this.props.nextStep}>Next</button>
                 </span>  
             </div>
             </form>

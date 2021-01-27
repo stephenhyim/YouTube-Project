@@ -23,7 +23,7 @@ class SignupFormParent extends React.Component {
         this.nextStep = this.nextStep.bind(this);
         this.prevStep = this.prevStep.bind(this);
         this.update = this.update.bind(this);
-
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     nextStep() {
@@ -51,6 +51,10 @@ class SignupFormParent extends React.Component {
         const user = Object.assign({}, this.state);
         this.props.signup(user);
     }
+
+    componentWillUnmount() {
+        this.props.removeSessionErrors();
+      }
 
     render() {
         const {step} = this.state;
@@ -87,6 +91,8 @@ class SignupFormParent extends React.Component {
                         // year = {year}
                         // gender = {gender}
                         prevStep = {this.prevStep}
+                        handleSubmit = {this.handleSubmit}
+                        update = {this.update}
                         signup = {this.props.signup}
                         errors = { this.props.errors}
                         removeSessionErrors = { this.props.removeSessionErrors }

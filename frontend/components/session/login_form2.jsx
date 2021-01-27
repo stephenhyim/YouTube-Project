@@ -12,7 +12,7 @@ class LoginForm2 extends React.Component {
       password: '',
     };
     this.handleSubmit = this.handleSubmit.bind(this);
-    // this.renderErrors = this.renderErrors.bind(this);
+    this.renderErrors = this.renderErrors.bind(this);
     
   }
 
