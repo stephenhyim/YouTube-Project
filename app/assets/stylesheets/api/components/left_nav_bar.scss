@@ -1,8 +1,56 @@
-$font-stack: 'Roboto', sans-serif;
-
 
 .left-nav-bar {
-    font-family: $font-stack;
+    background: blue;
     display: flex;
     flex-direction: column;
+    width: 240px;
+    min-height: 1000px;
+    border: 5px solid black;
+    // font-size: 30px; this changes the signin link font size
+    // text-decoration: none; WHY DOES THIS NOT WORK?
+
+    .div {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        align-items: center;
+        // border: 5px solid black; Why does this not work? expected to see borders around all divs 
+    }
+
 }
+
+
+.left-icons {
+    display: flex;
+    justify-content: center;
+    
+    
+
+
+    li {
+        display: flex;
+        flex-direction: row;
+        font-size: 20px;
+        
+        // text-decoration: none; why does this not work?
+        // justify-content: space-between; expected to see space between icons and links
+    }
+}
+
+.signin-btn {
+    display: flex;
+    justify-content: center;
+
+    .sigin-link {
+        display: flex;
+        // border: 2px solid yellow;
+    }
+}
+
+.left-icons {
+    font-size: 30px;
+}
+
+
+
+

@@ -2,33 +2,48 @@ $font-stack: 'Roboto', sans-serif;
 
 .top-nav-bar {
     font-family: $font-stack;
-    background: black;
-    height: 50px;
-}
-
-
-.logout-user-top-nav {
-    
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    text-decoration: none;
+    background: red;
+    height: 56px;
     color: white;
-    
-    
-}
-
-.logout-user-top-nav > .search-bar {
+    box-sizing: border-box;
     display: flex;
-    justify-content: center;
+    // flex-direction: row;
     align-items: center;
+
+    // .top-nav-links {
+    //     display: flex;
+    //     justify-content: space-between;
+    // }
+    
 }
 
-.top-nav-links .signin-btn {
-    border-color: blue;
+.loggedout-top-nav {
+    
+    display: flex;
+
+    // .div {
+    //     display:flex;
+    //     justify-content: space-between;
+    // }
+    
+    
+    .left-top-nav, .center-top-nav, .right-top-nav {
+        display: flex;
+        // justify-content: space-between; WHY IS THIS NOT SPACING THEM?
+        font-size: 20px;
+        
+
+    }
+
+    // ul {
+    //     align-content: center;
+    // }
+
 }
 
-.signin-btn {
-    border-color: blue;
-}
+
+
+
+
+
 

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { AuthRoute } from '../../util/route_util';
 import TopNavBar from '../top_nav_bar/top_nav_bar_container';
 import LeftNavBar from '../left_nav_bar/left_nav_bar';
+import VideoIndex from '../videos/video_index';
 
 
 
@@ -37,9 +38,12 @@ class LandingPage extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className = 'landing-page'>
                 <TopNavBar/>
-                <LeftNavBar/>
+                <div className = 'main-container'>
+                    <div><LeftNavBar/></div>
+                    <div><VideoIndex/></div>
+                </div>
             </div>
         )
     }
