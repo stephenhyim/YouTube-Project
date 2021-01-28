@@ -1,8 +1,99 @@
-$font-stack: 'Roboto', sans-serif;
-
 
 .left-nav-bar {
-    font-family: $font-stack;
+    background: #303030;
     display: flex;
     flex-direction: column;
+    width: 240px;
+    min-height: 1000px;
+    border: 1px solid black;
+    font-size: 20px;
+    box-sizing: border-box;
+    
+
+    .left-group1, .left-group2 {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: flex-start;
+        border: 1px solid black; 
+        // background-color: pink;
+         
+    }
+
 }
+
+.left-icons {
+    display: flex;
+    justify-content: space-evenly;
+    width: 150px;
+    padding: 10px;
+
+}
+
+.left-group2 {
+    display: flex;
+    padding: 0 50px;
+}
+
+i {
+    color: white;
+}
+
+
+// .signin-link .left-signin-link {
+//     text-decoration: none;
+//     color: white;
+// }
+
+// .left-signin-link {
+//     border: 1px solid blue;
+// }
+
+// .left-signin-link :visited {
+//     color: white;
+// }
+
+// .liked-videos-link {
+//     color: white;
+//     text-decoration: none;
+// }
+
+// .liked-videos-link :visited {
+//     color: white;
+// }
+
+.library-link {
+    color: white;
+    text-decoration: none;
+}
+
+// .library-link :visited {
+//     color: white;
+// }
+
+.home-link {
+    color: white;
+    text-decoration: none;
+}
+
+// .home-link :visited {
+//     color: white;
+// }
+
+// .signin-btn {
+//     display: flex;
+//     justify-content: center;
+
+//     .signin-link {
+//         display: flex;
+//         // border: 2px solid yellow;
+//     }
+// }
+
+// .left-icons {
+//     font-size: 30px;
+// }
+
+
+
+

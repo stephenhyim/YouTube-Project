@@ -6,7 +6,7 @@ import { login, signup, logout } from '../../actions/session_actions';
 
 const mSTP = (state, ownProps) => {
     return {
-        currentUser: state.session.currentUser
+        currentUser: state.session.id
     }
 }
 

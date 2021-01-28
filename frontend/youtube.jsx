@@ -6,11 +6,12 @@ import Root from './components/root';
 
 document.addEventListener('DOMContentLoaded',() => {
     let store;
+    // debugger
     if (window.currentUser) {
       const { currentUser } = window;
       const { id } = currentUser;
       const preloadedState = { 
-        entitities: {
+        entities: {
           users: {
             [id]: currentUser
           }
@@ -24,6 +25,7 @@ document.addEventListener('DOMContentLoaded',() => {
     } else {
         store = configureStore();
     }
+    // debugger
 
 
 
@@ -34,6 +36,7 @@ document.addEventListener('DOMContentLoaded',() => {
     // window.logout = logout;
     window.getState = store.getState;
     window.dispatch = store.dispatch;
+    
     // TESTING ENDS
 
 

@@ -1,12 +1,12 @@
 import { connect } from 'react-redux';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { login } from '../../actions/session_actions';
-import LogIn from './login_form';
+import { login, removeSessionErrors } from '../../actions/session_actions';
+import LogInParent from './login_form_parent';
 
-const mSTP = ({ errors }) => {
+const mSTP = ( state, ownProps) => {
   return {
-    errors: errors.session,
+    errors: state.errors.session,
     formType: 'Sign in'
   };
 };
@@ -14,7 +14,8 @@ const mSTP = ({ errors }) => {
 const mDTP = dispatch => {
   return {
     login: (user) => dispatch(login(user)),
+    removeSessionErrors: () => dispatch(removeSessionErrors())
   };
 };
 
-export default connect(mSTP, mDTP)(LogIn);
+export default connect(mSTP, mDTP)(LogInParent);

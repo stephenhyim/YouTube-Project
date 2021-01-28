@@ -23,7 +23,7 @@ class SignupFormParent extends React.Component {
         this.nextStep = this.nextStep.bind(this);
         this.prevStep = this.prevStep.bind(this);
         this.update = this.update.bind(this);
-
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     nextStep() {
@@ -49,19 +49,24 @@ class SignupFormParent extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
         const user = Object.assign({}, this.state);
-        this.props.processForm(user);
+        this.props.signup(user);
     }
+
+    componentWillUnmount() {
+        this.props.removeSessionErrors();
+      }
 
     render() {
         const {step} = this.state;
-        const {email, password, confirmPassword, firstname, lastname, birthdate, gender} = this.state;
-        const values =  {email, password, firstname, lastname, birthdate, gender}
-        
+        const {email, password, confirmPassword, firstname, lastname, birthdate, month, day, year, gender} = this.state;
+        const values =  {email, password, firstname, lastname, birthdate, month, day, year, gender}
+        let formpage
         switch(step) {
             case 1: 
             
-                return (
+                formpage = (
                     // <h1>SignUpForm1</h1>
+                    
                     <SignupForm
                         nextStep = {this.nextStep}
                         update = {this.update}
@@ -71,24 +76,38 @@ class SignupFormParent extends React.Component {
                         removeSessionErrors = { this.props.removeSessionErrors }
                         
                     />
+                    
                 )
+                break;
             case 2: 
-                return (
+                formpage = (
                     // <h1>SignUpForm2</h1>
                     <SignupForm2 
-                        
+                        // updatedBdayForm = {updatedBdayForm}
                         firstname = {firstname}
                         lastname = {lastname}
                         email = {email}
                         password = {password}
-                        gender = {gender}
+                        // birthdate = {birthdate}
+                        // month = {month}
+                        // day = {day}
+                        // year = {year}
+                        // gender = {gender}
                         prevStep = {this.prevStep}
+                        handleSubmit = {this.handleSubmit}
+                        update = {this.update}
                         signup = {this.props.signup}
                         errors = { this.props.errors}
                         removeSessionErrors = { this.props.removeSessionErrors }
                     />
                 )
+                break;
         }
+        return (
+            <form onSubmit={this.handleSubmit}>
+                {formpage}
+            </form>
+        )
     }
 }
 
