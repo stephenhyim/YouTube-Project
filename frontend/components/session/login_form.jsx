@@ -48,13 +48,18 @@ class LoginForm extends React.Component {
               <div className = 'login-form-one-errors'>
                 {this.renderErrors()}
               </div>
-              <button onClick = {this.guestLogin}>Guest Login</button>
             </div>
 
-            <div>
+            <div className='guest-login-button-container'>
+              <button className='guest-login-button' onClick = {this.guestLogin}>Guest Login</button>
+            </div>
+
+            <div className = 'login-form-one-bottom-buttons'>
               <span className = 'login-form-one-button'>
-                <Link to='/signup'>Create account</Link>
-                <div className = "login-next-button" onClick = {this.props.nextStep}>Next</div>
+                <Link className='create-account-button' to='/signup'>Create account</Link>
+                <div className = 'login-next-button-container'>
+                  <div className = "login-next-button" onClick = {this.props.nextStep}>Next</div>
+                </div>
               </span> 
             </div>
           </div> 

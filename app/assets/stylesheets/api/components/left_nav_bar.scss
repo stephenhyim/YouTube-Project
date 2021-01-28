@@ -1,12 +1,13 @@
 
 .left-nav-bar {
-    background: blue;
+    background: #303030;
     display: flex;
     flex-direction: column;
     width: 240px;
     min-height: 1000px;
     border: 1px solid black;
     font-size: 20px;
+    box-sizing: border-box;
     
 
     .left-group1, .left-group2 {
@@ -34,7 +35,9 @@
     padding: 0 50px;
 }
 
-
+i {
+    color: white;
+}
 
 
 // .signin-link .left-signin-link {
@@ -59,19 +62,19 @@
 //     color: white;
 // }
 
-// .library-link {
-//     color: white;
-//     text-decoration: none;
-// }
+.library-link {
+    color: white;
+    text-decoration: none;
+}
 
 // .library-link :visited {
 //     color: white;
 // }
 
-// .home-link {
-//     color: white;
-//     text-decoration: none;
-// }
+.home-link {
+    color: white;
+    text-decoration: none;
+}
 
 // .home-link :visited {
 //     color: white;
@@ -91,27 +94,6 @@
 //     font-size: 30px;
 // }
 
-// .test-parent {
-    
-//     .test-span {
-//         display: flex;
-        
-//             .fas fa-thumbs-up .liked-videos-link {
-//                 display: flex;
-//                 justify-content: space-between;
-//             }
 
-//     }
-// }
-
-// .test-span {
-//     display: flex;
-    
-//         .fas fa-thumbs-up .liked-videos-link {
-//             display: flex;
-//             justify-content: space-between;
-//         }
-
-// }
 
 

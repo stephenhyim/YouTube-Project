@@ -20,28 +20,34 @@ class LoginForm2 extends React.Component {
   }
 
   render() { 
-    debugger
+    // debugger
     return (
-      <div className="signup-form-container">
-        <h2>Google Logo Placeholder</h2>
-        <h2> Hi {this.props.firstname}</h2>
-        <h4>{this.props.email}</h4>
-            <div className="login-form-box">
-            {this.renderErrors()}
+      <div className='login-form-two-container'>
+
+        <div className="login-form-two-top">
+          <img className='google-logo' src={window.logo} />
+          <h1> Hi {this.props.firstname}</h1>
+          <h4>{this.props.email}</h4>
+        </div>
+
+        <div className = 'login-form-two-main'>
+          <div className = 'login-form-two-input'>
             <div className="signup-form">
-                <br/>
-          
-                <label>
-                <input placeholder ='Enter your password' type="password" value = {this.props.password} onChange = {this.props.update('password')}/>
-                </label>
-                <br/>
-           
-                <span>
-                  <button>Forgot password?</button>
-                  <button className = "login-next-button" >Next</button>
-                </span>  
+              <label className = 'login-form-two-container'>
+                <input className='login-form-two-password' placeholder ='Enter your password' type="password" value = {this.props.password} onChange = {this.props.update('password')}/>
+              </label>
+            <div className="login-form-two-errors">
+              {this.renderErrors()}
             </div>
-            </div>
+          </div>
+
+            <span>
+              <button>Forgot password?</button>
+              <button className = "login-next-button" >Next</button>
+            </span>  
+          </div>
+        </div>
+        
       </div>
     );
   }

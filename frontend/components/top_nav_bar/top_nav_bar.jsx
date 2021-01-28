@@ -20,17 +20,12 @@ const TopNavBar = ({ currentUser, logout }) => {
           <ul>
             <li><i className="fas fa-search"></i></li>
           </ul>
-          <ul>
-            <li><i className="fas fa-microphone"></i></li>
-          </ul>
         </span>
       </div>
 
       <div className = 'right-top-nav-login'>
         <span className = 'right-icon-container-login'>
-          <ul><i className="fas fa-th"></i></ul>
           <ul><i className="fas fa-video"></i></ul>
-          <ul><i className="fas fa-bell"></i></ul>
         </span>
         <span className = 'avatar'>
           <ul><i className="fas fa-user"></i></ul>
@@ -54,17 +49,10 @@ const TopNavBar = ({ currentUser, logout }) => {
           <ul>
             <li><i className="fas fa-search"></i></li>
           </ul>
-          <ul>
-            <li><i className="fas fa-microphone"></i></li>
-          </ul>
         </span>
       </div>
 
       <div className = 'right-top-nav'>
-        <span className = 'right-icon-container'>
-          <ul><i className="fas fa-th"></i></ul>
-          <ul><i className="fas fa-ellipsis-v"></i></ul>
-        </span>
         <span className = 'signin-container'>
           <ul><i className="fas fa-user"></i></ul>
           <ul><Link className="signin-btn" to="/login">SIGN IN</Link></ul>

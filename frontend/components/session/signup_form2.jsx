@@ -33,7 +33,7 @@ class SignupForm2 extends React.Component {
   }
 
   render() { 
-    debugger
+    // debugger
     return (
       <div className="signup-form-container">
         <h2>Google Logo Placeholder</h2>
