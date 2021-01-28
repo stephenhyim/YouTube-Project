@@ -9,31 +9,19 @@ const LeftNavBar = ({ currentUser}) => {
     const display = currentUser ? (
         <div className = 'left-nav-bar'>
             <div className = 'left-group1'>
-                <span className = 'left-home'>
+                <div className = 'left-home'>
                     <ul className = 'left-icons'>
-                        <li className = 'icon'>
-                            <i className="fas fa-home"></i>
-                        </li>
-                        <li className = 'left-link'>
-                            <Link className = 'home-link' to ={`/`}>Home</Link>
-                        </li>
+                        <i className="fas fa-home"></i>
+                        <Link className = 'home-link' to ={`/`}>Home</Link>  
                     </ul>
-                </span>
+                </div>
                 <ul className = 'left-icons'>
-                    <li className = 'icon'>
-                        <i className="fas fa-book-open"></i>
-                    </li>
-                    <li className = 'left-link'>
-                        <Link className = 'library-link' to ={`/`}>Library</Link>
-                    </li>
+                    <i className="fas fa-book-open"></i>
+                    <Link className = 'library-link' to ={`/`}>Library</Link>
                 </ul>
                 <ul className = 'left-icons'>
-                    <li className = 'icon'>
-                        <i className="fas fa-thumbs-up"></i>
-                    </li>
-                    <li className = 'left-link'>
-                        <Link className = 'liked-videos-link' to ={`/`}>Liked videos</Link>
-                    </li>
+                    <i className="fas fa-thumbs-up"></i>
+                    <Link className = 'liked-videos-link' to ={`/`}>Liked videos</Link>
                 </ul>
             </div>
 
@@ -52,13 +40,15 @@ const LeftNavBar = ({ currentUser}) => {
             </div>
         
             <div className = 'left-group2'>
-                <ul className = 'signin-btn'>
+                <ul>
                     <p>Sign in to like videos, comment, and subscribe.</p>
                 </ul>
-                <ul>
-                    <i className="fas fa-user"></i>
-                    <Link className = 'left-signin-link' to = {`/login`}>SIGN IN</Link>
-                </ul>
+                <div className='signin-btn-container'>
+                    <ul className = 'signin-btn'>
+                        <i className="fas fa-user"></i>
+                        <Link className = 'left-signin-link' to = {`/login`}>SIGN IN</Link>
+                    </ul>
+                </div>
             </div>
         
         </div>  
@@ -69,7 +59,7 @@ const LeftNavBar = ({ currentUser}) => {
 
     return (
         <div>
-            <span>{display}</span>
+            <div>{display}</div>
         </div>
         )
     }

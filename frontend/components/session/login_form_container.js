@@ -7,7 +7,7 @@ import LogInParent from './login_form_parent';
 const mSTP = ( state, ownProps) => {
   return {
     errors: state.errors.session,
-    formType: 'Sign in'
+    formType: 'Sign in',
   };
 };
 

@@ -41,8 +41,8 @@ class LandingPage extends React.Component {
             <div className = 'landing-page'>
                 <TopNavBar/>
                 <div className = 'main-container'>
-                    <div><LeftNavBar/></div>
-                    <div><VideoIndex/></div>
+                    <LeftNavBar/>
+                    <VideoIndex/>
                 </div>
             </div>
         )

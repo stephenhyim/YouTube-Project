@@ -21,17 +21,17 @@ class LoginFormParent extends React.Component {
     
 
     nextStep() {
-        const {step} = this.state;
+        const {step} = this.state
         this.setState({
             step: step + 1
         });
     }
 
     prevStep() {
-        const {step} = this.state;
+        const {step} = this.state
         this.setState({
             step: step - 1
-        });
+        })
     }
 
     update(field) {

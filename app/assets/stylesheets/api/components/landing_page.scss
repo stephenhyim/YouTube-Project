@@ -13,8 +13,10 @@ $font-stack: 'Roboto', sans-serif;
 
 .main-container {
     display: flex;
-    justify-content: space-between;
+    flex-direction: row;
     align-items: center;
     padding: 0;
+
+   
 }
 

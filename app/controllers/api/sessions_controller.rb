@@ -1,5 +1,6 @@
 class Api::SessionsController < ApplicationController
     def create
+      
         @user = User.find_by_credentials(
           params[:user][:email],
           params[:user][:password]
@@ -9,6 +10,7 @@ class Api::SessionsController < ApplicationController
           login(@user)
           render "api/users/show"
         else
+          # debugger
           render json: ["Wrong password. Try again or click Forgot password to reset it."], status: 401
         end
       end
@@ -19,6 +21,7 @@ class Api::SessionsController < ApplicationController
           logout
           render "api/users/show"
         else
+          # debugger
           render json: ["No current user"], status: 404
         end
       end

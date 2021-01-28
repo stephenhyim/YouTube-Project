@@ -9,7 +9,8 @@ class LoginForm extends React.Component {
     super(props)
     this.guestLogin = this.guestLogin.bind(this)
   }  
-  guestLogin(){
+  guestLogin(e){
+    e.preventDefault();
     const guest = {
       email: 'guest@email.com', password: 'guestpassword'
     }

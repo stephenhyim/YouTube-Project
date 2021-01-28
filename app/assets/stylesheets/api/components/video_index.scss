@@ -1,12 +1,43 @@
+$font-stack: 'Roboto', sans-serif;
 
 
-.video-index {
+.video-main-container {
+    font-family: $font-stack;
+    box-sizing: border-box;
+    background: #181818;
+    height: 1456px;
+    width: 1662px;
     display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-left: 240px;
+    margin-top: 56px;
 
 
-    .video {
+    .videos-index {
         display: flex;
-        justify-content: space-between;
-        flex-direction: row;
+        flex-direction: column;
+        width: 1504px;
+        padding-top: 56px;
     }
+
+        .video-row {
+            display: flex;
+            justify-content: space-around;
+            height: 350px;
+            
+        }
+
+            ul {
+                justify-content: space-between;
+            }
+
 }
+
+.video-thumbnail {
+    width: 360px;
+    height: 298px;
+}
+
+
+

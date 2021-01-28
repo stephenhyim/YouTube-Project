@@ -23,10 +23,12 @@ $font-stack: 'Roboto', sans-serif;
     display: flex;
     flex-direction: column;
     align-items: center;
-    // justify-content: space-between;
+    justify-content: space-between;
     width: 368px;
 
-    
+    img, h1, h4 {
+        display: flex;
+    }
 }
 
 
