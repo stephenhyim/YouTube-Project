@@ -59,6 +59,17 @@ $font-stack: 'Roboto', sans-serif;
     
 }
 
+.right-top-nav-login {
+    display: flex;
+    justify-content: space-around;
+
+    span {
+        display: flex;
+        justify-content: space-around;
+        width: 100px;
+    }
+}
+
 
 
 

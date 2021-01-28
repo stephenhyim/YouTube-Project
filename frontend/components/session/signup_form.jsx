@@ -32,26 +32,27 @@ class SignupForm extends React.Component {
             {this.renderErrors()}
             <div className="signup-form">
                 <br/>
-                <label>First Name
-                <input type="text" value = {this.props.values.firstname} onChange = {this.props.update('firstname')}/>
+                <label>
+                <input placeholder='First Name' type="text" value = {this.props.values.firstname} onChange = {this.props.update('firstname')}/>
                 </label>
-                <label>Last Name
-                <input type="text" value = {this.props.values.lastname} onChange = {this.props.update('lastname')}/>
+                <label>
+                <input placeholder='Last Name' type="text" value = {this.props.values.lastname} onChange = {this.props.update('lastname')}/>
                 </label>
                 <br/>
-                <label>Your email address
+                <label>
                 <input type="text"
+                    placeholder='Your email address'
                     value={this.props.values.email}
                     onChange={this.props.update('email')}
                     className="login-input"
                 />
                 </label>
                 <br/>
-                <label>Password
-                <input type="password" value = {this.props.values.password} onChange = {this.props.update('password')}/>
+                <label>
+                <input placeholder='Password' type="password" value = {this.props.values.password} onChange = {this.props.update('password')}/>
                 </label>
-                <label>Confirm
-                <input type="password" value = {this.props.values.confirmPassword} onChange = {this.props.update('confirmPassword')}/>
+                <label>
+                <input placeholder='Confirm' type="password" value = {this.props.values.confirmPassword} onChange = {this.props.update('confirmPassword')}/>
                 </label>
                 <br/>
                 <span>

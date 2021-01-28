@@ -5,6 +5,7 @@ import LeftNavBar from './left_nav_bar';
 import { login, signup, logout } from '../../actions/session_actions';
 
 const mSTP = (state, ownProps) => {
+    // debugger
     return {
         currentUser: state.session.id
     }

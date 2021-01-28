@@ -18,6 +18,8 @@ class LoginFormParent extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+    
+
     nextStep() {
         const {step} = this.state;
         this.setState({
@@ -64,6 +66,8 @@ class LoginFormParent extends React.Component {
                         values = { values }
                         // {...values} - look into this option for future
                         errors = { this.props.errors}
+                        login = {this.props.login}
+                        
                         removeSessionErrors = { this.props.removeSessionErrors }
                         
                     />

@@ -31,8 +31,8 @@ class LoginForm2 extends React.Component {
             <div className="signup-form">
                 <br/>
           
-                <label>Enter your password
-                <input type="password" value = {this.props.password} onChange = {this.props.update('password')}/>
+                <label>
+                <input placeholder ='Enter your password' type="password" value = {this.props.password} onChange = {this.props.update('password')}/>
                 </label>
                 <br/>
            

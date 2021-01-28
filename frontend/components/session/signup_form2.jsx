@@ -67,8 +67,8 @@ class SignupForm2 extends React.Component {
                     <input type="text" value={this.state.year} onChange = {this.update('year')}/>
                   </label>
                 </span> */}
-                <label>Your birthday
-                <input type="text" value = {this.props.birthdate} onChange = {this.props.update('birthdate')}/>
+                <label>
+                <input placeholder='Your birthday' type="text" value = {this.props.birthdate} onChange = {this.props.update('birthdate')}/>
                 </label>
                 <br/>
                 {/* <label for = 'gender'>Gender</label>
@@ -79,8 +79,8 @@ class SignupForm2 extends React.Component {
                   <option value = 'Rather not say'>Rather not say</option>
                   <option value = 'Custom'>Custom</option>
                 </select> */}
-                <label htmlFor = 'gender'>Gender
-                <input type="text" value = {this.props.gender} onChange = {this.props.update('gender')}/>
+                <label htmlFor = 'gender'>
+                <input placeholder='Gender' type="text" value = {this.props.gender} onChange = {this.props.update('gender')}/>
                 </label>
                 <br/>
                 <span>
