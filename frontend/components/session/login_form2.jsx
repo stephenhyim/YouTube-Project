@@ -22,32 +22,38 @@ class LoginForm2 extends React.Component {
   render() { 
     // debugger
     return (
-      <div className='login-form-two-container'>
+      <div className='login2-form-two-container'>
+        <div className='login2-form-two-test'>
 
-        <div className="login-form-two-top">
+        <div className="login2-form-two-top">
           <img className='google-logo' src={window.logo} />
-          <h1> Hi {this.props.firstname}</h1>
-          <h4>{this.props.email}</h4>
+          <h1 className='login2-header'> Hello {this.props.firstname}</h1>
+          <h4 className='login2-header2'>{this.props.email}</h4>
         </div>
 
-        <div className = 'login-form-two-main'>
-          <div className = 'login-form-two-input'>
-            <div className="signup-form">
-              <label className = 'login-form-two-container'>
-                <input className='login-form-two-password' placeholder ='Enter your password' type="password" value = {this.props.password} onChange = {this.props.update('password')}/>
-              </label>
-            <div className="login-form-two-errors">
+        <div className = 'login2-form-two-main'>
+
+          <div className = 'login2-form-two-input'>
+            <div className = 'login2-form-two-password-container'>
+              <input className='login2-form-two-password' placeholder ='Enter your password' type="password" value = {this.props.password} onChange = {this.props.update('password')}/>
+            </div>
+            <div className="login2-form-two-errors">
               {this.renderErrors()}
             </div>
           </div>
 
-            <span>
-              <button>Forgot password?</button>
-              <button className = "login-next-button" >Next</button>
-            </span>  
-          </div>
+            <div className='login2-form-two-bottom-buttons'>
+              <div className ='forgot-pw-container'>
+                <div className='forgot-pw'>Forgot password?</div>
+              </div>
+              <div className='login2-form-two-next-button-container'>
+                <button className = "login2-form-two-next-button" >Next</button>
+              </div>
+            </div>
+
         </div>
         
+        </div>
       </div>
     );
   }

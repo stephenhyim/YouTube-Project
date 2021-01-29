@@ -25,42 +25,59 @@ class SignupForm extends React.Component {
     // debugger
     return (
       <div className="signup-form-container">
-        <h2>Google Logo Placeholder</h2>
-        <h2>Create your Google Account</h2>
-        <h4>to continue to YouTube</h4>
-            <div className="signup-form-box">
-            {this.renderErrors()}
+        <div className ='signup-form-box'>
+
+          <div className='signup-form-top'>
+            <img className='google-logo' src={window.logo} />
+            <h1>Create your Google Account</h1>
+            <h4>to continue to YouTube</h4>
+          </div>
+
+            
+
             <div className="signup-form">
-                <br/>
-                <label>
-                <input placeholder='First Name' type="text" value = {this.props.values.firstname} onChange = {this.props.update('firstname')}/>
-                </label>
-                <label>
-                <input placeholder='Last Name' type="text" value = {this.props.values.lastname} onChange = {this.props.update('lastname')}/>
-                </label>
-                <br/>
-                <label>
-                <input type="text"
-                    placeholder='Your email address'
-                    value={this.props.values.email}
-                    onChange={this.props.update('email')}
-                    className="login-input"
-                />
-                </label>
-                <br/>
-                <label>
-                <input placeholder='Password' type="password" value = {this.props.values.password} onChange = {this.props.update('password')}/>
-                </label>
-                <label>
-                <input placeholder='Confirm' type="password" value = {this.props.values.confirmPassword} onChange = {this.props.update('confirmPassword')}/>
-                </label>
-                <br/>
-                <span>
-                  <Link to='/login'>Sign in instead</Link>
-                  <div onClick = {this.props.nextStep} className = "signin-next-button">Next</div>
-                </span>  
+              
+              <span className='signupform-name'>
+                <div className='signupform-firstname'>
+                  <input className='signup-firstname' placeholder='First name' type="text" value = {this.props.values.firstname} onChange = {this.props.update('firstname')}/>
+                </div>
+                <div className='signupform-lastname'>
+                  <input className='signup-lastname' placeholder='Last name' type="text" value = {this.props.values.lastname} onChange = {this.props.update('lastname')}/>
+                </div>
+              </span>
+
+              <span className='email-container'>
+                <div className='signupform-email'>
+                  <input className='signup-email' type="text" placeholder='Your email address' value={this.props.values.email} onChange={this.props.update('email')} className="login-input"/>
+                </div>
+              </span>
+
+              <div className='signupfrom-errors'>
+                {this.renderErrors()}
+              </div>
+
+              <span className='signupform-pw-container'>
+                <div className='signupform-pw'>
+                  <input className='signup-pw' placeholder='Password' type="password" value = {this.props.values.password} onChange = {this.props.update('password')}/>
+                </div>
+                <div className='signupfrom-pw-confirm'>
+                  <input className='signup-pw-confirm' placeholder='Confirm' type="password" value = {this.props.values.confirmPassword} onChange = {this.props.update('confirmPassword')}/>
+                </div>
+              </span>
+
+              <div className='signupform-buttons'>
+                <div className='signup-container'> 
+                  <Link className='login-btn' to='/login'>Sign in instead</Link>
+                </div>
+                <div className='signin-next-container'>
+                  <div className = "signin-next-button" onClick = {this.props.nextStep} >Next</div>
+                </div>
+              </div> 
+
             </div>
-            </div>
+             
+            
+        </div>
       </div>
     );
   }

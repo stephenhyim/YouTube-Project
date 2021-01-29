@@ -34,6 +34,7 @@ class LoginForm extends React.Component {
     return (
      
         <div className = 'login-form-one-container'> 
+          <div className = 'login-form-one-test'> 
 
           <div className = 'login-form-one-top'>
             <img className='google-logo' src={window.logo} />
@@ -42,10 +43,11 @@ class LoginForm extends React.Component {
           </div>
 
           <div className = 'login-form-one-main'>
+
             <div className = 'login-form-one-input'>
-              <label className = 'login-form-one-email-container'>
+              <div className = 'login-form-one-email-container'>
                 <input className='login-form-one-email' placeholder='Email' type="text" value = {this.props.values.email} onChange = {this.props.update('email')}/>
-              </label>
+              </div>
               <div className = 'login-form-one-errors'>
                 {this.renderErrors()}
               </div>
@@ -56,15 +58,18 @@ class LoginForm extends React.Component {
             </div>
 
             <div className = 'login-form-one-bottom-buttons'>
-              <span className = 'login-form-one-button'>
-                <Link className='create-account-button' to='/signup'>Create account</Link>
+              <div className = 'login-form-one-button'>
+                <div className='create-account-button-container'>
+                  <Link className='create-account-button' to='/signup'>Create account</Link>
+                </div>
                 <div className = 'login-next-button-container'>
                   <div className = "login-next-button" onClick = {this.props.nextStep}>Next</div>
                 </div>
-              </span> 
+              </div> 
             </div>
+
           </div> 
-            
+          </div>
         </div>
       
     );
