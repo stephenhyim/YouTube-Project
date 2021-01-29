@@ -10,7 +10,7 @@ const TopNavBar = ({ currentUser, logout }) => {
       
       <div className = 'left-top-nav'>
         <i className="fas fa-bars"></i>
-        <Link to = {`/`}><i className="fab fa-youtube"></i></Link>
+        <Link className='top-nav-youtube-icon' to = {`/`}><i className="fab fa-youtube"></i></Link>
       </div>
       
 

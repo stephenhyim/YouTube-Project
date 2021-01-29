@@ -35,14 +35,21 @@ class SignupForm2 extends React.Component {
   render() { 
     // debugger
     return (
-      <div className="signup-form-container">
-        <h2>Google Logo Placeholder</h2>
-        <h2>{this.props.firstname}, welcome to Google</h2>
-        <h4>{this.props.email}</h4>
-            <div className="signup-form-box">
-            {this.renderErrors()}
-            <div className="signup-form">
-                <br/>
+      <div className="signup2-form-container">
+        <div className='signup2-form-box'>
+
+          <div className='signup2-form-top'>
+            <img className='google-logo' src={window.logo} />
+            <h1>{this.props.firstname}, welcome to Google</h1>
+            <h4>{this.props.email}</h4>
+          </div>
+
+            <div className="signup2-form">
+            
+            
+            
+            
+                
                 {/* <span>
                   <label for = 'month'>Month</label>
                     <select id="month" value = {this.state.month} onChange = {this.update('month')}>
@@ -67,10 +74,13 @@ class SignupForm2 extends React.Component {
                     <input type="text" value={this.state.year} onChange = {this.update('year')}/>
                   </label>
                 </span> */}
-                <label>
-                <input placeholder='Your birthday' type="text" value = {this.props.birthdate} onChange = {this.props.update('birthdate')}/>
-                </label>
-                <br/>
+                <div className='signupform-bday'>
+                  <input className='signup-bday' placeholder='Your birthday' type="text" value = {this.props.birthdate} onChange = {this.props.update('birthdate')}/>
+                </div>
+                
+                <div className='signupform2-errors'>
+                  {this.renderErrors()}
+                </div>
                 {/* <label for = 'gender'>Gender</label>
                 <select id = 'gender' value = {this.props.gender} onChange = {this.update('gender')}>
                   <option value = 'Gender'>Gender</option>
@@ -79,15 +89,20 @@ class SignupForm2 extends React.Component {
                   <option value = 'Rather not say'>Rather not say</option>
                   <option value = 'Custom'>Custom</option>
                 </select> */}
-                <label htmlFor = 'gender'>
-                <input placeholder='Gender' type="text" value = {this.props.gender} onChange = {this.props.update('gender')}/>
-                </label>
-                <br/>
-                <span>
-                  <div className = "signin-div" onClick = {this.props.prevStep}>Back</div>
-                  <button className = "signin-next-button" >Next</button>
-                </span>  
+                <div className='signupform-gender' htmlFor = 'gender'>
+                <input className='signup-gender' placeholder='Gender' type="text" value = {this.props.gender} onChange = {this.props.update('gender')}/>
+                </div>
+                
+                <div className='signupform2-buttons'>
+                  <div className='signupform-back-btn'>
+                    <div className = "signup-back" onClick = {this.props.prevStep}>Back</div>
+                  </div>
+                  <div className='signupform2-next-btn'>
+                    <button className = "signup2-next-button" >Next</button>
+                  </div>
+                </div>  
             </div>
+            
             </div>
       </div>
     );

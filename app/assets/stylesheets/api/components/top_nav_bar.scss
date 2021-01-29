@@ -40,6 +40,9 @@ $font-stack: 'Roboto', sans-serif;
             width: 500px;
             font-size: 20px;
             align-self: center;
+            background-color: #121212;
+            border: none;
+            margin-left: 4px;
             
         }
 
@@ -65,10 +68,21 @@ $font-stack: 'Roboto', sans-serif;
 
 .signin-btn {
     color: #1A73E8;
+    text-decoration: none;
 }
 
 .fab fa-youtube {
     color: #1A73E8;
+    text-decoration: none;
+}
+
+.top-nav-youtube-icon {
+    color: white;
+    text-decoration: none;
+}
+
+.top-nav-youtube-icon :visited {
+    color: white;
     text-decoration: none;
 }
 
