@@ -4,7 +4,7 @@ $font-stack: 'Roboto', sans-serif;
     font-family: $font-stack;
     background: #202020;
     height: 56px;
-    width: 1902px;
+    width: 100%;
     color: white;
     box-sizing: border-box;
     display: flex;
@@ -52,29 +52,32 @@ $font-stack: 'Roboto', sans-serif;
 .right-top-nav {
     display: flex;
     justify-content: space-around;
+    padding-right: 16px;
+    
     
 
-    div {
+    .signin-container {
         display: flex;
         justify-content: space-around;
         width: 100px;
+        border: 2px solid #1A73E8;
     }
+
+    .signin-btn {
+        color: #1A73E8;
+        text-decoration: none;
+    }
+
 }
 
-.signin-container {
-    border: 2px solid #1A73E8;
-    
-}
 
-.signin-btn {
-    color: #1A73E8;
-    text-decoration: none;
-}
 
-.fab fa-youtube {
-    color: #1A73E8;
-    text-decoration: none;
-}
+
+
+// .fab fa-youtube {
+//     color: #1A73E8;
+//     text-decoration: none;
+// }
 
 .top-nav-youtube-icon {
     color: white;

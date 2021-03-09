@@ -20,6 +20,7 @@ const TopNavBar = ({ currentUser, logout }) => {
           <ul>
             <li><i className="fas fa-search"></i></li>
           </ul>
+          
         </div>
       </div>
 
@@ -49,6 +50,7 @@ const TopNavBar = ({ currentUser, logout }) => {
           <ul>
             <li><i className="fas fa-search"></i></li>
           </ul>
+          
         </div>
       </div>
 
