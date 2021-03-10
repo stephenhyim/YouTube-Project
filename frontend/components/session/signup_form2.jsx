@@ -4,35 +4,7 @@ import {Link, withRouter } from 'react-router-dom';
 
 
 class SignupForm2 extends React.Component {
-    constructor(props) {
-      super(props)
-
-      this.updateBDAY = this.updateBDAY.bind(this)
-
-    }
-  
-
-  // updatedBDayForm(){
-  //   debugger
-  //   return {
-  //     firstname: this.props.firstname,
-  //     lastname: this.props.lastname,
-  //     email: this.props.email,
-  //     password: this.props.password,
-  //     birthdate: `${this.props.year}-${this.props.month}-${this.props.day}`,
-  //     gender: this.props.gender
-  //   }
-  // }
-
-  updateBDAY() {
     
-    this.setState({
-      birthdate: `${this.props.year}-${this.props.month}-${this.props.day}`
-    })
-    debugger
-  }
-
-
 
   renderErrors() {
     return(
@@ -47,7 +19,7 @@ class SignupForm2 extends React.Component {
   }
 
   render() { 
-    debugger
+    // debugger
     return (
       <div className="signup2-form-container">
         <div className='signup2-form-box'>
@@ -59,13 +31,9 @@ class SignupForm2 extends React.Component {
           </div>
 
             <div className="signup2-form">
-            
-            
-            
-            
                 
-                <div>
-                  <label>Month</label>
+                <div className="signupform2-bday">
+                  
                     <select id="month" value = {this.props.month} onChange = {this.props.update('month')}>
                       <option value="Month">Month</option>
                       <option value="01">January</option>
@@ -81,30 +49,26 @@ class SignupForm2 extends React.Component {
                       <option value="11">November</option>
                       <option value="12">Decemeber</option>
                     </select>
-                  <label>Day
-                    <input type="text" value={this.props.day} onChange = {this.props.update('day')}/>
-                  </label>
-                  <label>Year
-                    <input type="text" value={this.props.year} onChange = {this.props.update('year')}/>
-                  </label>
+                  
+                    <input type="text" value={this.props.day} onChange = {this.props.update('day')} placeholder="Day"/>
+                  
+                  
+                    <input type="text" value={this.props.year} onChange = {this.props.update('year')} placeholder="Year"/>
+                  
                 </div>
-                {/* <div className='signupform-bday'>
-                  <input className='signup-bday' placeholder='Your birthday' type="text" value = {this.props.birthdate} onChange = {this.props.update('birthdate')}/>
-                </div> */}
                 
                 <div className='signupform2-errors'>
                   {this.renderErrors()}
                 </div>
-                {/* <label for = 'gender'>Gender</label>
-                <select id = 'gender' value = {this.props.gender} onChange = {this.update('gender')}>
-                  <option value = 'Gender'>Gender</option>
-                  <option value = 'Female'>Female</option>
-                  <option value = 'Male'>Male</option>
-                  <option value = 'Rather not say'>Rather not say</option>
-                  <option value = 'Custom'>Custom</option>
-                </select> */}
-                <div className='signupform-gender' htmlFor = 'gender'>
-                  <input className='signup-gender' placeholder='Gender' type="text" value = {this.props.gender} onChange = {this.props.update('gender')}/>
+
+                <div>
+                  <select id = 'gender' value = {this.props.gender} onChange = {this.props.update('gender')}>
+                    <option value = 'Gender'>Gender</option>
+                    <option value = 'Female'>Female</option>
+                    <option value = 'Male'>Male</option>
+                    <option value = 'Rather not say'>Rather not say</option>
+                    <option value = 'Custom'>Custom</option>
+                  </select>
                 </div>
                 
                 <div className='signupform2-buttons'>

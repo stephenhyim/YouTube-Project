@@ -1091,36 +1091,13 @@ var SignupForm2 = /*#__PURE__*/function (_React$Component) {
 
   var _super = _createSuper(SignupForm2);
 
-  function SignupForm2(props) {
-    var _this;
-
+  function SignupForm2() {
     _classCallCheck(this, SignupForm2);
 
-    _this = _super.call(this, props);
-    _this.updateBDAY = _this.updateBDAY.bind(_assertThisInitialized(_this));
-    return _this;
-  } // updatedBDayForm(){
-  //   debugger
-  //   return {
-  //     firstname: this.props.firstname,
-  //     lastname: this.props.lastname,
-  //     email: this.props.email,
-  //     password: this.props.password,
-  //     birthdate: `${this.props.year}-${this.props.month}-${this.props.day}`,
-  //     gender: this.props.gender
-  //   }
-  // }
-
+    return _super.apply(this, arguments);
+  }
 
   _createClass(SignupForm2, [{
-    key: "updateBDAY",
-    value: function updateBDAY() {
-      this.setState({
-        birthdate: "".concat(this.props.year, "-").concat(this.props.month, "-").concat(this.props.day)
-      });
-      debugger;
-    }
-  }, {
     key: "renderErrors",
     value: function renderErrors() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, this.props.errors.map(function (error, i) {
@@ -1132,7 +1109,7 @@ var SignupForm2 = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      debugger;
+      // debugger
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "signup2-form-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1144,7 +1121,9 @@ var SignupForm2 = /*#__PURE__*/function (_React$Component) {
         src: window.logo
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, this.props.firstname, ", welcome to Google"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, this.props.email)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "signup2-form"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Month"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "signupform2-bday"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
         id: "month",
         value: this.props.month,
         onChange: this.props.update('month')
@@ -1174,26 +1153,33 @@ var SignupForm2 = /*#__PURE__*/function (_React$Component) {
         value: "11"
       }, "November"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
         value: "12"
-      }, "Decemeber")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Day", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, "Decemeber")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
         value: this.props.day,
-        onChange: this.props.update('day')
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Year", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        onChange: this.props.update('day'),
+        placeholder: "Day"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
         value: this.props.year,
-        onChange: this.props.update('year')
-      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        onChange: this.props.update('year'),
+        placeholder: "Year"
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "signupform2-errors"
-      }, this.renderErrors()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "signupform-gender",
-        htmlFor: "gender"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        className: "signup-gender",
-        placeholder: "Gender",
-        type: "text",
+      }, this.renderErrors()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
+        id: "gender",
         value: this.props.gender,
         onChange: this.props.update('gender')
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "Gender"
+      }, "Gender"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "Female"
+      }, "Female"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "Male"
+      }, "Male"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "Rather not say"
+      }, "Rather not say"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "Custom"
+      }, "Custom"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "signupform2-buttons"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "signupform-back-btn"
