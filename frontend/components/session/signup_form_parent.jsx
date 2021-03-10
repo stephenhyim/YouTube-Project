@@ -30,7 +30,13 @@ class SignupFormParent extends React.Component {
         const {step} = this.state;
         this.setState({
             step: step + 1
-        });
+        })
+        // if (this.state.password === this.state.confirmPassword) {this.setState({
+        //     step: step + 1
+        // })} else {
+        //     console.log('pw didnt match')
+        //     return `{Those passwords didn't match. Try again.}`
+        // }
     }
 
     prevStep() {
@@ -41,9 +47,22 @@ class SignupFormParent extends React.Component {
     }
 
     update(field) {
-        return e => this.setState({
+        return e => {if (field === 'month') {
+            return this.setState({
+                [field]: e.currentTarget.value,
+                "birthdate": `${this.state.year}-${e.currentTarget.value}-${this.state.day}` 
+        })} if (field === 'day') {
+            return this.setState({
+                [field]: e.currentTarget.value,
+                "birthdate": `${this.state.year}-${this.state.month}-${e.currentTarget.value}`
+        })} if (field === 'year') {
+            return this.setState({
+                [field]: e.currentTarget.value,
+                "birthdate": `${e.currentTarget.value}-${this.state.month}-${this.state.day}`
+        })}
+            return this.setState({
           [field]: e.currentTarget.value
-        });
+        })};
     }
 
     handleSubmit(e) {
@@ -52,6 +71,12 @@ class SignupFormParent extends React.Component {
         this.props.signup(user);
     }
 
+    // componentDidUpdate(prevProps) {
+    //     if (this.props.errors !== prevProps.errors) {
+    //       this.props.receiveSessionErrors(this.props.errors)
+    //     }
+    //   }
+
     componentWillUnmount() {
         this.props.removeSessionErrors();
       }
@@ -59,7 +84,7 @@ class SignupFormParent extends React.Component {
     render() {
         const {step} = this.state;
         const {email, password, confirmPassword, firstname, lastname, birthdate, month, day, year, gender} = this.state;
-        const values =  {email, password, firstname, lastname, birthdate, month, day, year, gender}
+        const values =  {email, password, confirmPassword, firstname, lastname, birthdate, month, day, year, gender}
         let formpage
         switch(step) {
             case 1: 
@@ -74,7 +99,7 @@ class SignupFormParent extends React.Component {
                         // {...values} - look into this option for future
                         errors = { this.props.errors}
                         removeSessionErrors = { this.props.removeSessionErrors }
-                        
+                        receiveSessionErrors = { this.props.receiveSessionErrors }
                     />
                     
                 )
@@ -88,10 +113,10 @@ class SignupFormParent extends React.Component {
                         lastname = {lastname}
                         email = {email}
                         password = {password}
-                        // birthdate = {birthdate}
-                        // month = {month}
-                        // day = {day}
-                        // year = {year}
+                        birthdate = {birthdate}
+                        month = {month}
+                        day = {day}
+                        year = {year}
                         // gender = {gender}
                         prevStep = {this.prevStep}
                         handleSubmit = {this.handleSubmit}

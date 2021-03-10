@@ -5,7 +5,13 @@ import {Link, withRouter } from 'react-router-dom';
 
 class SignupForm extends React.Component {
     
- 
+  passwordMatch(pw1, pw2) {
+    if (pw1 !== pw2) {
+      return "Those passwords didn't match. Try again."
+    }  
+  }
+
+  
 
   renderErrors() {
     return(
@@ -33,8 +39,6 @@ class SignupForm extends React.Component {
             <h4>to continue to YouTube</h4>
           </div>
 
-            
-
             <div className="signup-form">
               
               <span className='signupform-name'>
@@ -54,6 +58,7 @@ class SignupForm extends React.Component {
 
               <div className='signupfrom-errors'>
                 {this.renderErrors()}
+                {/* {this.passwordMatch(this.props.values.password, this.props.values.confirmPassword)} */}
               </div>
 
               <span className='signupform-pw-container'>

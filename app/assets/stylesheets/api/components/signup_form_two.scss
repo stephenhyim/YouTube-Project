@@ -90,6 +90,9 @@ $font-stack: 'Roboto', sans-serif;
                 color: #1A73E8;
                 text-decoration: none;
                 font-size: 14px;
+                &:hover {
+                    cursor: pointer;
+                }
             }
 
         .signupform2-next-btn {

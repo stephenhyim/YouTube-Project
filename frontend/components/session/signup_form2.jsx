@@ -4,10 +4,16 @@ import {Link, withRouter } from 'react-router-dom';
 
 
 class SignupForm2 extends React.Component {
-    
+    constructor(props) {
+      super(props)
+
+      this.updateBDAY = this.updateBDAY.bind(this)
+
+    }
   
 
   // updatedBDayForm(){
+  //   debugger
   //   return {
   //     firstname: this.props.firstname,
   //     lastname: this.props.lastname,
@@ -17,6 +23,14 @@ class SignupForm2 extends React.Component {
   //     gender: this.props.gender
   //   }
   // }
+
+  updateBDAY() {
+    
+    this.setState({
+      birthdate: `${this.props.year}-${this.props.month}-${this.props.day}`
+    })
+    debugger
+  }
 
 
 
@@ -33,7 +47,7 @@ class SignupForm2 extends React.Component {
   }
 
   render() { 
-    // debugger
+    debugger
     return (
       <div className="signup2-form-container">
         <div className='signup2-form-box'>
@@ -50,9 +64,9 @@ class SignupForm2 extends React.Component {
             
             
                 
-                {/* <span>
-                  <label for = 'month'>Month</label>
-                    <select id="month" value = {this.state.month} onChange = {this.update('month')}>
+                <div>
+                  <label>Month</label>
+                    <select id="month" value = {this.props.month} onChange = {this.props.update('month')}>
                       <option value="Month">Month</option>
                       <option value="01">January</option>
                       <option value="02">February</option>
@@ -68,15 +82,15 @@ class SignupForm2 extends React.Component {
                       <option value="12">Decemeber</option>
                     </select>
                   <label>Day
-                    <input type="text" value={this.state.day} onChange = {this.update('day')}/>
+                    <input type="text" value={this.props.day} onChange = {this.props.update('day')}/>
                   </label>
                   <label>Year
-                    <input type="text" value={this.state.year} onChange = {this.update('year')}/>
+                    <input type="text" value={this.props.year} onChange = {this.props.update('year')}/>
                   </label>
-                </span> */}
-                <div className='signupform-bday'>
-                  <input className='signup-bday' placeholder='Your birthday' type="text" value = {this.props.birthdate} onChange = {this.props.update('birthdate')}/>
                 </div>
+                {/* <div className='signupform-bday'>
+                  <input className='signup-bday' placeholder='Your birthday' type="text" value = {this.props.birthdate} onChange = {this.props.update('birthdate')}/>
+                </div> */}
                 
                 <div className='signupform2-errors'>
                   {this.renderErrors()}
@@ -90,7 +104,7 @@ class SignupForm2 extends React.Component {
                   <option value = 'Custom'>Custom</option>
                 </select> */}
                 <div className='signupform-gender' htmlFor = 'gender'>
-                <input className='signup-gender' placeholder='Gender' type="text" value = {this.props.gender} onChange = {this.props.update('gender')}/>
+                  <input className='signup-gender' placeholder='Gender' type="text" value = {this.props.gender} onChange = {this.props.update('gender')}/>
                 </div>
                 
                 <div className='signupform2-buttons'>

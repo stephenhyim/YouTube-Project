@@ -945,6 +945,13 @@ var SignupForm = /*#__PURE__*/function (_React$Component) {
   }
 
   _createClass(SignupForm, [{
+    key: "passwordMatch",
+    value: function passwordMatch(pw1, pw2) {
+      if (pw1 !== pw2) {
+        return "Those passwords didn't match. Try again.";
+      }
+    }
+  }, {
     key: "renderErrors",
     value: function renderErrors() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, this.props.errors.map(function (error, i) {
@@ -1084,24 +1091,37 @@ var SignupForm2 = /*#__PURE__*/function (_React$Component) {
 
   var _super = _createSuper(SignupForm2);
 
-  function SignupForm2() {
+  function SignupForm2(props) {
+    var _this;
+
     _classCallCheck(this, SignupForm2);
 
-    return _super.apply(this, arguments);
-  }
+    _this = _super.call(this, props);
+    _this.updateBDAY = _this.updateBDAY.bind(_assertThisInitialized(_this));
+    return _this;
+  } // updatedBDayForm(){
+  //   debugger
+  //   return {
+  //     firstname: this.props.firstname,
+  //     lastname: this.props.lastname,
+  //     email: this.props.email,
+  //     password: this.props.password,
+  //     birthdate: `${this.props.year}-${this.props.month}-${this.props.day}`,
+  //     gender: this.props.gender
+  //   }
+  // }
+
 
   _createClass(SignupForm2, [{
+    key: "updateBDAY",
+    value: function updateBDAY() {
+      this.setState({
+        birthdate: "".concat(this.props.year, "-").concat(this.props.month, "-").concat(this.props.day)
+      });
+      debugger;
+    }
+  }, {
     key: "renderErrors",
-    // updatedBDayForm(){
-    //   return {
-    //     firstname: this.props.firstname,
-    //     lastname: this.props.lastname,
-    //     email: this.props.email,
-    //     password: this.props.password,
-    //     birthdate: `${this.props.year}-${this.props.month}-${this.props.day}`,
-    //     gender: this.props.gender
-    //   }
-    // }
     value: function renderErrors() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, this.props.errors.map(function (error, i) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
@@ -1112,7 +1132,7 @@ var SignupForm2 = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      // debugger
+      debugger;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "signup2-form-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1124,15 +1144,45 @@ var SignupForm2 = /*#__PURE__*/function (_React$Component) {
         src: window.logo
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, this.props.firstname, ", welcome to Google"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, this.props.email)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "signup2-form"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "signupform-bday"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        className: "signup-bday",
-        placeholder: "Your birthday",
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Month"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
+        id: "month",
+        value: this.props.month,
+        onChange: this.props.update('month')
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "Month"
+      }, "Month"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "01"
+      }, "January"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "02"
+      }, "February"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "03"
+      }, "March"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "04"
+      }, "April"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "05"
+      }, "May"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "06"
+      }, "June"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "07"
+      }, "July"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "08"
+      }, "August"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "09"
+      }, "September"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "10"
+      }, "October"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "11"
+      }, "November"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "12"
+      }, "Decemeber")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Day", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
-        value: this.props.birthdate,
-        onChange: this.props.update('birthdate')
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        value: this.props.day,
+        onChange: this.props.update('day')
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Year", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "text",
+        value: this.props.year,
+        onChange: this.props.update('year')
+      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "signupform2-errors"
       }, this.renderErrors()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "signupform-gender",
@@ -1203,6 +1253,9 @@ var mDTP = function mDTP(dispatch) {
     },
     removeSessionErrors: function removeSessionErrors() {
       return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_3__["removeSessionErrors"])());
+    },
+    receiveSessionErrors: function receiveSessionErrors(errors) {
+      return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_3__["receiveSessionErrors"])(errors));
     }
   };
 };
@@ -1291,7 +1344,12 @@ var SignupFormParent = /*#__PURE__*/function (_React$Component) {
       var step = this.state.step;
       this.setState({
         step: step + 1
-      });
+      }); // if (this.state.password === this.state.confirmPassword) {this.setState({
+      //     step: step + 1
+      // })} else {
+      //     console.log('pw didnt match')
+      //     return `{Those passwords didn't match. Try again.}`
+      // }
     }
   }, {
     key: "prevStep",
@@ -1307,6 +1365,24 @@ var SignupFormParent = /*#__PURE__*/function (_React$Component) {
       var _this2 = this;
 
       return function (e) {
+        if (field === 'month') {
+          var _this2$setState;
+
+          return _this2.setState((_this2$setState = {}, _defineProperty(_this2$setState, field, e.currentTarget.value), _defineProperty(_this2$setState, "birthdate", "".concat(_this2.state.year, "-").concat(e.currentTarget.value, "-").concat(_this2.state.day)), _this2$setState));
+        }
+
+        if (field === 'day') {
+          var _this2$setState2;
+
+          return _this2.setState((_this2$setState2 = {}, _defineProperty(_this2$setState2, field, e.currentTarget.value), _defineProperty(_this2$setState2, "birthdate", "".concat(_this2.state.year, "-").concat(_this2.state.month, "-").concat(e.currentTarget.value)), _this2$setState2));
+        }
+
+        if (field === 'year') {
+          var _this2$setState3;
+
+          return _this2.setState((_this2$setState3 = {}, _defineProperty(_this2$setState3, field, e.currentTarget.value), _defineProperty(_this2$setState3, "birthdate", "".concat(e.currentTarget.value, "-").concat(_this2.state.month, "-").concat(_this2.state.day)), _this2$setState3));
+        }
+
         return _this2.setState(_defineProperty({}, field, e.currentTarget.value));
       };
     }
@@ -1316,7 +1392,12 @@ var SignupFormParent = /*#__PURE__*/function (_React$Component) {
       e.preventDefault();
       var user = Object.assign({}, this.state);
       this.props.signup(user);
-    }
+    } // componentDidUpdate(prevProps) {
+    //     if (this.props.errors !== prevProps.errors) {
+    //       this.props.receiveSessionErrors(this.props.errors)
+    //     }
+    //   }
+
   }, {
     key: "componentWillUnmount",
     value: function componentWillUnmount() {
@@ -1340,6 +1421,7 @@ var SignupFormParent = /*#__PURE__*/function (_React$Component) {
       var values = {
         email: email,
         password: password,
+        confirmPassword: confirmPassword,
         firstname: firstname,
         lastname: lastname,
         birthdate: birthdate,
@@ -1361,7 +1443,8 @@ var SignupFormParent = /*#__PURE__*/function (_React$Component) {
             values: values // {...values} - look into this option for future
             ,
             errors: this.props.errors,
-            removeSessionErrors: this.props.removeSessionErrors
+            removeSessionErrors: this.props.removeSessionErrors,
+            receiveSessionErrors: this.props.receiveSessionErrors
           });
           break;
 
@@ -1374,11 +1457,11 @@ var SignupFormParent = /*#__PURE__*/function (_React$Component) {
             firstname: firstname,
             lastname: lastname,
             email: email,
-            password: password // birthdate = {birthdate}
-            // month = {month}
-            // day = {day}
-            // year = {year}
-            // gender = {gender}
+            password: password,
+            birthdate: birthdate,
+            month: month,
+            day: day,
+            year: year // gender = {gender}
             ,
             prevStep: this.prevStep,
             handleSubmit: this.handleSubmit,
