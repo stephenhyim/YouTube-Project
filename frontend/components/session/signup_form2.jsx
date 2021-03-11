@@ -1,10 +1,7 @@
 import React from 'react';
 import {Link, withRouter } from 'react-router-dom';
-// import SignupForm2 from './signup_form2';
-
 
 class SignupForm2 extends React.Component {
-    
 
   renderErrors() {
     return(

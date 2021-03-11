@@ -101,50 +101,67 @@ $font-stack: 'Roboto', sans-serif;
 }
 
 
-
-
-
-
-
-
-
-
-
-
-// .search-bar-container {
-//     display: flex;
-//     ul {
-//         flex-direction: row;
-//     }
-// }
-
-
-// .right-icon-container {
-//     display: flex;
-//     ul {
-//         flex-direction: row;
-//     }
-// }
-
-
-// .signin-container {
-//     border: 2px solid blue;
-//     display: flex;
-
-//     ul {
-//         flex-direction: row;
-//     }
-// }
-
-// .signin-btn {
+.drop-down-container {
+    position: relative;
+    display: inline-block;
     
-//     color: white;
-//     text-decoration: none;
-// }
+}
 
-// .signin-btn :visited {
-//     color: white;
-// }
+.avatar {
+    color: white;
+    background-color: black;
+}
+
+.dropdown {
+    border: 1px solid rbga(0, 0, 0, 0.04);
+    position: absolute;
+    top: 100%;
+    right: 0%;
+    width: 300px;
+    height: 40px;
+    
+
+    .dropdown-ul {
+        background: #202020;
+        border: 1px solid rbga(0, 0, 0, 0.04);
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+        li {
+            padding: 8px 12px;
+        }
+
+        li:hover {
+            background-color: rgb(75, 75, 75);
+        }
+
+}
+
+.your-channel:link {
+    color: white;
+    text-decoration: none;
+}
+
+.your-channel:visted {
+    color: white;
+    text-decoration: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
