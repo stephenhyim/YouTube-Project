@@ -34,6 +34,7 @@ class TopNavBar extends React.Component {
     const display = this.props.currentUser ? (
       <div className = 'top-nav-container'>
         
+        
         <div className = 'left-top-nav'>
           <i className="fas fa-bars"></i>
           <Link className='top-nav-youtube-icon' to = {`/`}><i className="fab fa-youtube"></i></Link>
@@ -41,9 +42,9 @@ class TopNavBar extends React.Component {
     
         <div className='center-top-nav'>
           <div className='search-bar-container'>
-            <ul><input className='search-bar' type = 'text' placeholder = 'Search' /></ul>
+            <ul><input className='search-bar' type ='text' placeholder ='Search' /></ul>
             <ul>
-              <li><i className="fas fa-search"></i></li>
+              <li><button className="search-btn"><i className="fas fa-search"></i></button></li>
             </ul>
           </div>
         </div>
@@ -68,6 +69,8 @@ class TopNavBar extends React.Component {
     ) : (
       <div className = 'top-nav-container'>
         
+        
+
         <div className = 'left-top-nav'>
           <i className="fas fa-bars"></i>
           <Link to = {`/`}><i className="fab fa-youtube"></i></Link>

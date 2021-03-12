@@ -164,6 +164,39 @@ var logout = function logout() {
 
 /***/ }),
 
+/***/ "./frontend/actions/user_actions.js":
+/*!******************************************!*\
+  !*** ./frontend/actions/user_actions.js ***!
+  \******************************************/
+/*! exports provided: RECEIVE_USER, fetchUser */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_USER", function() { return RECEIVE_USER; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchUser", function() { return fetchUser; });
+/* harmony import */ var _util_user_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/user_api_util */ "./frontend/util/user_api_util.js");
+
+var RECEIVE_USER = 'RECEIVE_USER';
+
+var receiveUser = function receiveUser(user) {
+  return {
+    type: RECEIVE_USER,
+    user: user
+  };
+};
+
+var fetchUser = function fetchUser(email) {
+  return function (dispatch) {
+    debugger;
+    return _util_user_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchUser"](email).then(function (user) {
+      return dispatch(receiveUser(user));
+    });
+  };
+};
+
+/***/ }),
+
 /***/ "./frontend/components/app.jsx":
 /*!*************************************!*\
   !*** ./frontend/components/app.jsx ***!
@@ -477,7 +510,7 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 
- // import SignupForm2 from './signup_form2';
+
 
 var LoginForm = /*#__PURE__*/function (_React$Component) {
   _inherits(LoginForm, _React$Component);
@@ -490,7 +523,8 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, LoginForm);
 
     _this = _super.call(this, props);
-    _this.guestLogin = _this.guestLogin.bind(_assertThisInitialized(_this));
+    _this.guestLogin = _this.guestLogin.bind(_assertThisInitialized(_this)); // this.findEmail = this.findEmail.bind(this)
+
     return _this;
   }
 
@@ -503,7 +537,11 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
         password: 'guestpassword'
       };
       this.props.login(guest);
-    }
+    } // findEmail() {
+    //   let useremail = this.props.values.email
+    //   return useremail
+    // }
+
   }, {
     key: "renderErrors",
     value: function renderErrors() {
@@ -610,18 +648,36 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 
- // import SignupForm2 from './signup_form2';
+
 
 var LoginForm2 = /*#__PURE__*/function (_React$Component) {
   _inherits(LoginForm2, _React$Component);
 
   var _super = _createSuper(LoginForm2);
 
-  function LoginForm2() {
+  function LoginForm2(props) {
+    var _this;
+
     _classCallCheck(this, LoginForm2);
 
-    return _super.apply(this, arguments);
-  }
+    _this = _super.call(this, props);
+    _this.state = {
+      firstname: ''
+    };
+    return _this;
+  } // componentDidMount() {
+  //   debugger
+  //   fetch('/api/users/') 
+  //     .then(res => res.json())
+  //     console.log(res.json)
+  //     .then(result => {
+  //       console.log(result)
+  //       this.setState({
+  //         firstname: result
+  //       })
+  //     })
+  // }
+
 
   _createClass(LoginForm2, [{
     key: "renderErrors",
@@ -647,7 +703,7 @@ var LoginForm2 = /*#__PURE__*/function (_React$Component) {
         src: window.logo
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
         className: "login2-header"
-      }, " Hello ", this.props.firstname), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+      }, " Hi ", this.props.firstname), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
         className: "login2-header2"
       }, this.props.email)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "login2-form-two-main"
@@ -698,7 +754,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/session_actions */ "./frontend/actions/session_actions.js");
-/* harmony import */ var _login_form_parent__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./login_form_parent */ "./frontend/components/session/login_form_parent.jsx");
+/* harmony import */ var _actions_user_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/user_actions */ "./frontend/actions/user_actions.js");
+/* harmony import */ var _login_form_parent__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./login_form_parent */ "./frontend/components/session/login_form_parent.jsx");
+
 
 
 
@@ -719,11 +777,14 @@ var mDTP = function mDTP(dispatch) {
     },
     removeSessionErrors: function removeSessionErrors() {
       return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_3__["removeSessionErrors"])());
+    },
+    fetchUser: function fetchUser(email) {
+      return dispatch(Object(_actions_user_actions__WEBPACK_IMPORTED_MODULE_4__["fetchUser"])(email));
     }
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mSTP, mDTP)(_login_form_parent__WEBPACK_IMPORTED_MODULE_4__["default"]));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mSTP, mDTP)(_login_form_parent__WEBPACK_IMPORTED_MODULE_5__["default"]));
 
 /***/ }),
 
@@ -784,14 +845,27 @@ var LoginFormParent = /*#__PURE__*/function (_React$Component) {
     _this.state = {
       email: '',
       password: '',
+      firstname: '',
       step: 1
     };
     _this.nextStep = _this.nextStep.bind(_assertThisInitialized(_this));
     _this.prevStep = _this.prevStep.bind(_assertThisInitialized(_this));
     _this.update = _this.update.bind(_assertThisInitialized(_this));
-    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this)); // this.findUser = this.findUser.bind(this);
+
     return _this;
-  }
+  } // findUser(email) {
+  //     debugger
+  //     this.props.fetchUser(email)
+  //     if (email) {
+  //         this.setState({
+  //             firstname: email.firstname
+  //         })
+  //     } else {
+  //         null
+  //     }
+  // }
+
 
   _createClass(LoginFormParent, [{
     key: "nextStep",
@@ -836,42 +910,33 @@ var LoginFormParent = /*#__PURE__*/function (_React$Component) {
       var step = this.state.step;
       var _this$state = this.state,
           email = _this$state.email,
-          password = _this$state.password;
+          password = _this$state.password,
+          firstname = _this$state.firstname;
       var values = {
         email: email,
-        password: password
+        password: password,
+        firstname: firstname
       };
       var formpage;
 
       switch (step) {
         case 1:
-          formpage =
-          /*#__PURE__*/
-          // <h1>SignUpForm1</h1>
-          react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_login_form__WEBPACK_IMPORTED_MODULE_2__["default"], {
+          formpage = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_login_form__WEBPACK_IMPORTED_MODULE_2__["default"], {
             nextStep: this.nextStep,
             update: this.update,
-            values: values // {...values} - look into this option for future
-            ,
+            values: values,
             errors: this.props.errors,
             login: this.props.login,
-            removeSessionErrors: this.props.removeSessionErrors
+            removeSessionErrors: this.props.removeSessionErrors // findUser = { this.findUser }
+
           });
           break;
 
         case 2:
-          formpage =
-          /*#__PURE__*/
-          // <h1>SignUpForm2</h1>
-          react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_login_form2__WEBPACK_IMPORTED_MODULE_3__["default"] // updatedBdayForm = {updatedBdayForm}
-          , {
+          formpage = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_login_form2__WEBPACK_IMPORTED_MODULE_3__["default"], {
             email: email,
-            password: password // birthdate = {birthdate}
-            // month = {month}
-            // day = {day}
-            // year = {year}
-            // gender = {gender}
-            ,
+            password: password,
+            firstname: firstname,
             prevStep: this.prevStep,
             update: this.update,
             login: this.props.login,
@@ -1572,9 +1637,11 @@ var TopNavBar = /*#__PURE__*/function (_React$Component) {
         className: "search-bar",
         type: "text",
         placeholder: "Search"
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "search-btn"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         className: "fas fa-search"
-      }))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      })))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "drop-down-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: this.openDropDown,
@@ -2000,6 +2067,8 @@ var sessionReducer = function sessionReducer() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/session_actions */ "./frontend/actions/session_actions.js");
+/* harmony import */ var _actions_user_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/user_actions */ "./frontend/actions/user_actions.js");
+
 
 
 var usersReducer = function usersReducer() {
@@ -2011,6 +2080,11 @@ var usersReducer = function usersReducer() {
   switch (action.type) {
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_CURRENT_USER"]:
       return nextState[action.currentUser.id] = action.currentUser;
+
+    case _actions_user_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_USER"]:
+      debugger;
+      nextState[action.firstname] = action.firstname;
+      return nextState;
 
     default:
       return state;
@@ -2145,6 +2219,28 @@ var logout = function logout() {
   return $.ajax({
     method: 'DELETE',
     url: '/api/session'
+  });
+};
+
+/***/ }),
+
+/***/ "./frontend/util/user_api_util.js":
+/*!****************************************!*\
+  !*** ./frontend/util/user_api_util.js ***!
+  \****************************************/
+/*! exports provided: fetchUser */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchUser", function() { return fetchUser; });
+var fetchUser = function fetchUser(email) {
+  debugger;
+  return $.ajax({
+    url: "/api/users/".concat(email),
+    data: {
+      user: email
+    }
   });
 };
 

@@ -1,14 +1,13 @@
 import React from 'react';
 import {Link, withRouter } from 'react-router-dom';
 
-// import SignupForm2 from './signup_form2';
-
-
 class LoginForm extends React.Component {
   constructor(props) {
     super(props)
     this.guestLogin = this.guestLogin.bind(this)
+    // this.findEmail = this.findEmail.bind(this)
   }  
+
   guestLogin(e){
     e.preventDefault();
     const guest = {
@@ -16,6 +15,11 @@ class LoginForm extends React.Component {
     }
     this.props.login(guest)
   }
+
+  // findEmail() {
+  //   let useremail = this.props.values.email
+  //   return useremail
+  // }
 
   renderErrors() {
     return(
