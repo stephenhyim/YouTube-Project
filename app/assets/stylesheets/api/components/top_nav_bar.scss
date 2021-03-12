@@ -58,8 +58,16 @@ $font-stack: 'Roboto', sans-serif;
             padding: 5px 11px;
         }
 
-        input.search-bar[type=text]:focus {
+        input[type=text] {
+            color: white;
+            font-size: 16px;
+            
+        }
+
+        input[type=text]:focus {
             border: 1px solid #1A73E8;
+            outline: none;
+            
         }
 
         .search-btn {
@@ -154,6 +162,7 @@ $font-stack: 'Roboto', sans-serif;
     background: none;
     border: none;
     cursor: pointer;
+    outline: none;
 }
 
 .fa-user {

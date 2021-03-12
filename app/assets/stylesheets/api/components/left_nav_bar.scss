@@ -60,7 +60,7 @@
         align-items: center;
         border-bottom: 1px solid rgba(225,225,225,0.1); 
         height: 123px;
-        padding: 16px 32px;
+        padding: 16px 28px;
         
         ul {
             display: flex;
@@ -68,41 +68,47 @@
 
             p {
                 font-size: 14px;
+                
                 color: white;
             }
 
-            i {
-                margin-right: 24px;
-                color: white;
-                text-decoration: none;
-                font-size: 18px;
-            }
+            
 
-            .left-signin-link {
-                font-size: 14px;
-                color: #1A73E8;
-                text-decoration: none;
-            }
+            
 
 
         }
 
         .signin-btn-container {
             display: flex;
-            justify-content: center;
+            justify-content: space-around;
             align-items: center;
             align-self: flex-start;
-            border: 1px solid #1A73E8;
-            width: 113px;
-            height: 36px;
+            border: 1px solid #3EA6FF;
+            width: 99px;
+            height: 31px;
+            padding: 5px 15px;
+
+            .fa-user {
+                background: #3EA6FF;
+                padding: 7px;
+                border-radius: 50%;
+                font-size: 15px;
+                color: black;
+            }
 
             .signin-btn {
                 display: flex;
-
-                .left-signin-link {
-                    font-size: 14px;
-                }
             }
+            
+            .left-signin-link {
+                font-size: 14px;
+                color: #3EA6FF;
+                text-decoration: none;
+                font-weight: bold;
+                    
+            }
+  
 
         }
         

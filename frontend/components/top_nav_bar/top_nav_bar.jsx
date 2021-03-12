@@ -73,17 +73,16 @@ class TopNavBar extends React.Component {
 
         <div className = 'left-top-nav'>
           <i className="fas fa-bars"></i>
-          <Link to = {`/`}><i className="fab fa-youtube"></i></Link>
+          <Link className='top-nav-youtube-icon' to = {`/`}><i className="fab fa-youtube"></i></Link>
         </div>
         
     
         <div className='center-top-nav'>
           <div className='search-bar-container'>
-            <ul><input className='search-bar' type = 'text' placeholder = 'Search' /></ul>
+            <ul><input className='search-bar' type ='text' placeholder ='Search' /></ul>
             <ul>
-              <li><i className="fas fa-search"></i></li>
+              <li><button className="search-btn"><i className="fas fa-search"></i></button></li>
             </ul>
-            
           </div>
         </div>
     

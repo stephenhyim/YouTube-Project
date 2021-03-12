@@ -44,10 +44,8 @@ const LeftNavBar = ({ currentUser}) => {
                     <p>Sign in to like videos, comment, and subscribe.</p>
                 </ul>
                 <div className='signin-btn-container'>
-                    <ul className = 'signin-btn'>
-                        <i className="fas fa-user"></i>
-                        <Link className = 'left-signin-link' to = {`/login`}>SIGN IN</Link>
-                    </ul>
+                    <ul className = 'signin-btn'><i className="fas fa-user"></i></ul>
+                    <ul><Link className = 'left-signin-link' to = {`/login`}>SIGN IN</Link></ul>
                 </div>
             </div>
         
