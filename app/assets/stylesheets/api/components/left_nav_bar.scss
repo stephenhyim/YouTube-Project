@@ -19,7 +19,7 @@
         justify-content: center;
         align-items: center;
         border-bottom: 1px solid rgba(225,225,225,0.1);
-        padding-left: 50px; 
+        
         
         .left-home {
             display: flex;
@@ -34,7 +34,13 @@
                 justify-content: flex-start;
                 align-items: center;
                 font-size: 16px;
+                padding-left: 50px; 
             }
+
+                ul:hover {
+                    background-color: rgb(75, 75, 75);
+                    
+                }
 
 
                 i {

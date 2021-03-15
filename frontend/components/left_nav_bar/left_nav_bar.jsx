@@ -12,7 +12,7 @@ const LeftNavBar = ({ currentUser}) => {
                 <div className = 'left-home'>
                     <ul className = 'left-icons'>
                         <i className="fas fa-home"></i>
-                        <Link className = 'home-link' to ={`/`}>Home</Link>  
+                        <Link className = 'home-link' to ={`/`}>Home</Link>
                     </ul>
                 </div>
                 <ul className = 'left-icons'>
