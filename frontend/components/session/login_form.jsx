@@ -49,9 +49,9 @@ class LoginForm extends React.Component {
           <div className = 'login-form-one-main'>
 
             <div className = 'login-form-one-input'>
-              <div className = 'login-form-one-email-container'>
-                <input className='login-form-one-email' placeholder='Email' type="text" value = {this.props.values.email} onChange = {this.props.update('email')}/>
-              </div>
+              
+              <input className='login-form-one-email' placeholder='Email' type="text" value = {this.props.values.email} onChange = {this.props.update('email')}/>
+              
               <div className = 'login-form-one-errors'>
                 {this.renderErrors()}
               </div>
