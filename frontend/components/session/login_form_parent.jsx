@@ -28,10 +28,10 @@ class LoginFormParent extends React.Component {
     //         this.setState({
     //             firstname: email.firstname
     //         })
+    //         this.nextStep();
     //     } else {
-    //         null
+    //         null;
     //     }
-        
     // }
 
     nextStep() {
@@ -67,16 +67,16 @@ class LoginFormParent extends React.Component {
     render() {
         const {step} = this.state;
         const {email, password, firstname } = this.state;
-        const values =  {email, password, firstname}
+        // const values =  {email, password, firstname}
         let formpage
         switch(step) {
             case 1: 
-            
                 formpage = (
                     <LoginForm
                         nextStep = {this.nextStep}
                         update = {this.update}
-                        values = { values }
+                        email = {email}
+                        firstname = {firstname}
                         errors = { this.props.errors}
                         login = {this.props.login}
                         removeSessionErrors = { this.props.removeSessionErrors }

@@ -21,6 +21,7 @@ class LoginForm extends React.Component {
   //   return useremail
   // }
 
+
   renderErrors() {
     return(
       <ul>
@@ -50,7 +51,7 @@ class LoginForm extends React.Component {
 
             <div className = 'login-form-one-input'>
               
-              <input className='login-form-one-email' placeholder='Email' type="text" value = {this.props.values.email} onChange = {this.props.update('email')}/>
+              <input className='login-form-one-email' placeholder='Email' type="text" value = {this.props.email} onChange = {this.props.update('email')}/>
               
               <div className = 'login-form-one-errors'>
                 {this.renderErrors()}

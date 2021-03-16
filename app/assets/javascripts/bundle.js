@@ -168,29 +168,28 @@ var logout = function logout() {
 /*!******************************************!*\
   !*** ./frontend/actions/user_actions.js ***!
   \******************************************/
-/*! exports provided: RECEIVE_USER, fetchUser */
+/*! exports provided: FETCH_ALL_USERS, fetchAllUsers, fetchUser */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_USER", function() { return RECEIVE_USER; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FETCH_ALL_USERS", function() { return FETCH_ALL_USERS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchAllUsers", function() { return fetchAllUsers; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchUser", function() { return fetchUser; });
 /* harmony import */ var _util_user_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/user_api_util */ "./frontend/util/user_api_util.js");
 
-var RECEIVE_USER = 'RECEIVE_USER';
-
-var receiveUser = function receiveUser(user) {
+var FETCH_ALL_USERS = 'FETCH_ALL_USERS';
+var fetchAllUsers = function fetchAllUsers(users) {
   return {
-    type: RECEIVE_USER,
-    user: user
+    type: FETCH_ALL_USERS,
+    users: users
   };
 };
-
 var fetchUser = function fetchUser(email) {
   return function (dispatch) {
     debugger;
-    return _util_user_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchUser"](email).then(function (user) {
-      return dispatch(receiveUser(user));
+    return _util_user_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchUser"](email).then(function (users) {
+      return dispatch(fetchAllUsers(users));
     });
   };
 };
@@ -576,7 +575,7 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
         className: "login-form-one-email",
         placeholder: "Email",
         type: "text",
-        value: this.props.values.email,
+        value: this.props.email,
         onChange: this.props.update('email')
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "login-form-one-errors"
@@ -857,8 +856,9 @@ var LoginFormParent = /*#__PURE__*/function (_React$Component) {
   //         this.setState({
   //             firstname: email.firstname
   //         })
+  //         this.nextStep();
   //     } else {
-  //         null
+  //         null;
   //     }
   // }
 
@@ -907,12 +907,8 @@ var LoginFormParent = /*#__PURE__*/function (_React$Component) {
       var _this$state = this.state,
           email = _this$state.email,
           password = _this$state.password,
-          firstname = _this$state.firstname;
-      var values = {
-        email: email,
-        password: password,
-        firstname: firstname
-      };
+          firstname = _this$state.firstname; // const values =  {email, password, firstname}
+
       var formpage;
 
       switch (step) {
@@ -920,7 +916,8 @@ var LoginFormParent = /*#__PURE__*/function (_React$Component) {
           formpage = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_login_form__WEBPACK_IMPORTED_MODULE_2__["default"], {
             nextStep: this.nextStep,
             update: this.update,
-            values: values,
+            email: email,
+            firstname: firstname,
             errors: this.props.errors,
             login: this.props.login,
             removeSessionErrors: this.props.removeSessionErrors // findUser = { this.findUser }
@@ -2071,9 +2068,9 @@ var usersReducer = function usersReducer() {
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_CURRENT_USER"]:
       return nextState[action.currentUser.id] = action.currentUser;
 
-    case _actions_user_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_USER"]:
+    case _actions_user_actions__WEBPACK_IMPORTED_MODULE_1__["FETCH_ALL_USERS"]:
       debugger;
-      nextState[action.firstname] = action.firstname;
+      nextState[action.users.users] = action.users.users;
       return nextState;
 
     default:
@@ -2227,9 +2224,9 @@ __webpack_require__.r(__webpack_exports__);
 var fetchUser = function fetchUser(email) {
   debugger;
   return $.ajax({
-    url: "/api/users/".concat(email),
+    url: "/api/users",
     data: {
-      user: email
+      email: email
     }
   });
 };
