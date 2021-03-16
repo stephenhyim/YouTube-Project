@@ -1,11 +1,26 @@
 import React from 'react';
 import {Link, withRouter } from 'react-router-dom';
-// import SignupForm2 from './signup_form2';
-
 
 class LoginForm2 extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      firstname: ''
+    }
+  }
     
-
+  // componentDidMount() {
+  //   debugger
+  //   fetch('/api/users/') 
+  //     .then(res => res.json())
+  //     console.log(res.json)
+  //     .then(result => {
+  //       console.log(result)
+  //       this.setState({
+  //         firstname: result
+  //       })
+  //     })
+  // }
 
   renderErrors() {
     return(
@@ -27,16 +42,16 @@ class LoginForm2 extends React.Component {
 
         <div className="login2-form-two-top">
           <img className='google-logo' src={window.logo} />
-          <h1 className='login2-header'> Hello {this.props.firstname}</h1>
+          <h1 className='login2-header'> Hi {this.props.firstname}</h1>
           <h4 className='login2-header2'>{this.props.email}</h4>
         </div>
 
         <div className = 'login2-form-two-main'>
 
           <div className = 'login2-form-two-input'>
-            <div className = 'login2-form-two-password-container'>
-              <input className='login2-form-two-password' placeholder ='Enter your password' type="password" value = {this.props.password} onChange = {this.props.update('password')}/>
-            </div>
+            
+            <input className='login2-form-two-password' placeholder ='Enter your password' type="password" value = {this.props.password} onChange = {this.props.update('password')}/>
+            
             <div className="login2-form-two-errors">
               {this.renderErrors()}
             </div>

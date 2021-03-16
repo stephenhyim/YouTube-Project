@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { login, removeSessionErrors } from '../../actions/session_actions';
+import { fetchUser } from '../../actions/user_actions';
 import LogInParent from './login_form_parent';
 
 const mSTP = ( state, ownProps) => {
@@ -14,7 +15,8 @@ const mSTP = ( state, ownProps) => {
 const mDTP = dispatch => {
   return {
     login: (user) => dispatch(login(user)),
-    removeSessionErrors: () => dispatch(removeSessionErrors())
+    removeSessionErrors: () => dispatch(removeSessionErrors()),
+    fetchUser: (email) => dispatch(fetchUser(email))
   };
 };
 

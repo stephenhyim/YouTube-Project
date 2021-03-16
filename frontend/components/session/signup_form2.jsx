@@ -1,10 +1,7 @@
 import React from 'react';
 import {Link, withRouter } from 'react-router-dom';
-// import SignupForm2 from './signup_form2';
-
 
 class SignupForm2 extends React.Component {
-    
 
   renderErrors() {
     return(
@@ -47,7 +44,7 @@ class SignupForm2 extends React.Component {
                       <option value="09">September</option>
                       <option value="10">October</option>
                       <option value="11">November</option>
-                      <option value="12">Decemeber</option>
+                      <option value="12">December</option>
                     </select>
                   
                     <input type="text" value={this.props.day} onChange = {this.props.update('day')} placeholder="Day"/>
@@ -61,7 +58,7 @@ class SignupForm2 extends React.Component {
                   {this.renderErrors()}
                 </div>
 
-                <div>
+                <div className="gender-container">
                   <select id = 'gender' value = {this.props.gender} onChange = {this.props.update('gender')}>
                     <option value = 'Gender'>Gender</option>
                     <option value = 'Female'>Female</option>

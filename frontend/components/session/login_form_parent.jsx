@@ -10,15 +10,29 @@ class LoginFormParent extends React.Component {
         this.state = {
             email: '',
             password: '',
+            firstname: '',
             step: 1
         }
         this.nextStep = this.nextStep.bind(this);
         this.prevStep = this.prevStep.bind(this);
         this.update = this.update.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        // this.findUser = this.findUser.bind(this);
     }
 
-    
+    // findUser(email) {
+    //     debugger
+    //     this.props.fetchUser(email)
+
+    //     if (email) {
+    //         this.setState({
+    //             firstname: email.firstname
+    //         })
+    //         this.nextStep();
+    //     } else {
+    //         null;
+    //     }
+    // }
 
     nextStep() {
         const {step} = this.state
@@ -52,40 +66,30 @@ class LoginFormParent extends React.Component {
 
     render() {
         const {step} = this.state;
-        const {email, password } = this.state;
-        const values =  {email, password}
+        const {email, password, firstname } = this.state;
+        // const values =  {email, password, firstname}
         let formpage
         switch(step) {
             case 1: 
-            
                 formpage = (
-                    // <h1>SignUpForm1</h1>
                     <LoginForm
                         nextStep = {this.nextStep}
                         update = {this.update}
-                        values = { values }
-                        // {...values} - look into this option for future
+                        email = {email}
+                        firstname = {firstname}
                         errors = { this.props.errors}
                         login = {this.props.login}
-                        
                         removeSessionErrors = { this.props.removeSessionErrors }
-                        
+                        // findUser = { this.findUser }
                     />
                 )
                 break;
             case 2: 
                 formpage = (
-                    // <h1>SignUpForm2</h1>
                     <LoginForm2 
-                        // updatedBdayForm = {updatedBdayForm}
-                        
                         email = {email}
                         password = {password}
-                        // birthdate = {birthdate}
-                        // month = {month}
-                        // day = {day}
-                        // year = {year}
-                        // gender = {gender}
+                        firstname = {firstname}
                         prevStep = {this.prevStep}
                         update = {this.update}
                         login = {this.props.login}

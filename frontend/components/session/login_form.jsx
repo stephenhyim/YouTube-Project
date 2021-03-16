@@ -1,14 +1,13 @@
 import React from 'react';
 import {Link, withRouter } from 'react-router-dom';
 
-// import SignupForm2 from './signup_form2';
-
-
 class LoginForm extends React.Component {
   constructor(props) {
     super(props)
     this.guestLogin = this.guestLogin.bind(this)
+    // this.findEmail = this.findEmail.bind(this)
   }  
+
   guestLogin(e){
     e.preventDefault();
     const guest = {
@@ -16,6 +15,12 @@ class LoginForm extends React.Component {
     }
     this.props.login(guest)
   }
+
+  // findEmail() {
+  //   let useremail = this.props.values.email
+  //   return useremail
+  // }
+
 
   renderErrors() {
     return(
@@ -45,9 +50,9 @@ class LoginForm extends React.Component {
           <div className = 'login-form-one-main'>
 
             <div className = 'login-form-one-input'>
-              <div className = 'login-form-one-email-container'>
-                <input className='login-form-one-email' placeholder='Email' type="text" value = {this.props.values.email} onChange = {this.props.update('email')}/>
-              </div>
+              
+              <input className='login-form-one-email' placeholder='Email' type="text" value = {this.props.email} onChange = {this.props.update('email')}/>
+              
               <div className = 'login-form-one-errors'>
                 {this.renderErrors()}
               </div>

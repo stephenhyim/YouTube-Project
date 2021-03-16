@@ -52,32 +52,74 @@ $font-stack: 'Roboto', sans-serif;
     height: 330px;
     justify-content: space-around;
 
-    .signform-bday {
+    .signupform2-bday {
         display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
         height: 38px;
         width: 360px;
     }
 
-        .signup-bday {
-            width: 360px;
-            height: 38px;
+        #month {
+            width: 120px;
+            height: 36px;
+            padding: 4px 22px 4px 10px;
+            border: solid 1px  rgb(218, 218, 218);
+            border-radius: 4px;
+        }
+
+        select option {
+            font-size: 14px;
+        }
+
+        // #month select:focus {
+        //     border: 2px solid #1A73E8;
+        //     outline: none;
+        // }
+
+        input[type=text] {
+            width: 80px;
+            height: 18px;
+            margin: 1px 1px 0px;
+            padding: 7px 9px;
+            border: solid 1px  rgb(218, 218, 218);
+            border-radius: 4px;
+        }
+
+        input[type=text]:focus {
+            border: 2px solid #1A73E8;
+            outline: none;
+            
         }
 
 
-    .signform-gender {
+    .gender-container {
         display: flex;
-        height: 38px;
-        width: 360px;
+        height: 60px;
+        width: 354px;
+        padding: 24px 0px 0px;
     }
 
-        .signup-gender {
-            width: 360px;
-            height: 38px;
+        #gender {
+            width: 354px;
+            height: 36px;
+            padding: 4px 22px 4px 10px;
+            border: solid 1px  rgb(218, 218, 218);
+            border-radius: 4px;
         }
+
+        select option {
+            font-size: 14px;
+        }
+
+    
 
     .signupform2-buttons {
         display: flex;
         justify-content: space-between;
+        align-items: center;
+        width: 354px;
     }
 
         .signupform2-back-btn {

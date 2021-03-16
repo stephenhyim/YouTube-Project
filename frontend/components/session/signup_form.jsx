@@ -4,14 +4,6 @@ import {Link, withRouter } from 'react-router-dom';
 
 
 class SignupForm extends React.Component {
-    
-  passwordMatch(pw1, pw2) {
-    if (pw1 !== pw2) {
-      return "Those passwords didn't match. Try again."
-    }  
-  }
-
-  
 
   renderErrors() {
     return(
@@ -42,32 +34,27 @@ class SignupForm extends React.Component {
             <div className="signup-form">
               
               <span className='signupform-name'>
-                <div className='signupform-firstname'>
+                
                   <input className='signup-firstname' placeholder='First name' type="text" value = {this.props.values.firstname} onChange = {this.props.update('firstname')}/>
-                </div>
-                <div className='signupform-lastname'>
+                
                   <input className='signup-lastname' placeholder='Last name' type="text" value = {this.props.values.lastname} onChange = {this.props.update('lastname')}/>
-                </div>
+               
               </span>
 
-              <span className='email-container'>
-                <div className='signupform-email'>
-                  <input className='signup-email' type="text" placeholder='Your email address' value={this.props.values.email} onChange={this.props.update('email')} className="login-input"/>
-                </div>
-              </span>
+              
+              <input className='signup-email' id="signup-email" type="text" placeholder='Your email address' value={this.props.values.email} onChange={this.props.update('email')} className="login-input"/>
+                
 
               <div className='signupfrom-errors'>
                 {this.renderErrors()}
-                {/* {this.passwordMatch(this.props.values.password, this.props.values.confirmPassword)} */}
               </div>
 
               <span className='signupform-pw-container'>
-                <div className='signupform-pw'>
-                  <input className='signup-pw' placeholder='Password' type="password" value = {this.props.values.password} onChange = {this.props.update('password')}/>
-                </div>
-                <div className='signupfrom-pw-confirm'>
-                  <input className='signup-pw-confirm' placeholder='Confirm' type="password" value = {this.props.values.confirmPassword} onChange = {this.props.update('confirmPassword')}/>
-                </div>
+                
+                <input className='signup-pw' placeholder='Password' type="password" value = {this.props.values.password} onChange = {this.props.update('password')}/>
+              
+                <input className='signup-pw-confirm' placeholder='Confirm' type="password" value = {this.props.values.confirmPassword} onChange = {this.props.update('confirmPassword')}/>
+                
               </span>
 
               <div className='signupform-buttons'>
