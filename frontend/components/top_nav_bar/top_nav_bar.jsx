@@ -48,15 +48,15 @@ class TopNavBar extends React.Component {
             </ul>
           </div>
         </div>
-    
-        
-        <div className = 'drop-down-container'> 
+
+        <div className = 'drop-down-container'>
+          <Link to ={`/users`}><i className="fas fa-video"></i></Link>
           <button onClick = {this.openDropDown} className='avatar'><i className="fas fa-user"></i></button>
 
           {this.state.showMenu ? (
             <div className='dropdown'>
               <ul className='dropdown-ul'>
-                <li><Link to ={`/videos`} className='your-channel'>Your channel</Link></li>
+                <li><Link to ={`/users`} className='your-channel'>Your channel</Link></li>
                 <li><button onClick={()=>this.props.logout(this.props.currentUser)}>Sign out</button></li>
               </ul>
             </div>

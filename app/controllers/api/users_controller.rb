@@ -13,12 +13,8 @@ class Api::UsersController < ApplicationController
     end
 
     def show 
-      @user = User.find_by(email:user_params(:email))
-      if @user
-        render :show
-      else
-        render json: @user.errors.full_messages, status: 422
-      end
+      @user = User.find(params[:id])
+      render :show
     end
 
   private

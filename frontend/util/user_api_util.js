@@ -1,9 +1,8 @@
 
 
-export const fetchUser = email => {
+export const fetchUser = userId => {
     debugger
     return $.ajax({
-        url: `/api/users`,
-        data: {email}
+        url: `/api/users/${userId}`,
     })
 }
