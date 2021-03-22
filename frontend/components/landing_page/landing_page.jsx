@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { AuthRoute } from '../../util/route_util';
 import TopNavBar from '../top_nav_bar/top_nav_bar_container';
 import LeftNavBar from '../left_nav_bar/left_nav_bar_container';
-import VideoIndex from '../videos/video_index';
+import VideoIndexContainer from '../videos/video_index_container';
 
 
 
@@ -20,7 +20,7 @@ class LandingPage extends React.Component {
                 <TopNavBar/>
                 <div className = 'main-container'>
                     <LeftNavBar/>
-                    <VideoIndex/>
+                    <VideoIndexContainer/>
                 </div>
             </div>
         )

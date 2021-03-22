@@ -1,12 +1,40 @@
 import React from 'react';
+import VideoIndexItem from './video_index_item';
 
 class VideoIndex extends React.Component {
-    constructor(props) {
-        super(props)
+
+    componentDidMount() {
+        debugger
+        this.props.fetchVideos()
     }
 
     render(){
+        debugger
+
+        if (!this.props.videos) {
+            return null
+        }
+        
+        const videos = Object.values(this.props.videos).map( (video, idx) => {
+            return (
+                <li className = 'video-info' key={idx}>
+                    <video controls width = '360' height = '202'><source src={ video.videoUrl } type='video/mp4'></source></video>
+                    <div className = "video-title">{ video.title }</div>
+                    <div className = "video-created">{ video.created_at }</div>
+                </li>
+            
+            )
+        })
         return (
+
+            <div className = 'video-main-container'>
+                <ul className = 'video-container'>{videos}</ul>
+            </div>
+        )
+
+    
+
+        {/* return (
             <div className = 'video-main-container'>
 
                 <div className='videos-index'>
@@ -38,37 +66,10 @@ class VideoIndex extends React.Component {
 
             </div>
 
+        ) */}
 
 
 
-
-            // <div className = 'video-main-container'>
-
-            //     <div className = 'video-index'>
-
-            //         <div className = 'video-row'></div>
-
-            //             <div className = 'video-thumbnail'></div>
-            //             <div className = 'video-description-container'>
-            //                 <div className = 'video-icon-container'>
-            //                     <img src ></img>
-            //                 </div>
-            //             </div>
-            //             <div className='video-text-container'>
-            //                 <div className='video-title'></div>
-            //                 <div className='video-info-container'>
-            //                     <div className='video-author'></div>
-            //                     <div className='video-views'></div>
-            //                     <div className='video-uploaded'></div>
-            //                 </div>
-            //             </div>
-
-            //         <div className = 'video-row'></div>
-
-            //     </div>
-
-            // </div>
-        )
     }
 }
 

@@ -13,31 +13,61 @@ $font-stack: 'Roboto', sans-serif;
     margin-left: 240px;
     margin-top: 56px;
 
-
-    .videos-index {
+    .video-container {
         display: flex;
-        flex-direction: column;
-        width: 1504px;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-around;
         padding-top: 56px;
+        width: 1504px;
+
     }
 
-        .video-row {
+        .video-info {
             display: flex;
-            justify-content: space-around;
+            flex-direction: column;
             height: 350px;
-            
         }
 
-            ul {
-                justify-content: space-between;
+        .video-info div {
+            color: white;
+        }
+
+            .video-title {
+                font-size: 16px;
+            }
+
+            .video-created {
+                font-size: 14px;
             }
 
 }
 
-.video-thumbnail {
-    width: 360px;
-    height: 298px;
-}
+
+//     .videos-index {
+//         display: flex;
+//         flex-direction: column;
+//         width: 1504px;
+//         padding-top: 56px;
+//     }
+
+//         .video-row {
+//             display: flex;
+//             justify-content: space-around;
+//             height: 350px;
+            
+//         }
+
+//             ul {
+//                 justify-content: space-between;
+//             }
+
+
+
+// .video-thumbnail {
+//     width: 360px;
+//     height: 298px;
+// }
 
 
 
