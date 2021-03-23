@@ -6,3 +6,4 @@ export const fetchUser = userId => {
         url: `/api/users/${userId}`,
     })
 }
+

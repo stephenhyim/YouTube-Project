@@ -9,16 +9,21 @@ import TopNavBarContainer from './top_nav_bar/top_nav_bar_container';
 import LandingPage from './landing_page/landing_page';
 import SignupFormContainer from './session/signup_form_container';
 import LoginFormContainer from './session/login_form_container';
+import UserShowContainer from './user/user_container'
 
 const App = () => (
     <div>
         <header>
-            <Route exact path = '/' component = {LandingPage} />
+            <Switch>
+                <Route exact path = '/users/:userId' component = {TopNavBarContainer}></Route>
+                <Route exact path = '/' component = {LandingPage} />
+            </Switch>
         </header>
         
         <Switch>
             <AuthRoute exact path="/login" component={LoginFormContainer} />
             <AuthRoute exact path="/signup" component={SignupFormContainer} />
+            <ProtectedRoute exact path = "/users/:userId" component={UserShowContainer} />
         </Switch>
     </div>
 );

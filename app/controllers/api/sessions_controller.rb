@@ -8,6 +8,7 @@ class Api::SessionsController < ApplicationController
       # debugger
       if @user
         login(@user)
+        @user_video = @user.videos
         render "api/users/show"
       else
         # debugger
@@ -21,7 +22,6 @@ class Api::SessionsController < ApplicationController
       @user = current_user
       if @user
         logout
-        render "api/users/show"
       else
         # debugger
         render json: ["No current user"], status: 404

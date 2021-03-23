@@ -56,7 +56,7 @@ class TopNavBar extends React.Component {
           {this.state.showMenu ? (
             <div className='dropdown'>
               <ul className='dropdown-ul'>
-                <li><Link to ={`/users`} className='your-channel'>Your channel</Link></li>
+                <li><Link to ={`/users/${this.props.currentUser}`} className='your-channel'>Your channel</Link></li>
                 <li><button onClick={()=>this.props.logout(this.props.currentUser)}>Sign out</button></li>
               </ul>
             </div>

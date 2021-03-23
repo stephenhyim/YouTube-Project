@@ -6,6 +6,7 @@ class Api::UsersController < ApplicationController
       if @user.save
         # debugger
         login(@user)
+        @user_video = @user.videos
         render "api/users/show"
       else
         render json: @user.errors.full_messages, status: 422
@@ -14,7 +15,13 @@ class Api::UsersController < ApplicationController
 
     def show 
       @user = User.find(params[:id])
-      render :show
+      if @user 
+        @user_video = @user.videos
+        render :show
+      else  
+        render json: @user.errors.full_messages, status: 404
+      end
+      
     end
 
   private

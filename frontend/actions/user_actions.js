@@ -1,16 +1,17 @@
 import * as UserAPIUtil from '../util/user_api_util';
 
-export const FETCH_ALL_USERS = 'FETCH_ALL_USERS'
 
-export const fetchAllUsers = users => {
+export const RECEIVE_USER = "RECEIVE_USER"
+
+const receiveUser = user => {
     return {
-        type: FETCH_ALL_USERS,
-        users
+        type: RECEIVE_USER,
+        user
     }
 }
 
-export const fetchUser = email => dispatch => {
+export const fetchUser = userId => dispatch => {
     debugger
-    return UserAPIUtil.fetchUser(email)
-        .then(users => dispatch(fetchAllUsers(users)))
+    return UserAPIUtil.fetchUser(userId)
+        .then(user => dispatch(receiveUser(user)))
 }

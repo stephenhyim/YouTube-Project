@@ -1,15 +1,15 @@
 import { RECEIVE_CURRENT_USER } from '../actions/session_actions';
-import {FETCH_ALL_USERS} from '../actions/user_actions'
+import { RECEIVE_USER } from '../actions/user_actions'
 
-const usersReducer = (state = {}, action) => {
+const UsersReducer = (state = {}, action) => {
   Object.freeze(state);
   let nextState = Object.assign({}, state)
   switch(action.type) {
     case RECEIVE_CURRENT_USER:
       return nextState[action.currentUser.id] = action.currentUser;
-    case FETCH_ALL_USERS:
+    case RECEIVE_USER:
       debugger
-      nextState[action.users.users] = action.users.users;
+      nextState[action.user.user.id] = action.user.user;
       return nextState
     default:
       return state;
@@ -17,4 +17,4 @@ const usersReducer = (state = {}, action) => {
 };
 
 
-export default usersReducer;
+export default UsersReducer;
