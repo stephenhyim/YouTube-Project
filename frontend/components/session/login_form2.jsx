@@ -42,7 +42,7 @@ class LoginForm2 extends React.Component {
 
         <div className="login2-form-two-top">
           <img className='google-logo' src={window.logo} />
-          <h1 className='login2-header'> Hello {this.props.firstname}</h1>
+          <h1 className='login2-header'> Hello, {this.props.firstname}</h1>
           <h4 className='login2-header2'>{this.props.email}</h4>
         </div>
 

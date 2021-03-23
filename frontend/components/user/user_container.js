@@ -3,9 +3,9 @@ import { fetchUser } from '../../actions/user_actions'
 import UserShow from './user_show';
 
 const mSTP = (state, ownProps) => {
+    debugger
     return {
-        user: state.entities.users[ownProps.match.params.userId],
-        user_videos: state.entities.users[ownProps.match.params.userId].user_video
+        user: state.entities.users[ownProps.match.params.userId]
     }
 }
 
