@@ -97,13 +97,11 @@ class TopNavBar extends React.Component {
     );
     
     return(
-      <header>
         <div className='top-nav-bar'>
           <ul className='top-nav-links'>
             <li>{display}</li>
           </ul>
         </div>
-      </header>
       );
   }
   

@@ -2,6 +2,7 @@ class Api::VideosController < ApplicationController
 
     def index
         @videos = Video.all
+        # @users = @videos.includes(:user).to_a  #N+1 QUERIESSSSSS!!!!
         render :index
     end
 

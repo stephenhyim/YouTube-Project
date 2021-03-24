@@ -23,7 +23,7 @@ class VideoIndex extends React.Component {
                 <li className = 'video-info' key={idx}>
                     <Link to = {`/videos/${video.id}`}><video width = '360' height = '202'><source src={ video.videoUrl } type='video/mp4'></source></video></Link>
                     <Link to = {`/videos/${video.id}`}><div className = "video-title">{ video.title }</div></Link>
-                    {/* <div><Link to={`/users/${this.props.user}`}>{user}</Link></div> */}
+                    <Link to ={`/users/${video.user_id}`}>{video.firstname}</Link>
                     <div className = "video-created">{ video.created_at }</div>
                 </li>
             

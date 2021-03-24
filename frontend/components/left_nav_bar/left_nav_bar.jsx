@@ -56,9 +56,7 @@ const LeftNavBar = ({ currentUser}) => {
 
 
     return (
-        <div>
-            <div>{display}</div>
-        </div>
+        <div className = "left-nav-bar">{display}</div>
         )
     }
 

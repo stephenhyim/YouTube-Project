@@ -1,4 +1,6 @@
 import React from 'react';
+import TopNavBarContainer from '../top_nav_bar/top_nav_bar_container';
+import LeftNavBarContainer from '../left_nav_bar/left_nav_bar_container';
 
 class VideoShow extends React.Component {
     componentDidMount() {
@@ -9,7 +11,7 @@ class VideoShow extends React.Component {
     render() {
         debugger
 
-        if (!this.props.videos) {
+        if (Object.keys(this.props.videos).length === 0) {
             return null
         }
 
@@ -19,10 +21,14 @@ class VideoShow extends React.Component {
 
         debugger
         return (
-            <div>
+            <div className = "show-container">
+                <TopNavBarContainer />
+                
                 <video width = '360' height = '202' controls>
                     <source src={ video.videoUrl } type='video/mp4'/>
                 </video>
+                <h1>{video.title}</h1>
+                <p>{video.firstname}</p>
             </div>
            
         )

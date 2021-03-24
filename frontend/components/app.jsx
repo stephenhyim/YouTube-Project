@@ -14,13 +14,9 @@ import UserShowContainer from './user/user_container'
 import VideoShowContainer from './videos/video_show_container';
 
 const App = () => (
-    <div>
-        <header>
-            <Switch>
-                <Route exact path = '/users/:userId' component = { TopNavBarContainer }></Route>
-                <Route exact path = '/' component = {LandingPage} />
-            </Switch>
-        </header>
+    <div className = "main">
+            
+        <Route exact path = '/' component = {LandingPage} />
         
         <Switch>
             <AuthRoute exact path="/login" component={LoginFormContainer} />
@@ -28,6 +24,7 @@ const App = () => (
             <ProtectedRoute exact path = "/users/:userId" component={UserShowContainer} />
             <Route exact path = '/videos/:videoId' component = {VideoShowContainer} />
         </Switch>
+        
     </div>
 );
   

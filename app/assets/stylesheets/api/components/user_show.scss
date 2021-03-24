@@ -1,5 +1,17 @@
 $font-stack: 'Roboto', sans-serif;
 
+// .user-show-container {
+//     padding-top: 75px;
+// }
+
+
+.user-show-main {
+    display: flex;
+    flex-direction: row;
+    
+}
+
 .user-show-container {
-    padding-top: 75px;
+    display: flex;
+    flex-direction: row;
 }

@@ -1,5 +1,6 @@
 import React from 'react';
-import LeftNavBarContainer from '../left_nav_bar/left_nav_bar_container'
+import TopNavBarContainer from '../top_nav_bar/top_nav_bar_container';
+import LeftNavBarContainer from '../left_nav_bar/left_nav_bar_container';
 
 class UserShow extends React.Component {
     constructor(props) {
@@ -40,10 +41,10 @@ class UserShow extends React.Component {
         }
 
         return (
-            <div>
+            <div className = "user-show-main">
+                <TopNavBarContainer />
                 <LeftNavBarContainer />
                 <div className = "user-show-container">
-                    <h1>USER SHOW</h1>
                     <ul>
                         {user_video}
                     </ul>
