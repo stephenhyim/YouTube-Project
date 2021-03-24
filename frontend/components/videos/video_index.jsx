@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 class VideoIndex extends React.Component {
 
@@ -20,8 +21,8 @@ class VideoIndex extends React.Component {
         const videos = Object.values(this.props.videos).map( (video, idx) => {
             return (
                 <li className = 'video-info' key={idx}>
-                    <video controls width = '360' height = '202'><source src={ video.videoUrl } type='video/mp4'></source></video>
-                    <div className = "video-title">{ video.title }</div>
+                    <Link to = {`/videos/${video.id}`}><video width = '360' height = '202'><source src={ video.videoUrl } type='video/mp4'></source></video></Link>
+                    <Link to = {`/videos/${video.id}`}><div className = "video-title">{ video.title }</div></Link>
                     {/* <div><Link to={`/users/${this.props.user}`}>{user}</Link></div> */}
                     <div className = "video-created">{ video.created_at }</div>
                 </li>
