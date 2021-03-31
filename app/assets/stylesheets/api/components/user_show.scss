@@ -8,10 +8,22 @@ $font-stack: 'Roboto', sans-serif;
 .user-show-main {
     display: flex;
     flex-direction: row;
+    box-sizing: border-box;
     
 }
 
 .user-show-container {
     display: flex;
-    flex-direction: row;
+    height: 1456px;
+    width: 1663px;
+    position: fixed;
+    top: 56px;
+    left: 240px;
+
+    .video-row {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+
 }

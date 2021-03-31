@@ -31,7 +31,7 @@ class UserShow extends React.Component {
 
             user_video = Object.values(this.props.user.user_video).map( (video, idx) => {
                 return (
-                    <li key={idx}>
+                    <li className = "video-info" key={idx}>
                         <video controls width = '360' height = '202'><source src={ video.videoUrl } type='video/mp4'></source></video>
                         <div className = "video-title">{ video.title }</div>
                         <div className = "video-created">{ video.created_at }</div>
@@ -45,7 +45,7 @@ class UserShow extends React.Component {
                 <TopNavBarContainer />
                 <LeftNavBarContainer />
                 <div className = "user-show-container">
-                    <ul>
+                    <ul className = "video-row">
                         {user_video}
                     </ul>
                 </div>

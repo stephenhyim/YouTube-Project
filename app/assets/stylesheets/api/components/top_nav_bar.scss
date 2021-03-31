@@ -30,6 +30,7 @@ $font-stack: 'Roboto', sans-serif;
 .center-top-nav {
     justify-content: center;
     font-size: 20px;
+    padding-left: 20px;
     
 
     .search-bar-container {
@@ -119,15 +120,6 @@ $font-stack: 'Roboto', sans-serif;
 
 }
 
-
-
-
-
-// .fab fa-youtube {
-//     color: #1A73E8;
-//     text-decoration: none;
-// }
-
 .top-nav-youtube-icon {
     color: white;
     text-decoration: none;
@@ -157,7 +149,7 @@ $font-stack: 'Roboto', sans-serif;
 }
 
 .fa-video {
-    padding-right: 20px;
+    padding-right: 0px;
     color: white;
     text-decoration: none;
 }
@@ -184,7 +176,7 @@ $font-stack: 'Roboto', sans-serif;
     position: absolute;
     top: 100%;
     right: 0%;
-    width: 300px;
+    width: 120px;
     height: 40px;
     
 
@@ -205,7 +197,7 @@ $font-stack: 'Roboto', sans-serif;
             text-decoration: none;
         }
 
-        a:visted {
+        a:visited {
             color: white;
             text-decoration: none;
         }
@@ -214,18 +206,81 @@ $font-stack: 'Roboto', sans-serif;
             background-color: rgb(75, 75, 75);
         }
 
-        // .your-channel:link {
-        //     color: white;
-        //     text-decoration: none;
-        // }
-        
-        // .your-channel:visted {
-        //     color: white;
-        //     text-decoration: none;
-        // }
+}
+
+.logout-btn {
+    color: white;
+    background-color: black;
+    background: none;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    font-size: 16px;
+}
+
+
+.top-right-nav {
+    display: flex;
+    justify-content: space-between;
+    width: 120px;
+    align-items: center;
 
 }
 
+.video-dropdown-container {
+    position: relative;
+    display: inline-block;
+    padding-right: 20px;
+}
+
+.video-btn {
+    color: white;
+    background-color: black;
+    background: none;
+    border: none;
+    cursor: pointer;
+    outline: none;
+}
+
+.fa-video {
+    font-size: 18px;
+}
+
+.video-dropdown {
+    
+    position: absolute;
+    top: 100%;
+    left: 0%;
+    width: 120px;
+    height: 40px;
+    
+
+    .video-dropdown-ul {
+        background: #202020;
+        border: 1px solid rbga(0, 0, 0, 0.04);
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+        li {
+            padding: 8px 12px;
+        }
+
+        a:link {
+            color: white;
+            text-decoration: none;
+        }
+
+        a:visited {
+            color: white;
+            text-decoration: none;
+        }
+
+        li:hover {
+            background-color: rgb(75, 75, 75);
+        }
+}
 
 
 

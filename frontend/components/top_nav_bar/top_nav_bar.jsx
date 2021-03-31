@@ -6,11 +6,14 @@ class TopNavBar extends React.Component {
     super(props)
 
     this.state = {
-      showMenu: false
+      showMenu: false,
+      showMenu2: false
     }
 
     this.openDropDown = this.openDropDown.bind(this);
     this.closeDropDown = this.closeDropDown.bind(this);
+    this.openVideoDropDown = this.openVideoDropDown.bind(this);
+    this.closeVideoDropDown = this.closeVideoDropDown.bind(this);
   }
 
   openDropDown(e) {
@@ -29,11 +32,26 @@ class TopNavBar extends React.Component {
     })
   }
 
+  openVideoDropDown(e) {
+    e.preventDefault();
+
+    if (this.state.showMenu2 === false) {
+      this.setState({ showMenu2: true})
+    } else {
+      this.setState({ showMenu2: false })
+    }
+  }
+
+  closeVideoDropDown() {
+    this.setState({ showMenu2: false }, () => {
+      document.removeEventListener('click', this.closeDropDown);
+    })
+  }
+
   render() {
     debugger
     const display = this.props.currentUser ? (
       <div className = 'top-nav-container'>
-        
         
         <div className = 'left-top-nav'>
           <i className="fas fa-bars"></i>
@@ -49,33 +67,42 @@ class TopNavBar extends React.Component {
           </div>
         </div>
 
-        <div className = 'drop-down-container'>
-          <Link to ={`/users`}><i className="fas fa-video"></i></Link>
-          <button onClick = {this.openDropDown} className='avatar'><i className="fas fa-user"></i></button>
+        <div className = "top-right-nav">
+          <div className = "video-dropdown-container">
+            <button onClick = {this.openVideoDropDown} className = "video-btn"><i className="fas fa-video"></i></button>
+            {this.state.showMenu2 ? (
+              <div className='video-dropdown'>
+                  <ul className='video-dropdown-ul'>
+                    <li><Link to = {`/users/${this.props.currentUser}`}>Upload video</Link></li>
+                  </ul>
+              </div>
+            ) : (
+              null
+            )}
+          </div> 
 
-          {this.state.showMenu ? (
-            <div className='dropdown'>
-              <ul className='dropdown-ul'>
-                <li><Link to ={`/users/${this.props.currentUser}`} className='your-channel'>Your channel</Link></li>
-                <li><button onClick={()=>this.props.logout(this.props.currentUser)}>Sign out</button></li>
-              </ul>
-            </div>
-          ) : (
-            null
-          )}
+          <div className = 'drop-down-container'>
+            <button onClick = {this.openDropDown} className='avatar'><i className="fas fa-user"></i></button>
+            {this.state.showMenu ? (
+              <div className='dropdown'>
+                <ul className='dropdown-ul'>
+                  <li ><Link to ={`/users/${this.props.currentUser}`} >Your channel</Link></li>
+                  <li><button className = "logout-btn" onClick={()=>this.props.logout(this.props.currentUser)}>Sign out</button></li>
+                </ul>
+              </div>
+            ) : (
+              null
+            )}
+          </div>
         </div>
-      
       </div>
     ) : (
       <div className = 'top-nav-container'>
-        
-        
 
         <div className = 'left-top-nav'>
           <i className="fas fa-bars"></i>
           <Link className='top-nav-youtube-icon' to = {`/`}><i className="fab fa-youtube"></i></Link>
         </div>
-        
     
         <div className='center-top-nav'>
           <div className='search-bar-container'>

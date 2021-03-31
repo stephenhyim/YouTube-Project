@@ -23,7 +23,6 @@ class VideoShow extends React.Component {
         return (
             <div className = "show-container">
                 <TopNavBarContainer />
-                
                 <video width = '360' height = '202' controls>
                     <source src={ video.videoUrl } type='video/mp4'/>
                 </video>

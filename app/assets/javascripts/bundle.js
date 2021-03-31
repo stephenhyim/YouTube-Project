@@ -1615,10 +1615,13 @@ var TopNavBar = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this, props);
     _this.state = {
-      showMenu: false
+      showMenu: false,
+      showMenu2: false
     };
     _this.openDropDown = _this.openDropDown.bind(_assertThisInitialized(_this));
     _this.closeDropDown = _this.closeDropDown.bind(_assertThisInitialized(_this));
+    _this.openVideoDropDown = _this.openVideoDropDown.bind(_assertThisInitialized(_this));
+    _this.closeVideoDropDown = _this.closeVideoDropDown.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -1649,9 +1652,35 @@ var TopNavBar = /*#__PURE__*/function (_React$Component) {
       });
     }
   }, {
+    key: "openVideoDropDown",
+    value: function openVideoDropDown(e) {
+      e.preventDefault();
+
+      if (this.state.showMenu2 === false) {
+        this.setState({
+          showMenu2: true
+        });
+      } else {
+        this.setState({
+          showMenu2: false
+        });
+      }
+    }
+  }, {
+    key: "closeVideoDropDown",
+    value: function closeVideoDropDown() {
+      var _this3 = this;
+
+      this.setState({
+        showMenu2: false
+      }, function () {
+        document.removeEventListener('click', _this3.closeDropDown);
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
-      var _this3 = this;
+      var _this4 = this;
 
       debugger;
       var display = this.props.currentUser ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1678,12 +1707,23 @@ var TopNavBar = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         className: "fas fa-search"
       })))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "drop-down-container"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-        to: "/users"
+        className: "top-right-nav"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "video-dropdown-container"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: this.openVideoDropDown,
+        className: "video-btn"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         className: "fas fa-video"
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      })), this.state.showMenu2 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "video-dropdown"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+        className: "video-dropdown-ul"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        to: "/users/".concat(this.props.currentUser)
+      }, "Upload video")))) : null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "drop-down-container"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: this.openDropDown,
         className: "avatar"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
@@ -1693,13 +1733,13 @@ var TopNavBar = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
         className: "dropdown-ul"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-        to: "/users/".concat(this.props.currentUser),
-        className: "your-channel"
+        to: "/users/".concat(this.props.currentUser)
       }, "Your channel")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "logout-btn",
         onClick: function onClick() {
-          return _this3.props.logout(_this3.props.currentUser);
+          return _this4.props.logout(_this4.props.currentUser);
         }
-      }, "Sign out")))) : null)) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "Sign out")))) : null))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "top-nav-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "left-top-nav"
@@ -1809,7 +1849,8 @@ __webpack_require__.r(__webpack_exports__);
 var mSTP = function mSTP(state, ownProps) {
   debugger;
   return {
-    user: state.entities.users[ownProps.match.params.userId]
+    user: state.entities.users[ownProps.match.params.userId],
+    video: state.entities.videos
   };
 };
 
@@ -1895,6 +1936,7 @@ var UserShow = /*#__PURE__*/function (_React$Component) {
       if (this.props.user.user_video) {
         user_video = Object.values(this.props.user.user_video).map(function (video, idx) {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+            className: "video-info",
             key: idx
           }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("video", {
             controls: true,
@@ -1915,7 +1957,9 @@ var UserShow = /*#__PURE__*/function (_React$Component) {
         className: "user-show-main"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_top_nav_bar_top_nav_bar_container__WEBPACK_IMPORTED_MODULE_1__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_left_nav_bar_left_nav_bar_container__WEBPACK_IMPORTED_MODULE_2__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "user-show-container"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, user_video)));
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+        className: "video-row"
+      }, user_video)));
     }
   }]);
 
