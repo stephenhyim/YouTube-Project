@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import TopNavBarContainer from '../top_nav_bar/top_nav_bar_container';
 import LeftNavBarContainer from '../left_nav_bar/left_nav_bar_container';
 
@@ -32,8 +33,8 @@ class UserShow extends React.Component {
             user_video = Object.values(this.props.user.user_video).map( (video, idx) => {
                 return (
                     <li className = "video-info" key={idx}>
-                        <video controls width = '360' height = '202'><source src={ video.videoUrl } type='video/mp4'></source></video>
-                        <div className = "video-title">{ video.title }</div>
+                        <Link to={`/videos/${video.id}`}><video width = '360' height = '202'><source src={ video.videoUrl } type='video/mp4'></source></video></Link>
+                        <Link to = {`/videos/${video.id}`}><div className = "video-title">{ video.title }</div></Link>
                         <div className = "video-created">{ video.created_at }</div>
                     </li>
                 )
@@ -45,6 +46,7 @@ class UserShow extends React.Component {
                 <TopNavBarContainer />
                 <LeftNavBarContainer />
                 <div className = "user-show-container">
+                    <h1>{this.props.user.nickname}</h1>
                     <ul className = "video-row">
                         {user_video}
                     </ul>

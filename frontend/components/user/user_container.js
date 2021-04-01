@@ -5,8 +5,7 @@ import UserShow from './user_show';
 const mSTP = (state, ownProps) => {
     debugger
     return {
-        user: state.entities.users[ownProps.match.params.userId],
-        video: state.entities.videos
+        user: state.entities.users[ownProps.match.params.userId]
     }
 }
 

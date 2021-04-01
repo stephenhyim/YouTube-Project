@@ -21,13 +21,20 @@ class VideoShow extends React.Component {
 
         debugger
         return (
-            <div className = "show-container">
+            <div className = "show-main">
                 <TopNavBarContainer />
-                <video width = '360' height = '202' controls>
-                    <source src={ video.videoUrl } type='video/mp4'/>
-                </video>
-                <h1>{video.title}</h1>
-                <p>{video.firstname}</p>
+                <div className = "show-container">
+                    <video width = '1325' height = '725' controls>
+                        <source src={ video.videoUrl } type='video/mp4'/>
+                    </video>
+                    <div className = "show-info">
+                        <h1 className = "show-title">{video.title}</h1>
+                        <div className = "show-metrics">
+                            <p>Views</p>
+                            <p>{video.created_at}</p>
+                        </div>
+                    </div>
+                </div>
             </div>
            
         )

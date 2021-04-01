@@ -21,9 +21,9 @@ class VideoIndex extends React.Component {
         const videos = Object.values(this.props.videos).map( (video, idx) => {
             return (
                 <li className = 'video-info' key={idx}>
-                    <Link to = {`/videos/${video.id}`}><video width = '360' height = '202'><source src={ video.videoUrl } type='video/mp4'></source></video></Link>
-                    <Link to = {`/videos/${video.id}`}><div className = "video-title">{ video.title }</div></Link>
-                    <Link to ={`/users/${video.user_id}`}>{video.firstname}</Link>
+                    <Link to={`/videos/${video.id}`}><video width = '360' height = '202'><source src={ video.videoUrl } type='video/mp4'></source></video></Link>
+                    <Link to={`/videos/${video.id}`}><h3 className = "video-title">{ video.title }</h3></Link>
+                    <Link className="user-firstname" to={`/users/${video.user_id}`}>{video.firstname}</Link>
                     <div className = "video-created">{ video.created_at }</div>
                 </li>
             
