@@ -6,24 +6,52 @@ $font-stack: 'Roboto', sans-serif;
 
 
 .user-show-main {
+    font-family: $font-stack;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     box-sizing: border-box;
     
+
+    .user-show-container {
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        width: 100%;
+        position: fixed;
+        top: 56px;
+        left: 240px;
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            height: 100px;
+            width: 100%;
+            background: #181818;
+            padding: 16px 107px 4px;
+        }
+
+            .username {
+                font-size: 24px;
+                color: white;
+                text-transform: capitalize;
+            }
+    
+        .video-row-container {
+            background: #0f0f0f;
+            width: 100%;
+        }
+        
+            .video-row {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-around;
+            }
+    
+    }
 }
 
-.user-show-container {
-    display: flex;
-    height: 1456px;
-    width: 1663px;
-    position: fixed;
-    top: 56px;
-    left: 240px;
 
-    .video-row {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-around;
-    }
 
+a {
+    font-family: $font-stack;
 }

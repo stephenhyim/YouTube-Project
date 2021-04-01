@@ -46,10 +46,13 @@ class UserShow extends React.Component {
                 <TopNavBarContainer />
                 <LeftNavBarContainer />
                 <div className = "user-show-container">
-                    <h1>{this.props.user.nickname}</h1>
-                    <ul className = "video-row">
-                        {user_video}
-                    </ul>
+                    <div className = "user-info">
+                        <i className="fas fa-user"></i>
+                        <h1 className = "username">{this.props.user.firstname}</h1>
+                    </div>
+                    <div className = "video-row-container">
+                        <ul className = "video-row">{user_video}</ul>
+                    </div>
                 </div>
             </div>
         )

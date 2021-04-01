@@ -34,6 +34,9 @@ class VideoShow extends React.Component {
                             <p>{video.created_at}</p>
                         </div>
                     </div>
+                    <div>
+                        <p>COMMENT COMPONENT</p>
+                    </div>
                 </div>
             </div>
            
