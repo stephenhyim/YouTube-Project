@@ -12,9 +12,19 @@ class Api::VideosController < ApplicationController
         render :show
     end
 
+    def create 
+        @video = Video.new(video_params)
+
+        if @video.save
+            render :show
+        else
+            render json: @video.errors.full_messages, status: 422
+        end
+    end
+
     private
 
-    def post_params
+    def video_params
         params.require(:video).permit(:title)
     end
 

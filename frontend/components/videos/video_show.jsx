@@ -1,6 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import TopNavBarContainer from '../top_nav_bar/top_nav_bar_container';
-import LeftNavBarContainer from '../left_nav_bar/left_nav_bar_container';
+
 
 class VideoShow extends React.Component {
     componentDidMount() {
@@ -33,6 +34,9 @@ class VideoShow extends React.Component {
                             <p>Views</p>
                             <p>{video.created_at}</p>
                         </div>
+                    </div>
+                    <div className = "user-info">
+                        <Link to = {`/users/${video.user_id}`}><h1>{video.firstname}</h1></Link>
                     </div>
                     <div>
                         <p>COMMENT COMPONENT</p>

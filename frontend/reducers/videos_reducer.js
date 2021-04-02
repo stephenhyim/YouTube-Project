@@ -1,5 +1,6 @@
 import {
-    RECEIVE_ALL_VIDEOS
+    RECEIVE_ALL_VIDEOS,
+    RECEIVE_VIDEO
 } from '../actions/video_actions'
 
 const VideosReducer = (state = {}, action) => {
@@ -9,6 +10,9 @@ const VideosReducer = (state = {}, action) => {
     switch (action.type) {
         case RECEIVE_ALL_VIDEOS:
             return action.videos
+        case RECEIVE_VIDEO:
+            nextState[action.video.id] = action.video
+            return nextState
         default:
             return state;
     }

@@ -73,7 +73,7 @@ class TopNavBar extends React.Component {
             {this.state.showMenu2 ? (
               <div className='video-dropdown'>
                   <ul className='video-dropdown-ul'>
-                    <li><Link to = {`/users/${this.props.currentUser}`}>Upload video</Link></li>
+                    <li><Link to = {`upload/video`}>Upload video</Link></li>
                   </ul>
               </div>
             ) : (

@@ -4,14 +4,12 @@ import { Route, Redirect, Switch, Link, Hashrouter } from 'react-router-dom';
 import { AuthRoute } from '../util/route_util';
 import { ProtectedRoute } from '../util/route_util';
 
-
-import TopNavBarContainer from './top_nav_bar/top_nav_bar_container';
-import LeftNavBarContainer from './left_nav_bar/left_nav_bar_container'
 import LandingPage from './landing_page/landing_page';
 import SignupFormContainer from './session/signup_form_container';
 import LoginFormContainer from './session/login_form_container';
 import UserShowContainer from './user/user_container'
 import VideoShowContainer from './videos/video_show_container';
+import CreateVideoFormContainer from './videos/create_video_form_container';
 
 const App = () => (
     <div className = "main">
@@ -23,6 +21,7 @@ const App = () => (
             <AuthRoute exact path="/signup" component={SignupFormContainer} />
             <ProtectedRoute exact path = "/users/:userId" component={UserShowContainer} />
             <Route exact path = '/videos/:videoId' component = {VideoShowContainer} />
+            <Route exact path = '/upload/video' component = {CreateVideoFormContainer} />
         </Switch>
         
     </div>
