@@ -1,4 +1,5 @@
 import React from 'react';
+import TopNavVideoForm from '../top_nav_bar/top_nav_video_form';
 
 class VideoForm extends React.Component {
     constructor(props) {
@@ -20,7 +21,8 @@ class VideoForm extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className = "video-form-main">
+                <TopNavVideoForm />
                 <h1>VIDEO UPLOAD FORM</h1>
                 <form onSubmit={this.handleSubmit}>
                     <input type="text" onChange={this.update} value = {this.state.title}/>

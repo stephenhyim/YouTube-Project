@@ -1,0 +1,23 @@
+$font-stack: 'Roboto', sans-serif;
+
+.video-form-main {
+    box-sizing: border-box;
+    font-family: $font-stack;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    .top-nav-video-form {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 40px;
+        padding: 12px 24px 12px 16px;
+        
+        
+    }
+
+
+}
+
+
