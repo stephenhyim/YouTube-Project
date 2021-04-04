@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import TopNavVideoForm from '../top_nav_bar/top_nav_video_form';
+import Modal from 'react-modal';
 
 class VideoForm extends React.Component {
     constructor(props) {
@@ -20,15 +21,19 @@ class VideoForm extends React.Component {
     }
 
     render() {
+        // const [modalIsOpen, setModalIsOpen] = useState(false)
+
         return (
             <div className = "video-form-main">
                 <TopNavVideoForm />
-                <h1>VIDEO UPLOAD FORM</h1>
-                <form onSubmit={this.handleSubmit}>
-                    <input type="text" onChange={this.update} value = {this.state.title}/>
-                    <textarea onChange={this.update} value = {this.state.description}></textarea>
-                    <button>Upload Video</button>
-                </form>
+                <Modal isOpen = { true }>
+                    <h1>Upload videos</h1>
+                    <form onSubmit={this.handleSubmit}>
+                        <input type="text" onChange={this.update} value = {this.state.title}/>
+                        <textarea onChange={this.update} value = {this.state.description}></textarea>
+                        <button>Upload Video</button>
+                    </form>
+                </Modal>
             </div>
         )
     }
