@@ -11,6 +11,7 @@ $font-stack: 'Roboto', sans-serif;
     flex-direction: column;
     box-sizing: border-box;
     
+    
 
     .user-show-container {
         display: flex;
@@ -20,6 +21,7 @@ $font-stack: 'Roboto', sans-serif;
         position: fixed;
         top: 56px;
         left: 240px;
+        
 
         .user-info {
             display: flex;

@@ -1,0 +1,67 @@
+$font-stack: 'Roboto', sans-serif;
+
+
+.video-form-main {
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-background {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 10;
+    overflow: auto;
+  }
+
+.modal-child {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 960px;
+    background-color: white;
+}
+
+.modal-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 64px;
+    color: #212121;
+    font: 14px;
+    padding: 0px 16px 0px 24px;
+    border-bottom: 1px solid rgba(0,0,0,1);
+}
+
+.close-modal-btn:hover {
+    cursor: pointer;
+}
+
+.modal-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 404px;
+    margin: 0px 0px 24px;
+}
+
+.modal-form {
+    font-family: $font-stack;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 16px 24px 0px;
+}
+
+.upload-img>input {
+    display: none;
+}
+
+.fa-file-upload:hover {
+    cursor: pointer;
+}

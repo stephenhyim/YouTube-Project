@@ -5,10 +5,13 @@ export const fetchVideos = () => {
     })
 }
 
-export const createVideo = video => {
+export const createVideo = (video) => {
+    debugger
     return $.ajax({
-        url: `/api/users/${video.user_id}/videos`,
+        url: `/api/videos`,
         method: "POST",
-        data: { video }
+        data: video,
+        contentType: false,
+        processData: false
     })
 }

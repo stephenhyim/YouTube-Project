@@ -1,17 +1,37 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { fetchVideos } from '../../actions/video_actions';
 import TopNavVideoForm from '../top_nav_bar/top_nav_video_form';
-import Modal from 'react-modal';
+import Modal from '../videos/create_video_modal';
 
 class VideoForm extends React.Component {
     constructor(props) {
         super(props)
-        this.state = this.props.video
+        this.state = {
+            title: "",
+            description: "",
+            videoFile: null
+        }
         this.handleSubmit = this.handleSubmit.bind(this)
+        this.update = this.update.bind(this)
+        this.handleFile = this.handleFile.bind(this)
+        
+    }
+
+    componentDidMount() {
+        this.props.openModal('openModal');
+        this.props.fetchVideos();
     }
 
     handleSubmit(e) {
+        debugger
         e.preventDefault();
-        this.props.createVideo(this.state)
+        const formData = new FormData();
+        formData.append('video[title]', this.state.title);
+        formData.append('video[description]', this.state.description)
+        formData.append('video[video]', this.state.videoFile);
+        formData.append('video[user_id]', this.props.userId);
+        this.props.createVideo(formData)
+        this.props.closeModal();
     }
 
     update(field) {
@@ -20,20 +40,19 @@ class VideoForm extends React.Component {
         });
     }
 
+    handleFile(e) {
+        debugger
+        this.setState({videoFile: e.currentTarget.files[0]})
+    }
+
     render() {
-        // const [modalIsOpen, setModalIsOpen] = useState(false)
+        debugger
+        console.log(this.state)
 
         return (
             <div className = "video-form-main">
                 <TopNavVideoForm />
-                <Modal isOpen = { true }>
-                    <h1>Upload videos</h1>
-                    <form onSubmit={this.handleSubmit}>
-                        <input type="text" onChange={this.update} value = {this.state.title}/>
-                        <textarea onChange={this.update} value = {this.state.description}></textarea>
-                        <button>Upload Video</button>
-                    </form>
-                </Modal>
+                <Modal handleFile = {this.handleFile} handleSubmit = {this.handleSubmit} update = {this.update} state = {this.state}/>
             </div>
         )
     }
