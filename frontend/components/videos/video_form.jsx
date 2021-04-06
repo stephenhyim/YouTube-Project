@@ -89,6 +89,7 @@ class VideoForm extends React.Component {
                         <td>comment counter</td>
                         <td>link counter</td>
                         <td>Edit video</td>
+                        <td>Delete video</td>
                     </tr>
                 )
             } else {
@@ -110,11 +111,9 @@ class VideoForm extends React.Component {
                             <th>Comments</th>
                             <th>Likes</th>
                             <th>Edit</th>
+                            <th>Delete</th>
                         </tr>
                         {videoInfo}
-                        {/* <tr>
-                            <td></td>
-                        </tr> */}
                     </table>
                 </div>
             </div>

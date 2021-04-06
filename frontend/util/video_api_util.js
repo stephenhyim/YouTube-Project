@@ -5,6 +5,12 @@ export const fetchVideos = () => {
     })
 }
 
+export const fetchVideo = videoId => {
+    return $.ajax({
+        url: `/api/videos/${videoId}`
+    })
+}
+
 export const createVideo = (video) => {
     debugger
     return $.ajax({
@@ -13,5 +19,13 @@ export const createVideo = (video) => {
         data: video,
         contentType: false,
         processData: false
+    })
+}
+
+export const updateVideo = (video) => {
+    return $.ajax({
+        url: `/api/videos/${video.id}`,
+        method: 'PATCH',
+        data: video
     })
 }
