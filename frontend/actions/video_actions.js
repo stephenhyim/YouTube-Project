@@ -20,6 +20,7 @@ export const receiveVideo = video => {
 }
 
 export const receiveVideoErrors = errors => {
+    debugger
     return {
         type: RECEIVE_VIDEO_ERRORS,
         errors
@@ -39,7 +40,8 @@ export const fetchVideos = () => dispatch => {
 }
 
 export const createVideo = video => dispatch => {
+    debugger
     return VideoAPIUtil.createVideo(video)
-        .then(video => dispatch(receiveVideo(video))),
-            err => (dispatch(receiveVideoErrors(err.responseJSON)))
+        .then(video => dispatch(receiveVideo(video)),
+            (err) => (dispatch(receiveVideoErrors(err.responseJSON))))
 }

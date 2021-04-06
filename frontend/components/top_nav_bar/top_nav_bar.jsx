@@ -1,6 +1,7 @@
 import React from 'react';
 import { Redirect, Link, withRouter } from 'react-router-dom';
 
+
 class TopNavBar extends React.Component {
   constructor(props) {
     super(props)
@@ -73,7 +74,7 @@ class TopNavBar extends React.Component {
             {this.state.showMenu2 ? (
               <div className='video-dropdown'>
                   <ul className='video-dropdown-ul'>
-                    <li><Link to = {`upload/video`}>Upload video</Link></li>
+                    <li><Link to = '/upload/video' onClick={() => this.props.openModal("modal") }>Upload video</Link></li>
                     {/* <li><Redirect to = {`upload/video`}>Upload video</Redirect></li> */}
                   </ul>
               </div>

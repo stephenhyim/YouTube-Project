@@ -264,6 +264,7 @@ var receiveVideo = function receiveVideo(video) {
   };
 };
 var receiveVideoErrors = function receiveVideoErrors(errors) {
+  debugger;
   return {
     type: RECEIVE_VIDEO_ERRORS,
     errors: errors
@@ -284,11 +285,12 @@ var fetchVideos = function fetchVideos() {
 };
 var createVideo = function createVideo(video) {
   return function (dispatch) {
+    debugger;
     return _util_video_api_util__WEBPACK_IMPORTED_MODULE_0__["createVideo"](video).then(function (video) {
       return dispatch(receiveVideo(video));
-    }), function (err) {
+    }, function (err) {
       return dispatch(receiveVideoErrors(err.responseJSON));
-    };
+    });
   };
 };
 
@@ -1786,7 +1788,10 @@ var TopNavBar = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
         className: "video-dropdown-ul"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-        to: "upload/video"
+        to: "/upload/video",
+        onClick: function onClick() {
+          return _this4.props.openModal("modal");
+        }
       }, "Upload video")))) : null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "drop-down-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
@@ -1867,6 +1872,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _top_nav_bar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./top_nav_bar */ "./frontend/components/top_nav_bar/top_nav_bar.jsx");
 /* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/session_actions */ "./frontend/actions/session_actions.js");
+/* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
+
 
 
 
@@ -1888,6 +1895,9 @@ var mDTP = function mDTP(dispatch) {
     },
     logout: function logout(user) {
       return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_3__["logout"])(user));
+    },
+    openModal: function openModal(modal) {
+      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_4__["openModal"])(modal));
     }
   };
 };
@@ -2103,7 +2113,8 @@ __webpack_require__.r(__webpack_exports__);
 var mSTP = function mSTP(state, ownProps) {
   return {
     userId: state.session.id,
-    errors: state.errors.video
+    errors: state.errors.video,
+    videos: state.entities.videos
   };
 };
 
@@ -2149,7 +2160,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function Modal(props) {
-  var modal = props.modal,
+  var errors = props.errors,
+      renderErrors = props.renderErrors,
+      modal = props.modal,
       closeModal = props.closeModal,
       handleSubmit = props.handleSubmit,
       update = props.update,
@@ -2206,9 +2219,9 @@ function Modal(props) {
     placeholder: "Description",
     onChange: update('description'),
     value: state.description
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }), renderErrors()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "model-video-preview"
-  }, preview, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "Upload Video")))));
+  }, preview), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "Upload Video")))));
 }
 
 var mSTP = function mSTP(state) {
@@ -2293,6 +2306,7 @@ var VideoForm = /*#__PURE__*/function (_React$Component) {
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     _this.update = _this.update.bind(_assertThisInitialized(_this));
     _this.handleFile = _this.handleFile.bind(_assertThisInitialized(_this));
+    _this.renderErrors = _this.renderErrors.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -2352,18 +2366,50 @@ var VideoForm = /*#__PURE__*/function (_React$Component) {
       }
     }
   }, {
+    key: "renderErrors",
+    value: function renderErrors() {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, this.props.errors.map(function (error, i) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+          key: "error-".concat(i)
+        }, error);
+      }));
+    }
+  }, {
     key: "render",
     value: function render() {
+      var _this4 = this;
+
       debugger;
-      console.log(this.state);
+
+      if (Object.keys(this.props.videos).length === 0) {
+        return null;
+      }
+
+      var videoInfo = Object.values(this.props.videos).map(function (video) {
+        if (video.user_id === _this4.props.userId) {
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, video.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, video.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, video.created_at), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "view counter"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "comment counter"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "link counter"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "Edit video"));
+        } else {
+          return null;
+        }
+
+        ;
+      });
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "video-form-main"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_top_nav_bar_top_nav_bar_container__WEBPACK_IMPORTED_MODULE_1__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_videos_create_video_modal__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        renderErrors: this.renderErrors,
+        errors: this.props.errors,
         handleFile: this.handleFile,
         handleSubmit: this.handleSubmit,
         update: this.update,
         state: this.state
-      }));
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "table-wrapper"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", {
+        className: "table"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
+        colSpan: "2"
+      }, "Video"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Date"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Views"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Comments"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Likes"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Edit")), videoInfo)));
     }
   }]);
 
@@ -2901,12 +2947,14 @@ __webpack_require__.r(__webpack_exports__);
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
   var action = arguments.length > 1 ? arguments[1] : undefined;
   Object.freeze(state);
+  debugger;
 
   switch (action.type) {
     case _actions_video_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_VIDEO_ERRORS"]:
       return action.errors;
 
     case _actions_video_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_VIDEO_ERRORS"]:
+    case _actions_video_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_VIDEO"]:
       return [];
 
     default:

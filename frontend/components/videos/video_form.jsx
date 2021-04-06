@@ -15,7 +15,7 @@ class VideoForm extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this)
         this.update = this.update.bind(this)
         this.handleFile = this.handleFile.bind(this)
-        
+        this.renderErrors = this.renderErrors.bind(this)
     }
 
     componentDidMount() {
@@ -59,14 +59,64 @@ class VideoForm extends React.Component {
         }
     }
 
+    renderErrors() {
+        return(
+          <ul>
+            {this.props.errors.map((error, i) => (
+              <li key={`error-${i}`}>
+                {error}
+              </li>
+            ))}
+          </ul>
+        );
+    }
+    
     render() {
         debugger
-        console.log(this.state)
+        
+        if (Object.keys(this.props.videos).length === 0) {
+            return null;
+        }
+
+        const videoInfo = Object.values(this.props.videos).map(video => {
+            if (video.user_id === this.props.userId) {
+                return (
+                    <tr>
+                        <td>{video.title}</td>
+                        <td>{video.description}</td>
+                        <td>{video.created_at}</td>
+                        <td>view counter</td>
+                        <td>comment counter</td>
+                        <td>link counter</td>
+                        <td>Edit video</td>
+                    </tr>
+                )
+            } else {
+                return null;
+            };
+        });
+
         return (
             <div className = "video-form-main">
                 {/* <TopNavVideoForm /> */}
                 <TopNavBar/>
-                <Modal handleFile = {this.handleFile} handleSubmit = {this.handleSubmit} update = {this.update} state = {this.state}/>
+                <Modal renderErrors = {this.renderErrors} errors = {this.props.errors} handleFile = {this.handleFile} handleSubmit = {this.handleSubmit} update = {this.update} state = {this.state}/>
+                <div className = "table-wrapper">
+                    <table className = "table">
+                        <tr>
+                            <th colSpan="2">Video</th>
+                            <th>Date</th>
+                            <th>Views</th>
+                            <th>Comments</th>
+                            <th>Likes</th>
+                            <th>Edit</th>
+                        </tr>
+                        {videoInfo}
+                        {/* <tr>
+                            <td></td>
+                        </tr> */}
+                    </table>
+                </div>
             </div>
         )
     }

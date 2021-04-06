@@ -14,11 +14,12 @@ class Api::VideosController < ApplicationController
 
     def create 
         @video = Video.new(video_params)
-        debugger
+        # debugger
         if @video.save
             render :show
         else
             render json: @video.errors.full_messages, status: 422
+            # render json: ["Must attached Video"], status:422
         end
     end
 

@@ -4,13 +4,14 @@ import { connect } from 'react-redux';
 
 
 function Modal(props) {
-    const {modal, closeModal, handleSubmit, update, state, handleFile} = props
+    const {errors, renderErrors, modal, closeModal, handleSubmit, update, state, handleFile} = props
     debugger
     if (!modal) {
         return null;
     }
     
     debugger
+
 
     const preview = state.videoUrl ? <video width='300' height='120' src={state.videoUrl} /> : null;
 
@@ -32,13 +33,14 @@ function Modal(props) {
                         <div className = "modal-video-info">
                             <input placeholder="Title" type="text" onChange={update('title')} value = {state.title}/>
                             <textarea placeholder="Description" onChange={update('description')} value = {state.description}></textarea>
+                            {renderErrors()}
                         </div>
                         <div className = "model-video-preview">
                             {preview}
-                            <p></p>
                         </div>
                         <button>Upload Video</button>
                     </form>
+                    
                 </div>
             </div>
         </div>
