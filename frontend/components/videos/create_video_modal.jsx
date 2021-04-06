@@ -11,6 +11,9 @@ function Modal(props) {
     }
     
     debugger
+
+    const preview = state.videoUrl ? <video width='300' height='120' src={state.videoUrl} /> : null;
+
     return (
         <div className = "modal-background" onClick = {closeModal}>
             <div className = "modal-child" onClick = {e => e.stopPropagation()}>
@@ -26,8 +29,14 @@ function Modal(props) {
                             </label>
                             <input onChange={handleFile} id="file-input" type="file"/>
                         </div>
-                        <input placeholder="Title" type="text" onChange={update('title')} value = {state.title}/>
-                        <textarea placeholder="Description" onChange={update('description')} value = {state.description}></textarea>
+                        <div className = "modal-video-info">
+                            <input placeholder="Title" type="text" onChange={update('title')} value = {state.title}/>
+                            <textarea placeholder="Description" onChange={update('description')} value = {state.description}></textarea>
+                        </div>
+                        <div className = "model-video-preview">
+                            {preview}
+                            <p></p>
+                        </div>
                         <button>Upload Video</button>
                     </form>
                 </div>

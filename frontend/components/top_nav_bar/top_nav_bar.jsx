@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import { Redirect, Link, withRouter } from 'react-router-dom';
 
 class TopNavBar extends React.Component {
   constructor(props) {
@@ -74,6 +74,7 @@ class TopNavBar extends React.Component {
               <div className='video-dropdown'>
                   <ul className='video-dropdown-ul'>
                     <li><Link to = {`upload/video`}>Upload video</Link></li>
+                    {/* <li><Redirect to = {`upload/video`}>Upload video</Redirect></li> */}
                   </ul>
               </div>
             ) : (

@@ -1,5 +1,5 @@
 import React from 'react';
-import { fetchVideos } from '../../actions/video_actions';
+import TopNavBar from '../top_nav_bar/top_nav_bar_container'
 import TopNavVideoForm from '../top_nav_bar/top_nav_video_form';
 import Modal from '../videos/create_video_modal';
 
@@ -9,7 +9,8 @@ class VideoForm extends React.Component {
         this.state = {
             title: "",
             description: "",
-            videoFile: null
+            videoFile: null,
+            videoUrl: null
         }
         this.handleSubmit = this.handleSubmit.bind(this)
         this.update = this.update.bind(this)
@@ -28,10 +29,16 @@ class VideoForm extends React.Component {
         const formData = new FormData();
         formData.append('video[title]', this.state.title);
         formData.append('video[description]', this.state.description)
-        formData.append('video[video]', this.state.videoFile);
+        if (this.state.videoFile) {
+            formData.append('video[video]', this.state.videoFile);
+        }
         formData.append('video[user_id]', this.props.userId);
         this.props.createVideo(formData)
-        this.props.closeModal();
+        // if (this.props.createVideo(formData)) {
+        //     this.props.closeModal();
+        // } else {
+        //     null;
+        // }
     }
 
     update(field) {
@@ -42,16 +49,23 @@ class VideoForm extends React.Component {
 
     handleFile(e) {
         debugger
-        this.setState({videoFile: e.currentTarget.files[0]})
+        const file = e.currentTarget.files[0];
+        const fileReader = new FileReader();
+        fileReader.onloadend = () => {
+            this.setState({videoFile: file, videoUrl: fileReader.result})
+        };
+        if (file) {
+            fileReader.readAsDataURL(file);
+        }
     }
 
     render() {
         debugger
         console.log(this.state)
-
         return (
             <div className = "video-form-main">
-                <TopNavVideoForm />
+                {/* <TopNavVideoForm /> */}
+                <TopNavBar/>
                 <Modal handleFile = {this.handleFile} handleSubmit = {this.handleSubmit} update = {this.update} state = {this.state}/>
             </div>
         )
