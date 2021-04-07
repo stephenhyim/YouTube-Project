@@ -22,10 +22,19 @@ export const createVideo = (video) => {
     })
 }
 
-export const updateVideo = (video) => {
+export const updateVideo = (video, id) => {
     return $.ajax({
-        url: `/api/videos/${video.id}`,
+        url: `/api/videos/${id}`,
         method: 'PATCH',
-        data: video
+        data: video,
+        contentType: false,
+        processData: false
+    })
+}
+
+export const deleteVideo = videoId => {
+    return $.ajax({
+        url: `/api/videos/${videoId}`,
+        method: 'DELETE'
     })
 }

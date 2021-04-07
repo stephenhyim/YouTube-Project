@@ -7,7 +7,7 @@ import {
 
 export default (state = [], action) => {
     Object.freeze(state);
-    debugger
+    // debugger
     switch (action.type) {
         case RECEIVE_VIDEO_ERRORS:
             return action.errors;

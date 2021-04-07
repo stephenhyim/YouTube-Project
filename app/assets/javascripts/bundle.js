@@ -230,7 +230,7 @@ var fetchUser = function fetchUser(userId) {
 /*!*******************************************!*\
   !*** ./frontend/actions/video_actions.js ***!
   \*******************************************/
-/*! exports provided: RECEIVE_ALL_VIDEOS, RECEIVE_VIDEO, RECEIVE_VIDEO_ERRORS, REMOVE_VIDEO_ERRORS, receiveVideos, receiveVideo, receiveVideoErrors, removeVideoErrors, fetchVideos, fetchVideo, createVideo, updateVideo */
+/*! exports provided: RECEIVE_ALL_VIDEOS, RECEIVE_VIDEO, RECEIVE_VIDEO_ERRORS, REMOVE_VIDEO_ERRORS, REMOVE_VIDEO, fetchVideos, fetchVideo, createVideo, updateVideo, deleteVideo */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -239,32 +239,34 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_VIDEO", function() { return RECEIVE_VIDEO; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_VIDEO_ERRORS", function() { return RECEIVE_VIDEO_ERRORS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REMOVE_VIDEO_ERRORS", function() { return REMOVE_VIDEO_ERRORS; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveVideos", function() { return receiveVideos; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveVideo", function() { return receiveVideo; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveVideoErrors", function() { return receiveVideoErrors; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "removeVideoErrors", function() { return removeVideoErrors; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REMOVE_VIDEO", function() { return REMOVE_VIDEO; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchVideos", function() { return fetchVideos; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchVideo", function() { return fetchVideo; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createVideo", function() { return createVideo; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateVideo", function() { return updateVideo; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteVideo", function() { return deleteVideo; });
 /* harmony import */ var _util_video_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/video_api_util */ "./frontend/util/video_api_util.js");
 
 var RECEIVE_ALL_VIDEOS = 'RECEIVE_ALL_VIDEOS';
 var RECEIVE_VIDEO = "RECEIVE_VIDEO";
 var RECEIVE_VIDEO_ERRORS = "RECEIVE_VIDEO_ERRORS";
 var REMOVE_VIDEO_ERRORS = "REMOVE_VIDEO_ERRORS";
+var REMOVE_VIDEO = "REMOVE_VIDEO";
+
 var receiveVideos = function receiveVideos(videos) {
   return {
     type: RECEIVE_ALL_VIDEOS,
     videos: videos
   };
 };
+
 var receiveVideo = function receiveVideo(video) {
   return {
     type: RECEIVE_VIDEO,
     video: video
   };
 };
+
 var receiveVideoErrors = function receiveVideoErrors(errors) {
   debugger;
   return {
@@ -272,11 +274,20 @@ var receiveVideoErrors = function receiveVideoErrors(errors) {
     errors: errors
   };
 };
+
 var removeVideoErrors = function removeVideoErrors() {
   return {
     type: REMOVE_VIDEO_ERRORS
   };
 };
+
+var removeVideo = function removeVideo(videoId) {
+  return {
+    type: REMOVE_VIDEO,
+    videoId: videoId
+  };
+};
+
 var fetchVideos = function fetchVideos() {
   return function (dispatch) {
     debugger;
@@ -302,10 +313,18 @@ var createVideo = function createVideo(video) {
     });
   };
 };
-var updateVideo = function updateVideo(video) {
+var updateVideo = function updateVideo(video, id) {
   return function (dispatch) {
-    return _util_video_api_util__WEBPACK_IMPORTED_MODULE_0__["updateVideo"](video).then(function (video) {
+    debugger;
+    return _util_video_api_util__WEBPACK_IMPORTED_MODULE_0__["updateVideo"](video, id).then(function (video) {
       return dispatch(receiveVideo(video));
+    }); // (err) => (dispatch(receiveVideoErrors(err.responseJSON))))
+  };
+};
+var deleteVideo = function deleteVideo(videoId) {
+  return function (dispatch) {
+    return _util_video_api_util__WEBPACK_IMPORTED_MODULE_0__["deleteVideo"](videoId).then(function () {
+      return dispatch(removeVideo(videoId));
     });
   };
 };
@@ -1806,7 +1825,7 @@ var TopNavBar = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         to: "/upload/video",
         onClick: function onClick() {
-          return _this4.props.openModal("modal");
+          return _this4.props.openModal("openModal");
         }
       }, "Upload video")))) : null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "drop-down-container"
@@ -1919,39 +1938,6 @@ var mDTP = function mDTP(dispatch) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mSTP, mDTP)(_top_nav_bar__WEBPACK_IMPORTED_MODULE_2__["default"]));
-
-/***/ }),
-
-/***/ "./frontend/components/top_nav_bar/top_nav_video_form.jsx":
-/*!****************************************************************!*\
-  !*** ./frontend/components/top_nav_bar/top_nav_video_form.jsx ***!
-  \****************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
-
-
-
-
-var TopNavVideoForm = function TopNavVideoForm(props) {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "top-nav-video-form"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-    className: "fas fa-bars"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-    className: "fab fa-youtube"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "SEARCH BAR")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "CREATE"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-    className: "fas fa-user"
-  })));
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (TopNavVideoForm);
 
 /***/ }),
 
@@ -2119,7 +2105,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _actions_video_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/video_actions */ "./frontend/actions/video_actions.js");
 /* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
-/* harmony import */ var _video_form__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./video_form */ "./frontend/components/videos/video_form.jsx");
+/* harmony import */ var _video_channel__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./video_channel */ "./frontend/components/videos/video_channel.jsx");
 
 
 
@@ -2139,6 +2125,9 @@ var mDTP = function mDTP(dispatch) {
     createVideo: function createVideo(video) {
       return dispatch(Object(_actions_video_actions__WEBPACK_IMPORTED_MODULE_1__["createVideo"])(video));
     },
+    updateVideo: function updateVideo(video, id) {
+      return dispatch(Object(_actions_video_actions__WEBPACK_IMPORTED_MODULE_1__["updateVideo"])(video, id));
+    },
     fetchVideos: function fetchVideos() {
       return dispatch(Object(_actions_video_actions__WEBPACK_IMPORTED_MODULE_1__["fetchVideos"])());
     },
@@ -2150,11 +2139,14 @@ var mDTP = function mDTP(dispatch) {
     },
     receiveVideoErrors: function receiveVideoErrors(errors) {
       return dispatch(Object(_actions_video_actions__WEBPACK_IMPORTED_MODULE_1__["receiveVideoErrors"])(errors));
+    },
+    removeVideo: function removeVideo(videoId) {
+      return dispatch(Object(_actions_video_actions__WEBPACK_IMPORTED_MODULE_1__["removeVideo"])(videoId));
     }
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mSTP, mDTP)(_video_form__WEBPACK_IMPORTED_MODULE_3__["default"]));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mSTP, mDTP)(_video_channel__WEBPACK_IMPORTED_MODULE_3__["default"]));
 
 /***/ }),
 
@@ -2176,72 +2168,127 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function Modal(props) {
-  var errors = props.errors,
+  var resetState = props.resetState,
+      handleEdit = props.handleEdit,
       renderErrors = props.renderErrors,
       modal = props.modal,
       closeModal = props.closeModal,
       handleSubmit = props.handleSubmit,
       update = props.update,
       state = props.state,
-      handleFile = props.handleFile;
-  debugger;
+      handleFile = props.handleFile; // debugger
 
   if (!modal) {
     return null;
   }
 
   debugger;
+
+  function reset() {
+    resetState();
+    closeModal();
+  }
+
   var preview = state.videoUrl ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("video", {
     width: "300",
     height: "120",
     src: state.videoUrl
   }) : null;
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "modal-background",
-    onClick: closeModal
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "modal-child",
-    onClick: function onClick(e) {
-      return e.stopPropagation();
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "modal-header"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Upload videos"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    className: "close-modal-btn",
-    onClick: closeModal
-  }, "x")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "modal-content"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-    className: "modal-form",
-    onSubmit: handleSubmit
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "upload-img"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-    htmlFor: "file-input"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-    className: "fas fa-file-upload"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-    onChange: handleFile,
-    id: "file-input",
-    type: "file"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "modal-video-info"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-    placeholder: "Title",
-    type: "text",
-    onChange: update('title'),
-    value: state.title
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
-    placeholder: "Description",
-    onChange: update('description'),
-    value: state.description
-  }), renderErrors()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "model-video-preview"
-  }, preview), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "Upload Video")))));
+
+  switch (modal) {
+    case "openModal":
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "modal-background",
+        onClick: reset
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "modal-child",
+        onClick: function onClick(e) {
+          return e.stopPropagation();
+        }
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "modal-header"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Upload videos"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "close-modal-btn",
+        onClick: reset
+      }, "x")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "modal-content"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        className: "modal-form",
+        onSubmit: handleSubmit
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "upload-img"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        htmlFor: "file-input"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+        className: "fas fa-file-upload"
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        onChange: handleFile,
+        id: "file-input",
+        type: "file"
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "modal-video-info"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        placeholder: "Title",
+        type: "text",
+        onChange: update('title'),
+        value: state.title
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
+        placeholder: "Description",
+        onChange: update('description'),
+        value: state.description
+      }), renderErrors()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "model-video-preview"
+      }, preview), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "Upload Video")))));
+
+    case "openEditModal":
+      debugger;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "modal-background",
+        onClick: reset
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "modal-child",
+        onClick: function onClick(e) {
+          return e.stopPropagation();
+        }
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "modal-header"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Edit videos"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "close-modal-btn",
+        onClick: reset
+      }, "x")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "modal-content"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        className: "modal-form",
+        onSubmit: handleEdit
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "upload-img"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        htmlFor: "file-input"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+        className: "fas fa-file-upload"
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        onChange: handleFile,
+        id: "file-input",
+        type: "file"
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "modal-video-info"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        placeholder: "Title",
+        type: "text",
+        onChange: update('title'),
+        value: state.title
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
+        placeholder: "Description",
+        onChange: update('description'),
+        value: state.description
+      }), renderErrors()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "model-video-preview"
+      }, preview), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "Edit Video")))));
+  }
 }
 
 var mSTP = function mSTP(state) {
-  debugger;
+  // debugger
   return {
     modal: state.ui.modal
   };
@@ -2259,10 +2306,10 @@ var mDTP = function mDTP(dispatch) {
 
 /***/ }),
 
-/***/ "./frontend/components/videos/video_form.jsx":
-/*!***************************************************!*\
-  !*** ./frontend/components/videos/video_form.jsx ***!
-  \***************************************************/
+/***/ "./frontend/components/videos/video_channel.jsx":
+/*!******************************************************!*\
+  !*** ./frontend/components/videos/video_channel.jsx ***!
+  \******************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -2271,8 +2318,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _top_nav_bar_top_nav_bar_container__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../top_nav_bar/top_nav_bar_container */ "./frontend/components/top_nav_bar/top_nav_bar_container.js");
-/* harmony import */ var _top_nav_bar_top_nav_video_form__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../top_nav_bar/top_nav_video_form */ "./frontend/components/top_nav_bar/top_nav_video_form.jsx");
-/* harmony import */ var _videos_create_video_modal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../videos/create_video_modal */ "./frontend/components/videos/create_video_modal.jsx");
+/* harmony import */ var _create_video_modal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./create_video_modal */ "./frontend/components/videos/create_video_modal.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -2301,32 +2347,34 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+var VideoChannel = /*#__PURE__*/function (_React$Component) {
+  _inherits(VideoChannel, _React$Component);
 
-var VideoForm = /*#__PURE__*/function (_React$Component) {
-  _inherits(VideoForm, _React$Component);
+  var _super = _createSuper(VideoChannel);
 
-  var _super = _createSuper(VideoForm);
-
-  function VideoForm(props) {
+  function VideoChannel(props) {
     var _this;
 
-    _classCallCheck(this, VideoForm);
+    _classCallCheck(this, VideoChannel);
 
     _this = _super.call(this, props);
     _this.state = {
       title: "",
       description: "",
       videoFile: null,
-      videoUrl: null
+      videoUrl: null,
+      id: ""
     };
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     _this.update = _this.update.bind(_assertThisInitialized(_this));
     _this.handleFile = _this.handleFile.bind(_assertThisInitialized(_this));
     _this.renderErrors = _this.renderErrors.bind(_assertThisInitialized(_this));
+    _this.handleEdit = _this.handleEdit.bind(_assertThisInitialized(_this));
+    _this.resetState = _this.resetState.bind(_assertThisInitialized(_this));
     return _this;
   }
 
-  _createClass(VideoForm, [{
+  _createClass(VideoChannel, [{
     key: "componentDidMount",
     value: function componentDidMount() {
       this.props.openModal('openModal');
@@ -2346,11 +2394,39 @@ var VideoForm = /*#__PURE__*/function (_React$Component) {
       }
 
       formData.append('video[user_id]', this.props.userId);
-      this.props.createVideo(formData); // if (this.props.createVideo(formData)) {
-      //     this.props.closeModal();
-      // } else {
-      //     null;
-      // }
+      this.props.createVideo(formData);
+      this.props.closeModal();
+      this.resetState();
+    }
+  }, {
+    key: "handleEdit",
+    value: function handleEdit(e) {
+      debugger;
+      e.preventDefault();
+      var formData = new FormData();
+      formData.append('video[title]', this.state.title);
+      formData.append('video[description]', this.state.description);
+
+      if (this.state.videoFile) {
+        formData.append('video[video]', this.state.videoFile);
+      }
+
+      formData.append('video[user_id]', this.props.userId);
+      formData.append('video[id]', this.state.id);
+      this.props.updateVideo(formData, this.state.id);
+      this.props.closeModal();
+      this.resetState();
+    }
+  }, {
+    key: "resetState",
+    value: function resetState() {
+      this.setState({
+        title: "",
+        description: "",
+        videoFile: null,
+        videoUrl: null,
+        id: ""
+      });
     }
   }, {
     key: "update",
@@ -2366,7 +2442,6 @@ var VideoForm = /*#__PURE__*/function (_React$Component) {
     value: function handleFile(e) {
       var _this3 = this;
 
-      debugger;
       var file = e.currentTarget.files[0];
       var fileReader = new FileReader();
 
@@ -2391,6 +2466,17 @@ var VideoForm = /*#__PURE__*/function (_React$Component) {
       }));
     }
   }, {
+    key: "grabVideo",
+    value: function grabVideo(video) {
+      this.setState({
+        "id": video.id,
+        "title": video.title,
+        "description": video.description,
+        "videoUrl": video.videoUrl
+      });
+      this.props.openModal("openEditModal");
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this4 = this;
@@ -2401,9 +2487,19 @@ var VideoForm = /*#__PURE__*/function (_React$Component) {
         return null;
       }
 
-      var videoInfo = Object.values(this.props.videos).map(function (video) {
+      var videoInfo = Object.values(this.props.videos).map(function (video, idx) {
         if (video.user_id === _this4.props.userId) {
-          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, video.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, video.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, video.created_at), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "view counter"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "comment counter"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "link counter"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "Edit video"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "Delete video"));
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", {
+            key: idx
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, video.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, video.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, video.created_at), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "View counter"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "Comment counter"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "Like counter"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+            onClick: function onClick() {
+              return _this4.grabVideo(video);
+            }
+          }, "Edit Video")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+            onClick: function onClick() {
+              return _this4.props.removeVideo(video.id);
+            }
+          }, "Delete Video")));
         } else {
           return null;
         }
@@ -2412,7 +2508,9 @@ var VideoForm = /*#__PURE__*/function (_React$Component) {
       });
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "video-form-main"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_top_nav_bar_top_nav_bar_container__WEBPACK_IMPORTED_MODULE_1__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_videos_create_video_modal__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_top_nav_bar_top_nav_bar_container__WEBPACK_IMPORTED_MODULE_1__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_create_video_modal__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        resetState: this.resetState,
+        handleEdit: this.handleEdit,
         renderErrors: this.renderErrors,
         errors: this.props.errors,
         handleFile: this.handleFile,
@@ -2423,16 +2521,14 @@ var VideoForm = /*#__PURE__*/function (_React$Component) {
         className: "table-wrapper"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", {
         className: "table"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
-        colSpan: "2"
-      }, "Video"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Date"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Views"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Comments"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Likes"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Edit"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Delete")), videoInfo)));
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Video Title"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Video Description"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Date"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Views"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Comments"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Likes"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Edit"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Delete")), videoInfo))));
     }
   }]);
 
-  return VideoForm;
+  return VideoChannel;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
-/* harmony default export */ __webpack_exports__["default"] = (VideoForm);
+/* harmony default export */ __webpack_exports__["default"] = (VideoChannel);
 
 /***/ }),
 
@@ -2962,8 +3058,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = (function () {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
   var action = arguments.length > 1 ? arguments[1] : undefined;
-  Object.freeze(state);
-  debugger;
+  Object.freeze(state); // debugger
 
   switch (action.type) {
     case _actions_video_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_VIDEO_ERRORS"]:
@@ -2990,6 +3085,8 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_video_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/video_actions */ "./frontend/actions/video_actions.js");
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 var VideosReducer = function VideosReducer() {
@@ -3005,7 +3102,13 @@ var VideosReducer = function VideosReducer() {
 
     case _actions_video_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_VIDEO"]:
       debugger;
+      nextState = Object.assign({}, state, _defineProperty({}, action.video.id, action.video));
+      return nextState;
+
+    case _actions_video_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_VIDEO"]:
+      debugger;
       nextState = Object.assign({}, state, action.video);
+      delete nextState[action.video.videoId];
       return nextState;
 
     default:
@@ -3169,7 +3272,7 @@ var fetchUser = function fetchUser(userId) {
 /*!*****************************************!*\
   !*** ./frontend/util/video_api_util.js ***!
   \*****************************************/
-/*! exports provided: fetchVideos, fetchVideo, createVideo, updateVideo */
+/*! exports provided: fetchVideos, fetchVideo, createVideo, updateVideo, deleteVideo */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3178,6 +3281,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchVideo", function() { return fetchVideo; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createVideo", function() { return createVideo; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateVideo", function() { return updateVideo; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteVideo", function() { return deleteVideo; });
 var fetchVideos = function fetchVideos() {
   return $.ajax({
     url: "/api/videos"
@@ -3198,11 +3302,19 @@ var createVideo = function createVideo(video) {
     processData: false
   });
 };
-var updateVideo = function updateVideo(video) {
+var updateVideo = function updateVideo(video, id) {
   return $.ajax({
-    url: "/api/videos/".concat(video.id),
+    url: "/api/videos/".concat(id),
     method: 'PATCH',
-    data: video
+    data: video,
+    contentType: false,
+    processData: false
+  });
+};
+var deleteVideo = function deleteVideo(videoId) {
+  return $.ajax({
+    url: "/api/videos/".concat(videoId),
+    method: 'DELETE'
   });
 };
 

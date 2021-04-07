@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
-import { createVideo, fetchVideos } from '../../actions/video_actions';
+import { createVideo, updateVideo, fetchVideos, removeVideo } from '../../actions/video_actions';
 import { openModal, closeModal } from '../../actions/modal_actions';
 import { receiveVideoErrors, removeVideoErrors } from '../../actions/video_actions';
-import VideoForm from './video_form';
+import VideoChannel from './video_channel';
 
 const mSTP = (state, ownProps) => {
     return {
@@ -15,11 +15,13 @@ const mSTP = (state, ownProps) => {
 const mDTP = dispatch => {
     return {
         createVideo: (video) => dispatch(createVideo(video)),
+        updateVideo: (video, id) => dispatch(updateVideo(video, id)),
         fetchVideos: () => dispatch(fetchVideos()),
         closeModal: () => dispatch(closeModal()),
         openModal: modal => dispatch(openModal(modal)),
-        receiveVideoErrors: errors => dispatch(receiveVideoErrors(errors))
+        receiveVideoErrors: errors => dispatch(receiveVideoErrors(errors)),
+        removeVideo: videoId => dispatch(removeVideo(videoId))
     };
 };
 
-export default connect(mSTP, mDTP)(VideoForm)
+export default connect(mSTP, mDTP)(VideoChannel)

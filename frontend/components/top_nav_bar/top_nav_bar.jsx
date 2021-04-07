@@ -74,8 +74,7 @@ class TopNavBar extends React.Component {
             {this.state.showMenu2 ? (
               <div className='video-dropdown'>
                   <ul className='video-dropdown-ul'>
-                    <li><Link to = '/upload/video' onClick={() => this.props.openModal("modal") }>Upload video</Link></li>
-                    {/* <li><Redirect to = {`upload/video`}>Upload video</Redirect></li> */}
+                    <li><Link to = '/upload/video' onClick={() => this.props.openModal("openModal") }>Upload video</Link></li>
                   </ul>
               </div>
             ) : (
@@ -88,7 +87,7 @@ class TopNavBar extends React.Component {
             {this.state.showMenu ? (
               <div className='dropdown'>
                 <ul className='dropdown-ul'>
-                  <li ><Link to ={`/users/${this.props.currentUser}`} >Your channel</Link></li>
+                  <li><Link to ={`/users/${this.props.currentUser}`} >Your channel</Link></li>
                   <li><button className = "logout-btn" onClick={()=>this.props.logout(this.props.currentUser)}>Sign out</button></li>
                 </ul>
               </div>
