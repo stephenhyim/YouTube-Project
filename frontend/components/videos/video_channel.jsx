@@ -109,6 +109,7 @@ class VideoChannel extends React.Component {
             if (video.user_id === this.props.userId) {
                 return (
                     <tr key={idx}>
+                        <td><video width="200" height="80" src={video.videoUrl}></video></td>
                         <td>{video.title}</td>
                         <td>{video.description}</td>
                         <td>{video.created_at}</td>
@@ -132,6 +133,7 @@ class VideoChannel extends React.Component {
                     <table className = "table">
                         <tbody>
                             <tr>
+                                <th>Video</th>
                                 <th>Video Title</th>
                                 <th>Video Description</th>
                                 <th>Date</th>
