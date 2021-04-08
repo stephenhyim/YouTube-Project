@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { createVideo, updateVideo, fetchVideos, removeVideo } from '../../actions/video_actions';
+import { createVideo, updateVideo, fetchVideos, deleteVideo } from '../../actions/video_actions';
 import { openModal, closeModal } from '../../actions/modal_actions';
 import { receiveVideoErrors, removeVideoErrors } from '../../actions/video_actions';
 import VideoChannel from './video_channel';
@@ -20,7 +20,7 @@ const mDTP = dispatch => {
         closeModal: () => dispatch(closeModal()),
         openModal: modal => dispatch(openModal(modal)),
         receiveVideoErrors: errors => dispatch(receiveVideoErrors(errors)),
-        removeVideo: videoId => dispatch(removeVideo(videoId))
+        deleteVideo: videoId => dispatch(deleteVideo(videoId))
     };
 };
 

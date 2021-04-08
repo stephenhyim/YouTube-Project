@@ -66,7 +66,11 @@ export const updateVideo = (video, id) => dispatch => {
             // (err) => (dispatch(receiveVideoErrors(err.responseJSON))))
 }
 
-export const deleteVideo = videoId => dispatch => {
-    return VideoAPIUtil.deleteVideo(videoId)
-        .then(() => dispatch(removeVideo(videoId)))
+export const deleteVideo = videoId => {
+    debugger
+    return dispatch => {
+        debugger
+        return VideoAPIUtil.deleteVideo(videoId)
+            .then(() => dispatch(removeVideo(videoId)))
+    }
 }

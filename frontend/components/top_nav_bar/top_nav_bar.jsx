@@ -88,7 +88,7 @@ class TopNavBar extends React.Component {
               <div className='dropdown'>
                 <ul className='dropdown-ul'>
                   <li><Link to ={`/users/${this.props.currentUser}`} >Your channel</Link></li>
-                  <li><button className = "logout-btn" onClick={()=>this.props.logout(this.props.currentUser)}>Sign out</button></li>
+                  <li><button className = "logout-btn" onClick={()=>this.props.logout(this.props.currentUser).then(this.props.history.push("/"))}>Sign out</button></li>
                 </ul>
               </div>
             ) : (

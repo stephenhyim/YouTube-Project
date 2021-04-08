@@ -322,7 +322,9 @@ var updateVideo = function updateVideo(video, id) {
   };
 };
 var deleteVideo = function deleteVideo(videoId) {
+  debugger;
   return function (dispatch) {
+    debugger;
     return _util_video_api_util__WEBPACK_IMPORTED_MODULE_0__["deleteVideo"](videoId).then(function () {
       return dispatch(removeVideo(videoId));
     });
@@ -1843,7 +1845,7 @@ var TopNavBar = /*#__PURE__*/function (_React$Component) {
       }, "Your channel")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "logout-btn",
         onClick: function onClick() {
-          return _this4.props.logout(_this4.props.currentUser);
+          return _this4.props.logout(_this4.props.currentUser).then(_this4.props.history.push("/"));
         }
       }, "Sign out")))) : null))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "top-nav-container"
@@ -1916,7 +1918,8 @@ __webpack_require__.r(__webpack_exports__);
 
 var mSTP = function mSTP(state, ownProps) {
   return {
-    currentUser: state.session.id
+    currentUser: state.session.id,
+    history: ownProps.history
   };
 };
 
@@ -2140,8 +2143,8 @@ var mDTP = function mDTP(dispatch) {
     receiveVideoErrors: function receiveVideoErrors(errors) {
       return dispatch(Object(_actions_video_actions__WEBPACK_IMPORTED_MODULE_1__["receiveVideoErrors"])(errors));
     },
-    removeVideo: function removeVideo(videoId) {
-      return dispatch(Object(_actions_video_actions__WEBPACK_IMPORTED_MODULE_1__["removeVideo"])(videoId));
+    deleteVideo: function deleteVideo(videoId) {
+      return dispatch(Object(_actions_video_actions__WEBPACK_IMPORTED_MODULE_1__["deleteVideo"])(videoId));
     }
   };
 };
@@ -2501,7 +2504,7 @@ var VideoChannel = /*#__PURE__*/function (_React$Component) {
             }
           }, "Edit Video")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
             onClick: function onClick() {
-              return _this4.props.removeVideo(video.id);
+              return _this4.props.deleteVideo(video.id);
             }
           }, "Delete Video")));
         } else {
@@ -3316,6 +3319,7 @@ var updateVideo = function updateVideo(video, id) {
   });
 };
 var deleteVideo = function deleteVideo(videoId) {
+  debugger;
   return $.ajax({
     url: "/api/videos/".concat(videoId),
     method: 'DELETE'

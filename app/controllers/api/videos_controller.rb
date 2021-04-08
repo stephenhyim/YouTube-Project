@@ -34,7 +34,8 @@ class Api::VideosController < ApplicationController
         end
     end
 
-    def delete
+    def destroy
+        # debugger
         @video = Video.find(params[:id])
 
         if @video.destroy

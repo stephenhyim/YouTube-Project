@@ -7,7 +7,8 @@ import { openModal } from '../../actions/modal_actions';
 
 const mSTP = (state, ownProps) => {
     return {
-        currentUser: state.session.id
+        currentUser: state.session.id,
+        history: ownProps.history
     }
 }
 

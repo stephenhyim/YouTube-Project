@@ -117,7 +117,7 @@ class VideoChannel extends React.Component {
                         <td>Comment counter</td>
                         <td>Like counter</td>
                         <td><button onClick={()=> this.grabVideo(video)}>Edit Video</button></td>
-                        <td><button onClick={() => this.props.removeVideo(video.id)}>Delete Video</button></td>
+                        <td><button onClick={() => this.props.deleteVideo(video.id)}>Delete Video</button></td>
                     </tr>
                 )
             } else {
