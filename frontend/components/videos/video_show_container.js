@@ -5,7 +5,8 @@ import VideoShow from './video_show';
 const mSTP = (state, ownProps) => {
     debugger
     return {
-        videos: state.entities.videos
+        videos: state.entities.videos,
+        user: state.session.id
     }
 }
 

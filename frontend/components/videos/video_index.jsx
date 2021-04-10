@@ -15,8 +15,6 @@ class VideoIndex extends React.Component {
         if (!this.props.videos) {
             return null
         }
-
-        // const user = this.props.user.firstname
         
         const videos = Object.values(this.props.videos).map( (video, idx) => {
             return (
@@ -29,6 +27,7 @@ class VideoIndex extends React.Component {
             
             )
         })
+        
         return (
 
             <div className = 'video-main-container'>

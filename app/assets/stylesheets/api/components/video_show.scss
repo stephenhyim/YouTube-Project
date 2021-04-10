@@ -13,6 +13,11 @@ $font-stack: 'Roboto', sans-serif;
 
     .show-container {
         display: flex;
+        color: white;
+    }
+
+    .video-show-left {
+        display: flex;
         flex-direction: column;
         align-self: start;
         justify-content: center;
@@ -54,7 +59,35 @@ $font-stack: 'Roboto', sans-serif;
             color: white;
         }
 
+   
 
+    .video-show-right {
+        display: flex;
+        padding-top: 25px;
+    }
+
+    .video-slide-content {
+        display: flex;
+        padding-bottom: 10px;
+    }
+
+    .video-slide-info {
+        padding-left: 10px;
+    }
+
+    .video-slide-title {
+        font-size: 16px;
+    }
+
+    .video-slide-username {
+        font-size: 14px;
+        color: gray;
+    }
+
+    .video-slide-created {
+        font-size: 14px;
+        color: gray;
+    }
 
 }
 
