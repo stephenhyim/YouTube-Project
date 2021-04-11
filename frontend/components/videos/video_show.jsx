@@ -44,7 +44,7 @@ class VideoShow extends React.Component {
                         </div>
                     </div>
                     <div className = "video-show-right">
-                        <VideoIndexSlider />
+                        <VideoIndexSlider videos = {this.props.videos} />
                     </div>
                 </div>
             </div>

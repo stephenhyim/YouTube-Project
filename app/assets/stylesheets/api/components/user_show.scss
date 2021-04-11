@@ -10,24 +10,26 @@ $font-stack: 'Roboto', sans-serif;
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
+    overflow: auto;
     
     
 
     .user-show-container {
         display: flex;
         flex-direction: column;
-        height: 100vh;
-        width: 100%;
+        height: 100%;
+        width: 1700px;
         position: fixed;
         top: 56px;
         left: 240px;
+        
         
 
         .user-info {
             display: flex;
             align-items: center;
             height: 100px;
-            width: 100%;
+            width: 100vw;
             background: #181818;
             padding: 16px 107px 4px;
         }
@@ -41,8 +43,14 @@ $font-stack: 'Roboto', sans-serif;
         .video-row-container {
             background: #0f0f0f;
             width: 100%;
+            height: 100%;
             color: white;
+            
         }
+
+            .user-show-upload {
+                padding: 16px 107px;
+            }
         
             .video-row {
                 display: flex;

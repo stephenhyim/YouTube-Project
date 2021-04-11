@@ -40,7 +40,9 @@ $font-stack: 'Roboto', sans-serif;
 
                 ul:hover {
                     background-color: rgb(75, 75, 75);
-                    
+                    width: 190px;
+                    justify-content: flex-start;
+                    align-items: center;
                 }
 
 

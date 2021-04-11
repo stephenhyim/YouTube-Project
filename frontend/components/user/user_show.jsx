@@ -51,7 +51,7 @@ class UserShow extends React.Component {
                         <h1 className = "username">{this.props.user.firstname}</h1>
                     </div>
                     <div className = "video-row-container">
-                        <h1>Uploads</h1>
+                        <h1 className = "user-show-upload">Uploads</h1>
                         <ul className = "video-row">{user_video}</ul>
                     </div>
                 </div>

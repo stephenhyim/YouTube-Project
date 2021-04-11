@@ -10,12 +10,13 @@ class VideoIndexSlider extends React.Component {
     // }
 
     render() {
+        debugger
         if (!this.props.videos) {
             return null
         }
 
         const videos = Object.values(this.props.videos).map( (video, idx) => {
-            
+            debugger
             if (video.user_id != this.props.user) {
             
                 return (
@@ -44,16 +45,17 @@ class VideoIndexSlider extends React.Component {
     }
 }
 
-const mSTP = (state) => {
-    return {
-        videos: Object.values(state.entities.videos)
-    }
-}
+// const mSTP = (state) => {
+//     return {
+//         videos: Object.values(state.entities.videos)
+//     }
+// }
 
-const mDTP = dispatch => {
-    return {
-        fetchVideos: () => dispatch(fetchVideos())
-    }
-}
+// const mDTP = dispatch => {
+//     return {
+//         fetchVideos: () => dispatch(fetchVideos())
+//     }
+// }
 
-export default connect(mSTP, mDTP)(VideoIndexSlider)
+export default VideoIndexSlider 
+// connect(mSTP, mDTP)(VideoIndexSlider)
