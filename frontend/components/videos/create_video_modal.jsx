@@ -86,7 +86,7 @@ function Modal(props) {
                                     <div className = "modal-left">
                                         <div className = "model-video-title-wrapper">
                                             <label htmlFor="video-title-modal-id">Video Title:</label>
-                                            <input className="video-title-modal" id="video-title-modal-id" maxlength="100" placeholder="Title (required)" type="text" onChange={update('title')} value = {state.title}/>
+                                            <input className="video-title-modal" id="video-title-modal-id" maxlength="100" placeholder="Title (required)" type="text" onChange={update('title')} value = {state.title} autoFocus/>
                                         </div>
                                         <div className="video-title-description-wrapper">
                                             <label htmlFor="modal-textarea-description">Video Description:</label>
