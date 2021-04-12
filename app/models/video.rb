@@ -11,6 +11,8 @@ class Video < ApplicationRecord
 
     has_one_attached :video
 
+    has_many :comments
+
     def ensure_video
         unless self.video.attached?
             errors[:video] << "must be attached"

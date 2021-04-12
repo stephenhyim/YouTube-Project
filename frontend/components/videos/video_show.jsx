@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import TopNavBarContainer from '../top_nav_bar/top_nav_bar_container';
-import VideoIndexSlider from '../videos/video_index_slider'
+import VideoIndexSlider from '../videos/video_index_slider';
+import CommentIndex from '../comment/comment_index_container';
 
 class VideoShow extends React.Component {
     componentDidMount() {
@@ -13,6 +14,10 @@ class VideoShow extends React.Component {
         debugger
 
         if (Object.keys(this.props.videos).length === 0) {
+            return null
+        }
+
+        if (Object.keys(this.props.comments).length === 0) {
             return null
         }
 
@@ -40,7 +45,7 @@ class VideoShow extends React.Component {
                             <Link to = {`/users/${video.user_id}`}><h1>{video.firstname}</h1></Link>
                         </div>
                         <div>
-                            <p>COMMENT COMPONENT</p>
+                            <CommentIndex />
                         </div>
                     </div>
                     <div className = "video-show-right">
