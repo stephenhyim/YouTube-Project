@@ -119,9 +119,9 @@ var receiveComments = function receiveComments(comments) {
   };
 };
 
-var fetchComments = function fetchComments() {
+var fetchComments = function fetchComments(videoId) {
   return function (dispatch) {
-    return _util_comment_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchComments"]().then(function (comments) {
+    return _util_comment_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchComments"](videoId).then(function (comments) {
       return dispatch(receiveComments(comments));
     });
   };
@@ -505,7 +505,7 @@ var CommentIndex = /*#__PURE__*/function (_React$Component) {
   _createClass(CommentIndex, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.props.fetchComments();
+      this.props.fetchComments(this.props.videoId);
     }
   }, {
     key: "render",
@@ -535,27 +535,31 @@ var CommentIndex = /*#__PURE__*/function (_React$Component) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _actions_comment_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/comment_actions */ "./frontend/actions/comment_actions.js");
-/* harmony import */ var _comment_index__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./comment_index */ "./frontend/components/comment/comment_index.jsx");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _actions_comment_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/comment_actions */ "./frontend/actions/comment_actions.js");
+/* harmony import */ var _comment_index__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./comment_index */ "./frontend/components/comment/comment_index.jsx");
+
 
 
 
 
 var mSTP = function mSTP(state, ownProps) {
+  debugger;
   return {
-    comments: Object.values(state.entites.comments)
+    comments: state.entities.comments,
+    videoId: ownProps.match.params.videoId
   };
 };
 
 var mDTP = function mDTP(dispatch) {
   return {
-    fetchComments: function fetchComments() {
-      return dispatch(Object(_actions_comment_actions__WEBPACK_IMPORTED_MODULE_1__["fetchComments"])());
+    fetchComments: function fetchComments(videoId) {
+      return dispatch(Object(_actions_comment_actions__WEBPACK_IMPORTED_MODULE_2__["fetchComments"])(videoId));
     }
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mSTP, mDTP)(_comment_index__WEBPACK_IMPORTED_MODULE_2__["default"]));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mSTP, mDTP)(_comment_index__WEBPACK_IMPORTED_MODULE_3__["default"])));
 
 /***/ }),
 
@@ -3074,7 +3078,13 @@ var VideoShow = /*#__PURE__*/function (_React$Component) {
     value: function componentDidMount() {
       debugger;
       this.props.fetchVideos();
-    }
+    } // componentDidUpdate(prevProps) {
+    //     debugger
+    //     if (prevProps.match.params.videoId !== this.props.match.params.videoId) {
+    //         this.props.fetchVideos()
+    //     }
+    // }
+
   }, {
     key: "render",
     value: function render() {
@@ -3082,11 +3092,10 @@ var VideoShow = /*#__PURE__*/function (_React$Component) {
 
       if (Object.keys(this.props.videos).length === 0) {
         return null;
-      }
+      } // if (Object.keys(this.props.comments).length === 0) {
+      //     return null
+      // }
 
-      if (Object.keys(this.props.comments).length === 0) {
-        return null;
-      }
 
       var video = this.props.videos[this.props.match.params.videoId];
       var videos = Object.values(this.props.videos);
@@ -3114,7 +3123,7 @@ var VideoShow = /*#__PURE__*/function (_React$Component) {
         className: "user-info"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         to: "/users/".concat(video.user_id)
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, video.firstname))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_comment_comment_index_container__WEBPACK_IMPORTED_MODULE_4__["default"], null))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, video.firstname))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_comment_comment_index_container__WEBPACK_IMPORTED_MODULE_4__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "COMMENT SECTION"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "video-show-right"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_videos_video_index_slider__WEBPACK_IMPORTED_MODULE_3__["default"], {
         videos: this.props.videos
@@ -3186,8 +3195,10 @@ var CommentsReducer = function CommentsReducer() {
   switch (action.type) {
     case _actions_comment_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_ALL_COMMENTS"]:
       return action.comments;
-    // case RECEIVE_COMMENT:
-    //     nextState = 
+
+    case _actions_comment_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_COMMENT"]:
+      nextState[action.comment.id] = action.comment;
+      return nextState;
 
     default:
       return state;
@@ -3555,9 +3566,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchComments", function() { return fetchComments; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchComment", function() { return fetchComment; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createComment", function() { return createComment; });
-var fetchComments = function fetchComments() {
+var fetchComments = function fetchComments(videoId) {
   return $.ajax({
-    url: "/api/comments"
+    url: "/api/comments",
+    data: videoId
   });
 };
 var fetchComment = function fetchComment(commentId) {

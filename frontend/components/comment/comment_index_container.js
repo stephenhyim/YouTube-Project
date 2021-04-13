@@ -1,17 +1,20 @@
-import { connect } from'react-redux';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { fetchComments } from '../../actions/comment_actions'
 import CommentIndex from './comment_index'
 
 const mSTP = (state, ownProps) => {
+    debugger
     return {
-        comments: Object.values(state.entites.comments)
+        comments: state.entities.comments,
+        videoId: ownProps.match.params.videoId
     }
 }
 
 const mDTP = dispatch => {
     return {
-        fetchComments: () => dispatch(fetchComments())
+        fetchComments: (videoId) => dispatch(fetchComments(videoId))
     }
 }
 
-export default connect(mSTP, mDTP)(CommentIndex)
+export default withRouter(connect(mSTP, mDTP)(CommentIndex))

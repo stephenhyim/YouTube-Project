@@ -1,7 +1,9 @@
 class Api::commentsController < ApplicationController
 
     def index
-        @comments = Comment.all
+        debugger
+        @comments = Comment.where(video_id: params[:videoId])
+
         render :index
     end
 
@@ -19,8 +21,6 @@ class Api::commentsController < ApplicationController
             render json: @comment.errors.full_messages, status: 422
         end
     end
-
-    def 
 
     def comment_params
         params.require(:comment).permit(:body)

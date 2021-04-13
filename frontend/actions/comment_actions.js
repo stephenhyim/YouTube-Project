@@ -18,19 +18,20 @@ const receiveComments = comments => {
 }
 
 
-export const fetchComments = () => {
+export const fetchComments = (videoId) => {
     return dispatch => {
-        return CommentAPIUtil.fetchComments()
-        .then(comments => dispatch(receiveComments(comments)))
+        return CommentAPIUtil.fetchComments(videoId)
+            .then(comments => dispatch(receiveComments(comments)))
     }
 }
 
 export const fetchComment = commentId => {
     return dispatch => {
         return CommentAPIUtil.fetchComment(commentId)
-        .then(comment => dispatch(receiveComment(comment)))
+            .then(comment => dispatch(receiveComment(comment)))
     }
 }
+
 export const createComment = comment => {
     return dispatch => {
         return CommentAPIUtil.createPost(comment)

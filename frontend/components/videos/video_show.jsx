@@ -10,6 +10,13 @@ class VideoShow extends React.Component {
         this.props.fetchVideos()
     }
 
+    // componentDidUpdate(prevProps) {
+    //     debugger
+    //     if (prevProps.match.params.videoId !== this.props.match.params.videoId) {
+    //         this.props.fetchVideos()
+    //     }
+    // }
+
     render() {
         debugger
 
@@ -17,9 +24,9 @@ class VideoShow extends React.Component {
             return null
         }
 
-        if (Object.keys(this.props.comments).length === 0) {
-            return null
-        }
+        // if (Object.keys(this.props.comments).length === 0) {
+        //     return null
+        // }
 
         const video = this.props.videos[this.props.match.params.videoId]
 
@@ -46,6 +53,7 @@ class VideoShow extends React.Component {
                         </div>
                         <div>
                             <CommentIndex />
+                            <h1>COMMENT SECTION</h1>
                         </div>
                     </div>
                     <div className = "video-show-right">

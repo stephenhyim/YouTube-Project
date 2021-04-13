@@ -3,7 +3,7 @@ import React from 'react';
 class CommentIndex extends React.Component {
     
     componentDidMount() {
-        this.props.fetchComments()
+        this.props.fetchComments(this.props.videoId)
 
     }
 
