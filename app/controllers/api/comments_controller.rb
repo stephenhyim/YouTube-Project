@@ -1,8 +1,8 @@
-class Api::commentsController < ApplicationController
+class Api::CommentsController < ApplicationController
 
     def index
-        debugger
-        @comments = Comment.where(video_id: params[:videoId])
+        @comments = Comment.where(video_id: params[:video_id])
+        # debugger
 
         render :index
     end
@@ -14,7 +14,8 @@ class Api::commentsController < ApplicationController
 
     def create 
         @comment = Comment.new(comment_params)
-
+        @comment.user_id = current_user.id
+        # debugger
         if @comment.save
             render :show
         else
@@ -22,8 +23,11 @@ class Api::commentsController < ApplicationController
         end
     end
 
+    private
+
     def comment_params
-        params.require(:comment).permit(:body)
+        
+        params.require(:comment).permit(:body, :user_id, :video_id)
     end
 
 end

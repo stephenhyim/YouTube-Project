@@ -53,7 +53,6 @@ class VideoShow extends React.Component {
                         </div>
                         <div>
                             <CommentIndex />
-                            <h1>COMMENT SECTION</h1>
                         </div>
                     </div>
                     <div className = "video-show-right">

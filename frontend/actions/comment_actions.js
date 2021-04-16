@@ -33,8 +33,10 @@ export const fetchComment = commentId => {
 }
 
 export const createComment = comment => {
+    debugger
     return dispatch => {
-        return CommentAPIUtil.createPost(comment)
+        debugger
+        return CommentAPIUtil.createComment(comment)
             .then(comment => dispatch(receiveComment(comment)))
     }
 }
