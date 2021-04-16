@@ -2555,7 +2555,7 @@ function Modal(props) {
       }, "Video Title:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         className: "video-title-modal",
         id: "video-title-modal-id",
-        maxlength: "100",
+        maxLength: "100",
         placeholder: "Title (required)",
         type: "text",
         onChange: update('title'),
@@ -2622,7 +2622,7 @@ function Modal(props) {
       }, "Video Title:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         className: "video-title-modal",
         id: "video-title-modal-id",
-        maxlength: "100",
+        maxLength: "100",
         placeholder: "Title (required)",
         type: "text",
         onChange: update('title'),

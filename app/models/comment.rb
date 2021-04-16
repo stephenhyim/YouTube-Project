@@ -14,4 +14,6 @@ class Comment < ApplicationRecord
         class_name: :Video
 
 
+
+
 end
