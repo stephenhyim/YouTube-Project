@@ -25,10 +25,15 @@ class CommentForm extends React.Component {
     render() {
         debugger
         return (
-            <div>
-                <form onSubmit = {this.handleSubmit}>
-                    <input type="text" onChange={this.update('body')} value = {this.state.body}/>
-                    <button>Comment</button>
+            <div className = "comment-form-wrapper">
+                <form className = "comment-form" onSubmit = {this.handleSubmit}>
+                    <div className = "comment-input-container">
+                        <i className="fas fa-user"></i>
+                        <input id = "comment-form-id" type="text" onChange={this.update('body')} value = {this.state.body} placeholder = "Add a public comment..."/>
+                    </div>
+                    <div className = "comment-button-container">
+                        <button>Comment</button>
+                    </div>
                 </form>
             </div>
         )

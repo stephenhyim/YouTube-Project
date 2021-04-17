@@ -18,22 +18,25 @@ class CommentIndex extends React.Component {
         if (Object.values(this.props.comments).length === 0) {
             return (
                 <div>
+                    <h1>Comments</h1>
                     <CreateCommentFormContainer videoId = {this.props.videoId}/>
                     <p>No Comments Yet</p>
                 </div>
             )
         }
 
-        const comments = Object.values(this.props.comments).map( comment => {
+        const comments = Object.values(this.props.comments).map( (comment, idx) => {
             return (
-                <ul key={comment.id}>{comment.body}{comment.nickname}</ul>
+                <div className = "single-comment">
+                    <ul className = "comment-username" key={idx}>{comment.nickname}</ul>
+                    <ul className = "comment-body" key={comment.id}>{comment.body}</ul>
+                </div>
             )
         })
         
         return (
-            <div>
-                <h1>COMMENT INDEX</h1>
-                
+            <div className = "comment-container">
+                <h1>Comments</h1>
                 <CreateCommentFormContainer videoId = {this.props.videoId}/>
                 {comments}
             </div>

@@ -50,8 +50,9 @@ class VideoShow extends React.Component {
                         </div>
                         <div className = "user-info">
                             <Link to = {`/users/${video.user_id}`}><h1>{video.firstname}</h1></Link>
+                            <p>{video.description}</p>
                         </div>
-                        <div>
+                        <div className = "comment-main">
                             <CommentIndex />
                         </div>
                     </div>
