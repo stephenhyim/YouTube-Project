@@ -13,6 +13,8 @@ class Video < ApplicationRecord
 
     has_many :comments
 
+    has_many :likes, as: :likable
+
 
     def ensure_video
         unless self.video.attached?
