@@ -518,7 +518,9 @@ var CommentForm = /*#__PURE__*/function (_React$Component) {
   _createClass(CommentForm, [{
     key: "handleSubmit",
     value: function handleSubmit(e) {
-      e.preventDefault();
+      e.preventDefault(); // if (!this.state.session.id) {
+      // }
+
       this.props.createComment(this.state);
     }
   }, {
@@ -629,13 +631,19 @@ var CommentIndex = /*#__PURE__*/function (_React$Component) {
       var comments = Object.values(this.props.comments).map(function (comment, idx) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "single-comment"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "comment-icon-container"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+          className: "fas fa-user"
+        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "comment-list-wrapper"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
           className: "comment-username",
           key: idx
-        }, comment.nickname), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+        }, comment.nickname, comment.created_at), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
           className: "comment-body",
           key: comment.id
-        }, comment.body));
+        }, comment.body)));
       });
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "comment-container"

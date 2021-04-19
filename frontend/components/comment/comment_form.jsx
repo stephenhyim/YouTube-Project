@@ -13,6 +13,9 @@ class CommentForm extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault()
+        // if (!this.state.session.id) {
+
+        // }
         this.props.createComment(this.state)
     }
 

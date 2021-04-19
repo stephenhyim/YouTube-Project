@@ -59,3 +59,17 @@ $font-stack: 'Roboto', sans-serif;
         }
 
 }
+
+.single-comment {
+    display: flex;
+    flex-direction: row;
+    // height: 78px;
+    align-items: center;
+
+    .comment-list-wrapper {
+        height: 78px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+}
