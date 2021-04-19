@@ -1,10 +1,10 @@
-class LikesController < ApplicationController
+class Api::LikesController < ApplicationController
 
     def create
         current_user.id = params[:like][:user_id]
         @like = Like.new(like_params)
         if @like.save
-            render: show
+            render :show
         else
             render json: @like.errors.full_messages, status: 422
         end
@@ -18,7 +18,7 @@ class LikesController < ApplicationController
     private
 
     def like_params
-        params.require(:like).permit(:value, :user_id, :likable_id, :likable_type)
+        params.require(:like).permit(:like_value, :user_id, :likable_id, :likable_type)
     end
 
 end
