@@ -1,4 +1,5 @@
 import * as VideoAPIUtil from '../util/video_api_util';
+import * as LikeAPIUtil from '../util/like_api_util';
 
 export const RECEIVE_ALL_VIDEOS = 'RECEIVE_ALL_VIDEOS';
 export const RECEIVE_VIDEO = "RECEIVE_VIDEO";
@@ -72,5 +73,19 @@ export const deleteVideo = videoId => {
         debugger
         return VideoAPIUtil.deleteVideo(videoId)
             .then(() => dispatch(removeVideo(videoId)))
+    }
+}
+
+export const likeVideo = like => {
+    return dispatch => {
+        return LikeAPIUtil.createLike(like)
+            .then((video) => dispatch(receiveVideo(video)))
+    }
+}
+
+export const dislikeVideo = like => {
+    return dispatch => {
+        return LikeAPIUtil.deleteLike(like)
+            .then(video => dispatch(receiveVideo(video)))
     }
 }

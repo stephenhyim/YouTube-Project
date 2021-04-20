@@ -44,8 +44,16 @@ class VideoShow extends React.Component {
                         <div className = "show-info">
                             <h1 className = "show-title">{video.title}</h1>
                             <div className = "show-metrics">
-                                <p>Views</p>
-                                <p>{video.created_at}</p>
+                                <div className = "show-metrics-left">
+                                    <p>Views</p>
+                                    <p>{video.created_at}</p>
+                                </div>
+                                <div className = "show-metrics-right"> 
+                                    <div><i class="fas fa-thumbs-up"></i></div>
+                                    <p>0</p>
+                                    <div><i class="fas fa-thumbs-down"></i></div>
+                                    <p>0</p>
+                                </div>
                             </div>
                         </div>
                         <div className = "user-info">

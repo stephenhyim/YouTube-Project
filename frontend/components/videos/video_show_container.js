@@ -1,5 +1,5 @@
 import {connect} from 'react-redux';
-import {fetchVideos} from '../../actions/video_actions';
+import {fetchVideos, likeVideo, dislikeVideo } from '../../actions/video_actions';
 import VideoShow from './video_show';
 
 const mSTP = (state, ownProps) => {
@@ -12,7 +12,9 @@ const mSTP = (state, ownProps) => {
 
 const mDTP = dispatch => {
     return {
-        fetchVideos: () => dispatch(fetchVideos())
+        fetchVideos: () => dispatch(fetchVideos()),
+        likeVideo: like => dispatch(likeVideo(like)),
+        dislikeVideo: like => dispatch(dislikeVideo(like))
     }
 }
 

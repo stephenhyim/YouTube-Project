@@ -33,12 +33,13 @@ $font-stack: 'Roboto', sans-serif;
             display: flex;
             flex-direction: column;
             align-self: start;
-            
+            border-bottom: 1px solid rgba(225,225,225,0.1);
             width: 1325px;
             height: 108px;
             padding: 20px 0px 8px;
-        }
+        
 
+            
 
             .show-title {
                 font-size: 1.17rem;
@@ -47,12 +48,28 @@ $font-stack: 'Roboto', sans-serif;
 
             .show-metrics {
                 display: flex;
+                flex-direction: row;
                 align-items: center;
+                justify-content: space-between;
                 color: white;
                 width: 1325px;
                 height: 40px;
-                border-bottom: 1px solid rgba(225,225,225,0.1);
+                
+                
+
+                .show-metrics-right {
+                    display: flex;
+                    justify-content: space-around;
+                    width: 140px;
+                    height: 40px;
+                }
+
             }
+            
+
+            
+
+        }
 
         .user-info {
             font-family: $font-stack;
