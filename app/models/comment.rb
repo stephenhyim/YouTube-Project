@@ -13,7 +13,7 @@ class Comment < ApplicationRecord
         foreign_key: :video_id,
         class_name: :Video
 
-    has_many :likes, as: :likable
+    has_many :likes, as: :likable, dependent: :destroy
 
 
 end

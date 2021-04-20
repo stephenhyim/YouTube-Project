@@ -29,6 +29,7 @@ $font-stack: 'Roboto', sans-serif;
     }
 
         .show-info {
+            font-family: $font-stack;
             display: flex;
             flex-direction: column;
             align-self: start;
@@ -54,6 +55,7 @@ $font-stack: 'Roboto', sans-serif;
             }
 
         .user-info {
+            font-family: $font-stack;
             width: 1325px;
             height: 108px;
             color: white;

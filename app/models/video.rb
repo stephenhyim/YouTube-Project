@@ -13,7 +13,7 @@ class Video < ApplicationRecord
 
     has_many :comments
 
-    has_many :likes, as: :likable
+    has_many :likes, as: :likable, dependent: :destroy
 
 
     def ensure_video

@@ -553,7 +553,10 @@ var CommentForm = /*#__PURE__*/function (_React$Component) {
         placeholder: "Add a public comment..."
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "comment-button-container"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "Comment"))));
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "comment-btn",
+        disabled: !this.state.body
+      }, "COMMENT"))));
     }
   }]);
 
@@ -623,7 +626,9 @@ var CommentIndex = /*#__PURE__*/function (_React$Component) {
     key: "render",
     value: function render() {
       if (Object.values(this.props.comments).length === 0) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Comments"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_create_comment_form_container__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "no-comment-wrapper"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Comments"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_create_comment_form_container__WEBPACK_IMPORTED_MODULE_1__["default"], {
           videoId: this.props.videoId
         }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "No Comments Yet"));
       }

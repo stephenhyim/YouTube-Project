@@ -39,8 +39,20 @@ $font-stack: 'Roboto', sans-serif;
                         background: transparent;
                         border-bottom: 1px solid rgba(225, 225, 225, 0.5);
                         color: white;
-                        width: 1260px;
+                        width: 1280px;
                         font-size: 16px;
+                        margin-left: 5px;
+                    }
+
+                    #comment-form-id:focus {
+                        border: 0;
+                        outline: 0;
+                        background: transparent;
+                        border-bottom: 2px solid black;
+                        color: white;
+                        width: 1280px;
+                        font-size: 16px;
+                        margin-left: 5px;
                     }
 
 
@@ -49,7 +61,36 @@ $font-stack: 'Roboto', sans-serif;
                 
 
                 .comment-button-container {
+                    display: flex;
+                    justify-content: center;
                     align-self: flex-end;
+                    width: 101px;
+                    height: 37px;
+                    background: #065fd4;
+                    border-radius: 4px;
+                    // padding-top: 5px;
+                    margin-top: 5px;
+
+                    .comment-btn {
+                        font-size: 14px;
+                        padding: 0;
+                        border: none;
+                        background: none;
+                        color: white;
+                        cursor: pointer;
+                        
+                    }
+
+
+                    .comment-btn:disabled {
+                        font-size: 14px;
+                        border-radius: 4px;
+                        width: 101px;
+                        height: 37px;
+                        background: gray;
+                        color: black;
+                    }
+
                 }
 
 
@@ -71,5 +112,11 @@ $font-stack: 'Roboto', sans-serif;
         display: flex;
         flex-direction: column;
         justify-content: center;
+        padding-left: 5px;
     }
 }
+
+.no-comment-wrapper {
+    padding-top: 15px;
+}
+

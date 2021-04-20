@@ -17,7 +17,7 @@ class CommentIndex extends React.Component {
     render() {
         if (Object.values(this.props.comments).length === 0) {
             return (
-                <div>
+                <div className="no-comment-wrapper">
                     <h1>Comments</h1>
                     <CreateCommentFormContainer videoId = {this.props.videoId}/>
                     <p>No Comments Yet</p>

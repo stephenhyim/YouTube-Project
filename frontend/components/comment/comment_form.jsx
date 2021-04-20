@@ -35,8 +35,9 @@ class CommentForm extends React.Component {
                         <input id = "comment-form-id" type="text" onChange={this.update('body')} value = {this.state.body} placeholder = "Add a public comment..."/>
                     </div>
                     <div className = "comment-button-container">
-                        <button>Comment</button>
+                        <button className = "comment-btn" disabled={!this.state.body}>COMMENT</button>
                     </div>
+
                 </form>
             </div>
         )

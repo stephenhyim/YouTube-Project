@@ -19,7 +19,7 @@ class User < ApplicationRecord
         foreign_key: :user_id,
         class_name: :Comment
 
-    has_many :likes
+    has_many :likes, dependent: :destroy
 
 
     def self.find_by_credentials(email, password)
