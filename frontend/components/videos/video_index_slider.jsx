@@ -15,9 +15,14 @@ class VideoIndexSlider extends React.Component {
             return null
         }
 
-        const videos = Object.values(this.props.videos).map( (video, idx) => {
-            // debugger
-            if (video.user_id != this.props.user) {
+        // const otherVideos = Object.values(this.props.videos).map( singleVideo => {
+        //     if (singleVideo.id !== this.props.ownVideo)
+        // })
+        const {user, videos, ownVideo} = this.props
+        debugger
+        const otherVideos = Object.values(videos).map( (video, idx) => {
+            debugger
+            if (video.id !== parseInt(ownVideo) ) {
             
                 return (
                     <li className='video-slide-content' key={idx}>
@@ -39,7 +44,7 @@ class VideoIndexSlider extends React.Component {
         return (
 
             <div className = 'video-slide-main'>
-                <ul className = 'video-slide-container'>{videos}</ul>
+                <ul className = 'video-slide-container'>{otherVideos}</ul>
             </div>
         )
     }

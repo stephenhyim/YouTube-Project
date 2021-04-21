@@ -55,6 +55,7 @@ class VideoShow extends React.Component {
 
         const video = this.props.videos[this.props.match.params.videoId]
 
+        
         const videos = Object.values(this.props.videos)
 
         debugger
@@ -91,7 +92,7 @@ class VideoShow extends React.Component {
                         </div>
                     </div>
                     <div className = "video-show-right">
-                        <VideoIndexSlider videos = {this.props.videos} />
+                        <VideoIndexSlider user = {this.props.user} ownVideo = {this.props.video} videos = {this.props.videos} />
                     </div>
                 </div>
             </div>

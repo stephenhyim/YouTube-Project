@@ -403,7 +403,9 @@ var likeVideo = function likeVideo(like) {
   };
 };
 var dislikeVideo = function dislikeVideo(like) {
+  debugger;
   return function (dispatch) {
+    debugger;
     return _util_like_api_util__WEBPACK_IMPORTED_MODULE_1__["deleteLike"](like).then(function (video) {
       return dispatch(receiveVideo(video));
     });
@@ -3148,16 +3150,23 @@ var VideoIndexSlider = /*#__PURE__*/function (_React$Component) {
     //     this.props.fetchVideos()
     // }
     value: function render() {
-      var _this = this;
-
       // debugger
       if (!this.props.videos) {
         return null;
-      }
+      } // const otherVideos = Object.values(this.props.videos).map( singleVideo => {
+      //     if (singleVideo.id !== this.props.ownVideo)
+      // })
 
-      var videos = Object.values(this.props.videos).map(function (video, idx) {
-        // debugger
-        if (video.user_id != _this.props.user) {
+
+      var _this$props = this.props,
+          user = _this$props.user,
+          videos = _this$props.videos,
+          ownVideo = _this$props.ownVideo;
+      debugger;
+      var otherVideos = Object.values(videos).map(function (video, idx) {
+        debugger;
+
+        if (video.id !== parseInt(ownVideo)) {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
             className: "video-slide-content",
             key: idx
@@ -3191,7 +3200,7 @@ var VideoIndexSlider = /*#__PURE__*/function (_React$Component) {
         className: "video-slide-main"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
         className: "video-slide-container"
-      }, videos));
+      }, otherVideos));
     }
   }]);
 
@@ -3355,6 +3364,8 @@ var VideoShow = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_comment_comment_index_container__WEBPACK_IMPORTED_MODULE_4__["default"], null))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "video-show-right"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_videos_video_index_slider__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        user: this.props.user,
+        ownVideo: this.props.video,
         videos: this.props.videos
       }))));
     }

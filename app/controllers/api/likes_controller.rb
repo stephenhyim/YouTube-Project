@@ -1,7 +1,7 @@
 class Api::LikesController < ApplicationController
 
     def create
-        debugger
+        # debugger
         @like = Like.new(like_params)
         if @like.save
             if @like.likable_type == "Video"
@@ -16,8 +16,9 @@ class Api::LikesController < ApplicationController
         end
     end
     
-    def destroy 
-        @like = likes.find_by(like_params)
+    def destroy
+        # debugger
+        @like = Like.find_by(like_params)
         @like.destroy
         if @like.likable_type == "Video"
             @video = find_video(@like)
