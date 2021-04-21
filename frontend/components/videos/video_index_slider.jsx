@@ -10,13 +10,13 @@ class VideoIndexSlider extends React.Component {
     // }
 
     render() {
-        debugger
+        // debugger
         if (!this.props.videos) {
             return null
         }
 
         const videos = Object.values(this.props.videos).map( (video, idx) => {
-            debugger
+            // debugger
             if (video.user_id != this.props.user) {
             
                 return (

@@ -5,6 +5,16 @@ import VideoIndexSlider from '../videos/video_index_slider';
 import CommentIndex from '../comment/comment_index_container';
 
 class VideoShow extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            like_value: 0
+        }
+        this.createLike = this.createLike.bind(this)
+    }
+
+
+
     componentDidMount() {
         debugger
         this.props.fetchVideos()
@@ -16,6 +26,21 @@ class VideoShow extends React.Component {
     //         this.props.fetchVideos()
     //     }
     // }
+
+    createLike() {
+        const like = {likable_id: this.props.video, likable_type: "Video", user_id: this.props.user}
+        debugger
+        if (!this.props.videos[this.props.video].likes.includes(this.props.user)) {
+            debugger
+            this.props.likeVideo(like)
+        } else {
+            this.props.dislikeVideo(like)
+        }
+        
+        
+    }
+
+    
 
     render() {
         debugger
@@ -49,9 +74,10 @@ class VideoShow extends React.Component {
                                     <p>{video.created_at}</p>
                                 </div>
                                 <div className = "show-metrics-right"> 
-                                    <div><i class="fas fa-thumbs-up"></i></div>
-                                    <p>0</p>
-                                    <div><i class="fas fa-thumbs-down"></i></div>
+                                    <div onClick={this.createLike}><i className="fas fa-thumbs-up"></i></div>
+                                    <p>{video.likes.length}</p>
+                                    {/* {console.log(video.likes)} */}
+                                    <div><i className="fas fa-thumbs-down"></i></div>
                                     <p>0</p>
                                 </div>
                             </div>

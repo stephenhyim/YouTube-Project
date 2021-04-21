@@ -3,7 +3,7 @@ import CommentForm from './comment_form';
 import { createComment } from '../../actions/comment_actions' 
 
 const mSTP = (state, ownProps) => {
-    debugger
+    // debugger
     return {
         currentVideo: ownProps.videoId
     }

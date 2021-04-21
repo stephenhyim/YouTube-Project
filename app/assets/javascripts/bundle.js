@@ -394,7 +394,9 @@ var deleteVideo = function deleteVideo(videoId) {
   };
 };
 var likeVideo = function likeVideo(like) {
+  debugger;
   return function (dispatch) {
+    debugger;
     return _util_like_api_util__WEBPACK_IMPORTED_MODULE_1__["createLike"](like).then(function (video) {
       return dispatch(receiveVideo(video));
     });
@@ -702,7 +704,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mSTP = function mSTP(state, ownProps) {
-  debugger;
+  // debugger
   return {
     comments: state.entities.comments,
     videoId: ownProps.match.params.videoId
@@ -738,7 +740,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mSTP = function mSTP(state, ownProps) {
-  debugger;
+  // debugger
   return {
     currentVideo: ownProps.videoId
   };
@@ -3148,15 +3150,13 @@ var VideoIndexSlider = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this = this;
 
-      debugger;
-
+      // debugger
       if (!this.props.videos) {
         return null;
       }
 
       var videos = Object.values(this.props.videos).map(function (video, idx) {
-        debugger;
-
+        // debugger
         if (video.user_id != _this.props.user) {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
             className: "video-slide-content",
@@ -3260,10 +3260,17 @@ var VideoShow = /*#__PURE__*/function (_React$Component) {
 
   var _super = _createSuper(VideoShow);
 
-  function VideoShow() {
+  function VideoShow(props) {
+    var _this;
+
     _classCallCheck(this, VideoShow);
 
-    return _super.apply(this, arguments);
+    _this = _super.call(this, props);
+    _this.state = {
+      like_value: 0
+    };
+    _this.createLike = _this.createLike.bind(_assertThisInitialized(_this));
+    return _this;
   }
 
   _createClass(VideoShow, [{
@@ -3278,6 +3285,23 @@ var VideoShow = /*#__PURE__*/function (_React$Component) {
     //     }
     // }
 
+  }, {
+    key: "createLike",
+    value: function createLike() {
+      var like = {
+        likable_id: this.props.video,
+        likable_type: "Video",
+        user_id: this.props.user
+      };
+      debugger;
+
+      if (!this.props.videos[this.props.video].likes.includes(this.props.user)) {
+        debugger;
+        this.props.likeVideo(like);
+      } else {
+        this.props.dislikeVideo(like);
+      }
+    }
   }, {
     key: "render",
     value: function render() {
@@ -3316,10 +3340,12 @@ var VideoShow = /*#__PURE__*/function (_React$Component) {
         className: "show-metrics-left"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Views"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, video.created_at)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "show-metrics-right"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-        "class": "fas fa-thumbs-up"
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "0"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-        "class": "fas fa-thumbs-down"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        onClick: this.createLike
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+        className: "fas fa-thumbs-up"
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, video.likes.length), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+        className: "fas fa-thumbs-down"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "0")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "user-info"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
@@ -3361,7 +3387,8 @@ var mSTP = function mSTP(state, ownProps) {
   debugger;
   return {
     videos: state.entities.videos,
-    user: state.session.id
+    user: state.session.id,
+    video: ownProps.match.params.videoId
   };
 };
 

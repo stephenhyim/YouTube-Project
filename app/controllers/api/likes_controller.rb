@@ -1,6 +1,7 @@
 class Api::LikesController < ApplicationController
 
     def create
+        debugger
         @like = Like.new(like_params)
         if @like.save
             if @like.likable_type == "Video"

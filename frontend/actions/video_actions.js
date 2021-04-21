@@ -77,7 +77,9 @@ export const deleteVideo = videoId => {
 }
 
 export const likeVideo = like => {
+    debugger
     return dispatch => {
+        debugger
         return LikeAPIUtil.createLike(like)
             .then((video) => dispatch(receiveVideo(video)))
     }
