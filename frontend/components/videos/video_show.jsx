@@ -48,6 +48,13 @@ class VideoShow extends React.Component {
         this.setState({currentVideo: videoId})
     }
 
+    videoShowDate(uploadDate) {
+        const formatedCreate = new Date(uploadDate)
+        
+
+        return `${formatedCreate.toLocaleString('en-us', { month: 'short' })} ${formatedCreate.getDate()}, ${formatedCreate.getFullYear()}`
+    }
+
     
 
     render() {
@@ -75,7 +82,7 @@ class VideoShow extends React.Component {
                             <div className = "show-metrics">
                                 <div className = "show-metrics-left">
                                     <p>Views</p>
-                                    <p>{video.created_at}</p>
+                                    <p>{this.videoShowDate(video.created_at)}</p>
                                 </div>
                                 <div className = "show-metrics-right"> 
                                     <div onClick={this.createLike}><i className="fas fa-thumbs-up"></i></div>

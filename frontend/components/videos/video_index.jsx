@@ -11,43 +11,45 @@ class VideoIndex extends React.Component {
 
     formatDate(uploadDate) {
         let now;
-
         now = new Date();
         const formatedCreate = new Date(uploadDate)
-        debugger
 
-        if (now.getFullYear() - formatedCreate.getFullYear() > 0) {
-            
+        if (now.getFullYear() - formatedCreate.getFullYear() === 1) {
+            const oneyearAgo = now.getFullYear() - formatedCreate.getFullYear()
+            return (`${oneyearAgo} year ago`)
+        } else if (now.getFullYear() - formatedCreate.getFullYear() > 0) {
             const yearsAgo = now.getFullYear() - formatedCreate.getFullYear()
-            debugger
-            return (
-                    `${yearsAgo} years ago`
-            )
+            return (`${yearsAgo} years ago`)
+        } else if (now.getMonth() - formatedCreate.getMonth() === 1) {
+            const oneMonthAgo = now.getMonth() - formatedCreate.getMonth()
+            return (`${oneMonthAgo} month ago`)
         } else if (now.getMonth() - formatedCreate.getMonth() > 0) {
             const monthsAgo = now.getMonth() - formatedCreate.getMonth()
-            return (
-                    `${monthsAgo} months ago` 
-            )
+            return (`${monthsAgo} months ago`)
+        } else if (now.getDate() - formatedCreate.getDate() === 1) {
+            const oneDayAgo = now.getDate() - formatedCreate.getDate()
+            return (`${oneDayAgo} day ago`)
         } else if (now.getDate() - formatedCreate.getDate() > 0) {
             const daysAgo = now.getDate() - formatedCreate.getDate()
-            return (
-                    `${daysAgo} days ago` 
-            )
+            return (`${daysAgo} days ago`)
+        } else if (now.getHours() - formatedCreate.getHours() === 1) {
+            const oneHourAgo = now.getHours() - formatedCreate.getHours()
+            return (`${oneHourAgo} hour ago`)
         } else if (now.getHours() - formatedCreate.getHours() > 0) {
             const hoursAgo = now.getHours() - formatedCreate.getHours()
-            return (
-                `${hoursAgo} hours ago`  
-            )
+            return (`${hoursAgo} hours ago`)
+        } else if (now.getMinutes() - formatedCreate.getMinutes() === 1) {
+            const oneMinuteAgo = now.getMinutes() - formatedCreate.getMinutes()
+            return (`${oneMinuteAgo} minute ago`)
         } else if (now.getMinutes() - formatedCreate.getMinutes() > 0) {
             const minutesAgo = now.getMinutes() - formatedCreate.getMinutes()
-            return (
-                 `${minutesAgo} minutes ago` 
-            )
+            return (`${minutesAgo} minutes ago`)
+        } else if (now.getSeconds() - formatedCreate.getSeconds() === 1) {
+            const oneSecondAgo = now.getSeconds() - formatedCreate.getSeconds()
+            return (`${oneSecondAgo} second ago`)
         } else {
             const secondsAgo = now.getSeconds() - formatedCreate.getSeconds()
-            return (
-                    `${secondsAgo} seconds ago` 
-            )
+            return (`${secondsAgo} seconds ago`)
         }
 
     }

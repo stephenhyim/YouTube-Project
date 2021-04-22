@@ -645,8 +645,56 @@ var CommentIndex = /*#__PURE__*/function (_React$Component) {
       this.props.fetchComments(this.props.videoId);
     }
   }, {
+    key: "formatDate",
+    value: function formatDate(uploadDate) {
+      var now;
+      now = new Date();
+      var formatedCreate = new Date(uploadDate);
+      debugger;
+
+      if (now.getFullYear() - formatedCreate.getFullYear() === 1) {
+        var oneyearAgo = now.getFullYear() - formatedCreate.getFullYear();
+        return "".concat(oneyearAgo, " year ago");
+      } else if (now.getFullYear() - formatedCreate.getFullYear() > 0) {
+        var yearsAgo = now.getFullYear() - formatedCreate.getFullYear();
+        return "".concat(yearsAgo, " years ago");
+      } else if (now.getMonth() - formatedCreate.getMonth() === 1) {
+        var oneMonthAgo = now.getMonth() - formatedCreate.getMonth();
+        return "".concat(oneMonthAgo, " month ago");
+      } else if (now.getMonth() - formatedCreate.getMonth() > 0) {
+        var monthsAgo = now.getMonth() - formatedCreate.getMonth();
+        return "".concat(monthsAgo, " months ago");
+      } else if (now.getDate() - formatedCreate.getDate() === 1) {
+        var oneDayAgo = now.getDate() - formatedCreate.getDate();
+        return "".concat(oneDayAgo, " day ago");
+      } else if (now.getDate() - formatedCreate.getDate() > 0) {
+        var daysAgo = now.getDate() - formatedCreate.getDate();
+        return "".concat(daysAgo, " days ago");
+      } else if (now.getHours() - formatedCreate.getHours() === 1) {
+        var oneHourAgo = now.getHours() - formatedCreate.getHours();
+        return "".concat(oneHourAgo, " hour ago");
+      } else if (now.getHours() - formatedCreate.getHours() > 0) {
+        var hoursAgo = now.getHours() - formatedCreate.getHours();
+        return "".concat(hoursAgo, " hours ago");
+      } else if (now.getMinutes() - formatedCreate.getMinutes() === 1) {
+        var oneMinuteAgo = now.getMinutes() - formatedCreate.getMinutes();
+        return "".concat(oneMinuteAgo, " minute ago");
+      } else if (now.getMinutes() - formatedCreate.getMinutes() > 0) {
+        var minutesAgo = now.getMinutes() - formatedCreate.getMinutes();
+        return "".concat(minutesAgo, " minutes ago");
+      } else if (now.getSeconds() - formatedCreate.getSeconds() === 1) {
+        var oneSecondAgo = now.getSeconds() - formatedCreate.getSeconds();
+        return "".concat(oneSecondAgo, " second ago");
+      } else {
+        var secondsAgo = now.getSeconds() - formatedCreate.getSeconds();
+        return "".concat(secondsAgo, " seconds ago");
+      }
+    }
+  }, {
     key: "render",
     value: function render() {
+      var _this = this;
+
       if (Object.values(this.props.comments).length === 0) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "no-comment-wrapper"
@@ -656,6 +704,8 @@ var CommentIndex = /*#__PURE__*/function (_React$Component) {
       }
 
       var comments = Object.values(this.props.comments).map(function (comment, idx) {
+        var commentDate = _this.formatDate(comment.created_at);
+
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "single-comment"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -664,10 +714,10 @@ var CommentIndex = /*#__PURE__*/function (_React$Component) {
           className: "fas fa-user"
         })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "comment-list-wrapper"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
           className: "comment-username",
           key: idx
-        }, comment.nickname, comment.created_at), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+        }, comment.nickname, " ", commentDate), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, commentDate), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
           className: "comment-body",
           key: comment.id
         }, comment.body)));
@@ -3014,24 +3064,40 @@ var VideoIndex = /*#__PURE__*/function (_React$Component) {
       var now;
       now = new Date();
       var formatedCreate = new Date(uploadDate);
-      debugger;
 
-      if (now.getFullYear() - formatedCreate.getFullYear() > 0) {
+      if (now.getFullYear() - formatedCreate.getFullYear() === 1) {
+        var oneyearAgo = now.getFullYear() - formatedCreate.getFullYear();
+        return "".concat(oneyearAgo, " year ago");
+      } else if (now.getFullYear() - formatedCreate.getFullYear() > 0) {
         var yearsAgo = now.getFullYear() - formatedCreate.getFullYear();
-        debugger;
         return "".concat(yearsAgo, " years ago");
+      } else if (now.getMonth() - formatedCreate.getMonth() === 1) {
+        var oneMonthAgo = now.getMonth() - formatedCreate.getMonth();
+        return "".concat(oneMonthAgo, " month ago");
       } else if (now.getMonth() - formatedCreate.getMonth() > 0) {
         var monthsAgo = now.getMonth() - formatedCreate.getMonth();
         return "".concat(monthsAgo, " months ago");
+      } else if (now.getDate() - formatedCreate.getDate() === 1) {
+        var oneDayAgo = now.getDate() - formatedCreate.getDate();
+        return "".concat(oneDayAgo, " day ago");
       } else if (now.getDate() - formatedCreate.getDate() > 0) {
         var daysAgo = now.getDate() - formatedCreate.getDate();
         return "".concat(daysAgo, " days ago");
+      } else if (now.getHours() - formatedCreate.getHours() === 1) {
+        var oneHourAgo = now.getHours() - formatedCreate.getHours();
+        return "".concat(oneHourAgo, " hour ago");
       } else if (now.getHours() - formatedCreate.getHours() > 0) {
         var hoursAgo = now.getHours() - formatedCreate.getHours();
         return "".concat(hoursAgo, " hours ago");
+      } else if (now.getMinutes() - formatedCreate.getMinutes() === 1) {
+        var oneMinuteAgo = now.getMinutes() - formatedCreate.getMinutes();
+        return "".concat(oneMinuteAgo, " minute ago");
       } else if (now.getMinutes() - formatedCreate.getMinutes() > 0) {
         var minutesAgo = now.getMinutes() - formatedCreate.getMinutes();
         return "".concat(minutesAgo, " minutes ago");
+      } else if (now.getSeconds() - formatedCreate.getSeconds() === 1) {
+        var oneSecondAgo = now.getSeconds() - formatedCreate.getSeconds();
+        return "".concat(oneSecondAgo, " second ago");
       } else {
         var secondsAgo = now.getSeconds() - formatedCreate.getSeconds();
         return "".concat(secondsAgo, " seconds ago");
@@ -3178,10 +3244,56 @@ var VideoIndexSlider = /*#__PURE__*/function (_React$Component) {
   }
 
   _createClass(VideoIndexSlider, [{
-    key: "render",
+    key: "formatDate",
     // componentDidMount() {
     //     this.props.fetchVideos()
     // }
+    value: function formatDate(uploadDate) {
+      var now;
+      now = new Date();
+      var formatedCreate = new Date(uploadDate);
+      debugger;
+
+      if (now.getFullYear() - formatedCreate.getFullYear() === 1) {
+        var oneyearAgo = now.getFullYear() - formatedCreate.getFullYear();
+        return "".concat(oneyearAgo, " year ago");
+      } else if (now.getFullYear() - formatedCreate.getFullYear() > 0) {
+        var yearsAgo = now.getFullYear() - formatedCreate.getFullYear();
+        return "".concat(yearsAgo, " years ago");
+      } else if (now.getMonth() - formatedCreate.getMonth() === 1) {
+        var oneMonthAgo = now.getMonth() - formatedCreate.getMonth();
+        return "".concat(oneMonthAgo, " month ago");
+      } else if (now.getMonth() - formatedCreate.getMonth() > 0) {
+        var monthsAgo = now.getMonth() - formatedCreate.getMonth();
+        return "".concat(monthsAgo, " months ago");
+      } else if (now.getDate() - formatedCreate.getDate() === 1) {
+        var oneDayAgo = now.getDate() - formatedCreate.getDate();
+        return "".concat(oneDayAgo, " day ago");
+      } else if (now.getDate() - formatedCreate.getDate() > 0) {
+        var daysAgo = now.getDate() - formatedCreate.getDate();
+        return "".concat(daysAgo, " days ago");
+      } else if (now.getHours() - formatedCreate.getHours() === 1) {
+        var oneHourAgo = now.getHours() - formatedCreate.getHours();
+        return "".concat(oneHourAgo, " hour ago");
+      } else if (now.getHours() - formatedCreate.getHours() > 0) {
+        var hoursAgo = now.getHours() - formatedCreate.getHours();
+        return "".concat(hoursAgo, " hours ago");
+      } else if (now.getMinutes() - formatedCreate.getMinutes() === 1) {
+        var oneMinuteAgo = now.getMinutes() - formatedCreate.getMinutes();
+        return "".concat(oneMinuteAgo, " minute ago");
+      } else if (now.getMinutes() - formatedCreate.getMinutes() > 0) {
+        var minutesAgo = now.getMinutes() - formatedCreate.getMinutes();
+        return "".concat(minutesAgo, " minutes ago");
+      } else if (now.getSeconds() - formatedCreate.getSeconds() === 1) {
+        var oneSecondAgo = now.getSeconds() - formatedCreate.getSeconds();
+        return "".concat(oneSecondAgo, " second ago");
+      } else {
+        var secondsAgo = now.getSeconds() - formatedCreate.getSeconds();
+        return "".concat(secondsAgo, " seconds ago");
+      }
+    }
+  }, {
+    key: "render",
     value: function render() {
       var _this = this;
 
@@ -3196,7 +3308,9 @@ var VideoIndexSlider = /*#__PURE__*/function (_React$Component) {
           ownVideo = _this$props.ownVideo; // debugger
 
       var otherVideos = Object.values(videos).map(function (video, idx) {
-        // debugger
+        var viewDate = _this.formatDate(video.created_at); // debugger
+
+
         if (video.id !== parseInt(ownVideo)) {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
             className: "video-slide-content",
@@ -3224,7 +3338,7 @@ var VideoIndexSlider = /*#__PURE__*/function (_React$Component) {
             to: "/users/".concat(video.user_id)
           }, video.firstname), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
             className: "video-slide-created"
-          }, video.created_at)));
+          }, viewDate)));
         } else {
           return null;
         }
@@ -3346,6 +3460,14 @@ var VideoShow = /*#__PURE__*/function (_React$Component) {
       });
     }
   }, {
+    key: "videoShowDate",
+    value: function videoShowDate(uploadDate) {
+      var formatedCreate = new Date(uploadDate);
+      return "".concat(formatedCreate.toLocaleString('en-us', {
+        month: 'short'
+      }), " ").concat(formatedCreate.getDate(), ", ").concat(formatedCreate.getFullYear());
+    }
+  }, {
     key: "render",
     value: function render() {
       // debugger
@@ -3378,7 +3500,7 @@ var VideoShow = /*#__PURE__*/function (_React$Component) {
         className: "show-metrics"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "show-metrics-left"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Views"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, video.created_at)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Views"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, this.videoShowDate(video.created_at))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "show-metrics-right"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         onClick: this.createLike
