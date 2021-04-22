@@ -43,7 +43,7 @@ const removeVideo = videoId => {
 }
 
 export const fetchVideos = () => dispatch => {
-    debugger
+    // debugger
     return VideoAPIUtil.fetchVideos()
         .then(videos => dispatch(receiveVideos(videos)))
 }

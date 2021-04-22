@@ -7,7 +7,7 @@ import {
 const VideosReducer = (state = {}, action) => {
     Object.freeze(state)
     let nextState = Object.assign({}, state)
-    debugger
+    // debugger
     switch (action.type) {
         case RECEIVE_ALL_VIDEOS:
             return action.videos

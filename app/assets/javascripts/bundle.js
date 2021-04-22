@@ -353,7 +353,7 @@ var removeVideo = function removeVideo(videoId) {
 
 var fetchVideos = function fetchVideos() {
   return function (dispatch) {
-    debugger;
+    // debugger
     return _util_video_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchVideos"]().then(function (videos) {
       return dispatch(receiveVideos(videos));
     });
@@ -557,7 +557,7 @@ var CommentForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      debugger;
+      // debugger
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "comment-form-wrapper"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
@@ -2148,7 +2148,7 @@ var TopNavBar = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this4 = this;
 
-      debugger;
+      // debugger
       var display = this.props.currentUser ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "top-nav-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -3005,12 +3005,43 @@ var VideoIndex = /*#__PURE__*/function (_React$Component) {
   _createClass(VideoIndex, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      debugger;
+      // debugger
       this.props.fetchVideos(); // this.props.fetchUser(this.props.match.params.userId)
+    }
+  }, {
+    key: "formatDate",
+    value: function formatDate(uploadDate) {
+      var now;
+      now = new Date();
+      var formatedCreate = new Date(uploadDate);
+      debugger;
+
+      if (now.getFullYear() - formatedCreate.getFullYear() > 0) {
+        var yearsAgo = now.getFullYear() - formatedCreate.getFullYear();
+        debugger;
+        return "".concat(yearsAgo, " years ago");
+      } else if (now.getMonth() - formatedCreate.getMonth() > 0) {
+        var monthsAgo = now.getMonth() - formatedCreate.getMonth();
+        return "".concat(monthsAgo, " months ago");
+      } else if (now.getDate() - formatedCreate.getDate() > 0) {
+        var daysAgo = now.getDate() - formatedCreate.getDate();
+        return "".concat(daysAgo, " days ago");
+      } else if (now.getHours() - formatedCreate.getHours() > 0) {
+        var hoursAgo = now.getHours() - formatedCreate.getHours();
+        return "".concat(hoursAgo, " hours ago");
+      } else if (now.getMinutes() - formatedCreate.getMinutes() > 0) {
+        var minutesAgo = now.getMinutes() - formatedCreate.getMinutes();
+        return "".concat(minutesAgo, " minutes ago");
+      } else {
+        var secondsAgo = now.getSeconds() - formatedCreate.getSeconds();
+        return "".concat(secondsAgo, " seconds ago");
+      }
     }
   }, {
     key: "render",
     value: function render() {
+      var _this = this;
+
       debugger;
 
       if (!this.props.videos) {
@@ -3018,6 +3049,8 @@ var VideoIndex = /*#__PURE__*/function (_React$Component) {
       }
 
       var videos = Object.values(this.props.videos).map(function (video, idx) {
+        var viewDate = _this.formatDate(video.created_at);
+
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
           className: "video-info",
           key: idx
@@ -3038,7 +3071,7 @@ var VideoIndex = /*#__PURE__*/function (_React$Component) {
           to: "/users/".concat(video.user_id)
         }, video.firstname), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "video-created"
-        }, video.created_at));
+        }, viewDate));
       });
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "video-main-container"
@@ -3074,7 +3107,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mSTP = function mSTP(state, ownProps) {
-  debugger;
+  // debugger
   return {
     videos: Object.values(state.entities.videos)
   };
@@ -3150,30 +3183,30 @@ var VideoIndexSlider = /*#__PURE__*/function (_React$Component) {
     //     this.props.fetchVideos()
     // }
     value: function render() {
+      var _this = this;
+
       // debugger
       if (!this.props.videos) {
         return null;
-      } // const otherVideos = Object.values(this.props.videos).map( singleVideo => {
-      //     if (singleVideo.id !== this.props.ownVideo)
-      // })
-
+      }
 
       var _this$props = this.props,
           user = _this$props.user,
           videos = _this$props.videos,
-          ownVideo = _this$props.ownVideo;
-      debugger;
-      var otherVideos = Object.values(videos).map(function (video, idx) {
-        debugger;
+          ownVideo = _this$props.ownVideo; // debugger
 
+      var otherVideos = Object.values(videos).map(function (video, idx) {
+        // debugger
         if (video.id !== parseInt(ownVideo)) {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
             className: "video-slide-content",
             key: idx
           }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
             className: "video-slide-thumbnail"
-          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
-            to: "/videos/".concat(video.id)
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            onClick: function onClick() {
+              return _this.props.updateVideo(video.id);
+            }
           }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("video", {
             width: "168",
             height: "94"
@@ -3205,19 +3238,9 @@ var VideoIndexSlider = /*#__PURE__*/function (_React$Component) {
   }]);
 
   return VideoIndexSlider;
-}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component); // const mSTP = (state) => {
-//     return {
-//         videos: Object.values(state.entities.videos)
-//     }
-// }
-// const mDTP = dispatch => {
-//     return {
-//         fetchVideos: () => dispatch(fetchVideos())
-//     }
-// }
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
-
-/* harmony default export */ __webpack_exports__["default"] = (VideoIndexSlider); // connect(mSTP, mDTP)(VideoIndexSlider)
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["withRouter"])(VideoIndexSlider));
 
 /***/ }),
 
@@ -3275,17 +3298,20 @@ var VideoShow = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, VideoShow);
 
     _this = _super.call(this, props);
+    debugger;
     _this.state = {
-      like_value: 0
+      like_value: 0,
+      currentVideo: props.match.params.videoId
     };
     _this.createLike = _this.createLike.bind(_assertThisInitialized(_this));
+    _this.updateVideo = _this.updateVideo.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(VideoShow, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      debugger;
+      // debugger
       this.props.fetchVideos();
     } // componentDidUpdate(prevProps) {
     //     debugger
@@ -3312,20 +3338,25 @@ var VideoShow = /*#__PURE__*/function (_React$Component) {
       }
     }
   }, {
+    key: "updateVideo",
+    value: function updateVideo(videoId) {
+      this.props.history.push("/videos/".concat(videoId));
+      this.setState({
+        currentVideo: videoId
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
-      debugger;
-
+      // debugger
       if (Object.keys(this.props.videos).length === 0) {
         return null;
-      } // if (Object.keys(this.props.comments).length === 0) {
-      //     return null
-      // }
+      }
 
-
-      var video = this.props.videos[this.props.match.params.videoId];
-      var videos = Object.values(this.props.videos);
+      var video = this.props.videos[this.state.currentVideo];
       debugger;
+      var videos = Object.values(this.props.videos); // debugger
+
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "show-main"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_top_nav_bar_top_nav_bar_container__WEBPACK_IMPORTED_MODULE_2__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -3364,6 +3395,7 @@ var VideoShow = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_comment_comment_index_container__WEBPACK_IMPORTED_MODULE_4__["default"], null))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "video-show-right"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_videos_video_index_slider__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        updateVideo: this.updateVideo,
         user: this.props.user,
         ownVideo: this.props.video,
         videos: this.props.videos
@@ -3374,7 +3406,7 @@ var VideoShow = /*#__PURE__*/function (_React$Component) {
   return VideoShow;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
-/* harmony default export */ __webpack_exports__["default"] = (VideoShow);
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["withRouter"])(VideoShow));
 
 /***/ }),
 
@@ -3747,8 +3779,7 @@ var VideosReducer = function VideosReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments.length > 1 ? arguments[1] : undefined;
   Object.freeze(state);
-  var nextState = Object.assign({}, state);
-  debugger;
+  var nextState = Object.assign({}, state); // debugger
 
   switch (action.type) {
     case _actions_video_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_ALL_VIDEOS"]:

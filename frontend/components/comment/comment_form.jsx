@@ -26,7 +26,7 @@ class CommentForm extends React.Component {
     }
 
     render() {
-        debugger
+        // debugger
         return (
             <div className = "comment-form-wrapper">
                 <form className = "comment-form" onSubmit = {this.handleSubmit}>

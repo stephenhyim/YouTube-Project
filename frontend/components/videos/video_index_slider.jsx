@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { fetchVideos } from '../../actions/video_actions';
 
 
@@ -15,19 +15,17 @@ class VideoIndexSlider extends React.Component {
             return null
         }
 
-        // const otherVideos = Object.values(this.props.videos).map( singleVideo => {
-        //     if (singleVideo.id !== this.props.ownVideo)
-        // })
+        
         const {user, videos, ownVideo} = this.props
-        debugger
+        // debugger
         const otherVideos = Object.values(videos).map( (video, idx) => {
-            debugger
+            // debugger
             if (video.id !== parseInt(ownVideo) ) {
             
                 return (
                     <li className='video-slide-content' key={idx}>
                         <div className = "video-slide-thumbnail">
-                            <Link to={`/videos/${video.id}`}><video width = '168' height = '94'><source src={ video.videoUrl } type='video/mp4'></source></video></Link>
+                            <div onClick={() => this.props.updateVideo(video.id)}><video width = '168' height = '94'><source src={ video.videoUrl } type='video/mp4'></source></video></div>
                         </div>
                         <div className = "video-slide-info">
                             <Link to={`/videos/${video.id}`}><h3 className = "video-slide-title">{ video.title }</h3></Link>
@@ -50,17 +48,5 @@ class VideoIndexSlider extends React.Component {
     }
 }
 
-// const mSTP = (state) => {
-//     return {
-//         videos: Object.values(state.entities.videos)
-//     }
-// }
 
-// const mDTP = dispatch => {
-//     return {
-//         fetchVideos: () => dispatch(fetchVideos())
-//     }
-// }
-
-export default VideoIndexSlider 
-// connect(mSTP, mDTP)(VideoIndexSlider)
+export default withRouter(VideoIndexSlider) 

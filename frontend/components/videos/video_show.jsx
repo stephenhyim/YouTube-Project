@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import TopNavBarContainer from '../top_nav_bar/top_nav_bar_container';
 import VideoIndexSlider from '../videos/video_index_slider';
 import CommentIndex from '../comment/comment_index_container';
@@ -7,16 +7,19 @@ import CommentIndex from '../comment/comment_index_container';
 class VideoShow extends React.Component {
     constructor(props) {
         super(props)
+        debugger
         this.state = {
-            like_value: 0
+            like_value: 0,
+            currentVideo: props.match.params.videoId
         }
         this.createLike = this.createLike.bind(this)
+        this.updateVideo = this.updateVideo.bind(this)
     }
 
 
 
     componentDidMount() {
-        debugger
+        // debugger
         this.props.fetchVideos()
     }
 
@@ -40,25 +43,25 @@ class VideoShow extends React.Component {
         
     }
 
+    updateVideo(videoId) {
+        this.props.history.push(`/videos/${videoId}`)
+        this.setState({currentVideo: videoId})
+    }
+
     
 
     render() {
-        debugger
-
+        // debugger
         if (Object.keys(this.props.videos).length === 0) {
             return null
         }
 
-        // if (Object.keys(this.props.comments).length === 0) {
-        //     return null
-        // }
+        const video = this.props.videos[this.state.currentVideo]
+        debugger
 
-        const video = this.props.videos[this.props.match.params.videoId]
-
-        
         const videos = Object.values(this.props.videos)
 
-        debugger
+        // debugger
         return (
             <div className = "show-main">
                 <TopNavBarContainer />
@@ -77,7 +80,6 @@ class VideoShow extends React.Component {
                                 <div className = "show-metrics-right"> 
                                     <div onClick={this.createLike}><i className="fas fa-thumbs-up"></i></div>
                                     <p>{video.likes.length}</p>
-                                    {/* {console.log(video.likes)} */}
                                     <div><i className="fas fa-thumbs-down"></i></div>
                                     <p>0</p>
                                 </div>
@@ -92,7 +94,7 @@ class VideoShow extends React.Component {
                         </div>
                     </div>
                     <div className = "video-show-right">
-                        <VideoIndexSlider user = {this.props.user} ownVideo = {this.props.video} videos = {this.props.videos} />
+                        <VideoIndexSlider updateVideo = {this.updateVideo} user = {this.props.user} ownVideo = {this.props.video} videos = {this.props.videos} />
                     </div>
                 </div>
             </div>
@@ -102,4 +104,4 @@ class VideoShow extends React.Component {
     }
 }
 
-export default VideoShow
+export default withRouter(VideoShow)
