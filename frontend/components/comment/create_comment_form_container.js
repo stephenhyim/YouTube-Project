@@ -5,7 +5,8 @@ import { createComment } from '../../actions/comment_actions'
 const mSTP = (state, ownProps) => {
     // debugger
     return {
-        currentVideo: ownProps.videoId
+        currentVideo: ownProps.videoId,
+        currentUser: state.session.id
     }
 }
 

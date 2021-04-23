@@ -74,7 +74,7 @@ class VideoIndexSlider extends React.Component {
                             <div onClick={() => this.props.updateVideo(video.id)}><video width = '168' height = '94'><source src={ video.videoUrl } type='video/mp4'></source></video></div>
                         </div>
                         <div className = "video-slide-info">
-                            <Link to={`/videos/${video.id}`}><h3 className = "video-slide-title">{ video.title }</h3></Link>
+                            <div className = "video-slide-title" onClick={() => this.props.updateVideo(video.id)}>{ video.title }</div>
                             <Link className="video-slide-username" to={`/users/${video.user_id}`}>{video.firstname}</Link>
                             <div className = "video-slide-created">{ viewDate }</div>
                         </div>

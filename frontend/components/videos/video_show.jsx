@@ -23,12 +23,12 @@ class VideoShow extends React.Component {
         this.props.fetchVideos()
     }
 
-    // componentDidUpdate(prevProps) {
-    //     debugger
-    //     if (prevProps.match.params.videoId !== this.props.match.params.videoId) {
-    //         this.props.fetchVideos()
-    //     }
-    // }
+    componentDidUpdate(prevProps) {
+        debugger
+        if (prevProps.match.params.videoId !== this.props.match.params.videoId) {
+            this.props.fetchComments(this.props.videoId)
+        }
+    }
 
     createLike() {
         const like = {likable_id: this.props.video, likable_type: "Video", user_id: this.props.user}
@@ -74,9 +74,7 @@ class VideoShow extends React.Component {
                 <TopNavBarContainer />
                 <div className = "show-container">
                     <div className = "video-show-left">
-                        <video width = '1325' height = '725' controls>
-                            <source src={ video.videoUrl } type='video/mp4'/>
-                        </video>
+                        <video width = '1325' height = '725' controls src={ video.videoUrl }></video>
                         <div className = "show-info">
                             <h1 className = "show-title">{video.title}</h1>
                             <div className = "show-metrics">

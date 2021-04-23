@@ -13,10 +13,14 @@ class CommentForm extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault()
-        // if (!this.state.session.id) {
-
-        // }
+        if (this.props.currentUser)
         this.props.createComment(this.state)
+        this.setState({
+            body: ""
+        }) 
+        // else {
+        //     <Link></Link>
+        // }
     }
 
     update(field) {
@@ -24,6 +28,8 @@ class CommentForm extends React.Component {
             [field]: e.currentTarget.value
         });
     }
+
+
 
     render() {
         // debugger
