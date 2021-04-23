@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 
 class CommentForm extends React.Component {
     constructor(props) {
@@ -13,14 +14,14 @@ class CommentForm extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault()
-        if (this.props.currentUser)
+
+        if (this.props.currentUser) {
         this.props.createComment(this.state)
         this.setState({
             body: ""
-        }) 
-        // else {
-        //     <Link></Link>
-        // }
+        })} else {
+            this.props.history.push("/login")
+        }
     }
 
     update(field) {
@@ -51,4 +52,4 @@ class CommentForm extends React.Component {
 
 }
 
-export default CommentForm;
+export default withRouter(CommentForm);
