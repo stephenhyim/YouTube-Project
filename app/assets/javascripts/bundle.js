@@ -2859,6 +2859,8 @@ var VideoChannel = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
+      var _this2 = this;
+
       debugger;
       e.preventDefault();
       var formData = new FormData();
@@ -2870,13 +2872,17 @@ var VideoChannel = /*#__PURE__*/function (_React$Component) {
       }
 
       formData.append('video[user_id]', this.props.userId);
+      this.props.createVideo(formData).then(function (res) {
+        debugger;
 
-      if (this.props.errors.length === 0) {
-        this.props.createVideo(formData);
-        this.props.closeModal();
-      } else {
-        null;
-      }
+        if (res) {
+          _this2.props.closeModal();
+        }
+      }); // if (this.props.errors.length === 0) {
+      //     this.props.closeModal()
+      // } else {
+      //     null
+      // }
 
       this.resetState();
     }
@@ -2917,22 +2923,22 @@ var VideoChannel = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "update",
     value: function update(field) {
-      var _this2 = this;
+      var _this3 = this;
 
       return function (e) {
-        return _this2.setState(_defineProperty({}, field, e.currentTarget.value));
+        return _this3.setState(_defineProperty({}, field, e.currentTarget.value));
       };
     }
   }, {
     key: "handleFile",
     value: function handleFile(e) {
-      var _this3 = this;
+      var _this4 = this;
 
       var file = e.currentTarget.files[0];
       var fileReader = new FileReader();
 
       fileReader.onloadend = function () {
-        _this3.setState({
+        _this4.setState({
           videoFile: file,
           videoUrl: fileReader.result
         });
@@ -2965,7 +2971,7 @@ var VideoChannel = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this4 = this;
+      var _this5 = this;
 
       debugger;
 
@@ -2974,7 +2980,7 @@ var VideoChannel = /*#__PURE__*/function (_React$Component) {
       }
 
       var videoInfo = Object.values(this.props.videos).map(function (video, idx) {
-        if (video.user_id === _this4.props.userId) {
+        if (video.user_id === _this5.props.userId) {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", {
             key: idx
           }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("video", {
@@ -2984,12 +2990,12 @@ var VideoChannel = /*#__PURE__*/function (_React$Component) {
           })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, video.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, video.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, video.created_at), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "0"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "0"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "0"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
             className: "channel-edit-btn",
             onClick: function onClick() {
-              return _this4.grabVideo(video);
+              return _this5.grabVideo(video);
             }
           }, "Edit")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
             className: "channel-delete-btn",
             onClick: function onClick() {
-              return _this4.props.deleteVideo(video.id);
+              return _this5.props.deleteVideo(video.id);
             }
           }, "Delete")));
         } else {
@@ -3941,7 +3947,7 @@ var VideosReducer = function VideosReducer() {
     case _actions_video_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_VIDEO"]:
       debugger;
       nextState = Object.assign({}, state, action.video);
-      delete nextState[action.video.videoId];
+      delete nextState[action.videoId];
       return nextState;
 
     default:

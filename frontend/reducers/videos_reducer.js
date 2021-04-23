@@ -18,7 +18,7 @@ const VideosReducer = (state = {}, action) => {
         case REMOVE_VIDEO:
             debugger
             nextState = Object.assign({}, state, action.video)
-            delete nextState[action.video.videoId]
+            delete nextState[action.videoId]
             return nextState
         default:
             return state;

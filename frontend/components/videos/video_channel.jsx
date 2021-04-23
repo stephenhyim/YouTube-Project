@@ -35,12 +35,17 @@ class VideoChannel extends React.Component {
             formData.append('video[video]', this.state.videoFile);
         }
         formData.append('video[user_id]', this.props.userId);
-        if (this.props.errors.length === 0) {
-            this.props.createVideo(formData)
-            this.props.closeModal()
-        } else {
-            null
-        }
+        this.props.createVideo(formData).then( (res) => {
+            debugger
+            if (res) {
+                this.props.closeModal()
+            }
+        })
+        // if (this.props.errors.length === 0) {
+        //     this.props.closeModal()
+        // } else {
+        //     null
+        // }
         this.resetState()
     }
 
