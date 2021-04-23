@@ -19,7 +19,6 @@ class CommentIndex extends React.Component {
 
         now = new Date();
         const formatedCreate = new Date(uploadDate)
-        debugger
 
         if (now.getFullYear() - formatedCreate.getFullYear() === 1) {
             const oneyearAgo = now.getFullYear() - formatedCreate.getFullYear()
@@ -51,12 +50,11 @@ class CommentIndex extends React.Component {
         } else if (now.getMinutes() - formatedCreate.getMinutes() > 0) {
             const minutesAgo = now.getMinutes() - formatedCreate.getMinutes()
             return (`${minutesAgo} minutes ago`)
-        } else if (now.getSeconds() - formatedCreate.getSeconds() === 1) {
-            const oneSecondAgo = now.getSeconds() - formatedCreate.getSeconds()
-            return (`${oneSecondAgo} second ago`)
-        } else {
+        } else if (now.getSeconds() - formatedCreate.getSeconds() > 1) {
             const secondsAgo = now.getSeconds() - formatedCreate.getSeconds()
             return (`${secondsAgo} seconds ago`)
+        } else {
+            return ("1 second ago")
         }
 
     }
@@ -71,9 +69,17 @@ class CommentIndex extends React.Component {
                 </div>
             )
         }
+        
 
-        const comments = Object.values(this.props.comments).map( (comment, idx) => {
+        const sortedComments = Object.values(this.props.comments).sort((a,b) => {
+            return new Date(b.created_at) - new Date(a.created_at);
+        })
+
+        const comments = Object.values(sortedComments).map( (comment, idx) => {
+            
+
             const commentDate = this.formatDate(comment.created_at)
+
             return (
                 <div className = "single-comment">
                     <div className = "comment-icon-container">

@@ -35,8 +35,12 @@ class VideoChannel extends React.Component {
             formData.append('video[video]', this.state.videoFile);
         }
         formData.append('video[user_id]', this.props.userId);
-        this.props.createVideo(formData)
-        this.props.closeModal()
+        if (this.props.errors.length === 0) {
+            this.props.createVideo(formData)
+            this.props.closeModal()
+        } else {
+            null
+        }
         this.resetState()
     }
 
@@ -52,16 +56,20 @@ class VideoChannel extends React.Component {
         formData.append('video[user_id]', this.props.userId);
         formData.append('video[id]', this.state.id);
         this.props.updateVideo(formData, this.state.id)
-        this.props.closeModal()
+        if (this.props.errors.length === 0) {
+            this.props.closeModal()
+        }
         this.resetState()
     }
 
     resetState() {
-        this.setState({title: "",
-        description: "",
-        videoFile: null,
-        videoUrl: null,
-        id: ""})
+        this.setState({
+            title: "",
+            description: "",
+            videoFile: null,
+            videoUrl: null,
+            id: ""
+        })
     }
 
     update(field) {

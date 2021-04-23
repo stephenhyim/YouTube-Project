@@ -13,7 +13,7 @@ class VideoIndexSlider extends React.Component {
 
         now = new Date();
         const formatedCreate = new Date(uploadDate)
-        debugger
+        // debugger
 
         if (now.getFullYear() - formatedCreate.getFullYear() === 1) {
             const oneyearAgo = now.getFullYear() - formatedCreate.getFullYear()
@@ -45,12 +45,11 @@ class VideoIndexSlider extends React.Component {
         } else if (now.getMinutes() - formatedCreate.getMinutes() > 0) {
             const minutesAgo = now.getMinutes() - formatedCreate.getMinutes()
             return (`${minutesAgo} minutes ago`)
-        } else if (now.getSeconds() - formatedCreate.getSeconds() === 1) {
-            const oneSecondAgo = now.getSeconds() - formatedCreate.getSeconds()
-            return (`${oneSecondAgo} second ago`)
-        } else {
+        } else if (now.getSeconds() - formatedCreate.getSeconds() > 1) {
             const secondsAgo = now.getSeconds() - formatedCreate.getSeconds()
             return (`${secondsAgo} seconds ago`)
+        } else {
+            return ("1 second ago")
         }
 
     }
