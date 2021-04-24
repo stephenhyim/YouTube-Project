@@ -94,6 +94,11 @@ class VideoChannel extends React.Component {
         }
     }
 
+    videoShowDate(uploadDate) {
+        const formatedCreate = new Date(uploadDate)
+        return `${formatedCreate.toLocaleString('en-us', { month: 'short' })} ${formatedCreate.getDate()}, ${formatedCreate.getFullYear()}`
+    }
+
     renderErrors() {
         return(
           <ul>
@@ -125,10 +130,10 @@ class VideoChannel extends React.Component {
                         <td><video width="200" height="80" src={video.videoUrl}></video></td>
                         <td>{video.title}</td>
                         <td>{video.description}</td>
-                        <td>{video.created_at}</td>
+                        <td>{this.videoShowDate(video.created_at)}</td>
                         <td>0</td>
                         <td>0</td>
-                        <td>0</td>
+                        <td>{video.likes.length}</td>
                         <td><button className="channel-edit-btn" onClick={()=> this.grabVideo(video)}>Edit</button></td>
                         <td><button className="channel-delete-btn" onClick={() => this.props.deleteVideo(video.id)}>Delete</button></td>
                     </tr>

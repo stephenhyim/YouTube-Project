@@ -15,7 +15,9 @@ class TopNavBar extends React.Component {
     this.closeDropDown = this.closeDropDown.bind(this);
     this.openVideoDropDown = this.openVideoDropDown.bind(this);
     this.closeVideoDropDown = this.closeVideoDropDown.bind(this);
+    // this.handleClickOutside = this.handleClickOutside.bind(this);
   }
+
 
   openDropDown(e) {
     e.preventDefault();
@@ -49,8 +51,16 @@ class TopNavBar extends React.Component {
     })
   }
 
+  
+
+  
+
   render() {
     // debugger
+
+   
+
+
     const display = this.props.currentUser ? (
       <div className = 'top-nav-container'>
         

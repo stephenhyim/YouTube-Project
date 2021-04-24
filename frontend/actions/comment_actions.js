@@ -2,6 +2,7 @@ import * as CommentAPIUtil from '../util/comment_api_util';
 
 export const RECEIVE_COMMENT = "RECEIVE_COMMENT"
 export const RECEIVE_ALL_COMMENTS = "RECEIVE_ALL_COMMENTS"
+export const REMOVE_COMMENT = "REMOVE_COMMENT"
 
 const receiveComment = comment => {
     return {
@@ -14,6 +15,13 @@ const receiveComments = comments => {
     return {
         type: RECEIVE_ALL_COMMENTS,
         comments
+    }
+}
+
+const removeComment = commentId => {
+    return {
+        type: REMOVE_COMMENT,
+        commentId
     }
 }
 
@@ -38,5 +46,14 @@ export const createComment = comment => {
         debugger
         return CommentAPIUtil.createComment(comment)
             .then(comment => dispatch(receiveComment(comment)))
+    }
+}
+
+export const deleteComment = commentId => {
+    debugger
+    return dispatch => {
+        debugger
+        return CommentAPIUtil.deleteComment(commentId)
+            .then(() => dispatch(removeComment(commentId)))
     }
 }

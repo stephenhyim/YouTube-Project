@@ -18,7 +18,8 @@ const mDTP = dispatch => {
         fetchVideos: () => dispatch(fetchVideos()),
         likeVideo: like => dispatch(likeVideo(like)),
         dislikeVideo: like => dispatch(dislikeVideo(like)),
-        fetchComments: videoId => dispatch(fetchComments(videoId))
+        fetchComments: videoId => dispatch(fetchComments(videoId)),
+        
     }
 }
 

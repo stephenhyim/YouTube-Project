@@ -56,7 +56,10 @@ $font-stack: 'Roboto', sans-serif;
                 width: 1325px;
                 height: 40px;
                 
-                
+                .show-metrics-left {
+                    font-size: 14px;
+                    color: #AAAAAA;
+                }
 
                 .show-metrics-right {
                     display: flex;
@@ -64,6 +67,8 @@ $font-stack: 'Roboto', sans-serif;
                     width: 140px;
                     height: 40px;
                     font-size: 20px;
+                    cursor: pointer;
+                    color: #AAAAAA;
                 }
 
             }
@@ -86,11 +91,17 @@ $font-stack: 'Roboto', sans-serif;
     .video-show-right {
         display: flex;
         padding-top: 25px;
+        font-family: $font-stack;
     }
 
     .video-slide-content {
         display: flex;
         padding-bottom: 10px;
+
+    }
+
+    .video-slide-content:hover {
+        cursor: pointer;
     }
 
     .video-slide-info {
@@ -99,11 +110,15 @@ $font-stack: 'Roboto', sans-serif;
 
     .video-slide-title {
         font-size: 16px;
+        text-transform: capitalize;
     }
+
+  
 
     .video-slide-username {
         font-size: 14px;
         color: gray;
+        text-transform: capitalize;
     }
 
     .video-slide-created {

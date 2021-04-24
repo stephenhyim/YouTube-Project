@@ -76,10 +76,7 @@ class CommentIndex extends React.Component {
         })
 
         const comments = Object.values(sortedComments).map( (comment, idx) => {
-            
-
             const commentDate = this.formatDate(comment.created_at)
-
             return (
                 <div className = "single-comment">
                     <div className = "comment-icon-container">
@@ -90,6 +87,7 @@ class CommentIndex extends React.Component {
                         {/* <ul className = "comment-username" key={idx}>{comment.nickname}</ul> */}
                         <ul>{commentDate}</ul>
                         <ul className = "comment-body" key={comment.id}>{comment.body}</ul>
+                        <button onClick = {()=> this.props.deleteComment(comment.id)}>Delete Comment</button>
                     </div>
                 </div>
             )

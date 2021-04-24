@@ -1,4 +1,4 @@
-import { RECEIVE_ALL_COMMENTS, RECEIVE_COMMENT } from '../actions/comment_actions'
+import { RECEIVE_ALL_COMMENTS, RECEIVE_COMMENT, REMOVE_COMMENT } from '../actions/comment_actions'
 
 const CommentsReducer = (state = {}, action) => {
     Object.freeze(state)
@@ -9,6 +9,9 @@ const CommentsReducer = (state = {}, action) => {
         case RECEIVE_COMMENT:
             debugger
             nextState[action.comment.id] = action.comment
+            return nextState
+        case REMOVE_COMMENT:
+            delete nextState[action.commentId]
             return nextState
         default:
             return state;

@@ -20,3 +20,11 @@ export const createComment = comment => {
         data: {comment}
     })
 }
+
+export const deleteComment = commentId => {
+    debugger
+    return $.ajax({
+        url: `/api/comments/${commentId}`,
+        method: "DELETE"
+    })
+}

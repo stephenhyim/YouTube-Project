@@ -61,7 +61,15 @@ $font-stack: 'Roboto', sans-serif;
     }
 }
 
+.video-created {
+    font-size: 14px;
+    color: #AAAAAA;
+    display: flex;
+}
 
+div p {
+    margin-right: 5px;
+}
 
 a {
     font-family: $font-stack;

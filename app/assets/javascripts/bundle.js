@@ -90,20 +90,23 @@
 /*!*********************************************!*\
   !*** ./frontend/actions/comment_actions.js ***!
   \*********************************************/
-/*! exports provided: RECEIVE_COMMENT, RECEIVE_ALL_COMMENTS, fetchComments, fetchComment, createComment */
+/*! exports provided: RECEIVE_COMMENT, RECEIVE_ALL_COMMENTS, REMOVE_COMMENT, fetchComments, fetchComment, createComment, deleteComment */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_COMMENT", function() { return RECEIVE_COMMENT; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_ALL_COMMENTS", function() { return RECEIVE_ALL_COMMENTS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REMOVE_COMMENT", function() { return REMOVE_COMMENT; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchComments", function() { return fetchComments; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchComment", function() { return fetchComment; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createComment", function() { return createComment; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteComment", function() { return deleteComment; });
 /* harmony import */ var _util_comment_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/comment_api_util */ "./frontend/util/comment_api_util.js");
 
 var RECEIVE_COMMENT = "RECEIVE_COMMENT";
 var RECEIVE_ALL_COMMENTS = "RECEIVE_ALL_COMMENTS";
+var REMOVE_COMMENT = "REMOVE_COMMENT";
 
 var receiveComment = function receiveComment(comment) {
   return {
@@ -116,6 +119,13 @@ var receiveComments = function receiveComments(comments) {
   return {
     type: RECEIVE_ALL_COMMENTS,
     comments: comments
+  };
+};
+
+var removeComment = function removeComment(commentId) {
+  return {
+    type: REMOVE_COMMENT,
+    commentId: commentId
   };
 };
 
@@ -139,6 +149,15 @@ var createComment = function createComment(comment) {
     debugger;
     return _util_comment_api_util__WEBPACK_IMPORTED_MODULE_0__["createComment"](comment).then(function (comment) {
       return dispatch(receiveComment(comment));
+    });
+  };
+};
+var deleteComment = function deleteComment(commentId) {
+  debugger;
+  return function (dispatch) {
+    debugger;
+    return _util_comment_api_util__WEBPACK_IMPORTED_MODULE_0__["deleteComment"](commentId).then(function () {
+      return dispatch(removeComment(commentId));
     });
   };
 };
@@ -729,7 +748,11 @@ var CommentIndex = /*#__PURE__*/function (_React$Component) {
         }, comment.nickname, " ", commentDate), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, commentDate), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
           className: "comment-body",
           key: comment.id
-        }, comment.body)));
+        }, comment.body), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          onClick: function onClick() {
+            return _this.props.deleteComment(comment.id);
+          }
+        }, "Delete Comment")));
       });
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "comment-container"
@@ -765,7 +788,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mSTP = function mSTP(state, ownProps) {
-  // debugger
+  debugger;
   return {
     comments: state.entities.comments,
     videoId: ownProps.match.params.videoId
@@ -776,6 +799,9 @@ var mDTP = function mDTP(dispatch) {
   return {
     fetchComments: function fetchComments(videoId) {
       return dispatch(Object(_actions_comment_actions__WEBPACK_IMPORTED_MODULE_2__["fetchComments"])(videoId));
+    },
+    deleteComment: function deleteComment(commentId) {
+      return dispatch(Object(_actions_comment_actions__WEBPACK_IMPORTED_MODULE_2__["deleteComment"])(commentId));
     }
   };
 };
@@ -2147,7 +2173,8 @@ var TopNavBar = /*#__PURE__*/function (_React$Component) {
     _this.openDropDown = _this.openDropDown.bind(_assertThisInitialized(_this));
     _this.closeDropDown = _this.closeDropDown.bind(_assertThisInitialized(_this));
     _this.openVideoDropDown = _this.openVideoDropDown.bind(_assertThisInitialized(_this));
-    _this.closeVideoDropDown = _this.closeVideoDropDown.bind(_assertThisInitialized(_this));
+    _this.closeVideoDropDown = _this.closeVideoDropDown.bind(_assertThisInitialized(_this)); // this.handleClickOutside = this.handleClickOutside.bind(this);
+
     return _this;
   }
 
@@ -2460,8 +2487,55 @@ var UserShow = /*#__PURE__*/function (_React$Component) {
       this.props.fetchUser(this.props.match.params.userId);
     }
   }, {
+    key: "formatDate",
+    value: function formatDate(uploadDate) {
+      var now;
+      now = new Date();
+      var formatedCreate = new Date(uploadDate);
+      debugger;
+
+      if (now.getFullYear() - formatedCreate.getFullYear() === 1) {
+        var oneyearAgo = now.getFullYear() - formatedCreate.getFullYear();
+        return "".concat(oneyearAgo, " year ago");
+      } else if (now.getFullYear() - formatedCreate.getFullYear() > 0) {
+        var yearsAgo = now.getFullYear() - formatedCreate.getFullYear();
+        return "".concat(yearsAgo, " years ago");
+      } else if (now.getMonth() - formatedCreate.getMonth() === 1) {
+        var oneMonthAgo = now.getMonth() - formatedCreate.getMonth();
+        return "".concat(oneMonthAgo, " month ago");
+      } else if (now.getMonth() - formatedCreate.getMonth() > 0) {
+        var monthsAgo = now.getMonth() - formatedCreate.getMonth();
+        return "".concat(monthsAgo, " months ago");
+      } else if (now.getDate() - formatedCreate.getDate() === 1) {
+        var oneDayAgo = now.getDate() - formatedCreate.getDate();
+        return "".concat(oneDayAgo, " day ago");
+      } else if (now.getDate() - formatedCreate.getDate() > 0) {
+        var daysAgo = now.getDate() - formatedCreate.getDate();
+        return "".concat(daysAgo, " days ago");
+      } else if (now.getHours() - formatedCreate.getHours() === 1) {
+        var oneHourAgo = now.getHours() - formatedCreate.getHours();
+        return "".concat(oneHourAgo, " hour ago");
+      } else if (now.getHours() - formatedCreate.getHours() > 0) {
+        var hoursAgo = now.getHours() - formatedCreate.getHours();
+        return "".concat(hoursAgo, " hours ago");
+      } else if (now.getMinutes() - formatedCreate.getMinutes() === 1) {
+        var oneMinuteAgo = now.getMinutes() - formatedCreate.getMinutes();
+        return "".concat(oneMinuteAgo, " minute ago");
+      } else if (now.getMinutes() - formatedCreate.getMinutes() > 0) {
+        var minutesAgo = now.getMinutes() - formatedCreate.getMinutes();
+        return "".concat(minutesAgo, " minutes ago");
+      } else if (now.getSeconds() - formatedCreate.getSeconds() > 1) {
+        var secondsAgo = now.getSeconds() - formatedCreate.getSeconds();
+        return "".concat(secondsAgo, " seconds ago");
+      } else {
+        return "1 second ago";
+      }
+    }
+  }, {
     key: "render",
     value: function render() {
+      var _this = this;
+
       if (!this.props.user) {
         return null;
       }
@@ -2471,6 +2545,8 @@ var UserShow = /*#__PURE__*/function (_React$Component) {
 
       if (this.props.user.user_video) {
         user_video = Object.values(this.props.user.user_video).map(function (video, idx) {
+          var viewDate = _this.formatDate(video.created_at);
+
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
             className: "video-info",
             key: idx
@@ -2488,7 +2564,7 @@ var UserShow = /*#__PURE__*/function (_React$Component) {
             className: "video-title"
           }, video.title)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
             className: "video-created"
-          }, video.created_at));
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Views Coming"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "\xB7"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, viewDate)));
         });
       }
 
@@ -2949,6 +3025,14 @@ var VideoChannel = /*#__PURE__*/function (_React$Component) {
       }
     }
   }, {
+    key: "videoShowDate",
+    value: function videoShowDate(uploadDate) {
+      var formatedCreate = new Date(uploadDate);
+      return "".concat(formatedCreate.toLocaleString('en-us', {
+        month: 'short'
+      }), " ").concat(formatedCreate.getDate(), ", ").concat(formatedCreate.getFullYear());
+    }
+  }, {
     key: "renderErrors",
     value: function renderErrors() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, this.props.errors.map(function (error, i) {
@@ -2987,7 +3071,7 @@ var VideoChannel = /*#__PURE__*/function (_React$Component) {
             width: "200",
             height: "80",
             src: video.videoUrl
-          })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, video.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, video.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, video.created_at), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "0"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "0"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "0"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, video.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, video.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, _this5.videoShowDate(video.created_at)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "0"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "0"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, video.likes.length), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
             className: "channel-edit-btn",
             onClick: function onClick() {
               return _this5.grabVideo(video);
@@ -3526,7 +3610,7 @@ var VideoShow = /*#__PURE__*/function (_React$Component) {
         className: "show-metrics"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "show-metrics-left"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Views"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, this.videoShowDate(video.created_at))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Views Coming Soon"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, this.videoShowDate(video.created_at))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "show-metrics-right"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         onClick: this.createLike
@@ -3632,6 +3716,10 @@ var CommentsReducer = function CommentsReducer() {
     case _actions_comment_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_COMMENT"]:
       debugger;
       nextState[action.comment.id] = action.comment;
+      return nextState;
+
+    case _actions_comment_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_COMMENT"]:
+      delete nextState[action.commentId];
       return nextState;
 
     default:
@@ -3991,7 +4079,7 @@ var configureStore = function configureStore() {
 /*!*******************************************!*\
   !*** ./frontend/util/comment_api_util.js ***!
   \*******************************************/
-/*! exports provided: fetchComments, fetchComment, createComment */
+/*! exports provided: fetchComments, fetchComment, createComment, deleteComment */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3999,6 +4087,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchComments", function() { return fetchComments; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchComment", function() { return fetchComment; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createComment", function() { return createComment; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteComment", function() { return deleteComment; });
 var fetchComments = function fetchComments(video_id) {
   return $.ajax({
     url: "/api/comments",
@@ -4020,6 +4109,13 @@ var createComment = function createComment(comment) {
     data: {
       comment: comment
     }
+  });
+};
+var deleteComment = function deleteComment(commentId) {
+  debugger;
+  return $.ajax({
+    url: "/api/comments/".concat(commentId),
+    method: "DELETE"
   });
 };
 

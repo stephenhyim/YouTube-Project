@@ -50,12 +50,8 @@ class VideoShow extends React.Component {
 
     videoShowDate(uploadDate) {
         const formatedCreate = new Date(uploadDate)
-        
-
         return `${formatedCreate.toLocaleString('en-us', { month: 'short' })} ${formatedCreate.getDate()}, ${formatedCreate.getFullYear()}`
     }
-
-    
 
     render() {
         // debugger
@@ -79,7 +75,7 @@ class VideoShow extends React.Component {
                             <h1 className = "show-title">{video.title}</h1>
                             <div className = "show-metrics">
                                 <div className = "show-metrics-left">
-                                    <p>Views</p>
+                                    <p>Views Coming Soon</p>
                                     <p>{this.videoShowDate(video.created_at)}</p>
                                 </div>
                                 <div className = "show-metrics-right"> 
