@@ -90,7 +90,7 @@
 /*!*********************************************!*\
   !*** ./frontend/actions/comment_actions.js ***!
   \*********************************************/
-/*! exports provided: RECEIVE_COMMENT, RECEIVE_ALL_COMMENTS, REMOVE_COMMENT, fetchComments, fetchComment, createComment, deleteComment */
+/*! exports provided: RECEIVE_COMMENT, RECEIVE_ALL_COMMENTS, REMOVE_COMMENT, fetchComments, fetchComment, createComment, deleteComment, updateComment, likeComment, unlikeComment */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -102,7 +102,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchComment", function() { return fetchComment; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createComment", function() { return createComment; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteComment", function() { return deleteComment; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateComment", function() { return updateComment; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "likeComment", function() { return likeComment; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "unlikeComment", function() { return unlikeComment; });
 /* harmony import */ var _util_comment_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/comment_api_util */ "./frontend/util/comment_api_util.js");
+/* harmony import */ var _util_like_api_util__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../util/like_api_util */ "./frontend/util/like_api_util.js");
+
 
 var RECEIVE_COMMENT = "RECEIVE_COMMENT";
 var RECEIVE_ALL_COMMENTS = "RECEIVE_ALL_COMMENTS";
@@ -158,6 +163,31 @@ var deleteComment = function deleteComment(commentId) {
     debugger;
     return _util_comment_api_util__WEBPACK_IMPORTED_MODULE_0__["deleteComment"](commentId).then(function () {
       return dispatch(removeComment(commentId));
+    });
+  };
+};
+var updateComment = function updateComment(comment) {
+  return function (dispatch) {
+    return _util_comment_api_util__WEBPACK_IMPORTED_MODULE_0__["updateComment"](comment).then(function (comment) {
+      return dispatch(receiveComment(comment));
+    });
+  };
+};
+var likeComment = function likeComment(like) {
+  debugger;
+  return function (dispatch) {
+    debugger;
+    return _util_like_api_util__WEBPACK_IMPORTED_MODULE_1__["createLike"](like).then(function (comment) {
+      return dispatch(receiveComment(comment));
+    });
+  };
+};
+var unlikeComment = function unlikeComment(like) {
+  debugger;
+  return function (dispatch) {
+    debugger;
+    return _util_like_api_util__WEBPACK_IMPORTED_MODULE_1__["deleteLike"](like).then(function (comment) {
+      return dispatch(receiveComment(comment));
     });
   };
 };
@@ -659,17 +689,41 @@ var CommentIndex = /*#__PURE__*/function (_React$Component) {
   var _super = _createSuper(CommentIndex);
 
   function CommentIndex(props) {
+    var _this;
+
     _classCallCheck(this, CommentIndex);
 
-    return _super.call(this, props); // this.state = {
+    _this = _super.call(this, props); // this.state = {
     //     commentCount: 0
     // }
+    // this.handleDelete = this.handleDelete.bind(this)
+
+    _this.createLike = _this.createLike.bind(_assertThisInitialized(_this));
+    return _this;
   }
 
   _createClass(CommentIndex, [{
     key: "componentDidMount",
     value: function componentDidMount() {
       this.props.fetchComments(this.props.videoId);
+    } // handleDelete(e) {
+    //     e.preventDefault()
+    //     if (this.props.comments.user_id === this.state.session.id) {
+    //         this.props.deleteComment(this.props.)
+    //     }
+    // }
+
+  }, {
+    key: "createLike",
+    value: function createLike(like, comment, user) {
+      debugger;
+
+      if (comment.likes.includes(user)) {
+        debugger;
+        this.props.unlikeComment(like);
+      } else {
+        this.props.likeComment(like);
+      }
     }
   }, {
     key: "formatDate",
@@ -718,7 +772,7 @@ var CommentIndex = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this = this;
+      var _this2 = this;
 
       if (Object.values(this.props.comments).length === 0) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -732,8 +786,13 @@ var CommentIndex = /*#__PURE__*/function (_React$Component) {
         return new Date(b.created_at) - new Date(a.created_at);
       });
       var comments = Object.values(sortedComments).map(function (comment, idx) {
-        var commentDate = _this.formatDate(comment.created_at);
+        var commentDate = _this2.formatDate(comment.created_at);
 
+        var like = {
+          likable_id: comment.id,
+          likable_type: "Comment",
+          user_id: _this2.props.user
+        };
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "single-comment"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -744,23 +803,39 @@ var CommentIndex = /*#__PURE__*/function (_React$Component) {
           className: "comment-list-wrapper"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "comment-details"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "comment-info"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
           className: "comment-username",
           key: idx
         }, comment.nickname, " ", commentDate), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
           className: "comment-body",
           key: comment.id
-        }, comment.body)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        }, comment.body), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "comment-likes-container"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          onClick: function onClick() {
+            return _this2.createLike(like, comment, _this2.props.user);
+          }
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+          className: "fas fa-thumbs-up"
+        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, comment.likes.length), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+          className: "fas fa-thumbs-down"
+        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "0")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "comment-delete-dropdown"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "comment-dropbtn"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-          "class": "fas fa-ellipsis-v"
+          className: "fas fa-ellipsis-v"
         })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "delete-dropdown"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Edit"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           onClick: function onClick() {
-            return _this.props.deleteComment(comment.id);
+            return _this2.props.updateComment(comment);
+          }
+        }, "Edit"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          onClick: function onClick() {
+            return _this2.props.deleteComment(comment.id);
           }
         }, "Delete")))));
       });
@@ -801,7 +876,8 @@ var mSTP = function mSTP(state, ownProps) {
   debugger;
   return {
     comments: state.entities.comments,
-    videoId: ownProps.match.params.videoId
+    videoId: ownProps.match.params.videoId,
+    user: state.session.id
   };
 };
 
@@ -812,6 +888,15 @@ var mDTP = function mDTP(dispatch) {
     },
     deleteComment: function deleteComment(commentId) {
       return dispatch(Object(_actions_comment_actions__WEBPACK_IMPORTED_MODULE_2__["deleteComment"])(commentId));
+    },
+    updateComment: function updateComment(comment) {
+      return dispatch(Object(_actions_comment_actions__WEBPACK_IMPORTED_MODULE_2__["updateComment"])(comment));
+    },
+    likeComment: function likeComment(like) {
+      return dispatch(Object(_actions_comment_actions__WEBPACK_IMPORTED_MODULE_2__["likeComment"])(like));
+    },
+    unlikeComment: function unlikeComment(like) {
+      return dispatch(Object(_actions_comment_actions__WEBPACK_IMPORTED_MODULE_2__["unlikeComment"])(like));
     }
   };
 };
@@ -967,7 +1052,7 @@ var LeftNavBar = function LeftNavBar(_ref) {
     className: "fas fa-book-open"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     className: "library-link",
-    to: "/"
+    to: "/users/".concat(currentUser)
   }, "Library")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
     className: "left-icons"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
@@ -986,14 +1071,7 @@ var LeftNavBar = function LeftNavBar(_ref) {
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     className: "home-link",
     to: "/"
-  }, "Home")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
-    className: "left-icons"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-    className: "fas fa-book-open"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-    className: "library-link",
-    to: "/"
-  }, "Library"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, "Home"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "left-group2"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Sign in to like videos, comment, and subscribe.")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "signin-btn-container"
@@ -4089,7 +4167,7 @@ var configureStore = function configureStore() {
 /*!*******************************************!*\
   !*** ./frontend/util/comment_api_util.js ***!
   \*******************************************/
-/*! exports provided: fetchComments, fetchComment, createComment, deleteComment */
+/*! exports provided: fetchComments, fetchComment, createComment, deleteComment, updateComment */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4098,6 +4176,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchComment", function() { return fetchComment; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createComment", function() { return createComment; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteComment", function() { return deleteComment; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateComment", function() { return updateComment; });
 var fetchComments = function fetchComments(video_id) {
   return $.ajax({
     url: "/api/comments",
@@ -4126,6 +4205,15 @@ var deleteComment = function deleteComment(commentId) {
   return $.ajax({
     url: "/api/comments/".concat(commentId),
     method: "DELETE"
+  });
+};
+var updateComment = function updateComment(comment) {
+  return $.ajax({
+    url: "api/comments/".concat(comment.id),
+    method: "PATCH",
+    data: {
+      comment: comment
+    }
   });
 };
 

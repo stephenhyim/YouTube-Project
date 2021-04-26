@@ -101,6 +101,8 @@ $font-stack: 'Roboto', sans-serif;
 
 }
 
+
+
 .single-comment {
     display: flex;
     flex-direction: row;
@@ -166,7 +168,7 @@ $font-stack: 'Roboto', sans-serif;
         
         
         
-        
+     
         
 
 
@@ -176,4 +178,11 @@ $font-stack: 'Roboto', sans-serif;
 .no-comment-wrapper {
     padding-top: 15px;
 }
+
+.comment-likes-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 150px;
+}  
 

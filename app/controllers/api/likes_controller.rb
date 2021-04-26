@@ -19,6 +19,7 @@ class Api::LikesController < ApplicationController
     def destroy
         # debugger
         @like = Like.find_by(like_params)
+        # debugger
         @like.destroy
         if @like.likable_type == "Video"
             @video = find_video(@like)

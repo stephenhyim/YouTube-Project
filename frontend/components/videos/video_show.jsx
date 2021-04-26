@@ -39,8 +39,6 @@ class VideoShow extends React.Component {
         } else {
             this.props.dislikeVideo(like)
         }
-        
-        
     }
 
     updateVideo(videoId) {

@@ -7,12 +7,34 @@ class CommentIndex extends React.Component {
         // this.state = {
         //     commentCount: 0
         // }
+        // this.handleDelete = this.handleDelete.bind(this)
+        this.createLike = this.createLike.bind(this)
     }
     
     componentDidMount() {
         this.props.fetchComments(this.props.videoId)
 
     }
+
+    // handleDelete(e) {
+    //     e.preventDefault()
+    //     if (this.props.comments.user_id === this.state.session.id) {
+    //         this.props.deleteComment(this.props.)
+    //     }
+    // }
+
+    createLike(like, comment, user) {
+        debugger
+        if (comment.likes.includes(user)) {
+            debugger
+            this.props.unlikeComment(like)
+        } else {
+            this.props.likeComment(like)
+        }
+        
+    }
+
+    
 
     formatDate(uploadDate) {
         let now;
@@ -77,6 +99,7 @@ class CommentIndex extends React.Component {
 
         const comments = Object.values(sortedComments).map( (comment, idx) => {
             const commentDate = this.formatDate(comment.created_at)
+            const like = {likable_id: comment.id, likable_type: "Comment", user_id: this.props.user}
             return (
                 <div className = "single-comment">
                     <div className = "comment-icon-container">
@@ -84,13 +107,21 @@ class CommentIndex extends React.Component {
                     </div>
                     <div className = "comment-list-wrapper">
                         <div className = "comment-details">
-                            <span className = "comment-username" key={idx}>{comment.nickname} {commentDate}</span>
-                            <ul className = "comment-body" key={comment.id}>{comment.body}</ul>
+                            <div className = "comment-info">
+                                <span className = "comment-username" key={idx}>{comment.nickname} {commentDate}</span>
+                                <ul className = "comment-body" key={comment.id}>{comment.body}</ul>
+                                <div className = "comment-likes-container">
+                                    <div onClick = {() => this.createLike(like, comment, this.props.user)}><i className="fas fa-thumbs-up"></i></div>
+                                    <p>{comment.likes.length}</p>
+                                    <div><i className="fas fa-thumbs-down"></i></div>
+                                    <p>0</p>
+                                </div>
+                            </div>
                         </div>
                         <div className = "comment-delete-dropdown">
-                            <div className = "comment-dropbtn"><i class="fas fa-ellipsis-v"></i></div>
+                            <div className = "comment-dropbtn"><i className="fas fa-ellipsis-v"></i></div>
                             <div className = "delete-dropdown">
-                                <div>Edit</div>
+                                <div onClick = {() => this.props.updateComment(comment)}>Edit</div>
                                 <div onClick={()=> this.props.deleteComment(comment.id)}>Delete</div>
                             </div>
                         </div>

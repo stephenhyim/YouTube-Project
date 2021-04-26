@@ -17,7 +17,7 @@ const LeftNavBar = ({ currentUser}) => {
                 </div>
                 <ul className = 'left-icons'>
                     <i className="fas fa-book-open"></i>
-                    <Link className = 'library-link' to ={`/`}>Library</Link>
+                    <Link className = 'library-link' to ={`/users/${currentUser}`}>Library</Link>
                 </ul>
                 <ul className = 'left-icons'>
                     <i className="fas fa-thumbs-up"></i>
@@ -32,10 +32,6 @@ const LeftNavBar = ({ currentUser}) => {
                 <ul className = 'left-icons'>
                     <i className="fas fa-home"></i>
                     <Link className = 'home-link' to ={`/`}>Home</Link>
-                </ul>
-                <ul className = 'left-icons'>
-                    <i className="fas fa-book-open"></i>
-                    <Link className = 'library-link' to ={`/`}>Library</Link>
                 </ul>
             </div>
         
