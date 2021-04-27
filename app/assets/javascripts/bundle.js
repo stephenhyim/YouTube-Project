@@ -167,7 +167,9 @@ var deleteComment = function deleteComment(commentId) {
   };
 };
 var updateComment = function updateComment(comment) {
+  debugger;
   return function (dispatch) {
+    debugger;
     return _util_comment_api_util__WEBPACK_IMPORTED_MODULE_0__["updateComment"](comment).then(function (comment) {
       return dispatch(receiveComment(comment));
     });
@@ -660,6 +662,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _create_comment_form_container__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./create_comment_form_container */ "./frontend/components/comment/create_comment_form_container.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -693,12 +697,16 @@ var CommentIndex = /*#__PURE__*/function (_React$Component) {
 
     _classCallCheck(this, CommentIndex);
 
-    _this = _super.call(this, props); // this.state = {
-    //     commentCount: 0
-    // }
-    // this.handleDelete = this.handleDelete.bind(this)
+    _this = _super.call(this, props);
+    _this.state = {
+      edit: false,
+      currentComment: "",
+      body: ""
+    }; // this.handleDelete = this.handleDelete.bind(this)
 
     _this.createLike = _this.createLike.bind(_assertThisInitialized(_this));
+    _this.update = _this.update.bind(_assertThisInitialized(_this));
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -713,6 +721,44 @@ var CommentIndex = /*#__PURE__*/function (_React$Component) {
     //     }
     // }
 
+  }, {
+    key: "edit",
+    value: function edit(commentId) {
+      this.setState({
+        edit: true,
+        currentComment: commentId
+      });
+    }
+  }, {
+    key: "update",
+    value: function update(field) {
+      var _this2 = this;
+
+      return function (e) {
+        return _this2.setState(_defineProperty({}, field, e.currentTarget.value));
+      };
+    }
+  }, {
+    key: "handleSubmit",
+    value: function handleSubmit(comment) {
+      var _this3 = this;
+
+      return function (e) {
+        e.preventDefault();
+        var editedComment = {
+          id: comment.id,
+          body: _this3.state.body,
+          user_id: comment.user_id,
+          video_id: comment.video_id
+        };
+
+        _this3.props.updateComment(editedComment);
+
+        _this3.setState({
+          edit: false
+        });
+      };
+    }
   }, {
     key: "createLike",
     value: function createLike(like, comment, user) {
@@ -772,7 +818,7 @@ var CommentIndex = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this2 = this;
+      var _this4 = this;
 
       if (Object.values(this.props.comments).length === 0) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -786,16 +832,23 @@ var CommentIndex = /*#__PURE__*/function (_React$Component) {
         return new Date(b.created_at) - new Date(a.created_at);
       });
       var comments = Object.values(sortedComments).map(function (comment, idx) {
-        var commentDate = _this2.formatDate(comment.created_at);
-
-        var like = {
-          likable_id: comment.id,
-          likable_type: "Comment",
-          user_id: _this2.props.user
-        };
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "single-comment"
+        var editState = _this4.state.edit && _this4.state.currentComment === comment.id ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+          className: "comment-form",
+          onSubmit: _this4.handleSubmit(comment)
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "comment-input-container"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+          className: "fas fa-user"
+        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          id: "comment-form-id",
+          type: "text",
+          onChange: _this4.update('body'),
+          value: _this4.state.body
+        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "comment-button-container"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          className: "comment-btn"
+        }, "SAVE")))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "comment-icon-container"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
           className: "fas fa-user"
@@ -815,7 +868,7 @@ var CommentIndex = /*#__PURE__*/function (_React$Component) {
           className: "comment-likes-container"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           onClick: function onClick() {
-            return _this2.createLike(like, comment, _this2.props.user);
+            return _this4.createLike(like, comment, _this4.props.currentUser);
           }
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
           className: "fas fa-thumbs-up"
@@ -831,13 +884,57 @@ var CommentIndex = /*#__PURE__*/function (_React$Component) {
           className: "delete-dropdown"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           onClick: function onClick() {
-            return _this2.props.updateComment(comment);
+            return _this4.edit(comment.id);
           }
         }, "Edit"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           onClick: function onClick() {
-            return _this2.props.deleteComment(comment.id);
+            return _this4.props.deleteComment(comment.id);
           }
         }, "Delete")))));
+
+        var commentDate = _this4.formatDate(comment.created_at);
+
+        var like = {
+          likable_id: comment.id,
+          likable_type: "Comment",
+          user_id: _this4.props.currentUser
+        };
+
+        if (_this4.props.currentUser === comment.user_id) {
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            className: "single-comment"
+          }, editState);
+        } else {
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            className: "single-comment"
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            className: "comment-icon-container"
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+            className: "fas fa-user"
+          })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            className: "comment-list-wrapper"
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            className: "comment-details"
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            className: "comment-info"
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+            className: "comment-username",
+            key: idx
+          }, comment.nickname, " ", commentDate), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+            className: "comment-body",
+            key: comment.id
+          }, comment.body), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            className: "comment-likes-container"
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            onClick: function onClick() {
+              return _this4.createLike(like, comment, _this4.props.currentUser);
+            }
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+            className: "fas fa-thumbs-up"
+          })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, comment.likes.length), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+            className: "fas fa-thumbs-down"
+          })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "0"))))));
+        }
       });
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "comment-container"
@@ -877,7 +974,7 @@ var mSTP = function mSTP(state, ownProps) {
   return {
     comments: state.entities.comments,
     videoId: ownProps.match.params.videoId,
-    user: state.session.id
+    currentUser: state.session.id
   };
 };
 

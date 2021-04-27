@@ -24,6 +24,7 @@ class Api::CommentsController < ApplicationController
     end
 
     def update
+        # debugger
         @comment = Comment.find(params[:id])
         @comment.user_id = current_user.id
 

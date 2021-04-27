@@ -60,7 +60,9 @@ export const deleteComment = commentId => {
 }
 
 export const updateComment = comment => {
+    debugger
     return dispatch => {
+        debugger
         return CommentAPIUtil.updateComment(comment)
             .then(comment => dispatch(receiveComment(comment)))
     }

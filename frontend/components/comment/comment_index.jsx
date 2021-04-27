@@ -4,11 +4,15 @@ import CreateCommentFormContainer from './create_comment_form_container';
 class CommentIndex extends React.Component {
     constructor(props) {
         super(props)
-        // this.state = {
-        //     commentCount: 0
-        // }
+        this.state = {
+            edit: false,
+            currentComment: "",
+            body: ""
+        }
         // this.handleDelete = this.handleDelete.bind(this)
         this.createLike = this.createLike.bind(this)
+        this.update = this.update.bind(this)
+        this.handleSubmit = this.handleSubmit.bind(this)
     }
     
     componentDidMount() {
@@ -23,6 +27,30 @@ class CommentIndex extends React.Component {
     //     }
     // }
 
+    edit(commentId) {
+        this.setState({
+            edit: true,
+            currentComment: commentId
+        })
+    }
+
+    update(field) {
+        return e => this.setState({
+            [field]: e.currentTarget.value
+        });
+    }
+
+    handleSubmit(comment) {
+        return (e) => {
+            e.preventDefault()
+            const editedComment = { id: comment.id, body: this.state.body, user_id: comment.user_id, video_id: comment.video_id}
+            this.props.updateComment(editedComment)
+            this.setState({
+                edit: false
+            })
+        }
+    }
+
     createLike(like, comment, user) {
         debugger
         if (comment.likes.includes(user)) {
@@ -33,8 +61,6 @@ class CommentIndex extends React.Component {
         }
         
     }
-
-    
 
     formatDate(uploadDate) {
         let now;
@@ -98,10 +124,20 @@ class CommentIndex extends React.Component {
         })
 
         const comments = Object.values(sortedComments).map( (comment, idx) => {
-            const commentDate = this.formatDate(comment.created_at)
-            const like = {likable_id: comment.id, likable_type: "Comment", user_id: this.props.user}
-            return (
-                <div className = "single-comment">
+            const editState = this.state.edit && this.state.currentComment === comment.id ? (
+                <div>
+                    <form className = "comment-form" onSubmit = {this.handleSubmit(comment)}>
+                        <div className = "comment-input-container">
+                            <i className="fas fa-user"></i>
+                            <input id = "comment-form-id" type="text" onChange = {this.update('body')} value = {this.state.body}/>
+                        </div>
+                        <div className = "comment-button-container">
+                            <button className = "comment-btn">SAVE</button>
+                        </div>
+                    </form>
+                </div>
+                ) : (
+                <div>
                     <div className = "comment-icon-container">
                         <i className="fas fa-user"></i>
                     </div>
@@ -111,7 +147,7 @@ class CommentIndex extends React.Component {
                                 <span className = "comment-username" key={idx}>{comment.nickname} {commentDate}</span>
                                 <ul className = "comment-body" key={comment.id}>{comment.body}</ul>
                                 <div className = "comment-likes-container">
-                                    <div onClick = {() => this.createLike(like, comment, this.props.user)}><i className="fas fa-thumbs-up"></i></div>
+                                    <div onClick = {() => this.createLike(like, comment, this.props.currentUser)}><i className="fas fa-thumbs-up"></i></div>
                                     <p>{comment.likes.length}</p>
                                     <div><i className="fas fa-thumbs-down"></i></div>
                                     <p>0</p>
@@ -121,13 +157,45 @@ class CommentIndex extends React.Component {
                         <div className = "comment-delete-dropdown">
                             <div className = "comment-dropbtn"><i className="fas fa-ellipsis-v"></i></div>
                             <div className = "delete-dropdown">
-                                <div onClick = {() => this.props.updateComment(comment)}>Edit</div>
+                                <div onClick = {() => this.edit(comment.id)}>Edit</div>
                                 <div onClick={()=> this.props.deleteComment(comment.id)}>Delete</div>
                             </div>
                         </div>
                     </div>
                 </div>
-            )
+                )
+            const commentDate = this.formatDate(comment.created_at)
+            const like = {likable_id: comment.id, likable_type: "Comment", user_id: this.props.currentUser}
+            if (this.props.currentUser === comment.user_id ) {
+                return (
+                    
+                    <div className = "single-comment">
+                        { editState }
+                    </div>
+                )
+            } else {
+                return (
+                    <div className = "single-comment">
+                        <div className = "comment-icon-container">
+                            <i className="fas fa-user"></i>
+                        </div>
+                        <div className = "comment-list-wrapper">
+                            <div className = "comment-details">
+                                <div className = "comment-info">
+                                    <span className = "comment-username" key={idx}>{comment.nickname} {commentDate}</span>
+                                    <ul className = "comment-body" key={comment.id}>{comment.body}</ul>
+                                    <div className = "comment-likes-container">
+                                        <div onClick = {() => this.createLike(like, comment, this.props.currentUser)}><i className="fas fa-thumbs-up"></i></div>
+                                        <p>{comment.likes.length}</p>
+                                        <div><i className="fas fa-thumbs-down"></i></div>
+                                        <p>0</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                )
+            }
         })
         
         return (

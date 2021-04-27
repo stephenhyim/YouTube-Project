@@ -8,7 +8,7 @@ const mSTP = (state, ownProps) => {
     return {
         comments: state.entities.comments,
         videoId: ownProps.match.params.videoId,
-        user: state.session.id
+        currentUser: state.session.id
     }
 }
 
