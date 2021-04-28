@@ -143,7 +143,7 @@ class CommentIndex extends React.Component {
                 ) : (
                 <div className = "single-comment">
                     <div className = "comment-icon-container">
-                        <i className="fas fa-user"></i>
+                        <Link to={`/users/${comment.user_id}`}><i className="fas fa-user"></i></Link>
                     </div>
                     <div className = "comment-list-wrapper">
                         <div className = "comment-details">
@@ -185,7 +185,7 @@ class CommentIndex extends React.Component {
                 return (
                     <div className = "single-comment">
                         <div className = "comment-icon-container">
-                            <i className="fas fa-user"></i>
+                            <Link to={`/users/${comment.user_id}`}><i className="fas fa-user"></i></Link>
                         </div>
                         <div className = "comment-list-wrapper">
                             <div className = "comment-details">

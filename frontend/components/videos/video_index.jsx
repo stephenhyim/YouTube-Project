@@ -68,11 +68,16 @@ class VideoIndex extends React.Component {
             return (
                 <li className = 'video-info' key={idx}>
                     <Link to={`/videos/${video.id}`}><video width = '360' height = '202'><source src={ video.videoUrl } type='video/mp4'></source></video></Link>
-                    <Link to={`/videos/${video.id}`}><h3 className = "video-title">{ video.title }</h3></Link>
-                    <Link className="user-firstname" to={`/users/${video.user_id}`}>{video.firstname}</Link>
-                    <div className = "video-created">{ viewDate }</div>
+                    <div className = "video-index-user-wrapper">
+                        <Link to={`/users/${video.user_id}`}><i className="fas fa-user"></i></Link>
+                        <div className = "video-index-user-info">
+                            <Link to={`/videos/${video.id}`}><h3 className = "video-title">{ video.title }</h3></Link>
+                            <Link className="user-firstname" to={`/users/${video.user_id}`}>{video.nickname}</Link>
+                            <div className = "video-created">{ viewDate }</div>
+                        </div>
+                    </div>
                 </li>
-            
+                
             )
         })
         

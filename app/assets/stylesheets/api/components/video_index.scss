@@ -31,29 +31,44 @@ $font-stack: 'Roboto', sans-serif;
             height: 350px;
         }
 
-            .video-title {
-                font-size: 1.17rem;
-                color: white;
-                text-decoration: none;
-                // font-weight: 700;
-                line-height: 2.2rem;
-                max-height: 4.4rem;
-            }
+            .video-index-user-wrapper {
+                display: flex;
+                flex-direction: row;
 
-            .video-created {
-                font-size: 14px;
-            }
+                .fa-user {
+                    font-size: 22px;
+                    height: 22px;
+                    margin-top: 10px;
+                }
 
-            .user-firstname {
-                color: #AAAAAA;
-                font-size: 14px;
-            }
+                .video-index-user-info {
+                    margin-left: 10px;
 
-            .video-created {
-                color: #AAAAAA;
-                font-size: 14px;
-            }
+                    .video-title {
+                        font-size: 1.17rem;
+                        color: white;
+                        text-decoration: none;
+                        // font-weight: 700;
+                        line-height: 2.2rem;
+                        max-height: 4.4rem;
+                    }
+        
+                    .video-created {
+                        font-size: 14px;
+                    }
+        
+                    .user-firstname {
+                        color: #AAAAAA;
+                        font-size: 14px;
+                    }
+        
+                    .video-created {
+                        color: #AAAAAA;
+                        font-size: 14px;
+                    }
+                }
 
+            }
 }
 
 a {
