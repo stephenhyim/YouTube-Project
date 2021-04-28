@@ -866,7 +866,7 @@ var CommentIndex = /*#__PURE__*/function (_React$Component) {
       if (Object.values(this.props.comments).length === 0) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "no-comment-wrapper"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Comments"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_create_comment_form_container__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "0 Comments"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_create_comment_form_container__WEBPACK_IMPORTED_MODULE_1__["default"], {
           videoId: this.props.videoId
         }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "No Comments Yet"));
       }
@@ -918,12 +918,14 @@ var CommentIndex = /*#__PURE__*/function (_React$Component) {
         }, comment.body), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "comment-likes-container"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "comment-icons",
           onClick: function onClick() {
             return _this4.createLike(like, comment, _this4.props.currentUser);
           }
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
           className: "fas fa-thumbs-up"
         })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, comment.likes.length), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "comment-icons",
           onClick: function onClick() {
             return _this4.createDislike(dislike, comment, _this4.props.currentUser);
           }
@@ -995,7 +997,7 @@ var CommentIndex = /*#__PURE__*/function (_React$Component) {
       });
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "comment-container"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Comments"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_create_comment_form_container__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, Object.keys(this.props.comments).length, " Comments"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_create_comment_form_container__WEBPACK_IMPORTED_MODULE_1__["default"], {
         videoId: this.props.videoId
       }), comments);
     }

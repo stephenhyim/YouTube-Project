@@ -122,6 +122,13 @@ $font-stack: 'Roboto', sans-serif;
             display: flex;
             flex-direction: column;
             justify-content: center;
+
+                .comment-info {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-around;
+                    height: 70px;
+                }
             
         }
 
@@ -185,5 +192,15 @@ $font-stack: 'Roboto', sans-serif;
     flex-direction: row;
     justify-content: space-around;
     width: 150px;
+    color: rgba(225, 225, 225, 0.5);
+
+    .comment-icons {
+        cursor: pointer;
+    }
+
+    .comment-icons:hover {
+        color: white;
+    }
+
 }  
 

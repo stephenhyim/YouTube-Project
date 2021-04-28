@@ -114,7 +114,7 @@ class CommentIndex extends React.Component {
         if (Object.values(this.props.comments).length === 0) {
             return (
                 <div className="no-comment-wrapper">
-                    <h1>Comments</h1>
+                    <h1>0 Comments</h1>
                     <CreateCommentFormContainer videoId = {this.props.videoId}/>
                     <p>No Comments Yet</p>
                 </div>
@@ -150,9 +150,9 @@ class CommentIndex extends React.Component {
                                 <span className = "comment-username" key={idx}>{comment.nickname} {commentDate}</span>
                                 <ul className = "comment-body" key={comment.id}>{comment.body}</ul>
                                 <div className = "comment-likes-container">
-                                    <div onClick = {() => this.createLike(like, comment, this.props.currentUser)}><i className="fas fa-thumbs-up"></i></div>
+                                    <div className="comment-icons" onClick = {() => this.createLike(like, comment, this.props.currentUser)}><i className="fas fa-thumbs-up"></i></div>
                                     <p>{comment.likes.length}</p>
-                                    <div onClick = {() => this.createDislike(dislike, comment, this.props.currentUser)}><i className="fas fa-thumbs-down"></i></div>
+                                    <div className="comment-icons" onClick = {() => this.createDislike(dislike, comment, this.props.currentUser)}><i className="fas fa-thumbs-down"></i></div>
                                     <p>{comment.dislikes.length}</p>
                                 </div>
                             </div>
@@ -204,7 +204,7 @@ class CommentIndex extends React.Component {
         
         return (
             <div className = "comment-container">
-                <h1>Comments</h1>
+                <h1>{Object.keys(this.props.comments).length} Comments</h1>
                 <CreateCommentFormContainer videoId = {this.props.videoId}/>
                 {comments}
             </div>
