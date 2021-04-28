@@ -95,8 +95,13 @@ class VideoShow extends React.Component {
                             </div>
                         </div>
                         <div className = "user-info">
-                            <Link to = {`/users/${video.user_id}`}><h1>{video.firstname}</h1></Link>
-                            <p>{video.description}</p>
+                            <div className = "user-info-top">
+                                <i className="fas fa-user"></i>
+                            </div>
+                            <div className = "video-show-description">
+                                <Link to = {`/users/${video.user_id}`}><h1>{video.firstname}</h1></Link>
+                                <p>{video.description}</p>
+                            </div>
                         </div>
                         <div className = "comment-main">
                             <CommentIndex />

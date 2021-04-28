@@ -1,5 +1,6 @@
 import React from 'react';
 import CreateCommentFormContainer from './create_comment_form_container';
+import { Link } from 'react-router-dom';
 
 class CommentIndex extends React.Component {
     constructor(props) {
@@ -147,8 +148,11 @@ class CommentIndex extends React.Component {
                     <div className = "comment-list-wrapper">
                         <div className = "comment-details">
                             <div className = "comment-info">
-                                <span className = "comment-username" key={idx}>{comment.nickname} {commentDate}</span>
-                                <ul className = "comment-body" key={comment.id}>{comment.body}</ul>
+                                <div className = "comment-top">
+                                    <Link to = {`/users/${comment.user_id}`}>{comment.nickname}</Link>
+                                    <p>{commentDate}</p>
+                                </div>
+                                <p className = "comment-body">{comment.body}</p>
                                 <div className = "comment-likes-container">
                                     <div className="comment-icons" onClick = {() => this.createLike(like, comment, this.props.currentUser)}><i className="fas fa-thumbs-up"></i></div>
                                     <p>{comment.likes.length}</p>
@@ -186,8 +190,11 @@ class CommentIndex extends React.Component {
                         <div className = "comment-list-wrapper">
                             <div className = "comment-details">
                                 <div className = "comment-info">
-                                    <span className = "comment-username" key={idx}>{comment.nickname} {commentDate}</span>
-                                    <ul className = "comment-body" key={comment.id}>{comment.body}</ul>
+                                    <div className = "comment-top">
+                                        <Link to = {`/users/${comment.user_id}`}>{comment.nickname}</Link>
+                                        <p>{commentDate}</p>
+                                    </div>
+                                    <p className = "comment-body">{comment.body}</p>
                                     <div className = "comment-likes-container">
                                         <div onClick = {() => this.createLike(like, comment, this.props.currentUser)}><i className="fas fa-thumbs-up"></i></div>
                                         <p>{comment.likes.length}</p>

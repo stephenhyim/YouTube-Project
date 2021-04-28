@@ -41,7 +41,7 @@ $font-stack: 'Roboto', sans-serif;
                         color: white;
                         width: 1280px;
                         font-size: 16px;
-                        margin-left: 5px;
+                        margin-left: 20px;
                     }
 
                     #comment-form-id:focus {
@@ -110,6 +110,11 @@ $font-stack: 'Roboto', sans-serif;
     width: 1325px;
     align-items: center;
 
+    .fa-user {
+        font-size: 22px;
+        height: 22px;
+    }
+
     .comment-list-wrapper {
         height: 78px;
         width: 1325px;
@@ -128,6 +133,12 @@ $font-stack: 'Roboto', sans-serif;
                     flex-direction: column;
                     justify-content: space-around;
                     height: 70px;
+                    margin-left: 20px;
+                }
+
+                .comment-top {
+                    display: flex;
+                    flex-direction: row;
                 }
             
         }
