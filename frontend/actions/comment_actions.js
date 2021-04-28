@@ -1,5 +1,6 @@
 import * as CommentAPIUtil from '../util/comment_api_util';
 import * as LikeAPIUtil from '../util/like_api_util';
+import * as DislikeAPIUtil from '../util/dislike_api_util';
 
 export const RECEIVE_COMMENT = "RECEIVE_COMMENT"
 export const RECEIVE_ALL_COMMENTS = "RECEIVE_ALL_COMMENTS"
@@ -85,3 +86,18 @@ export const unlikeComment = like => {
             .then(comment => dispatch(receiveComment(comment)))
     }
 }
+
+export const hateComment = dislike => {
+    return dispatch => {
+        return DislikeAPIUtil.createDislike(dislike)
+            .then((comment) => dispatch(receiveComment(comment)))
+    }
+}
+
+export const unhateComment = dislike => {
+    return dispatch => {
+        return DislikeAPIUtil.deleteDislike(dislike)
+            .then(comment => dispatch(receiveComment(comment)))
+    }
+}
+

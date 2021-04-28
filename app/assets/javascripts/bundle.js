@@ -90,7 +90,7 @@
 /*!*********************************************!*\
   !*** ./frontend/actions/comment_actions.js ***!
   \*********************************************/
-/*! exports provided: RECEIVE_COMMENT, RECEIVE_ALL_COMMENTS, REMOVE_COMMENT, fetchComments, fetchComment, createComment, deleteComment, updateComment, likeComment, unlikeComment */
+/*! exports provided: RECEIVE_COMMENT, RECEIVE_ALL_COMMENTS, REMOVE_COMMENT, fetchComments, fetchComment, createComment, deleteComment, updateComment, likeComment, unlikeComment, hateComment, unhateComment */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -105,8 +105,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateComment", function() { return updateComment; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "likeComment", function() { return likeComment; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "unlikeComment", function() { return unlikeComment; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "hateComment", function() { return hateComment; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "unhateComment", function() { return unhateComment; });
 /* harmony import */ var _util_comment_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/comment_api_util */ "./frontend/util/comment_api_util.js");
 /* harmony import */ var _util_like_api_util__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../util/like_api_util */ "./frontend/util/like_api_util.js");
+/* harmony import */ var _util_dislike_api_util__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../util/dislike_api_util */ "./frontend/util/dislike_api_util.js");
+
 
 
 var RECEIVE_COMMENT = "RECEIVE_COMMENT";
@@ -189,6 +193,20 @@ var unlikeComment = function unlikeComment(like) {
   return function (dispatch) {
     debugger;
     return _util_like_api_util__WEBPACK_IMPORTED_MODULE_1__["deleteLike"](like).then(function (comment) {
+      return dispatch(receiveComment(comment));
+    });
+  };
+};
+var hateComment = function hateComment(dislike) {
+  return function (dispatch) {
+    return _util_dislike_api_util__WEBPACK_IMPORTED_MODULE_2__["createDislike"](dislike).then(function (comment) {
+      return dispatch(receiveComment(comment));
+    });
+  };
+};
+var unhateComment = function unhateComment(dislike) {
+  return function (dispatch) {
+    return _util_dislike_api_util__WEBPACK_IMPORTED_MODULE_2__["deleteDislike"](dislike).then(function (comment) {
       return dispatch(receiveComment(comment));
     });
   };
@@ -725,6 +743,7 @@ var CommentIndex = /*#__PURE__*/function (_React$Component) {
     _this.createLike = _this.createLike.bind(_assertThisInitialized(_this));
     _this.update = _this.update.bind(_assertThisInitialized(_this));
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    _this.createDislike = _this.createDislike.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -782,6 +801,17 @@ var CommentIndex = /*#__PURE__*/function (_React$Component) {
         this.props.unlikeComment(like);
       } else {
         this.props.likeComment(like);
+      }
+    }
+  }, {
+    key: "createDislike",
+    value: function createDislike(dislike, comment, user) {
+      debugger;
+
+      if (comment.dislikes.includes(user)) {
+        this.props.unhateComment(dislike);
+      } else {
+        this.props.hateComment(dislike);
       }
     }
   }, {
@@ -893,9 +923,13 @@ var CommentIndex = /*#__PURE__*/function (_React$Component) {
           }
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
           className: "fas fa-thumbs-up"
-        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, comment.likes.length), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, comment.likes.length), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          onClick: function onClick() {
+            return _this4.createDislike(dislike, comment, _this4.props.currentUser);
+          }
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
           className: "fas fa-thumbs-down"
-        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "0")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, comment.dislikes.length)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "comment-delete-dropdown"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "comment-dropbtn"
@@ -915,6 +949,11 @@ var CommentIndex = /*#__PURE__*/function (_React$Component) {
         var like = {
           likable_id: comment.id,
           likable_type: "Comment",
+          user_id: _this4.props.currentUser
+        };
+        var dislike = {
+          dislikable_id: comment.id,
+          dislikable_type: "Comment",
           user_id: _this4.props.currentUser
         };
 
@@ -1012,6 +1051,12 @@ var mDTP = function mDTP(dispatch) {
     },
     unlikeComment: function unlikeComment(like) {
       return dispatch(Object(_actions_comment_actions__WEBPACK_IMPORTED_MODULE_2__["unlikeComment"])(like));
+    },
+    hateComment: function hateComment(dislike) {
+      return dispatch(Object(_actions_comment_actions__WEBPACK_IMPORTED_MODULE_2__["hateComment"])(dislike));
+    },
+    unhateComment: function unhateComment(dislike) {
+      return dispatch(Object(_actions_comment_actions__WEBPACK_IMPORTED_MODULE_2__["unhateComment"])(dislike));
     }
   };
 };

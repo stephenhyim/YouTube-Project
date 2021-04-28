@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { fetchComments, deleteComment, updateComment, likeComment, unlikeComment } from '../../actions/comment_actions'
+import { fetchComments, deleteComment, updateComment, likeComment, unlikeComment, hateComment, unhateComment } from '../../actions/comment_actions'
 import CommentIndex from './comment_index'
 
 const mSTP = (state, ownProps) => {
@@ -18,7 +18,9 @@ const mDTP = dispatch => {
         deleteComment: commentId => dispatch(deleteComment(commentId)),
         updateComment: comment => dispatch(updateComment(comment)),
         likeComment: like => dispatch(likeComment(like)),
-        unlikeComment: like => dispatch(unlikeComment(like))
+        unlikeComment: like => dispatch(unlikeComment(like)),
+        hateComment: dislike => dispatch(hateComment(dislike)),
+        unhateComment: dislike => dispatch(unhateComment(dislike))
     }
 }
 

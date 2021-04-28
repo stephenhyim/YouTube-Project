@@ -13,6 +13,7 @@ class CommentIndex extends React.Component {
         this.createLike = this.createLike.bind(this)
         this.update = this.update.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
+        this.createDislike = this.createDislike.bind(this)
     }
     
     componentDidMount() {
@@ -53,7 +54,15 @@ class CommentIndex extends React.Component {
         } else {
             this.props.likeComment(like)
         }
-        
+    }
+
+    createDislike(dislike, comment, user) {
+        debugger
+        if (comment.dislikes.includes(user)) {
+            this.props.unhateComment(dislike)
+        } else {
+            this.props.hateComment(dislike)
+        }
     }
 
     formatDate(uploadDate) {
@@ -111,7 +120,6 @@ class CommentIndex extends React.Component {
                 </div>
             )
         }
-        
 
         const sortedComments = Object.values(this.props.comments).sort((a,b) => {
             return new Date(b.created_at) - new Date(a.created_at);
@@ -144,8 +152,8 @@ class CommentIndex extends React.Component {
                                 <div className = "comment-likes-container">
                                     <div onClick = {() => this.createLike(like, comment, this.props.currentUser)}><i className="fas fa-thumbs-up"></i></div>
                                     <p>{comment.likes.length}</p>
-                                    <div><i className="fas fa-thumbs-down"></i></div>
-                                    <p>0</p>
+                                    <div onClick = {() => this.createDislike(dislike, comment, this.props.currentUser)}><i className="fas fa-thumbs-down"></i></div>
+                                    <p>{comment.dislikes.length}</p>
                                 </div>
                             </div>
                         </div>
@@ -161,6 +169,7 @@ class CommentIndex extends React.Component {
                 )
             
             const like = {likable_id: comment.id, likable_type: "Comment", user_id: this.props.currentUser}
+            const dislike = {dislikable_id: comment.id, dislikable_type: "Comment", user_id: this.props.currentUser}
             if (this.props.currentUser === comment.user_id ) {
                 return (
                     
