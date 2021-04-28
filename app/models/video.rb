@@ -15,6 +15,8 @@ class Video < ApplicationRecord
 
     has_many :likes, as: :likable, dependent: :destroy
 
+    has_many :dislikes, as: :dislikable, dependent: :destroy
+
 
     def ensure_video
         unless self.video.attached?

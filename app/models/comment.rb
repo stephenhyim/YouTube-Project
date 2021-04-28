@@ -15,5 +15,7 @@ class Comment < ApplicationRecord
 
     has_many :likes, as: :likable, dependent: :destroy
 
+    has_many :dislikes, as: :dislikable, dependent: :destroy
+
 
 end
