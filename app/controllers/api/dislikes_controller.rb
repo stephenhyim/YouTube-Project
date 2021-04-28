@@ -1,4 +1,4 @@
-class API::DislikesController < ApplicationController
+class Api::DislikesController < ApplicationController
 
     def create
         @dislike = Dislike.new(dislike_params)
@@ -27,11 +27,10 @@ class API::DislikesController < ApplicationController
         end
     end
 
-
     private
 
     def dislike_params
-        params.require(:dislike).permit(:disliker_id, :dislikable_id, :dislikable_type)
+        params.require(:dislike).permit(:user_id, :dislikable_id, :dislikable_type)
     end
 
     def find_video(dislike)
@@ -41,6 +40,5 @@ class API::DislikesController < ApplicationController
     def find_comment(dislike)
         return Comment.find_by(id: dislike.dislikable_id)
     end
-
 
 end

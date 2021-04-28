@@ -340,7 +340,7 @@ var fetchUser = function fetchUser(userId) {
 /*!*******************************************!*\
   !*** ./frontend/actions/video_actions.js ***!
   \*******************************************/
-/*! exports provided: RECEIVE_ALL_VIDEOS, RECEIVE_VIDEO, RECEIVE_VIDEO_ERRORS, REMOVE_VIDEO_ERRORS, REMOVE_VIDEO, fetchVideos, fetchVideo, createVideo, updateVideo, deleteVideo, likeVideo, dislikeVideo */
+/*! exports provided: RECEIVE_ALL_VIDEOS, RECEIVE_VIDEO, RECEIVE_VIDEO_ERRORS, REMOVE_VIDEO_ERRORS, REMOVE_VIDEO, fetchVideos, fetchVideo, createVideo, updateVideo, deleteVideo, likeVideo, dislikeVideo, hateVideo, unhateVideo */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -357,8 +357,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteVideo", function() { return deleteVideo; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "likeVideo", function() { return likeVideo; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "dislikeVideo", function() { return dislikeVideo; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "hateVideo", function() { return hateVideo; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "unhateVideo", function() { return unhateVideo; });
 /* harmony import */ var _util_video_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/video_api_util */ "./frontend/util/video_api_util.js");
 /* harmony import */ var _util_like_api_util__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../util/like_api_util */ "./frontend/util/like_api_util.js");
+/* harmony import */ var _util_dislike_api_util__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../util/dislike_api_util */ "./frontend/util/dislike_api_util.js");
+
 
 
 var RECEIVE_ALL_VIDEOS = 'RECEIVE_ALL_VIDEOS';
@@ -458,6 +462,20 @@ var dislikeVideo = function dislikeVideo(like) {
   return function (dispatch) {
     debugger;
     return _util_like_api_util__WEBPACK_IMPORTED_MODULE_1__["deleteLike"](like).then(function (video) {
+      return dispatch(receiveVideo(video));
+    });
+  };
+};
+var hateVideo = function hateVideo(dislike) {
+  return function (dispatch) {
+    return _util_dislike_api_util__WEBPACK_IMPORTED_MODULE_2__["createDislike"](dislike).then(function (video) {
+      return dispatch(receiveVideo(video));
+    });
+  };
+};
+var unhateVideo = function unhateVideo(dislike) {
+  return function (dispatch) {
+    return _util_dislike_api_util__WEBPACK_IMPORTED_MODULE_2__["deleteDislike"](dislike).then(function (video) {
       return dispatch(receiveVideo(video));
     });
   };
@@ -3713,6 +3731,7 @@ var VideoShow = /*#__PURE__*/function (_React$Component) {
     };
     _this.createLike = _this.createLike.bind(_assertThisInitialized(_this));
     _this.updateVideo = _this.updateVideo.bind(_assertThisInitialized(_this));
+    _this.createDislike = _this.createDislike.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -3746,6 +3765,21 @@ var VideoShow = /*#__PURE__*/function (_React$Component) {
         this.props.likeVideo(like);
       } else {
         this.props.dislikeVideo(like);
+      }
+    }
+  }, {
+    key: "createDislike",
+    value: function createDislike() {
+      var dislike = {
+        dislikable_id: this.props.video,
+        dislikable_type: "Video",
+        user_id: this.props.user
+      };
+
+      if (!this.props.videos[this.props.video].dislikes.includes(this.props.user)) {
+        this.props.hateVideo(dislike);
+      } else {
+        this.props.unhateVideo(dislike);
       }
     }
   }, {
@@ -3801,9 +3835,11 @@ var VideoShow = /*#__PURE__*/function (_React$Component) {
         onClick: this.createLike
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         className: "fas fa-thumbs-up"
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, video.likes.length), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, video.likes.length), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        onClick: this.createDislike
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         className: "fas fa-thumbs-down"
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "0")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, video.dislikes.length)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "user-info"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         to: "/users/".concat(video.user_id)
@@ -3868,6 +3904,12 @@ var mDTP = function mDTP(dispatch) {
     },
     fetchComments: function fetchComments(videoId) {
       return dispatch(Object(_actions_comment_actions__WEBPACK_IMPORTED_MODULE_2__["fetchComments"])(videoId));
+    },
+    hateVideo: function hateVideo(dislike) {
+      return dispatch(Object(_actions_video_actions__WEBPACK_IMPORTED_MODULE_1__["hateVideo"])(dislike));
+    },
+    unhateVideo: function unhateVideo(dislike) {
+      return dispatch(Object(_actions_video_actions__WEBPACK_IMPORTED_MODULE_1__["unhateVideo"])(dislike));
     }
   };
 };
@@ -4310,6 +4352,38 @@ var updateComment = function updateComment(comment) {
     method: "PATCH",
     data: {
       comment: comment
+    }
+  });
+};
+
+/***/ }),
+
+/***/ "./frontend/util/dislike_api_util.js":
+/*!*******************************************!*\
+  !*** ./frontend/util/dislike_api_util.js ***!
+  \*******************************************/
+/*! exports provided: createDislike, deleteDislike */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createDislike", function() { return createDislike; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteDislike", function() { return deleteDislike; });
+var createDislike = function createDislike(dislike) {
+  return $.ajax({
+    url: "/api/dislikes",
+    method: "POST",
+    data: {
+      dislike: dislike
+    }
+  });
+};
+var deleteDislike = function deleteDislike(dislike) {
+  return $.ajax({
+    url: "/api/dislikes/1",
+    method: "DELETE",
+    data: {
+      dislike: dislike
     }
   });
 };

@@ -47,13 +47,13 @@ ActiveRecord::Schema.define(version: 2021_04_28_142557) do
   end
 
   create_table "dislikes", force: :cascade do |t|
-    t.integer "disliker_id", null: false
+    t.integer "user_id", null: false
     t.string "dislikable_type"
     t.bigint "dislikable_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["dislikable_type", "dislikable_id"], name: "index_dislikes_on_dislikable_type_and_dislikable_id"
-    t.index ["disliker_id"], name: "index_dislikes_on_disliker_id"
+    t.index ["user_id"], name: "index_dislikes_on_user_id"
   end
 
   create_table "likes", force: :cascade do |t|

@@ -14,6 +14,7 @@ class VideoShow extends React.Component {
         }
         this.createLike = this.createLike.bind(this)
         this.updateVideo = this.updateVideo.bind(this)
+        this.createDislike = this.createDislike.bind(this)
     }
 
 
@@ -38,6 +39,15 @@ class VideoShow extends React.Component {
             this.props.likeVideo(like)
         } else {
             this.props.dislikeVideo(like)
+        }
+    }
+
+    createDislike() {
+        const dislike = {dislikable_id: this.props.video, dislikable_type: "Video", user_id: this.props.user }
+        if (!this.props.videos[this.props.video].dislikes.includes(this.props.user)) {
+            this.props.hateVideo(dislike)
+        } else {
+            this.props.unhateVideo(dislike)
         }
     }
 
@@ -79,8 +89,8 @@ class VideoShow extends React.Component {
                                 <div className = "show-metrics-right"> 
                                     <div onClick={this.createLike}><i className="fas fa-thumbs-up"></i></div>
                                     <p>{video.likes.length}</p>
-                                    <div><i className="fas fa-thumbs-down"></i></div>
-                                    <p>0</p>
+                                    <div onClick={this.createDislike}><i className="fas fa-thumbs-down"></i></div>
+                                    <p>{video.dislikes.length}</p>
                                 </div>
                             </div>
                         </div>
