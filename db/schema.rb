@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_16_220049) do
+ActiveRecord::Schema.define(version: 2021_04_28_142557) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,16 @@ ActiveRecord::Schema.define(version: 2021_04_16_220049) do
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_comments_on_user_id"
     t.index ["video_id"], name: "index_comments_on_video_id"
+  end
+
+  create_table "dislikes", force: :cascade do |t|
+    t.integer "disliker_id", null: false
+    t.string "dislikable_type"
+    t.bigint "dislikable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["dislikable_type", "dislikable_id"], name: "index_dislikes_on_dislikable_type_and_dislikable_id"
+    t.index ["disliker_id"], name: "index_dislikes_on_disliker_id"
   end
 
   create_table "likes", force: :cascade do |t|

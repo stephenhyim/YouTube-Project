@@ -700,7 +700,7 @@ var CommentIndex = /*#__PURE__*/function (_React$Component) {
     _this = _super.call(this, props);
     _this.state = {
       edit: false,
-      currentComment: "",
+      currentCommentId: "",
       body: ""
     }; // this.handleDelete = this.handleDelete.bind(this)
 
@@ -714,19 +714,13 @@ var CommentIndex = /*#__PURE__*/function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       this.props.fetchComments(this.props.videoId);
-    } // handleDelete(e) {
-    //     e.preventDefault()
-    //     if (this.props.comments.user_id === this.state.session.id) {
-    //         this.props.deleteComment(this.props.)
-    //     }
-    // }
-
+    }
   }, {
     key: "edit",
     value: function edit(commentId) {
       this.setState({
         edit: true,
-        currentComment: commentId
+        currentCommentId: commentId
       });
     }
   }, {
@@ -755,7 +749,8 @@ var CommentIndex = /*#__PURE__*/function (_React$Component) {
         _this3.props.updateComment(editedComment);
 
         _this3.setState({
-          edit: false
+          edit: false,
+          body: ""
         });
       };
     }
@@ -832,7 +827,11 @@ var CommentIndex = /*#__PURE__*/function (_React$Component) {
         return new Date(b.created_at) - new Date(a.created_at);
       });
       var comments = Object.values(sortedComments).map(function (comment, idx) {
-        var editState = _this4.state.edit && _this4.state.currentComment === comment.id ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        var commentDate = _this4.formatDate(comment.created_at);
+
+        var editState = _this4.state.edit && _this4.state.currentCommentId === comment.id ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "comment-form-wrapper"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
           className: "comment-form",
           onSubmit: _this4.handleSubmit(comment)
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -843,12 +842,16 @@ var CommentIndex = /*#__PURE__*/function (_React$Component) {
           id: "comment-form-id",
           type: "text",
           onChange: _this4.update('body'),
-          value: _this4.state.body
+          value: _this4.state.body,
+          placeholder: comment.body
         })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "comment-button-container"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-          className: "comment-btn"
-        }, "SAVE")))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "comment-btn",
+          disabled: !_this4.state.body
+        }, "SAVE")))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "single-comment"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "comment-icon-container"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
           className: "fas fa-user"
@@ -891,9 +894,6 @@ var CommentIndex = /*#__PURE__*/function (_React$Component) {
             return _this4.props.deleteComment(comment.id);
           }
         }, "Delete")))));
-
-        var commentDate = _this4.formatDate(comment.created_at);
-
         var like = {
           likable_id: comment.id,
           likable_type: "Comment",
@@ -902,7 +902,7 @@ var CommentIndex = /*#__PURE__*/function (_React$Component) {
 
         if (_this4.props.currentUser === comment.user_id) {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-            className: "single-comment"
+            className: "edit-state-wrapper"
           }, editState);
         } else {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {

@@ -6,7 +6,7 @@ class CommentIndex extends React.Component {
         super(props)
         this.state = {
             edit: false,
-            currentComment: "",
+            currentCommentId: "",
             body: ""
         }
         // this.handleDelete = this.handleDelete.bind(this)
@@ -20,17 +20,10 @@ class CommentIndex extends React.Component {
 
     }
 
-    // handleDelete(e) {
-    //     e.preventDefault()
-    //     if (this.props.comments.user_id === this.state.session.id) {
-    //         this.props.deleteComment(this.props.)
-    //     }
-    // }
-
     edit(commentId) {
         this.setState({
             edit: true,
-            currentComment: commentId
+            currentCommentId: commentId
         })
     }
 
@@ -46,7 +39,8 @@ class CommentIndex extends React.Component {
             const editedComment = { id: comment.id, body: this.state.body, user_id: comment.user_id, video_id: comment.video_id}
             this.props.updateComment(editedComment)
             this.setState({
-                edit: false
+                edit: false,
+                body: ""
             })
         }
     }
@@ -124,20 +118,21 @@ class CommentIndex extends React.Component {
         })
 
         const comments = Object.values(sortedComments).map( (comment, idx) => {
-            const editState = this.state.edit && this.state.currentComment === comment.id ? (
-                <div>
+            const commentDate = this.formatDate(comment.created_at)
+            const editState = this.state.edit && this.state.currentCommentId === comment.id ? (
+                <div className = "comment-form-wrapper">
                     <form className = "comment-form" onSubmit = {this.handleSubmit(comment)}>
                         <div className = "comment-input-container">
                             <i className="fas fa-user"></i>
-                            <input id = "comment-form-id" type="text" onChange = {this.update('body')} value = {this.state.body}/>
+                            <input id = "comment-form-id" type="text" onChange = {this.update('body')} value = {this.state.body} placeholder ={comment.body} />
                         </div>
                         <div className = "comment-button-container">
-                            <button className = "comment-btn">SAVE</button>
+                            <button className = "comment-btn" disabled={!this.state.body}>SAVE</button>
                         </div>
                     </form>
                 </div>
                 ) : (
-                <div>
+                <div className = "single-comment">
                     <div className = "comment-icon-container">
                         <i className="fas fa-user"></i>
                     </div>
@@ -164,12 +159,12 @@ class CommentIndex extends React.Component {
                     </div>
                 </div>
                 )
-            const commentDate = this.formatDate(comment.created_at)
+            
             const like = {likable_id: comment.id, likable_type: "Comment", user_id: this.props.currentUser}
             if (this.props.currentUser === comment.user_id ) {
                 return (
                     
-                    <div className = "single-comment">
+                    <div className = "edit-state-wrapper">
                         { editState }
                     </div>
                 )
