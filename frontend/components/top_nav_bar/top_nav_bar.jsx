@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
+import SearchBarContainer from '../search_bar/search_bar_container'
 
 
 class TopNavBar extends React.Component {
@@ -8,7 +9,7 @@ class TopNavBar extends React.Component {
 
     this.state = {
       showMenu: false,
-      showMenu2: false
+      showMenu2: false,
     }
 
     this.openDropDown = this.openDropDown.bind(this);
@@ -70,12 +71,7 @@ class TopNavBar extends React.Component {
         </div>
     
         <div className='center-top-nav'>
-          <div className='search-bar-container'>
-            <ul><input className='search-bar' type ='text' placeholder ='Search' /></ul>
-            <ul>
-              <li><button className="search-btn"><i className="fas fa-search"></i></button></li>
-            </ul>
-          </div>
+          <SearchBarContainer/>
         </div>
 
         <div className = "top-right-nav">
@@ -116,12 +112,7 @@ class TopNavBar extends React.Component {
         </div>
     
         <div className='center-top-nav'>
-          <div className='search-bar-container'>
-            <ul><input className='search-bar' type ='text' placeholder ='Search' /></ul>
-            <ul>
-              <li><button className="search-btn"><i className="fas fa-search"></i></button></li>
-            </ul>
-          </div>
+          <SearchBarContainer/>
         </div>
     
         <div className = 'right-top-nav'>
