@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
-import SearchBar from '../search_bar/search_bar'
+import SearchBar from '../search_bar/search_bar';
 
 
 class TopNavBar extends React.Component {

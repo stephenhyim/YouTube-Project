@@ -243,6 +243,38 @@ var closeModal = function closeModal() {
 
 /***/ }),
 
+/***/ "./frontend/actions/search_actions.js":
+/*!********************************************!*\
+  !*** ./frontend/actions/search_actions.js ***!
+  \********************************************/
+/*! exports provided: RECEIVE_ALL_RESULTS, fetchResults */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_ALL_RESULTS", function() { return RECEIVE_ALL_RESULTS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchResults", function() { return fetchResults; });
+/* harmony import */ var _util_search_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/search_api_util */ "./frontend/util/search_api_util.js");
+
+var RECEIVE_ALL_RESULTS = "RECEIVE_ALL_RESULTS";
+
+var receiveResults = function receiveResults(results) {
+  return {
+    type: RECEIVE_ALL_RESULTS,
+    results: results
+  };
+};
+
+var fetchResults = function fetchResults(searchBody) {
+  return function (dispatch) {
+    return _util_search_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchResults"](searchBody).then(function (results) {
+      return dispatch(receiveResults(results));
+    });
+  };
+};
+
+/***/ }),
+
 /***/ "./frontend/actions/session_actions.js":
 /*!*********************************************!*\
   !*** ./frontend/actions/session_actions.js ***!
@@ -1410,6 +1442,7 @@ var SearchBar = /*#__PURE__*/function (_React$Component) {
     _this.state = {
       searchBody: ""
     };
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -1424,8 +1457,8 @@ var SearchBar = /*#__PURE__*/function (_React$Component) {
     }
   }, {
     key: "handleSubmit",
-    value: function handleSubmit(e) {
-      e.preventDefault();
+    value: function handleSubmit() {
+      this.props.fetchResults;
     }
   }, {
     key: "render",
@@ -1438,7 +1471,8 @@ var SearchBar = /*#__PURE__*/function (_React$Component) {
         placeholder: "Search",
         onChange: this.update("searchBody"),
         value: this.state.searchBody
-      }), console.log(this.state.searchBody), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: this.handleSubmit(),
         className: "search-btn"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         className: "fas fa-search"
@@ -4261,6 +4295,37 @@ var rootReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])(
 
 /***/ }),
 
+/***/ "./frontend/reducers/search_reducer.js":
+/*!*********************************************!*\
+  !*** ./frontend/reducers/search_reducer.js ***!
+  \*********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _actions_search_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/search_actions */ "./frontend/actions/search_actions.js");
+
+
+var SearchReducer = function SearchReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  Object.freeze(state);
+  var nextState = Object.assign({}, state);
+
+  switch (action.type) {
+    case _actions_search_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_ALL_RESULTS"]:
+      return action.results;
+
+    default:
+      return state;
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (SearchReducer);
+
+/***/ }),
+
 /***/ "./frontend/reducers/session_errors_reducer.js":
 /*!*****************************************************!*\
   !*** ./frontend/reducers/session_errors_reducer.js ***!
@@ -4345,10 +4410,13 @@ var sessionReducer = function sessionReducer() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var _modal_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modal_reducer */ "./frontend/reducers/modal_reducer.js");
+/* harmony import */ var _search_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./search_reducer */ "./frontend/reducers/search_reducer.js");
+
 
 
 var uiReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
-  modal: _modal_reducer__WEBPACK_IMPORTED_MODULE_1__["default"]
+  modal: _modal_reducer__WEBPACK_IMPORTED_MODULE_1__["default"],
+  search: _search_reducer__WEBPACK_IMPORTED_MODULE_2__["default"]
 });
 /* harmony default export */ __webpack_exports__["default"] = (uiReducer);
 
@@ -4675,6 +4743,28 @@ var Protected = function Protected(_ref2) {
 
 var AuthRoute = Object(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mSTP)(Auth));
 var ProtectedRoute = Object(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mSTP)(Protected));
+
+/***/ }),
+
+/***/ "./frontend/util/search_api_util.js":
+/*!******************************************!*\
+  !*** ./frontend/util/search_api_util.js ***!
+  \******************************************/
+/*! exports provided: fetchResults */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchResults", function() { return fetchResults; });
+var fetchResults = function fetchResults(searchBody) {
+  return $.ajax({
+    url: "/api/search",
+    method: "GET",
+    data: {
+      searchBody: searchBody
+    }
+  });
+};
 
 /***/ }),
 

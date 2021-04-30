@@ -6,6 +6,7 @@ class SearchBar extends React.Component {
         this.state = {
             searchBody: ""
         }
+        this.handleSubmit = this.handleSubmit.bind(this)
     }
 
     update(field) {
@@ -14,17 +15,15 @@ class SearchBar extends React.Component {
         });
     }
 
-    handleSubmit(e) {
-        e.preventDefault()
-        
+    handleSubmit() {
+        this.props.fetchResults
     }
 
     render () {
         return (
             <div className='search-bar-container'>
                 <input className='search-bar' type ='text' placeholder ='Search' onChange={this.update("searchBody")} value = {this.state.searchBody}/>
-                {console.log(this.state.searchBody)}
-                <button className="search-btn"><i className="fas fa-search"></i></button>
+                <button onClick={this.handleSubmit()} className="search-btn"><i className="fas fa-search"></i></button>
             </div>
         )
     }

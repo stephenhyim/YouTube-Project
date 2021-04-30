@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     resources :comments, only: [:index, :show, :create, :update, :destroy]
     resources :likes, only: [:create, :destroy]
     resources :dislikes, only: [:create, :destroy]
+    get '/search', to: 'search#search'
   end
 
   root 'static_pages#root'
