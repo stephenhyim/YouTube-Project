@@ -139,6 +139,11 @@ $font-stack: 'Roboto', sans-serif;
                 .comment-top {
                     display: flex;
                     flex-direction: row;
+
+                    .comment-date {
+                        margin-left: 3px;
+                    }
+
                 }
             
         }

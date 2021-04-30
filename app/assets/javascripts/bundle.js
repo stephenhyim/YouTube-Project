@@ -795,25 +795,41 @@ var CommentIndex = /*#__PURE__*/function (_React$Component) {
     }
   }, {
     key: "createLike",
-    value: function createLike(like, comment, user) {
+    value: function createLike(like, comment, user, dislike) {
+      if (this.props.currentUser === null) {
+        this.props.history.push("/login");
+      }
+
       debugger;
 
-      if (comment.likes.includes(user)) {
+      if (!comment.likes.includes(user) && !comment.dislikes.includes(user)) {
         debugger;
-        this.props.unlikeComment(like);
-      } else {
         this.props.likeComment(like);
+      } else if (!comment.likes.includes(user) && comment.dislikes.includes(user)) {
+        this.props.likeComment(like);
+        this.props.unhateComment(dislike);
+      } else {
+        this.props.unlikeComment(like);
       }
     }
   }, {
     key: "createDislike",
-    value: function createDislike(dislike, comment, user) {
+    value: function createDislike(dislike, comment, user, like) {
       debugger;
 
-      if (comment.dislikes.includes(user)) {
-        this.props.unhateComment(dislike);
-      } else {
+      if (this.props.currentUser === null) {
+        this.props.history.push("/login");
+      }
+
+      debugger;
+
+      if (!comment.dislikes.includes(user) && !comment.likes.includes(user)) {
         this.props.hateComment(dislike);
+      } else if (!comment.dislikes.includes(user) && comment.likes.includes(user)) {
+        this.props.hateComment(dislike);
+        this.props.unlikeComment(like);
+      } else {
+        this.props.unhateComment(dislike);
       }
     }
   }, {
@@ -917,21 +933,23 @@ var CommentIndex = /*#__PURE__*/function (_React$Component) {
           className: "comment-top"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
           to: "/users/".concat(comment.user_id)
-        }, comment.nickname), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, commentDate)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        }, comment.nickname), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+          className: "comment-date"
+        }, commentDate)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
           className: "comment-body"
         }, comment.body), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "comment-likes-container"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "comment-icons",
           onClick: function onClick() {
-            return _this4.createLike(like, comment, _this4.props.currentUser);
+            return _this4.createLike(like, comment, _this4.props.currentUser, dislike);
           }
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
           className: "fas fa-thumbs-up"
         })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, comment.likes.length), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "comment-icons",
           onClick: function onClick() {
-            return _this4.createDislike(dislike, comment, _this4.props.currentUser);
+            return _this4.createDislike(dislike, comment, _this4.props.currentUser, like);
           }
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
           className: "fas fa-thumbs-down"
@@ -986,19 +1004,26 @@ var CommentIndex = /*#__PURE__*/function (_React$Component) {
             className: "comment-top"
           }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
             to: "/users/".concat(comment.user_id)
-          }, comment.nickname), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, commentDate)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+          }, comment.nickname), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+            className: "comment-date"
+          }, commentDate)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
             className: "comment-body"
           }, comment.body), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
             className: "comment-likes-container"
           }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
             onClick: function onClick() {
-              return _this4.createLike(like, comment, _this4.props.currentUser);
+              return _this4.createLike(like, comment, _this4.props.currentUser, dislike);
             }
           }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
             className: "fas fa-thumbs-up"
-          })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, comment.likes.length), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+          })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, comment.likes.length), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            className: "comment-icons",
+            onClick: function onClick() {
+              return _this4.createDislike(dislike, comment, _this4.props.currentUser, like);
+            }
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
             className: "fas fa-thumbs-down"
-          })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "0"))))));
+          })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, comment.dislikes.length))))));
         }
       });
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1012,7 +1037,7 @@ var CommentIndex = /*#__PURE__*/function (_React$Component) {
   return CommentIndex;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
-/* harmony default export */ __webpack_exports__["default"] = (CommentIndex);
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["withRouter"])(CommentIndex));
 
 /***/ }),
 

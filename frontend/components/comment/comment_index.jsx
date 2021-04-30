@@ -1,6 +1,6 @@
 import React from 'react';
 import CreateCommentFormContainer from './create_comment_form_container';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 class CommentIndex extends React.Component {
     constructor(props) {
@@ -47,22 +47,35 @@ class CommentIndex extends React.Component {
         }
     }
 
-    createLike(like, comment, user) {
+    createLike(like, comment, user, dislike) {
+        if (this.props.currentUser === null) {
+            this.props.history.push("/login")
+        }
         debugger
-        if (comment.likes.includes(user)) {
+        if (!comment.likes.includes(user) && !comment.dislikes.includes(user)) {
             debugger
-            this.props.unlikeComment(like)
-        } else {
             this.props.likeComment(like)
+        } else if (!comment.likes.includes(user) && comment.dislikes.includes(user)) {
+            this.props.likeComment(like)
+            this.props.unhateComment(dislike)
+        } else {
+            this.props.unlikeComment(like)
         }
     }
 
-    createDislike(dislike, comment, user) {
+    createDislike(dislike, comment, user, like) {
         debugger
-        if (comment.dislikes.includes(user)) {
-            this.props.unhateComment(dislike)
-        } else {
+        if (this.props.currentUser === null) {
+            this.props.history.push("/login")
+        }
+        debugger
+        if (!comment.dislikes.includes(user) && !comment.likes.includes(user)) {
             this.props.hateComment(dislike)
+        } else if (!comment.dislikes.includes(user) && comment.likes.includes(user)) {
+            this.props.hateComment(dislike)
+            this.props.unlikeComment(like)
+        } else {
+            this.props.unhateComment(dislike)
         }
     }
 
@@ -150,13 +163,13 @@ class CommentIndex extends React.Component {
                             <div className = "comment-info">
                                 <div className = "comment-top">
                                     <Link to = {`/users/${comment.user_id}`}>{comment.nickname}</Link>
-                                    <p>{commentDate}</p>
+                                    <p className = "comment-date">{commentDate}</p>
                                 </div>
                                 <p className = "comment-body">{comment.body}</p>
                                 <div className = "comment-likes-container">
-                                    <div className="comment-icons" onClick = {() => this.createLike(like, comment, this.props.currentUser)}><i className="fas fa-thumbs-up"></i></div>
+                                    <div className="comment-icons" onClick = {() => this.createLike(like, comment, this.props.currentUser, dislike)}><i className="fas fa-thumbs-up"></i></div>
                                     <p>{comment.likes.length}</p>
-                                    <div className="comment-icons" onClick = {() => this.createDislike(dislike, comment, this.props.currentUser)}><i className="fas fa-thumbs-down"></i></div>
+                                    <div className="comment-icons" onClick = {() => this.createDislike(dislike, comment, this.props.currentUser, like)}><i className="fas fa-thumbs-down"></i></div>
                                     <p>{comment.dislikes.length}</p>
                                 </div>
                             </div>
@@ -192,14 +205,14 @@ class CommentIndex extends React.Component {
                                 <div className = "comment-info">
                                     <div className = "comment-top">
                                         <Link to = {`/users/${comment.user_id}`}>{comment.nickname}</Link>
-                                        <p>{commentDate}</p>
+                                        <p className = "comment-date">{commentDate}</p>
                                     </div>
                                     <p className = "comment-body">{comment.body}</p>
                                     <div className = "comment-likes-container">
-                                        <div onClick = {() => this.createLike(like, comment, this.props.currentUser)}><i className="fas fa-thumbs-up"></i></div>
+                                        <div onClick = {() => this.createLike(like, comment, this.props.currentUser, dislike)}><i className="fas fa-thumbs-up"></i></div>
                                         <p>{comment.likes.length}</p>
-                                        <div><i className="fas fa-thumbs-down"></i></div>
-                                        <p>0</p>
+                                        <div className="comment-icons" onClick = {() => this.createDislike(dislike, comment, this.props.currentUser, like)}><i className="fas fa-thumbs-down"></i></div>
+                                        <p>{comment.dislikes.length}</p>
                                     </div>
                                 </div>
                             </div>
@@ -222,4 +235,4 @@ class CommentIndex extends React.Component {
     
 }
 
-export default CommentIndex;
+export default withRouter(CommentIndex);
