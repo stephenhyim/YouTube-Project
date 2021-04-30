@@ -1383,7 +1383,7 @@ var SearchBar = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this, props);
     _this.state = {
-      searchBody: _this.props.searchBody
+      searchBody: ""
     };
     return _this;
   }
@@ -1425,41 +1425,6 @@ var SearchBar = /*#__PURE__*/function (_React$Component) {
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
 /* harmony default export */ __webpack_exports__["default"] = (SearchBar);
-
-/***/ }),
-
-/***/ "./frontend/components/search_bar/search_bar_container.js":
-/*!****************************************************************!*\
-  !*** ./frontend/components/search_bar/search_bar_container.js ***!
-  \****************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _search_bar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./search_bar */ "./frontend/components/search_bar/search_bar.jsx");
-/* harmony import */ var _actions_video_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/video_actions */ "./frontend/actions/video_actions.js");
-
-
-
-
-var mSTP = function mSTP(state, ownProps) {
-  return {
-    videos: state.entities.videos,
-    searchBody: ""
-  };
-};
-
-var mDTP = function mDTP(dispatch) {
-  return {
-    fetchVideos: function fetchVideos() {
-      return dispatch(Object(_actions_video_actions__WEBPACK_IMPORTED_MODULE_2__["fetchVideos"])());
-    }
-  };
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mSTP, mDTP)(_search_bar__WEBPACK_IMPORTED_MODULE_1__["default"]));
 
 /***/ }),
 
@@ -2515,7 +2480,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var _search_bar_search_bar_container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../search_bar/search_bar_container */ "./frontend/components/search_bar/search_bar_container.js");
+/* harmony import */ var _search_bar_search_bar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../search_bar/search_bar */ "./frontend/components/search_bar/search_bar.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -2636,7 +2601,7 @@ var TopNavBar = /*#__PURE__*/function (_React$Component) {
         className: "fab fa-youtube"
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "center-top-nav"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_search_bar_search_bar_container__WEBPACK_IMPORTED_MODULE_2__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_search_bar_search_bar__WEBPACK_IMPORTED_MODULE_2__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "top-right-nav"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "video-dropdown-container"
@@ -2685,7 +2650,7 @@ var TopNavBar = /*#__PURE__*/function (_React$Component) {
         className: "fab fa-youtube"
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "center-top-nav"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_search_bar_search_bar_container__WEBPACK_IMPORTED_MODULE_2__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_search_bar_search_bar__WEBPACK_IMPORTED_MODULE_2__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "right-top-nav"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "signin-container"
@@ -3925,16 +3890,28 @@ var VideoShow = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "createLike",
     value: function createLike() {
+      if (this.props.user === null) {
+        this.props.history.push("/login");
+      }
+
       var like = {
         likable_id: this.props.video,
         likable_type: "Video",
         user_id: this.props.user
       };
+      var dislike = {
+        dislikable_id: this.props.video,
+        dislikable_type: "Video",
+        user_id: this.props.user
+      };
       debugger;
 
-      if (!this.props.videos[this.props.video].likes.includes(this.props.user)) {
+      if (!this.props.videos[this.props.video].likes.includes(this.props.user) && !this.props.videos[this.props.video].dislikes.includes(this.props.user)) {
         debugger;
         this.props.likeVideo(like);
+      } else if (!this.props.videos[this.props.video].likes.includes(this.props.user) && this.props.videos[this.props.video].dislikes.includes(this.props.user)) {
+        this.props.likeVideo(like);
+        this.props.unhateVideo(dislike);
       } else {
         this.props.dislikeVideo(like);
       }
@@ -3942,14 +3919,26 @@ var VideoShow = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "createDislike",
     value: function createDislike() {
+      if (this.props.user === null) {
+        this.props.history.push("/login");
+      }
+
       var dislike = {
         dislikable_id: this.props.video,
         dislikable_type: "Video",
         user_id: this.props.user
       };
+      var like = {
+        likable_id: this.props.video,
+        likable_type: "Video",
+        user_id: this.props.user
+      };
 
-      if (!this.props.videos[this.props.video].dislikes.includes(this.props.user)) {
+      if (!this.props.videos[this.props.video].dislikes.includes(this.props.user) && !this.props.videos[this.props.video].likes.includes(this.props.user)) {
         this.props.hateVideo(dislike);
+      } else if (!this.props.videos[this.props.video].dislikes.includes(this.props.user) && this.props.videos[this.props.video].likes.includes(this.props.user)) {
+        this.props.hateVideo(dislike);
+        this.props.dislikeVideo(like);
       } else {
         this.props.unhateVideo(dislike);
       }

@@ -4,7 +4,7 @@ class SearchBar extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            searchBody: this.props.searchBody
+            searchBody: ""
         }
     }
 

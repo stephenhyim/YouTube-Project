@@ -32,20 +32,34 @@ class VideoShow extends React.Component {
     }
 
     createLike() {
+        if (this.props.user === null) {
+            this.props.history.push("/login")
+        }
         const like = {likable_id: this.props.video, likable_type: "Video", user_id: this.props.user}
+        const dislike = {dislikable_id: this.props.video, dislikable_type: "Video", user_id: this.props.user }
         debugger
-        if (!this.props.videos[this.props.video].likes.includes(this.props.user)) {
+        if (!this.props.videos[this.props.video].likes.includes(this.props.user) && !this.props.videos[this.props.video].dislikes.includes(this.props.user)) {
             debugger
             this.props.likeVideo(like)
+        } else if (!this.props.videos[this.props.video].likes.includes(this.props.user) && this.props.videos[this.props.video].dislikes.includes(this.props.user)) {
+            this.props.likeVideo(like)
+            this.props.unhateVideo(dislike)
         } else {
             this.props.dislikeVideo(like)
         }
     }
 
     createDislike() {
+        if (this.props.user === null) {
+            this.props.history.push("/login")
+        }
         const dislike = {dislikable_id: this.props.video, dislikable_type: "Video", user_id: this.props.user }
-        if (!this.props.videos[this.props.video].dislikes.includes(this.props.user)) {
+        const like = {likable_id: this.props.video, likable_type: "Video", user_id: this.props.user}
+        if (!this.props.videos[this.props.video].dislikes.includes(this.props.user) && !this.props.videos[this.props.video].likes.includes(this.props.user)) {
             this.props.hateVideo(dislike)
+        } else if (!this.props.videos[this.props.video].dislikes.includes(this.props.user) && this.props.videos[this.props.video].likes.includes(this.props.user)) {
+            this.props.hateVideo(dislike)
+            this.props.dislikeVideo(like)
         } else {
             this.props.unhateVideo(dislike)
         }
