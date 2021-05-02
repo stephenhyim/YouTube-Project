@@ -76,7 +76,11 @@ class VideoIndexSlider extends React.Component {
                         <div className = "video-slide-info">
                             <div className = "video-slide-title" onClick={() => this.props.updateVideo(video.id)}>{ video.title }</div>
                             <Link className="video-slide-username" to={`/users/${video.user_id}`}>{video.firstname}</Link>
-                            <div className = "video-slide-created">{ viewDate }</div>
+                            <div className = "video-slide-created">
+                                <p>Views Coming</p>
+                                <p>&middot;</p>
+                                <p>{ viewDate }</p>
+                            </div>
                         </div>
                     </li>
                 

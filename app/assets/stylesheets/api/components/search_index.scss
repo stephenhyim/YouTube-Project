@@ -1,0 +1,68 @@
+$font-stack: 'Roboto', sans-serif;
+
+.search-index-page {
+    font-family: $font-stack;
+    display: flex;
+    flex-direction: row;
+    padding-top: 90px;
+    justify-content: center;
+    background: #181818;
+    height: 100vh;
+    color: white;
+
+
+    .single-search-result {
+        display: flex;
+        flex-direction: row;
+
+
+        .single-search-wrapper {
+            display: flex;
+            flex-direction: column;
+            width: 500px;
+            height: 200px;
+            margin-left: 20px;
+
+            .search-title {
+                font-size: 18px;
+                text-transform: capitalize;
+            }
+
+
+            .single-search-metrics {
+                display: flex;
+                flex-direction: row;
+                font-size: 12px;
+                color: #AAAAAA;
+                
+            }
+
+            .single-search-user-info {
+                display: flex;
+                flex-direction: row;
+                margin-top: 30px;
+                align-items: center;
+                cursor: pointer;
+                font-size: 12px;
+                
+
+                .single-search-user {
+                    text-transform: capitalize;
+                    padding-left: 5px;
+                    color: #AAAAAA;
+                }
+
+            }
+
+            .single-search-description {
+                margin-top: 20px;
+                font-size: 12px;
+                color: #AAAAAA;
+            }
+
+
+        }
+
+    }
+
+}

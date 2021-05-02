@@ -46,7 +46,7 @@ function Modal(props) {
                                         </div>
                                         <div className="video-title-description-wrapper">
                                             <label htmlFor="modal-textarea-description">Video Description:</label>
-                                            <textarea className="modal-textarea" id="modal-textarea-description" placeholder="Description (required)&#10;Tell Viewers About Your Video" maxlength="5000" onChange={update('description')} value = {state.description}></textarea>
+                                            <textarea className="modal-textarea" id="modal-textarea-description" placeholder="Description (required)&#10;Tell Viewers About Your Video" maxLength="5000" onChange={update('description')} value = {state.description}></textarea>
                                         </div>
                                         {renderErrors()}
                                     </div>

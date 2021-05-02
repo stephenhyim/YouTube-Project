@@ -73,7 +73,11 @@ class VideoIndex extends React.Component {
                         <div className = "video-index-user-info">
                             <Link to={`/videos/${video.id}`}><h3 className = "video-title">{ video.title }</h3></Link>
                             <Link className="user-firstname" to={`/users/${video.user_id}`}>{video.nickname}</Link>
-                            <div className = "video-created">{ viewDate }</div>
+                            <div className = "video-created">
+                                <p>Views Coming</p>
+                                <p>&middot;</p>
+                                <p>{viewDate}</p>
+                            </div>
                         </div>
                     </div>
                 </li>

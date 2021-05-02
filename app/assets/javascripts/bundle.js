@@ -1284,14 +1284,7 @@ var LeftNavBar = function LeftNavBar(_ref) {
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     className: "library-link",
     to: "/users/".concat(currentUser)
-  }, "Library")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
-    className: "left-icons"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-    className: "fas fa-thumbs-up"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-    className: "liked-videos-link",
-    to: "/"
-  }, "Liked videos")))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, "Library")))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "left-nav-bar"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "left-group1"
@@ -1547,7 +1540,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _top_nav_bar_top_nav_bar_container__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../top_nav_bar/top_nav_bar_container */ "./frontend/components/top_nav_bar/top_nav_bar_container.js");
-/* harmony import */ var _left_nav_bar_left_nav_bar_container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../left_nav_bar/left_nav_bar_container */ "./frontend/components/left_nav_bar/left_nav_bar_container.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1572,10 +1565,9 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
+
 var queryString = __webpack_require__(/*! query-string */ "./node_modules/query-string/index.js");
-
-
-
 
 var SearchIndex = /*#__PURE__*/function (_React$Component) {
   _inherits(SearchIndex, _React$Component);
@@ -1604,8 +1596,55 @@ var SearchIndex = /*#__PURE__*/function (_React$Component) {
       }
     }
   }, {
+    key: "formatDate",
+    value: function formatDate(uploadDate) {
+      var now;
+      now = new Date();
+      var formatedCreate = new Date(uploadDate);
+      debugger;
+
+      if (now.getFullYear() - formatedCreate.getFullYear() === 1) {
+        var oneyearAgo = now.getFullYear() - formatedCreate.getFullYear();
+        return "".concat(oneyearAgo, " year ago");
+      } else if (now.getFullYear() - formatedCreate.getFullYear() > 0) {
+        var yearsAgo = now.getFullYear() - formatedCreate.getFullYear();
+        return "".concat(yearsAgo, " years ago");
+      } else if (now.getMonth() - formatedCreate.getMonth() === 1) {
+        var oneMonthAgo = now.getMonth() - formatedCreate.getMonth();
+        return "".concat(oneMonthAgo, " month ago");
+      } else if (now.getMonth() - formatedCreate.getMonth() > 0) {
+        var monthsAgo = now.getMonth() - formatedCreate.getMonth();
+        return "".concat(monthsAgo, " months ago");
+      } else if (now.getDate() - formatedCreate.getDate() === 1) {
+        var oneDayAgo = now.getDate() - formatedCreate.getDate();
+        return "".concat(oneDayAgo, " day ago");
+      } else if (now.getDate() - formatedCreate.getDate() > 0) {
+        var daysAgo = now.getDate() - formatedCreate.getDate();
+        return "".concat(daysAgo, " days ago");
+      } else if (now.getHours() - formatedCreate.getHours() === 1) {
+        var oneHourAgo = now.getHours() - formatedCreate.getHours();
+        return "".concat(oneHourAgo, " hour ago");
+      } else if (now.getHours() - formatedCreate.getHours() > 0) {
+        var hoursAgo = now.getHours() - formatedCreate.getHours();
+        return "".concat(hoursAgo, " hours ago");
+      } else if (now.getMinutes() - formatedCreate.getMinutes() === 1) {
+        var oneMinuteAgo = now.getMinutes() - formatedCreate.getMinutes();
+        return "".concat(oneMinuteAgo, " minute ago");
+      } else if (now.getMinutes() - formatedCreate.getMinutes() > 0) {
+        var minutesAgo = now.getMinutes() - formatedCreate.getMinutes();
+        return "".concat(minutesAgo, " minutes ago");
+      } else if (now.getSeconds() - formatedCreate.getSeconds() > 1) {
+        var secondsAgo = now.getSeconds() - formatedCreate.getSeconds();
+        return "".concat(secondsAgo, " seconds ago");
+      } else {
+        return "1 second ago";
+      }
+    }
+  }, {
     key: "render",
     value: function render() {
+      var _this = this;
+
       debugger;
 
       if (!this.props.searchResults) {
@@ -1613,14 +1652,43 @@ var SearchIndex = /*#__PURE__*/function (_React$Component) {
       }
 
       var results = Object.values(this.props.searchResults).map(function (result, idx) {
+        var viewDate = _this.formatDate(result.created_at);
+
         debugger;
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "single-search-result",
           key: idx
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
+          to: "/videos/".concat(result.id)
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("video", {
+          height: "200px",
+          width: "360px",
           src: result.videoUrl
-        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, result.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, result.created_at));
+        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "single-search-wrapper"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
+          to: "/videos/".concat(result.id)
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+          className: "search-title"
+        }, result.title)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "single-search-metrics"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Views Coming"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "\xB7"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, viewDate)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "single-search-user-info"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
+          to: "/users/".concat(result.user_id)
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+          className: "fas fa-user"
+        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
+          to: "/users/".concat(result.user_id)
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+          className: "single-search-user"
+        }, result.nickname))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+          className: "single-search-description"
+        }, result.description)));
       });
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_top_nav_bar_top_nav_bar_container__WEBPACK_IMPORTED_MODULE_1__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_left_nav_bar_left_nav_bar_container__WEBPACK_IMPORTED_MODULE_2__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, results));
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_top_nav_bar_top_nav_bar_container__WEBPACK_IMPORTED_MODULE_1__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "search-index-page"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, results)));
     }
   }]);
 
@@ -3327,7 +3395,7 @@ function Modal(props) {
         className: "modal-textarea",
         id: "modal-textarea-description",
         placeholder: "Description (required)\nTell Viewers About Your Video",
-        maxlength: "5000",
+        maxLength: "5000",
         onChange: update('description'),
         value: state.description
       })), renderErrors()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -3824,7 +3892,7 @@ var VideoIndex = /*#__PURE__*/function (_React$Component) {
           to: "/users/".concat(video.user_id)
         }, video.nickname), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "video-created"
-        }, viewDate))));
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Views Coming"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "\xB7"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, viewDate)))));
       });
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "video-main-container"
@@ -4024,7 +4092,7 @@ var VideoIndexSlider = /*#__PURE__*/function (_React$Component) {
             to: "/users/".concat(video.user_id)
           }, video.firstname), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
             className: "video-slide-created"
-          }, viewDate)));
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Views Coming"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "\xB7"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, viewDate))));
         } else {
           return null;
         }

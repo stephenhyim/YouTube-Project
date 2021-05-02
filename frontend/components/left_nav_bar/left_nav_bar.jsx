@@ -19,10 +19,6 @@ const LeftNavBar = ({ currentUser}) => {
                     <i className="fas fa-book-open"></i>
                     <Link className = 'library-link' to ={`/users/${currentUser}`}>Library</Link>
                 </ul>
-                <ul className = 'left-icons'>
-                    <i className="fas fa-thumbs-up"></i>
-                    <Link className = 'liked-videos-link' to ={`/`}>Liked videos</Link>
-                </ul>
             </div>
 
         </div>  
