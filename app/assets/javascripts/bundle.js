@@ -1648,8 +1648,13 @@ var SearchIndex = /*#__PURE__*/function (_React$Component) {
       debugger;
 
       if (!this.props.searchResults) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "no results"));
-      }
+        return null;
+      } // const results = !this.props.searchResults ? (
+      //     <p>No Results</p>
+      //     ) : (
+      //     <div>{displayResults}</div>
+      // )
+
 
       var results = Object.values(this.props.searchResults).map(function (result, idx) {
         var viewDate = _this.formatDate(result.created_at);
@@ -1686,9 +1691,13 @@ var SearchIndex = /*#__PURE__*/function (_React$Component) {
           className: "single-search-description"
         }, result.description)));
       });
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_top_nav_bar_top_nav_bar_container__WEBPACK_IMPORTED_MODULE_1__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "search-index-container"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_top_nav_bar_top_nav_bar_container__WEBPACK_IMPORTED_MODULE_1__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "search-index-page"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, results)));
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "search-results"
+      }, results)));
     }
   }]);
 

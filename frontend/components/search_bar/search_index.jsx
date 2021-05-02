@@ -67,12 +67,15 @@ class SearchIndex extends React.Component {
     render() {
         debugger
         if (!this.props.searchResults) {
-            return (
-                <div>
-                    <p>no results</p>
-                </div>
-            )
+            return null;
         }
+
+        // const results = !this.props.searchResults ? (
+        //     <p>No Results</p>
+        //     ) : (
+        //     <div>{displayResults}</div>
+        // )
+
 
         const results = Object.values(this.props.searchResults).map( (result, idx) => {
             const viewDate = this.formatDate(result.created_at)
@@ -96,11 +99,13 @@ class SearchIndex extends React.Component {
                 </div>
             )
         })
+
+
         return (
-            <div>
+            <div className = "search-index-container">
                 <TopNavBarContainer/>
                 <div className = "search-index-page">
-                    <div>{results}</div>
+                    <div className = "search-results">{results}</div>
                 </div>
             </div>
         )
