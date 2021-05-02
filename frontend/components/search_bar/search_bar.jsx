@@ -1,4 +1,5 @@
 import React from 'react';
+import {withRouter} from 'react-router-dom';
 
 class SearchBar extends React.Component {
     constructor(props) {
@@ -15,22 +16,23 @@ class SearchBar extends React.Component {
         });
     }
 
-    handleSubmit() {
-        this.props.fetchResults
+    handleSubmit(e) {
+        e.preventDefault()
+        this.props.history.push({ pathname: '/search', search: `search=${this.state.searchBody}`})
     }
 
     render () {
         return (
             <div className='search-bar-container'>
-                <input className='search-bar' type ='text' placeholder ='Search' onChange={this.update("searchBody")} value = {this.state.searchBody}/>
-                <button onClick={this.handleSubmit()} className="search-btn"><i className="fas fa-search"></i></button>
+                <form onSubmit ={this.handleSubmit}>
+                    <input className='search-bar' type ='text' placeholder ='Search' onChange={this.update("searchBody")} value = {this.state.searchBody}/>
+                    <button onClick={this.handleSubmit} className="search-btn"><i className="fas fa-search"></i></button>
+                </form>
             </div>
         )
     }
 
 
-
-
 }
 
-export default SearchBar;
+export default withRouter(SearchBar);

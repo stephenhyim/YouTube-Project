@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
-import SearchBar from '../search_bar/search_bar';
+import SearchBarContainer from '../search_bar/search_bar_container';
 
 
 class TopNavBar extends React.Component {
@@ -71,7 +71,7 @@ class TopNavBar extends React.Component {
         </div>
     
         <div className='center-top-nav'>
-          <SearchBar/>
+          <SearchBarContainer/>
         </div>
 
         <div className = "top-right-nav">
@@ -112,7 +112,7 @@ class TopNavBar extends React.Component {
         </div>
     
         <div className='center-top-nav'>
-          <SearchBar/>
+          <SearchBarContainer/>
         </div>
     
         <div className = 'right-top-nav'>

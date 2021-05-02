@@ -10,6 +10,7 @@ import LoginFormContainer from './session/login_form_container';
 import UserShowContainer from './user/user_container'
 import VideoShowContainer from './videos/video_show_container';
 import CreateVideoFormContainer from './videos/create_video_form_container';
+import SearchIndexContainer from './search_bar/search_index_container'
 
 const App = () => (
     <div className = "main">
@@ -22,6 +23,7 @@ const App = () => (
             <ProtectedRoute exact path = "/users/:userId" component={UserShowContainer} />
             <Route exact path = '/videos/:videoId' component = {VideoShowContainer} />
             <Route exact path = '/upload/video' component = {CreateVideoFormContainer} />
+            <Route exact path = '/search' component = {SearchIndexContainer} />
         </Switch>
         
     </div>
