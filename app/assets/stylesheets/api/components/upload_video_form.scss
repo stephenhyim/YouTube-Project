@@ -36,7 +36,7 @@ $font-stack: 'Roboto', sans-serif;
     color: #212121;
     font-size: 20px;
     padding: 0px 24px;
-    border-bottom: 1px solid rgba(0,0,0,.12);
+    border-bottom: 1px solid rgba(0,0,0, 0.12);
 }
 
 .close-modal-btn:hover {
@@ -86,8 +86,8 @@ $font-stack: 'Roboto', sans-serif;
     font-size: 60px;
     height: 80px;
     width: 80px;
-    color: rgba(0,0,0,.5);
-    background: rgba(0,0,0,.15);
+    color: rgba(0,0,0, 0.5);
+    background: rgba(0,0,0, 0.15);
     border-radius: 50%;
     padding: 20px;
     text-align: center;
@@ -125,7 +125,7 @@ $font-stack: 'Roboto', sans-serif;
         }
 
         .video-title-modal {
-            border: 1px solid rgba(0,0,0,.3);
+            border: 1px solid rgba(0,0,0, 0.3);
             border-radius: 4px;
             height: 40px;
             width: 300px;
@@ -154,7 +154,7 @@ $font-stack: 'Roboto', sans-serif;
         .modal-textarea {
             height: 80px;
             width: 300px;
-            border: 1px solid rgba(0,0,0,.3);
+            border: 1px solid rgba(0,0,0, 0.3);
             border-radius: 4px;
             resize: none;
             font-family: $font-stack;
