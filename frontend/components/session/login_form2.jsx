@@ -8,19 +8,6 @@ class LoginForm2 extends React.Component {
       firstname: ''
     }
   }
-    
-  // componentDidMount() {
-  //   debugger
-  //   fetch('/api/users/') 
-  //     .then(res => res.json())
-  //     console.log(res.json)
-  //     .then(result => {
-  //       console.log(result)
-  //       this.setState({
-  //         firstname: result
-  //       })
-  //     })
-  // }
 
   renderErrors() {
     return(
@@ -35,7 +22,6 @@ class LoginForm2 extends React.Component {
   }
 
   render() { 
-    // debugger
     return (
       <div className='login2-form-two-container'>
         <div className='login2-form-two-test'>

@@ -31,12 +31,7 @@ class SignupFormParent extends React.Component {
         this.setState({
             step: step + 1
         })
-        // if (this.state.password === this.state.confirmPassword) {this.setState({
-        //     step: step + 1
-        // })} else {
-        //     console.log('pw didnt match')
-        //     return `{Those passwords didn't match. Try again.}`
-        // }
+       
     }
 
     prevStep() {

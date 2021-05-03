@@ -18,9 +18,7 @@ const removeDislike = dislikeId => {
 }
 
 export const createDislike = dislike => {
-    debugger
     return dispatch => {
-        debugger
         return DislikeAPIUtil.createDislike(dislike)
             .then(dislike => dispatch(receiveDislike(dislike)))
     }

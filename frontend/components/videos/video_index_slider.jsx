@@ -13,7 +13,6 @@ class VideoIndexSlider extends React.Component {
 
         now = new Date();
         const formatedCreate = new Date(uploadDate)
-        // debugger
 
         if (now.getFullYear() - formatedCreate.getFullYear() === 1) {
             const oneyearAgo = now.getFullYear() - formatedCreate.getFullYear()
@@ -55,17 +54,15 @@ class VideoIndexSlider extends React.Component {
     }
 
     render() {
-        // debugger
         if (!this.props.videos) {
             return null
         }
-
         
         const {user, videos, ownVideo} = this.props
-        // debugger
+        
         const otherVideos = Object.values(videos).map( (video, idx) => {
             const viewDate = this.formatDate(video.created_at)
-            // debugger
+            
             if (video.id !== parseInt(ownVideo) ) {
             
                 return (

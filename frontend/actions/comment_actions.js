@@ -43,45 +43,35 @@ export const fetchComment = commentId => {
 }
 
 export const createComment = comment => {
-    debugger
     return dispatch => {
-        debugger
         return CommentAPIUtil.createComment(comment)
             .then(comment => dispatch(receiveComment(comment)))
     }
 }
 
 export const deleteComment = commentId => {
-    debugger
     return dispatch => {
-        debugger
         return CommentAPIUtil.deleteComment(commentId)
             .then(() => dispatch(removeComment(commentId)))
     }
 }
 
 export const updateComment = comment => {
-    debugger
     return dispatch => {
-        debugger
         return CommentAPIUtil.updateComment(comment)
             .then(comment => dispatch(receiveComment(comment)))
     }
 }
 
 export const likeComment = like => {
-    debugger
     return dispatch => {
-        debugger
         return LikeAPIUtil.createLike(like)
             .then((comment) => dispatch(receiveComment(comment)))
     }
 }
 
 export const unlikeComment = like => {
-    debugger
     return dispatch => {
-        debugger
         return LikeAPIUtil.deleteLike(like)
             .then(comment => dispatch(receiveComment(comment)))
     }

@@ -4,7 +4,6 @@ import { fetchComments, deleteComment, updateComment, likeComment, unlikeComment
 import CommentIndex from './comment_index'
 
 const mSTP = (state, ownProps) => {
-    debugger
     return {
         comments: state.entities.comments,
         videoId: ownProps.match.params.videoId,

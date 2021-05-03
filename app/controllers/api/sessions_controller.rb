@@ -5,13 +5,12 @@ class Api::SessionsController < ApplicationController
         params[:user][:email],
         params[:user][:password]
       )
-      # debugger
       if @user
         login(@user)
         @user_video = @user.videos
         render "api/users/show"
       else
-        # debugger
+
         render json: ["Wrong password. Try again or click Forgot password to reset it."], status: 401
       end
     end
@@ -23,7 +22,7 @@ class Api::SessionsController < ApplicationController
       if @user
         logout
       else
-        # debugger
+
         render json: ["No current user"], status: 404
       end
     end

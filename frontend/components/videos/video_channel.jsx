@@ -26,7 +26,6 @@ class VideoChannel extends React.Component {
     }
 
     handleSubmit(e) {
-        debugger
         e.preventDefault();
         const formData = new FormData();
         formData.append('video[title]', this.state.title);
@@ -36,21 +35,15 @@ class VideoChannel extends React.Component {
         }
         formData.append('video[user_id]', this.props.userId);
         this.props.createVideo(formData).then( (res) => {
-            debugger
             if (res) {
                 this.props.closeModal()
             }
         })
-        // if (this.props.errors.length === 0) {
-        //     this.props.closeModal()
-        // } else {
-        //     null
-        // }
+       
         this.resetState()
     }
 
     handleEdit(e) {
-        debugger
         e.preventDefault();
         const formData = new FormData();
         formData.append('video[title]', this.state.title);
@@ -117,8 +110,6 @@ class VideoChannel extends React.Component {
     }
     
     render() {
-        debugger
-        
         if (Object.keys(this.props.videos).length === 0) {
             return null;
         }

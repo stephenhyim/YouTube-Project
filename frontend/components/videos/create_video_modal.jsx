@@ -7,12 +7,9 @@ import { connect } from 'react-redux';
 
 function Modal(props) {
     const { resetState, handleEdit, renderErrors, modal, closeModal, handleSubmit, update, state, handleFile} = props
-    // debugger
     if (!modal) {
         return null;
     }
-    
-    debugger
 
     function reset() {
         resetState();
@@ -66,7 +63,6 @@ function Modal(props) {
             )
             
         case "openEditModal":
-            debugger
             return (
                 <div className = "modal-background" onClick = {reset}>
                     <div className = "modal-child" onClick = {e => e.stopPropagation()}>
@@ -113,7 +109,6 @@ function Modal(props) {
 }
 
 const mSTP = state => {
-    // debugger
     return {
         modal: state.ui.modal
     };

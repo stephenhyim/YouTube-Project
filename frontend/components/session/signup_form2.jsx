@@ -16,7 +16,6 @@ class SignupForm2 extends React.Component {
   }
 
   render() { 
-    // debugger
     return (
       <div className="signup2-form-container">
         <div className='signup2-form-box'>

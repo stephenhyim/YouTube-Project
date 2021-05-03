@@ -1,10 +1,7 @@
 class Api::UsersController < ApplicationController
     def create
-      # debugger
-        @user = User.new(user_params)
-      # debugger
+      @user = User.new(user_params)
       if @user.save
-        # debugger
         login(@user)
         @user_video = @user.videos
         render "api/users/show"

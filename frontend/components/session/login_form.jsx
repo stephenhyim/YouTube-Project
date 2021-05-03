@@ -5,7 +5,6 @@ class LoginForm extends React.Component {
   constructor(props) {
     super(props)
     this.guestLogin = this.guestLogin.bind(this)
-    // this.findEmail = this.findEmail.bind(this)
   }  
 
   guestLogin(e){
@@ -16,10 +15,7 @@ class LoginForm extends React.Component {
     this.props.login(guest)
   }
 
-  // findEmail() {
-  //   let useremail = this.props.values.email
-  //   return useremail
-  // }
+  
 
 
   renderErrors() {
@@ -35,7 +31,6 @@ class LoginForm extends React.Component {
   }
 
   render() { 
-    // debugger
     return (
      
         <div className = 'login-form-one-container'> 
@@ -81,6 +76,5 @@ class LoginForm extends React.Component {
   }
 }
 
-// export default SignupForm;
 export default withRouter(LoginForm);
 

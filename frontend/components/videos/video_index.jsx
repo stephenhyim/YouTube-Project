@@ -4,9 +4,7 @@ import { Link } from 'react-router-dom';
 class VideoIndex extends React.Component {
 
     componentDidMount() {
-        // debugger
         this.props.fetchVideos()
-        // this.props.fetchUser(this.props.match.params.userId)
     }
 
     formatDate(uploadDate) {
@@ -14,7 +12,6 @@ class VideoIndex extends React.Component {
 
         now = new Date();
         const formatedCreate = new Date(uploadDate)
-        debugger
 
         if (now.getFullYear() - formatedCreate.getFullYear() === 1) {
             const oneyearAgo = now.getFullYear() - formatedCreate.getFullYear()
@@ -56,8 +53,6 @@ class VideoIndex extends React.Component {
     }
 
     render(){
-        debugger
-
         if (!this.props.videos) {
             return null
         }

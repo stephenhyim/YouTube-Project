@@ -4,7 +4,6 @@ import { fetchComments } from '../../actions/comment_actions'
 import VideoShow from './video_show';
 
 const mSTP = (state, ownProps) => {
-    debugger
     return {
         videos: state.entities.videos,
         user: state.session.id,

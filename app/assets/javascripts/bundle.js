@@ -153,45 +153,35 @@ var fetchComment = function fetchComment(commentId) {
   };
 };
 var createComment = function createComment(comment) {
-  debugger;
   return function (dispatch) {
-    debugger;
     return _util_comment_api_util__WEBPACK_IMPORTED_MODULE_0__["createComment"](comment).then(function (comment) {
       return dispatch(receiveComment(comment));
     });
   };
 };
 var deleteComment = function deleteComment(commentId) {
-  debugger;
   return function (dispatch) {
-    debugger;
     return _util_comment_api_util__WEBPACK_IMPORTED_MODULE_0__["deleteComment"](commentId).then(function () {
       return dispatch(removeComment(commentId));
     });
   };
 };
 var updateComment = function updateComment(comment) {
-  debugger;
   return function (dispatch) {
-    debugger;
     return _util_comment_api_util__WEBPACK_IMPORTED_MODULE_0__["updateComment"](comment).then(function (comment) {
       return dispatch(receiveComment(comment));
     });
   };
 };
 var likeComment = function likeComment(like) {
-  debugger;
   return function (dispatch) {
-    debugger;
     return _util_like_api_util__WEBPACK_IMPORTED_MODULE_1__["createLike"](like).then(function (comment) {
       return dispatch(receiveComment(comment));
     });
   };
 };
 var unlikeComment = function unlikeComment(like) {
-  debugger;
   return function (dispatch) {
-    debugger;
     return _util_like_api_util__WEBPACK_IMPORTED_MODULE_1__["deleteLike"](like).then(function (comment) {
       return dispatch(receiveComment(comment));
     });
@@ -377,7 +367,6 @@ var receiveUser = function receiveUser(user) {
 
 var fetchUser = function fetchUser(userId) {
   return function (dispatch) {
-    debugger;
     return _util_user_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchUser"](userId).then(function (user) {
       return dispatch(receiveUser(user));
     });
@@ -436,7 +425,6 @@ var receiveVideo = function receiveVideo(video) {
 };
 
 var receiveVideoErrors = function receiveVideoErrors(errors) {
-  debugger;
   return {
     type: RECEIVE_VIDEO_ERRORS,
     errors: errors
@@ -458,7 +446,6 @@ var removeVideo = function removeVideo(videoId) {
 
 var fetchVideos = function fetchVideos() {
   return function (dispatch) {
-    // debugger
     return _util_video_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchVideos"]().then(function (videos) {
       return dispatch(receiveVideos(videos));
     });
@@ -473,7 +460,6 @@ var fetchVideo = function fetchVideo(videoId) {
 };
 var createVideo = function createVideo(video) {
   return function (dispatch) {
-    debugger;
     return _util_video_api_util__WEBPACK_IMPORTED_MODULE_0__["createVideo"](video).then(function (video) {
       return dispatch(receiveVideo(video));
     }, function (err) {
@@ -483,34 +469,27 @@ var createVideo = function createVideo(video) {
 };
 var updateVideo = function updateVideo(video, id) {
   return function (dispatch) {
-    debugger;
     return _util_video_api_util__WEBPACK_IMPORTED_MODULE_0__["updateVideo"](video, id).then(function (video) {
       return dispatch(receiveVideo(video));
     }); // (err) => (dispatch(receiveVideoErrors(err.responseJSON))))
   };
 };
 var deleteVideo = function deleteVideo(videoId) {
-  debugger;
   return function (dispatch) {
-    debugger;
     return _util_video_api_util__WEBPACK_IMPORTED_MODULE_0__["deleteVideo"](videoId).then(function () {
       return dispatch(removeVideo(videoId));
     });
   };
 };
 var likeVideo = function likeVideo(like) {
-  debugger;
   return function (dispatch) {
-    debugger;
     return _util_like_api_util__WEBPACK_IMPORTED_MODULE_1__["createLike"](like).then(function (video) {
       return dispatch(receiveVideo(video));
     });
   };
 };
 var dislikeVideo = function dislikeVideo(like) {
-  debugger;
   return function (dispatch) {
-    debugger;
     return _util_like_api_util__WEBPACK_IMPORTED_MODULE_1__["deleteLike"](like).then(function (video) {
       return dispatch(receiveVideo(video));
     });
@@ -690,7 +669,6 @@ var CommentForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      // debugger
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "comment-form-wrapper"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
@@ -838,10 +816,7 @@ var CommentIndex = /*#__PURE__*/function (_React$Component) {
         this.props.history.push("/login");
       }
 
-      debugger;
-
       if (!comment.likes.includes(user) && !comment.dislikes.includes(user)) {
-        debugger;
         this.props.likeComment(like);
       } else if (!comment.likes.includes(user) && comment.dislikes.includes(user)) {
         this.props.likeComment(like);
@@ -853,13 +828,9 @@ var CommentIndex = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "createDislike",
     value: function createDislike(dislike, comment, user, like) {
-      debugger;
-
       if (this.props.currentUser === null) {
         this.props.history.push("/login");
       }
-
-      debugger;
 
       if (!comment.dislikes.includes(user) && !comment.likes.includes(user)) {
         this.props.hateComment(dislike);
@@ -1098,7 +1069,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mSTP = function mSTP(state, ownProps) {
-  debugger;
   return {
     comments: state.entities.comments,
     videoId: ownProps.match.params.videoId,
@@ -1153,7 +1123,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mSTP = function mSTP(state, ownProps) {
-  // debugger
   return {
     currentVideo: ownProps.videoId,
     currentUser: state.session.id
@@ -1263,39 +1232,68 @@ __webpack_require__.r(__webpack_exports__);
 
 var LeftNavBar = function LeftNavBar(_ref) {
   var currentUser = _ref.currentUser;
-  // debugger
   var display = currentUser ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "left-nav-bar"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "left-group1"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "left-home"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    to: "/"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
     className: "left-icons"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
     className: "fas fa-home"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-    className: "home-link",
-    to: "/"
-  }, "Home"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "home-link"
+  }, "Home")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    to: "/users/".concat(currentUser)
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
     className: "left-icons"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
     className: "fas fa-book-open"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-    className: "library-link",
-    to: "/users/".concat(currentUser)
-  }, "Library")))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "library-link"
+  }, "Library")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "left-group1"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    href: "https://github.com/stephenhyim",
+    target: "_blank",
+    rel: "noopener noreferrer"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "fab fa-github"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "github-link"
+  }, "GitHub"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    href: "https://www.linkedin.com/in/stephenhyim/",
+    target: "_blank",
+    rel: "noopener noreferrer"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "fab fa-linkedin"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "github-link"
+  }, "LinkedIn"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    href: "https://angel.co/u/stephen-yim",
+    target: "_blank",
+    rel: "noopener noreferrer"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "fab fa-angellist"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "github-link"
+  }, "AngelList"))))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "left-nav-bar"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "left-group1"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    to: "/"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
     className: "left-icons"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
     className: "fas fa-home"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
     className: "home-link",
     to: "/"
-  }, "Home"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, "Home")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "left-group2"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Sign in to like videos, comment, and subscribe.")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "signin-btn-container"
@@ -1306,7 +1304,33 @@ var LeftNavBar = function LeftNavBar(_ref) {
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     className: "left-signin-link",
     to: "/login"
-  }, "SIGN IN")))));
+  }, "SIGN IN")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "left-group1"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    href: "https://github.com/stephenhyim",
+    target: "_blank",
+    rel: "noopener noreferrer"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "fab fa-github"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "github-link"
+  }, "GitHub"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    href: "https://www.linkedin.com/in/stephenhyim/",
+    target: "_blank",
+    rel: "noopener noreferrer"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "fab fa-linkedin"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "github-link"
+  }, "LinkedIn"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    href: "https://angel.co/u/stephen-yim",
+    target: "_blank",
+    rel: "noopener noreferrer"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "fab fa-angellist"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "github-link"
+  }, "AngelList")))));
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "left-nav-bar"
   }, display);
@@ -1336,7 +1360,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mSTP = function mSTP(state, ownProps) {
-  // debugger
   return {
     currentUser: state.session.id
   };
@@ -1583,9 +1606,7 @@ var SearchIndex = /*#__PURE__*/function (_React$Component) {
   _createClass(SearchIndex, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      debugger;
       var query = queryString.parse(this.props.location.search).search;
-      debugger;
       this.props.fetchResults(query);
     }
   }, {
@@ -1601,7 +1622,6 @@ var SearchIndex = /*#__PURE__*/function (_React$Component) {
       var now;
       now = new Date();
       var formatedCreate = new Date(uploadDate);
-      debugger;
 
       if (now.getFullYear() - formatedCreate.getFullYear() === 1) {
         var oneyearAgo = now.getFullYear() - formatedCreate.getFullYear();
@@ -1645,8 +1665,6 @@ var SearchIndex = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this = this;
 
-      debugger;
-
       if (!this.props.searchResults) {
         return null;
       }
@@ -1654,7 +1672,6 @@ var SearchIndex = /*#__PURE__*/function (_React$Component) {
       var results = Object.values(this.props.searchResults).map(function (result, idx) {
         var viewDate = _this.formatDate(result.created_at);
 
-        debugger;
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "single-search-result",
           key: idx
@@ -1787,8 +1804,7 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, LoginForm);
 
     _this = _super.call(this, props);
-    _this.guestLogin = _this.guestLogin.bind(_assertThisInitialized(_this)); // this.findEmail = this.findEmail.bind(this)
-
+    _this.guestLogin = _this.guestLogin.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -1801,11 +1817,7 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
         password: 'guestpassword'
       };
       this.props.login(guest);
-    } // findEmail() {
-    //   let useremail = this.props.values.email
-    //   return useremail
-    // }
-
+    }
   }, {
     key: "renderErrors",
     value: function renderErrors() {
@@ -1818,7 +1830,6 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      // debugger
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "login-form-one-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1868,8 +1879,7 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
   }]);
 
   return LoginForm;
-}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component); // export default SignupForm;
-
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["withRouter"])(LoginForm));
 
@@ -1927,19 +1937,7 @@ var LoginForm2 = /*#__PURE__*/function (_React$Component) {
       firstname: ''
     };
     return _this;
-  } // componentDidMount() {
-  //   debugger
-  //   fetch('/api/users/') 
-  //     .then(res => res.json())
-  //     console.log(res.json)
-  //     .then(result => {
-  //       console.log(result)
-  //       this.setState({
-  //         firstname: result
-  //       })
-  //     })
-  // }
-
+  }
 
   _createClass(LoginForm2, [{
     key: "renderErrors",
@@ -1953,7 +1951,6 @@ var LoginForm2 = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      // debugger
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "login2-form-two-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -2111,22 +2108,9 @@ var LoginFormParent = /*#__PURE__*/function (_React$Component) {
     _this.nextStep = _this.nextStep.bind(_assertThisInitialized(_this));
     _this.prevStep = _this.prevStep.bind(_assertThisInitialized(_this));
     _this.update = _this.update.bind(_assertThisInitialized(_this));
-    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this)); // this.findUser = this.findUser.bind(this);
-
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     return _this;
-  } // findUser(email) {
-  //     debugger
-  //     this.props.fetchUser(email)
-  //     if (email) {
-  //         this.setState({
-  //             firstname: email.firstname
-  //         })
-  //         this.nextStep();
-  //     } else {
-  //         null;
-  //     }
-  // }
-
+  }
 
   _createClass(LoginFormParent, [{
     key: "nextStep",
@@ -2185,8 +2169,7 @@ var LoginFormParent = /*#__PURE__*/function (_React$Component) {
             firstname: firstname,
             errors: this.props.errors,
             login: this.props.login,
-            removeSessionErrors: this.props.removeSessionErrors // findUser = { this.findUser }
-
+            removeSessionErrors: this.props.removeSessionErrors
           });
           break;
 
@@ -2280,7 +2263,6 @@ var SignupForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      // debugger
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "signup-form-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -2414,7 +2396,6 @@ var SignupForm2 = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      // debugger
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "signup2-form-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -2539,7 +2520,6 @@ var mSTP = function mSTP(state, ownProps) {
 };
 
 var mDTP = function mDTP(dispatch) {
-  // debugger
   return {
     signup: function signup(user) {
       return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_3__["signup"])(user));
@@ -2553,7 +2533,7 @@ var mDTP = function mDTP(dispatch) {
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mSTP, mDTP)(_signup_form_parent__WEBPACK_IMPORTED_MODULE_5__["default"])); //connect combining into one object to send as props
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mSTP, mDTP)(_signup_form_parent__WEBPACK_IMPORTED_MODULE_5__["default"]));
 
 /***/ }),
 
@@ -2637,12 +2617,7 @@ var SignupFormParent = /*#__PURE__*/function (_React$Component) {
       var step = this.state.step;
       this.setState({
         step: step + 1
-      }); // if (this.state.password === this.state.confirmPassword) {this.setState({
-      //     step: step + 1
-      // })} else {
-      //     console.log('pw didnt match')
-      //     return `{Those passwords didn't match. Try again.}`
-      // }
+      });
     }
   }, {
     key: "prevStep",
@@ -2898,7 +2873,6 @@ var TopNavBar = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this4 = this;
 
-      // debugger
       var display = this.props.currentUser ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "top-nav-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -3052,7 +3026,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mSTP = function mSTP(state, ownProps) {
-  debugger;
   return {
     user: state.entities.users[ownProps.match.params.userId]
   };
@@ -3119,14 +3092,12 @@ var UserShow = /*#__PURE__*/function (_React$Component) {
   function UserShow(props) {
     _classCallCheck(this, UserShow);
 
-    debugger;
     return _super.call(this, props);
   }
 
   _createClass(UserShow, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      debugger;
       this.props.fetchUser(this.props.match.params.userId);
     }
   }, {
@@ -3135,7 +3106,6 @@ var UserShow = /*#__PURE__*/function (_React$Component) {
       var now;
       now = new Date();
       var formatedCreate = new Date(uploadDate);
-      debugger;
 
       if (now.getFullYear() - formatedCreate.getFullYear() === 1) {
         var oneyearAgo = now.getFullYear() - formatedCreate.getFullYear();
@@ -3183,7 +3153,6 @@ var UserShow = /*#__PURE__*/function (_React$Component) {
         return null;
       }
 
-      debugger;
       var user_video = null;
 
       if (this.props.user.user_video) {
@@ -3331,13 +3300,11 @@ function Modal(props) {
       handleSubmit = props.handleSubmit,
       update = props.update,
       state = props.state,
-      handleFile = props.handleFile; // debugger
+      handleFile = props.handleFile;
 
   if (!modal) {
     return null;
   }
-
-  debugger;
 
   function reset() {
     resetState();
@@ -3423,7 +3390,6 @@ function Modal(props) {
       }, "Upload Video"))))));
 
     case "openEditModal":
-      debugger;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "modal-background",
         onClick: reset
@@ -3493,7 +3459,6 @@ function Modal(props) {
 }
 
 var mSTP = function mSTP(state) {
-  // debugger
   return {
     modal: state.ui.modal
   };
@@ -3590,7 +3555,6 @@ var VideoChannel = /*#__PURE__*/function (_React$Component) {
     value: function handleSubmit(e) {
       var _this2 = this;
 
-      debugger;
       e.preventDefault();
       var formData = new FormData();
       formData.append('video[title]', this.state.title);
@@ -3602,23 +3566,15 @@ var VideoChannel = /*#__PURE__*/function (_React$Component) {
 
       formData.append('video[user_id]', this.props.userId);
       this.props.createVideo(formData).then(function (res) {
-        debugger;
-
         if (res) {
           _this2.props.closeModal();
         }
-      }); // if (this.props.errors.length === 0) {
-      //     this.props.closeModal()
-      // } else {
-      //     null
-      // }
-
+      });
       this.resetState();
     }
   }, {
     key: "handleEdit",
     value: function handleEdit(e) {
-      debugger;
       e.preventDefault();
       var formData = new FormData();
       formData.append('video[title]', this.state.title);
@@ -3709,8 +3665,6 @@ var VideoChannel = /*#__PURE__*/function (_React$Component) {
     key: "render",
     value: function render() {
       var _this5 = this;
-
-      debugger;
 
       if (Object.keys(this.props.videos).length === 0) {
         return null;
@@ -3818,8 +3772,7 @@ var VideoIndex = /*#__PURE__*/function (_React$Component) {
   _createClass(VideoIndex, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      // debugger
-      this.props.fetchVideos(); // this.props.fetchUser(this.props.match.params.userId)
+      this.props.fetchVideos();
     }
   }, {
     key: "formatDate",
@@ -3827,7 +3780,6 @@ var VideoIndex = /*#__PURE__*/function (_React$Component) {
       var now;
       now = new Date();
       var formatedCreate = new Date(uploadDate);
-      debugger;
 
       if (now.getFullYear() - formatedCreate.getFullYear() === 1) {
         var oneyearAgo = now.getFullYear() - formatedCreate.getFullYear();
@@ -3870,8 +3822,6 @@ var VideoIndex = /*#__PURE__*/function (_React$Component) {
     key: "render",
     value: function render() {
       var _this = this;
-
-      debugger;
 
       if (!this.props.videos) {
         return null;
@@ -3944,7 +3894,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mSTP = function mSTP(state, ownProps) {
-  // debugger
   return {
     videos: Object.values(state.entities.videos)
   };
@@ -4022,7 +3971,7 @@ var VideoIndexSlider = /*#__PURE__*/function (_React$Component) {
     value: function formatDate(uploadDate) {
       var now;
       now = new Date();
-      var formatedCreate = new Date(uploadDate); // debugger
+      var formatedCreate = new Date(uploadDate);
 
       if (now.getFullYear() - formatedCreate.getFullYear() === 1) {
         var oneyearAgo = now.getFullYear() - formatedCreate.getFullYear();
@@ -4066,7 +4015,6 @@ var VideoIndexSlider = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this = this;
 
-      // debugger
       if (!this.props.videos) {
         return null;
       }
@@ -4074,11 +4022,9 @@ var VideoIndexSlider = /*#__PURE__*/function (_React$Component) {
       var _this$props = this.props,
           user = _this$props.user,
           videos = _this$props.videos,
-          ownVideo = _this$props.ownVideo; // debugger
-
+          ownVideo = _this$props.ownVideo;
       var otherVideos = Object.values(videos).map(function (video, idx) {
-        var viewDate = _this.formatDate(video.created_at); // debugger
-
+        var viewDate = _this.formatDate(video.created_at);
 
         if (video.id !== parseInt(ownVideo)) {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
@@ -4182,7 +4128,6 @@ var VideoShow = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, VideoShow);
 
     _this = _super.call(this, props);
-    debugger;
     _this.state = {
       like_value: 0,
       currentVideo: props.match.params.videoId
@@ -4196,14 +4141,11 @@ var VideoShow = /*#__PURE__*/function (_React$Component) {
   _createClass(VideoShow, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      // debugger
       this.props.fetchVideos();
     }
   }, {
     key: "componentDidUpdate",
     value: function componentDidUpdate(prevProps) {
-      debugger;
-
       if (prevProps.match.params.videoId !== this.props.match.params.videoId) {
         this.props.fetchComments(this.props.videoId);
       }
@@ -4225,10 +4167,8 @@ var VideoShow = /*#__PURE__*/function (_React$Component) {
         dislikable_type: "Video",
         user_id: this.props.user
       };
-      debugger;
 
       if (!this.props.videos[this.props.video].likes.includes(this.props.user) && !this.props.videos[this.props.video].dislikes.includes(this.props.user)) {
-        debugger;
         this.props.likeVideo(like);
       } else if (!this.props.videos[this.props.video].likes.includes(this.props.user) && this.props.videos[this.props.video].dislikes.includes(this.props.user)) {
         this.props.likeVideo(like);
@@ -4283,15 +4223,12 @@ var VideoShow = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      // debugger
       if (Object.keys(this.props.videos).length === 0) {
         return null;
       }
 
       var video = this.props.videos[this.state.currentVideo];
-      debugger;
-      var videos = Object.values(this.props.videos); // debugger
-
+      var videos = Object.values(this.props.videos);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "show-main"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_top_nav_bar_top_nav_bar_container__WEBPACK_IMPORTED_MODULE_2__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -4372,7 +4309,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mSTP = function mSTP(state, ownProps) {
-  debugger;
   return {
     videos: state.entities.videos,
     user: state.session.id,
@@ -4431,7 +4367,6 @@ var CommentsReducer = function CommentsReducer() {
       return action.comments;
 
     case _actions_comment_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_COMMENT"]:
-      debugger;
       nextState[action.comment.id] = action.comment;
       return nextState;
 
@@ -4515,7 +4450,6 @@ function modalReducer() {
 
   switch (action.type) {
     case _actions_modal_actions__WEBPACK_IMPORTED_MODULE_0__["OPEN_MODAL"]:
-      debugger;
       return action.modal;
 
     case _actions_modal_actions__WEBPACK_IMPORTED_MODULE_0__["CLOSE_MODAL"]:
@@ -4644,7 +4578,6 @@ var sessionReducer = function sessionReducer() {
 
   switch (action.type) {
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_CURRENT_USER"]:
-      debugger;
       return {
         id: action.currentUser.user.id
       };
@@ -4706,11 +4639,9 @@ var UsersReducer = function UsersReducer() {
 
   switch (action.type) {
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_CURRENT_USER"]:
-      debugger;
       return nextState[action.currentUser.id] = action.currentUser;
 
     case _actions_user_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_USER"]:
-      debugger;
       nextState[action.user.user.id] = action.user.user;
       return nextState;
 
@@ -4737,7 +4668,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = (function () {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
   var action = arguments.length > 1 ? arguments[1] : undefined;
-  Object.freeze(state); // debugger
+  Object.freeze(state);
 
   switch (action.type) {
     case _actions_video_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_VIDEO_ERRORS"]:
@@ -4772,19 +4703,17 @@ var VideosReducer = function VideosReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments.length > 1 ? arguments[1] : undefined;
   Object.freeze(state);
-  var nextState = Object.assign({}, state); // debugger
+  var nextState = Object.assign({}, state);
 
   switch (action.type) {
     case _actions_video_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_ALL_VIDEOS"]:
       return action.videos;
 
     case _actions_video_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_VIDEO"]:
-      debugger;
       nextState = Object.assign({}, state, _defineProperty({}, action.video.id, action.video));
       return nextState;
 
     case _actions_video_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_VIDEO"]:
-      debugger;
       nextState = Object.assign({}, state, action.video);
       delete nextState[action.videoId];
       return nextState;
@@ -4854,7 +4783,6 @@ var fetchComment = function fetchComment(commentId) {
   });
 };
 var createComment = function createComment(comment) {
-  debugger;
   return $.ajax({
     url: "/api/comments",
     method: "POST",
@@ -4864,7 +4792,6 @@ var createComment = function createComment(comment) {
   });
 };
 var deleteComment = function deleteComment(commentId) {
-  debugger;
   return $.ajax({
     url: "/api/comments/".concat(commentId),
     method: "DELETE"
@@ -5080,7 +5007,6 @@ var logout = function logout() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchUser", function() { return fetchUser; });
 var fetchUser = function fetchUser(userId) {
-  debugger;
   return $.ajax({
     url: "/api/users/".concat(userId)
   });
@@ -5113,7 +5039,6 @@ var fetchVideo = function fetchVideo(videoId) {
   });
 };
 var createVideo = function createVideo(video) {
-  debugger;
   return $.ajax({
     url: "/api/videos",
     method: "POST",
@@ -5132,7 +5057,6 @@ var updateVideo = function updateVideo(video, id) {
   });
 };
 var deleteVideo = function deleteVideo(videoId) {
-  debugger;
   return $.ajax({
     url: "/api/videos/".concat(videoId),
     method: 'DELETE'
@@ -5164,7 +5088,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 document.addEventListener('DOMContentLoaded', function () {
-  var store; // debugger
+  var store;
 
   if (window.currentUser) {
     var _window = window,
@@ -5182,8 +5106,7 @@ document.addEventListener('DOMContentLoaded', function () {
     delete window.currentUser;
   } else {
     store = Object(_store_store__WEBPACK_IMPORTED_MODULE_2__["default"])();
-  } // debugger
-
+  }
 
   var root = document.getElementById('root'); // JUST FOR TESTING
   // window.login = login;

@@ -7,7 +7,6 @@ import CommentIndex from '../comment/comment_index_container';
 class VideoShow extends React.Component {
     constructor(props) {
         super(props)
-        debugger
         this.state = {
             like_value: 0,
             currentVideo: props.match.params.videoId
@@ -20,12 +19,10 @@ class VideoShow extends React.Component {
 
 
     componentDidMount() {
-        // debugger
         this.props.fetchVideos()
     }
 
     componentDidUpdate(prevProps) {
-        debugger
         if (prevProps.match.params.videoId !== this.props.match.params.videoId) {
             this.props.fetchComments(this.props.videoId)
         }
@@ -37,9 +34,7 @@ class VideoShow extends React.Component {
         }
         const like = {likable_id: this.props.video, likable_type: "Video", user_id: this.props.user}
         const dislike = {dislikable_id: this.props.video, dislikable_type: "Video", user_id: this.props.user }
-        debugger
         if (!this.props.videos[this.props.video].likes.includes(this.props.user) && !this.props.videos[this.props.video].dislikes.includes(this.props.user)) {
-            debugger
             this.props.likeVideo(like)
         } else if (!this.props.videos[this.props.video].likes.includes(this.props.user) && this.props.videos[this.props.video].dislikes.includes(this.props.user)) {
             this.props.likeVideo(like)
@@ -76,17 +71,14 @@ class VideoShow extends React.Component {
     }
 
     render() {
-        // debugger
         if (Object.keys(this.props.videos).length === 0) {
             return null
         }
 
         const video = this.props.videos[this.state.currentVideo]
-        debugger
 
         const videos = Object.values(this.props.videos)
 
-        // debugger
         return (
             <div className = "show-main">
                 <TopNavBarContainer />

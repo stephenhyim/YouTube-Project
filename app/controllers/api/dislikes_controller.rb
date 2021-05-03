@@ -1,7 +1,6 @@
 class Api::DislikesController < ApplicationController
 
     def create
-        # debugger
         @dislike = Dislike.new(dislike_params)
         if @dislike.save
             if @dislike.dislikable_type == "Video"
@@ -17,7 +16,6 @@ class Api::DislikesController < ApplicationController
     end
 
     def destroy
-        # debugger
         @dislike = Dislike.find_by(dislike_params)
         @dislike.destroy
         if @dislike.dislikable_type == "Video"

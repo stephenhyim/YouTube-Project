@@ -57,10 +57,6 @@ class TopNavBar extends React.Component {
   
 
   render() {
-    // debugger
-
-   
-
 
     const display = this.props.currentUser ? (
       <div className = 'top-nav-container'>

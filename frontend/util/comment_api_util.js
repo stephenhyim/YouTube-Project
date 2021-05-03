@@ -13,7 +13,6 @@ export const fetchComment = commentId => {
 }
 
 export const createComment = comment => {
-    debugger
     return $.ajax({
         url: `/api/comments`,
         method: "POST",
@@ -22,7 +21,6 @@ export const createComment = comment => {
 }
 
 export const deleteComment = commentId => {
-    debugger
     return $.ajax({
         url: `/api/comments/${commentId}`,
         method: "DELETE"

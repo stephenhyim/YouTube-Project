@@ -5,9 +5,7 @@ const queryString = require('query-string');
 
 class SearchIndex extends React.Component {
     componentDidMount() {
-        debugger
         const query = (queryString.parse(this.props.location.search).search)
-        debugger
         this.props.fetchResults(query)
     }
 
@@ -22,7 +20,6 @@ class SearchIndex extends React.Component {
 
         now = new Date();
         const formatedCreate = new Date(uploadDate)
-        debugger
 
         if (now.getFullYear() - formatedCreate.getFullYear() === 1) {
             const oneyearAgo = now.getFullYear() - formatedCreate.getFullYear()
@@ -65,14 +62,12 @@ class SearchIndex extends React.Component {
 
 
     render() {
-        debugger
         if (!this.props.searchResults) {
             return null;
         }
         
         const results = Object.values(this.props.searchResults).map( (result, idx) => {
             const viewDate = this.formatDate(result.created_at)
-            debugger
             return (
                 <div className = "single-search-result" key={idx}>
                     <Link to ={`/videos/${result.id}`}><video height="200px" width="360px" src={result.videoUrl}></video></Link>

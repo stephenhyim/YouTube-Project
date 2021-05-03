@@ -23,7 +23,6 @@ const receiveVideo = video => {
 }
 
 const receiveVideoErrors = errors => {
-    debugger
     return {
         type: RECEIVE_VIDEO_ERRORS,
         errors
@@ -44,7 +43,6 @@ const removeVideo = videoId => {
 }
 
 export const fetchVideos = () => dispatch => {
-    // debugger
     return VideoAPIUtil.fetchVideos()
         .then(videos => dispatch(receiveVideos(videos)))
 }
@@ -55,41 +53,33 @@ export const fetchVideo = videoId => dispatch => {
 }
 
 export const createVideo = video => dispatch => {
-    debugger
     return VideoAPIUtil.createVideo(video)
         .then(video => dispatch(receiveVideo(video)),
             (err) => (dispatch(receiveVideoErrors(err.responseJSON))))
 }
 
 export const updateVideo = (video, id) => dispatch => {
-    debugger
     return VideoAPIUtil.updateVideo(video, id)
         .then(video => dispatch(receiveVideo(video)))
             // (err) => (dispatch(receiveVideoErrors(err.responseJSON))))
 }
 
 export const deleteVideo = videoId => {
-    debugger
     return dispatch => {
-        debugger
         return VideoAPIUtil.deleteVideo(videoId)
             .then(() => dispatch(removeVideo(videoId)))
     }
 }
 
 export const likeVideo = like => {
-    debugger
     return dispatch => {
-        debugger
         return LikeAPIUtil.createLike(like)
             .then((video) => dispatch(receiveVideo(video)))
     }
 }
 
 export const dislikeVideo = like => {
-    debugger
     return dispatch => {
-        debugger
         return LikeAPIUtil.deleteLike(like)
             .then(video => dispatch(receiveVideo(video)))
     }

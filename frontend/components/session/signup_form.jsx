@@ -20,7 +20,6 @@ class SignupForm extends React.Component {
   // need to target errors for specific fields
 
   render() { 
-    // debugger
     return (
       <div className="signup-form-container">
         <div className ='signup-form-box'>

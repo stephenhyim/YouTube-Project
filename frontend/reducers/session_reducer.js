@@ -8,7 +8,6 @@ const _nullUser = Object.freeze({
     Object.freeze(state);
     switch(action.type) {
       case RECEIVE_CURRENT_USER:
-        debugger
         return { id: action.currentUser.user.id };
       case LOGOUT_CURRENT_USER:
         return _nullUser;

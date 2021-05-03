@@ -14,7 +14,6 @@ const mSTP = ( state, ownProps) => {
 };
 
 const mDTP = dispatch => {
-  // debugger
   return {
     signup: (user) => dispatch(signup(user)),
     removeSessionErrors: () => dispatch(removeSessionErrors()),
@@ -25,4 +24,3 @@ const mDTP = dispatch => {
 
 
 export default connect(mSTP, mDTP)(SignupFormParent);
-//connect combining into one object to send as props

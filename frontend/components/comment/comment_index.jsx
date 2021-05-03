@@ -51,9 +51,8 @@ class CommentIndex extends React.Component {
         if (this.props.currentUser === null) {
             this.props.history.push("/login")
         }
-        debugger
+        
         if (!comment.likes.includes(user) && !comment.dislikes.includes(user)) {
-            debugger
             this.props.likeComment(like)
         } else if (!comment.likes.includes(user) && comment.dislikes.includes(user)) {
             this.props.likeComment(like)
@@ -64,11 +63,9 @@ class CommentIndex extends React.Component {
     }
 
     createDislike(dislike, comment, user, like) {
-        debugger
         if (this.props.currentUser === null) {
             this.props.history.push("/login")
         }
-        debugger
         if (!comment.dislikes.includes(user) && !comment.likes.includes(user)) {
             this.props.hateComment(dislike)
         } else if (!comment.dislikes.includes(user) && comment.likes.includes(user)) {

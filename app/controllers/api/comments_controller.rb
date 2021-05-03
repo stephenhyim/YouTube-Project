@@ -2,7 +2,6 @@ class Api::CommentsController < ApplicationController
 
     def index
         @comments = Comment.where(video_id: params[:video_id])
-        # debugger
 
         render :index
     end
@@ -15,7 +14,6 @@ class Api::CommentsController < ApplicationController
     def create 
         @comment = Comment.new(comment_params)
         @comment.user_id = current_user.id
-        # debugger
         if @comment.save
             render :show
         else
@@ -24,7 +22,6 @@ class Api::CommentsController < ApplicationController
     end
 
     def update
-        # debugger
         @comment = Comment.find(params[:id])
         @comment.user_id = current_user.id
 

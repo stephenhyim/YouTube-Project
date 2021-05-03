@@ -6,7 +6,7 @@ import Root from './components/root';
 
 document.addEventListener('DOMContentLoaded',() => {
     let store;
-    // debugger
+
     if (window.currentUser) {
       const { currentUser } = window;
       const { id } = currentUser;
@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded',() => {
     } else {
         store = configureStore();
     }
-    // debugger
+  
 
 
 

@@ -17,22 +17,9 @@ class LoginFormParent extends React.Component {
         this.prevStep = this.prevStep.bind(this);
         this.update = this.update.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        // this.findUser = this.findUser.bind(this);
     }
 
-    // findUser(email) {
-    //     debugger
-    //     this.props.fetchUser(email)
-
-    //     if (email) {
-    //         this.setState({
-    //             firstname: email.firstname
-    //         })
-    //         this.nextStep();
-    //     } else {
-    //         null;
-    //     }
-    // }
+   
 
     nextStep() {
         const {step} = this.state
@@ -80,7 +67,6 @@ class LoginFormParent extends React.Component {
                         errors = { this.props.errors}
                         login = {this.props.login}
                         removeSessionErrors = { this.props.removeSessionErrors }
-                        // findUser = { this.findUser }
                     />
                 )
                 break;

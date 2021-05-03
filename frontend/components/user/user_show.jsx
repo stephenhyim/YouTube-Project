@@ -5,14 +5,12 @@ import LeftNavBarContainer from '../left_nav_bar/left_nav_bar_container';
 
 class UserShow extends React.Component {
     constructor(props) {
-        debugger
         super(props)
         
     }
 
 
     componentDidMount() {
-        debugger
         this.props.fetchUser(this.props.match.params.userId)
     }
 
@@ -21,7 +19,6 @@ class UserShow extends React.Component {
 
         now = new Date();
         const formatedCreate = new Date(uploadDate)
-        debugger
 
         if (now.getFullYear() - formatedCreate.getFullYear() === 1) {
             const oneyearAgo = now.getFullYear() - formatedCreate.getFullYear()
@@ -63,13 +60,9 @@ class UserShow extends React.Component {
     }
 
     render() {
-        
-
         if (!this.props.user) {
             return null;
         }
-
-        debugger
 
         let user_video = null
         if (this.props.user.user_video) {
