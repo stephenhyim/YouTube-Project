@@ -7,7 +7,7 @@ $font-stack: 'Roboto', sans-serif;
     padding-top: 90px;
     justify-content: center;
     background: #181818;
-    height: 100vh;
+    height: 100%;
     color: white;
 
 
@@ -71,4 +71,5 @@ $font-stack: 'Roboto', sans-serif;
 .no-search-results {
     padding-top: 100px;
     color: white;
+    height: 100vh;
 }

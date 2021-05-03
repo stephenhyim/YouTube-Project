@@ -1649,12 +1649,7 @@ var SearchIndex = /*#__PURE__*/function (_React$Component) {
 
       if (!this.props.searchResults) {
         return null;
-      } // const results = !this.props.searchResults ? (
-      //     <p>No Results</p>
-      //     ) : (
-      //     <div>{displayResults}</div>
-      // )
-
+      }
 
       var results = Object.values(this.props.searchResults).map(function (result, idx) {
         var viewDate = _this.formatDate(result.created_at);
@@ -1695,9 +1690,11 @@ var SearchIndex = /*#__PURE__*/function (_React$Component) {
         className: "search-index-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_top_nav_bar_top_nav_bar_container__WEBPACK_IMPORTED_MODULE_1__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "search-index-page"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, results.length !== 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "search-results"
-      }, results)));
+      }, results) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "no-search-results"
+      }, "No Results Found")));
     }
   }]);
 
@@ -3256,7 +3253,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _video_channel__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./video_channel */ "./frontend/components/videos/video_channel.jsx");
 
 
-
+ // import { receiveVideoErrors } from '../../actions/video_actions';
 
 
 
@@ -3285,9 +3282,19 @@ var mDTP = function mDTP(dispatch) {
     openModal: function openModal(modal) {
       return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_2__["openModal"])(modal));
     },
-    receiveVideoErrors: function receiveVideoErrors(errors) {
-      return dispatch(Object(_actions_video_actions__WEBPACK_IMPORTED_MODULE_1__["receiveVideoErrors"])(errors));
-    },
+    receiveVideoErrors: function (_receiveVideoErrors) {
+      function receiveVideoErrors(_x) {
+        return _receiveVideoErrors.apply(this, arguments);
+      }
+
+      receiveVideoErrors.toString = function () {
+        return _receiveVideoErrors.toString();
+      };
+
+      return receiveVideoErrors;
+    }(function (errors) {
+      return dispatch(receiveVideoErrors(errors));
+    }),
     deleteVideo: function deleteVideo(videoId) {
       return dispatch(Object(_actions_video_actions__WEBPACK_IMPORTED_MODULE_1__["deleteVideo"])(videoId));
     }

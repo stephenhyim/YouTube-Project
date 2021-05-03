@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { createVideo, updateVideo, fetchVideos, deleteVideo } from '../../actions/video_actions';
 import { openModal, closeModal } from '../../actions/modal_actions';
-import { receiveVideoErrors, removeVideoErrors } from '../../actions/video_actions';
+// import { receiveVideoErrors } from '../../actions/video_actions';
 import VideoChannel from './video_channel';
 
 const mSTP = (state, ownProps) => {
