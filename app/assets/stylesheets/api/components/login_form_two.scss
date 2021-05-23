@@ -1,9 +1,5 @@
 $font-stack: 'Roboto', sans-serif;
 
-
-
-
-
 .login2-form-two-container {
     width: 448px;
     height: 500px;
@@ -47,7 +43,10 @@ $font-stack: 'Roboto', sans-serif;
 
 }
 
-
+.rendered-errors {
+    margin-top: 20px;
+    font-size: 14px;
+}
 
 
 .google-logo {
@@ -160,92 +159,3 @@ $font-stack: 'Roboto', sans-serif;
     
     }
 }
-
-
-// .login2-form-two-bottom-buttons {
-//     display: flex;
-//     justify-content: space-between;
-    
-
-//     .forgot-pw-container {
-//         display: flex;
-//         flex-direction: row;
-//         justify-content: space-between;
-//     }
-
-//         .forgot-pw {
-//             display: flex;
-//             flex-direction: row;
-//             justify-content: space-between;
-//             text-decoration: none;
-            
-//         }
-
-//     .login2-form-two-next-button-container {
-//         display: flex;
-//         flex-direction: row;
-//         justify-content: space-between;
-//     }
-
-//         .login2-form-two-next-button {
-//             display: flex;
-//             flex-direction: row;
-//             justify-content: space-between;
-//         }
-
-// }
-
-
-// .login2-form-two-bottom-buttons {
-//     display: flex;
-//     justify-content: space-between;
-//     height: 150px;
-//     width: 395px;
-    
-
-//     .login2-form-two-button {
-//         display: flex;
-//         justify-content: space-between;
-//         flex-direction: row;
-//         align-items: center;
-//         width: 395px;
-//         height: 48px;
-        
-//     }
-
-//         .forgot-pw-container {
-//             display: flex;
-//             justify-content: flex-start;
-//         }
-
-//             .forgot-pw {
-//                 color: #1A73E8;
-//                 text-decoration: none;
-//                 font-size: 15px;
-//             }
-
-
-//         .login2-form-two-next-button-container {
-//             display: flex;
-//             justify-content: flex-end;
-//             // align-content: center;
-//             width: 80px;
-//             height: 48px;
-//             background-color: #1A73E8;
-//             border-radius: 4px;
-//             &:hover {
-//                 cursor: pointer;
-//             }
-            
-        
-//             .login2-form-two-next-button {
-//                 display: flex;
-//                 border-radius: 4px;
-//                 color: white;
-//                 align-items: center;
-//                 // align-self: center;
-                
-//             }
-        
-//         }
-// }

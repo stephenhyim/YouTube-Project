@@ -1944,6 +1944,7 @@ var LoginForm2 = /*#__PURE__*/function (_React$Component) {
     value: function renderErrors() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, this.props.errors.map(function (error, i) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+          className: "rendered-errors",
           key: "error-".concat(i)
         }, error);
       }));
@@ -4130,11 +4131,13 @@ var VideoShow = /*#__PURE__*/function (_React$Component) {
     _this = _super.call(this, props);
     _this.state = {
       like_value: 0,
-      currentVideo: props.match.params.videoId
+      currentVideo: props.match.params.videoId,
+      grey: true
     };
     _this.createLike = _this.createLike.bind(_assertThisInitialized(_this));
     _this.updateVideo = _this.updateVideo.bind(_assertThisInitialized(_this));
     _this.createDislike = _this.createDislike.bind(_assertThisInitialized(_this));
+    _this.changeColor = _this.changeColor.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -4205,6 +4208,13 @@ var VideoShow = /*#__PURE__*/function (_React$Component) {
       }
     }
   }, {
+    key: "changeColor",
+    value: function changeColor() {
+      this.setState({
+        grey: !this.state.grey
+      });
+    }
+  }, {
     key: "updateVideo",
     value: function updateVideo(videoId) {
       this.props.history.push("/videos/".concat(videoId));
@@ -4223,12 +4233,15 @@ var VideoShow = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      var _this2 = this;
+
       if (Object.keys(this.props.videos).length === 0) {
         return null;
       }
 
       var video = this.props.videos[this.state.currentVideo];
       var videos = Object.values(this.props.videos);
+      var btn_class = this.state.grey ? "greyButton" : "blueButton";
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "show-main"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_top_nav_bar_top_nav_bar_container__WEBPACK_IMPORTED_MODULE_2__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -4251,11 +4264,20 @@ var VideoShow = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Views Coming Soon"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, this.videoShowDate(video.created_at))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "show-metrics-right"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        onClick: this.createLike
+        className: btn_class,
+        onClick: function onClick() {
+          _this2.createLike();
+
+          _this2.changeColor();
+        }
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         className: "fas fa-thumbs-up"
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, video.likes.length), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        onClick: this.createDislike
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: btn_class
+      }, video.likes.length), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        onClick: function onClick() {
+          _this2.createDislike();
+        }
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         className: "fas fa-thumbs-down"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, video.dislikes.length)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {

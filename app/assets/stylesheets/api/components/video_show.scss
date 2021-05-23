@@ -6,6 +6,8 @@ $font-stack: 'Roboto', sans-serif;
     flex-direction: column;
     justify-content: center;
     background: #181818;
+    height: auto;
+    
     
     .top-nav-bar {
         height: 56px;
@@ -70,7 +72,13 @@ $font-stack: 'Roboto', sans-serif;
                     cursor: pointer;
                     color: #AAAAAA;
                 
-                
+                    .greyButton {
+                        color: #AAAAAA
+                    }
+
+                    .blueButton {
+                        color: cornflowerblue
+                    }
                 }
 
             }

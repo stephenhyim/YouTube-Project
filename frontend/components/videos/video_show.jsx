@@ -9,11 +9,13 @@ class VideoShow extends React.Component {
         super(props)
         this.state = {
             like_value: 0,
-            currentVideo: props.match.params.videoId
+            currentVideo: props.match.params.videoId,
+            grey: true
         }
         this.createLike = this.createLike.bind(this)
         this.updateVideo = this.updateVideo.bind(this)
         this.createDislike = this.createDislike.bind(this)
+        this.changeColor = this.changeColor.bind(this)
     }
 
 
@@ -60,6 +62,10 @@ class VideoShow extends React.Component {
         }
     }
 
+    changeColor() {
+        this.setState({grey: !this.state.grey})
+    }
+
     updateVideo(videoId) {
         this.props.history.push(`/videos/${videoId}`)
         this.setState({currentVideo: videoId})
@@ -79,6 +85,8 @@ class VideoShow extends React.Component {
 
         const videos = Object.values(this.props.videos)
 
+        let btn_class = this.state.grey ? "greyButton" : "blueButton"
+
         return (
             <div className = "show-main">
                 <TopNavBarContainer />
@@ -93,9 +101,9 @@ class VideoShow extends React.Component {
                                     <p>{this.videoShowDate(video.created_at)}</p>
                                 </div>
                                 <div className = "show-metrics-right"> 
-                                    <div onClick={this.createLike}><i className="fas fa-thumbs-up"></i></div>
-                                    <p>{video.likes.length}</p>
-                                    <div onClick={this.createDislike}><i className="fas fa-thumbs-down"></i></div>
+                                    <div className = {btn_class} onClick={ () => {this.createLike(); this.changeColor();}}><i className="fas fa-thumbs-up"></i></div>
+                                    <p className = {btn_class}>{video.likes.length}</p>
+                                    <div onClick={ () => {this.createDislike();}}><i className="fas fa-thumbs-down"></i></div>
                                     <p>{video.dislikes.length}</p>
                                 </div>
                             </div>
