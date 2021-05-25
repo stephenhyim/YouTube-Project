@@ -157,24 +157,25 @@ class CommentIndex extends React.Component {
                     <div className = "comment-list-wrapper">
                         <div className = "comment-details">
                             <div className = "comment-info">
-                                <div className = "comment-top">
+                                <p className = "comment-top"><Link to = {`/users/${comment.user_id}`}>{comment.nickname}</Link>{commentDate}</p>
+                                {/* <div className = "comment-top">
                                     <Link to = {`/users/${comment.user_id}`}>{comment.nickname}</Link>
                                     <p className = "comment-date">{commentDate}</p>
-                                </div>
+                                </div> */}
                                 <p className = "comment-body">{comment.body}</p>
                                 <div className = "comment-likes-container">
-                                    <div className="comment-icons" onClick = {() => this.createLike(like, comment, this.props.currentUser, dislike)}><i className="fas fa-thumbs-up"></i></div>
+                                    <i onClick = {() => this.createLike(like, comment, this.props.currentUser, dislike)} className="fas fa-thumbs-up comment-icons"></i>
                                     <p>{comment.likes.length}</p>
-                                    <div className="comment-icons" onClick = {() => this.createDislike(dislike, comment, this.props.currentUser, like)}><i className="fas fa-thumbs-down"></i></div>
+                                    <i onClick = {() => this.createDislike(dislike, comment, this.props.currentUser, like)} className="fas fa-thumbs-down comment-icons"></i>
                                     <p>{comment.dislikes.length}</p>
                                 </div>
                             </div>
                         </div>
                         <div className = "comment-delete-dropdown">
-                            <div className = "comment-dropbtn"><i className="fas fa-ellipsis-v"></i></div>
+                            <i className="fas fa-ellipsis-v comment-dropbtn"></i>
                             <div className = "delete-dropdown">
-                                <div onClick = {() => this.edit(comment.id)}>Edit</div>
-                                <div onClick={()=> this.props.deleteComment(comment.id)}>Delete</div>
+                                <p onClick = {() => this.edit(comment.id)}>Edit</p>
+                                <p onClick={()=> this.props.deleteComment(comment.id)}>Delete</p>
                             </div>
                         </div>
                     </div>
@@ -199,15 +200,16 @@ class CommentIndex extends React.Component {
                         <div className = "comment-list-wrapper">
                             <div className = "comment-details">
                                 <div className = "comment-info">
-                                    <div className = "comment-top">
+                                    <p className = "comment-top"><Link to = {`/users/${comment.user_id}`}>{comment.nickname}</Link>{commentDate}</p>
+                                    {/* <div className = "comment-top">
                                         <Link to = {`/users/${comment.user_id}`}>{comment.nickname}</Link>
                                         <p className = "comment-date">{commentDate}</p>
-                                    </div>
+                                    </div> */}
                                     <p className = "comment-body">{comment.body}</p>
                                     <div className = "comment-likes-container">
-                                        <div onClick = {() => this.createLike(like, comment, this.props.currentUser, dislike)}><i className="fas fa-thumbs-up"></i></div>
+                                        <i onClick = {() => this.createLike(like, comment, this.props.currentUser, dislike)} className="fas fa-thumbs-up comment-icons"></i>
                                         <p>{comment.likes.length}</p>
-                                        <div className="comment-icons" onClick = {() => this.createDislike(dislike, comment, this.props.currentUser, like)}><i className="fas fa-thumbs-down"></i></div>
+                                        <i onClick = {() => this.createDislike(dislike, comment, this.props.currentUser, like)} className="fas fa-thumbs-down comment-icons"></i>
                                         <p>{comment.dislikes.length}</p>
                                     </div>
                                 </div>

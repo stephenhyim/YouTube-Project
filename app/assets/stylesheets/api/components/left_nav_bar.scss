@@ -1,16 +1,23 @@
 $font-stack: 'Roboto', sans-serif;
 
+
+.left-main-container {
+    
+    width: 13vw;
+    background-color: #212121;
+}
+
 .left-nav-bar {
-    background: #212121;
+    // background: #212121;
     display: flex;
     flex-direction: column;
-    width: 240px;
-    height: 1456px;
+    // width: 240px;
+    // height: 1456px;
     
     font-size: 20px;
     box-sizing: border-box;
-    position: fixed;
-    top: 56px;
+    // position: fixed;
+    // top: 56px;
     
     
 
@@ -40,7 +47,8 @@ $font-stack: 'Roboto', sans-serif;
 
                 ul:hover {
                     background-color: rgb(75, 75, 75);
-                    width: 190px;
+                    // width: 190px;
+                    width: 13vw;
                     justify-content: flex-start;
                     align-items: center;
                 }
@@ -125,66 +133,16 @@ $font-stack: 'Roboto', sans-serif;
 
 }
 
-
-
-
-
-
-
-
-
-
-// .signin-link .left-signin-link {
-//     text-decoration: none;
-//     color: white;
-// }
-
-// .left-signin-link {
-//     border: 1px solid blue;
-// }
-
-// .left-signin-link :visited {
-//     color: white;
-// }
-
-// .liked-videos-link {
-//     color: white;
-//     text-decoration: none;
-// }
-
-// .liked-videos-link :visited {
-//     color: white;
-// }
-
 .library-link {
     color: white;
     text-decoration: none;
 }
 
-// .library-link :visited {
-//     color: white;
-// }
-
-
-
-// .home-link :visited {
-//     color: white;
-// }
-
-// .signin-btn {
-//     display: flex;
-//     justify-content: center;
-
-//     .signin-link {
-//         display: flex;
-//         // border: 2px solid yellow;
-//     }
-// }
-
-// .left-icons {
-//     font-size: 30px;
-// }
-
+@media (max-width: 768px) {
+    .left-main-container {
+        display: none;
+    }
+}
 
 
 

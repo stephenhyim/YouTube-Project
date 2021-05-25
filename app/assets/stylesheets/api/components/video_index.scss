@@ -7,14 +7,14 @@ $font-stack: 'Roboto', sans-serif;
     background: #181818;
     // height: 1456px;
     // width: 1663px;
-    height: 100%;
-    width: 100%;
+    // height: 100%;
+    // width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: center;
-    margin-left: 240px;
-    margin-top: 56px;
-    overflow: auto;
+    // margin-left: 240px;
+    // margin-top: 56px;
+    // overflow: auto;
 
     .video-container {
         display: flex;
@@ -23,7 +23,7 @@ $font-stack: 'Roboto', sans-serif;
         justify-content: space-around;
         align-content: flex-start;
         padding-top: 56px;
-        width: 1504px;
+        // width: 1504px;
 
     }
 

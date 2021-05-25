@@ -92,7 +92,7 @@ class VideoShow extends React.Component {
                 <TopNavBarContainer />
                 <div className = "show-container">
                     <div className = "video-show-left">
-                        <video width = '1325' height = '725' controls src={ video.videoUrl }></video>
+                        <video className = "video" controls src={ video.videoUrl }></video>
                         <div className = "show-info">
                             <h1 className = "show-title">{video.title}</h1>
                             <div className = "show-metrics">

@@ -16,6 +16,7 @@ $font-stack: 'Roboto', sans-serif;
     .show-container {
         display: flex;
         color: white;
+        padding: 0px 74.5px 50px 74.5px;
     }
 
     .video-show-left {
@@ -24,11 +25,17 @@ $font-stack: 'Roboto', sans-serif;
         align-self: start;
         justify-content: center;
         align-items: center;
-        margin: 0px 74.5px;
+        // margin: 0px 74.5px;
         padding-top: 25px;
         box-sizing: border-box;
+        width: 70vw;
         
     }
+
+        .video {
+            // height: 725px;
+            width: 95%;
+        }
 
         .show-info {
             font-family: $font-stack;
@@ -36,8 +43,8 @@ $font-stack: 'Roboto', sans-serif;
             flex-direction: column;
             align-self: start;
             border-bottom: 1px solid rgba(225,225,225, 0.1);
-            width: 1325px;
-            height: 108px;
+            // width: 1325px;
+            // height: 108px;
             padding: 20px 0px 8px;
         
 
@@ -55,7 +62,7 @@ $font-stack: 'Roboto', sans-serif;
                 align-items: center;
                 justify-content: space-between;
                 color: white;
-                width: 1325px;
+                // width: 1325px;
                 height: 40px;
                 
                 .show-metrics-left {
@@ -90,12 +97,13 @@ $font-stack: 'Roboto', sans-serif;
 
         .user-info {
             font-family: $font-stack;
-            width: 1325px;
-            height: 108px;
+            // width: 1325px;
+            // height: 108px;
             color: white;
             border-bottom: 1px solid rgba(225, 225, 225, 0.1);
             display: flex;
             flex-direction: row;
+            align-self: flex-start;
 
             .user-info-top {
                 margin-top: 20px;
