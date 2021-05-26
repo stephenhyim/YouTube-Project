@@ -3,6 +3,7 @@ $font-stack: 'Roboto', sans-serif;
 .top-nav-bar {
     position: sticky;
     top: 0;
+    // height: 56px;
 }
 
 
@@ -36,14 +37,15 @@ $font-stack: 'Roboto', sans-serif;
 .center-top-nav {
     justify-content: center;
     font-size: 20px;
-    padding-left: 20px;
+    // padding-left: 20px;
+    min-width: 10vw;
     
 
     .search-bar-container {
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 728px;
+        // min-width: 10vw;
         height: 40px;
         
         
@@ -53,7 +55,7 @@ $font-stack: 'Roboto', sans-serif;
         // }
 
         .search-bar {
-            width: 570px;
+            width: 30vw;
             height: 20px;
             font-size: 20px;
             align-self: center;
@@ -227,9 +229,10 @@ $font-stack: 'Roboto', sans-serif;
 
 .top-right-nav {
     display: flex;
-    justify-content: space-between;
-    width: 120px;
+    justify-content: space-around;
+    width: 70px;
     align-items: center;
+    margin-right: 15px;
 
 }
 
@@ -289,13 +292,45 @@ $font-stack: 'Roboto', sans-serif;
 }
 
 
+.topright-nav {
+    width: 10%;
+}
 
 
+.topright-upload {
+    position: relative;
+    display: inline-block;
+    
+}
 
+.topright-video-dropdown-content {
+    display: none;
+    position: absolute;
+    background: #202020;
+    z-index: 1;
+    min-width: 160px;
+}
 
+.topright-upload:hover .topright-video-dropdown-content {
+    display: block;
+}
 
+.topright-user {
+    position: relative;
+    display: inline-block;
+}
 
+.topright-user-dropdown-content {
+    display: none;
+    position: absolute;
+    background: #202020;
+    z-index: 1;
+    min-width: 160px;
+}
 
+.topright-user:hover .topright-user-dropdown-content {
+    display: block;
+}
 
 
 

@@ -11,20 +11,19 @@ $font-stack: 'Roboto', sans-serif;
         display: flex;
         flex-direction: column;
         align-items: flex-start;
-        // width: 1325px;
-        // padding-top: 25px;
+        padding-top: 25px;
         width: 100%;
     }
 
         .comment-form-wrapper {
             display: flex;
-            // width: 1325px;
+            width: 100%;
             padding-top: 40px;
         
             .comment-form {
                 display: flex;
                 flex-direction: column;
-                // width: 1325px;
+                width: 100%;
                 
                 .comment-input-container {
                     display: flex;
@@ -41,7 +40,7 @@ $font-stack: 'Roboto', sans-serif;
                         background: transparent;
                         border-bottom: 1px solid rgba(225, 225, 225, 0.5);
                         color: white;
-                        // width: 1280px;
+                        width: 100%;
                         font-size: 16px;
                         margin-left: 10px;
                     }
@@ -52,9 +51,8 @@ $font-stack: 'Roboto', sans-serif;
                         background: transparent;
                         border-bottom: 2px solid black;
                         color: white;
-                        width: 1280px;
                         font-size: 16px;
-                        margin-left: 5px;
+                        margin-left: 10px;
                     }
 
 
@@ -70,7 +68,6 @@ $font-stack: 'Roboto', sans-serif;
                     height: 37px;
                     background: #065fd4;
                     border-radius: 4px;
-                    // padding-top: 5px;
                     margin-top: 5px;
 
                     .comment-btn {
@@ -80,6 +77,9 @@ $font-stack: 'Roboto', sans-serif;
                         background: none;
                         color: white;
                         cursor: pointer;
+                        width: 101px;
+                        height: 37px;
+                        
                         
                     }
 
@@ -91,6 +91,7 @@ $font-stack: 'Roboto', sans-serif;
                         height: 37px;
                         background: gray;
                         color: black;
+                        
                     }
 
                 }
@@ -109,7 +110,7 @@ $font-stack: 'Roboto', sans-serif;
     display: flex;
     flex-direction: row;
     // height: 78px;
-    // height: 100px;
+    height: 100px;
     // width: 1325px;
     align-items: center;
     width: 100%;
@@ -120,7 +121,7 @@ $font-stack: 'Roboto', sans-serif;
     }
 
     .comment-list-wrapper {
-        // height: 90px;
+        height: 90px;
         // width: 1325px;
         display: flex;
         flex-direction: row;
@@ -144,6 +145,7 @@ $font-stack: 'Roboto', sans-serif;
                 .comment-top {
                     display: flex;
                     flex-direction: row;
+                    
 
                     .comment-date {
                         margin-left: 5px;
@@ -205,6 +207,7 @@ $font-stack: 'Roboto', sans-serif;
 
 .no-comment-wrapper {
     padding-top: 15px;
+    width: 100%;
 }
 
 .comment-likes-container {
@@ -224,7 +227,8 @@ $font-stack: 'Roboto', sans-serif;
 
 }  
 
-// .edit-state-wrapper div {
-//     width: 100%;
-// }
+.edit-state-wrapper {
+    width: 100%;
+}
+
 

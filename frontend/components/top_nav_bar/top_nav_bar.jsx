@@ -52,9 +52,6 @@ class TopNavBar extends React.Component {
     })
   }
 
-  
-
-  
 
   render() {
 
@@ -98,6 +95,21 @@ class TopNavBar extends React.Component {
             )}
           </div>
         </div>
+
+        {/* hover dropdown */}
+        {/* <div className = "topright-nav">
+
+          <div className = "topright-upload">
+            <i className="fas fa-video"></i>
+            <Link className = "topright-video-dropdown-content" to = '/upload/video' onClick={() => this.props.openModal("openModal") }>Upload video</Link>
+          </div>
+          <div className = "topright-user">
+            <i className="fas fa-user"></i>
+            <p className = "topright-user-dropdown-content" onClick={()=>this.props.logout(this.props.currentUser).then(this.props.history.push("/"))}>Sign Out</p>
+          </div>
+
+        </div> */}
+
       </div>
     ) : (
       <div className = 'top-nav-container'>
@@ -122,13 +134,9 @@ class TopNavBar extends React.Component {
     );
     
     return(
-        // <div className='top-nav-bar'>
-        //   <ul className='top-nav-links'>
-        //     <li>{display}</li>
-        //   </ul>
-        // </div>
-
-        <div className= "top-nav-bar">{display}</div>
+        <div className= "top-nav-bar">
+          {display}
+        </div>
       );
   }
   

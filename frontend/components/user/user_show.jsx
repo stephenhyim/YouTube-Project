@@ -86,15 +86,17 @@ class UserShow extends React.Component {
         return (
             <div className = "user-show-main">
                 <TopNavBarContainer />
-                <LeftNavBarContainer />
-                <div className = "user-show-container">
-                    <div className = "user-info">
-                        <i className="fas fa-user"></i>
-                        <h1 className = "username">{this.props.user.firstname}</h1>
-                    </div>
-                    <div className = "video-row-container">
-                        <h1 className = "user-show-upload">Uploads</h1>
-                        <ul className = "video-row">{user_video}</ul>
+                <div className = "user-show-wrapper">
+                    <LeftNavBarContainer />
+                    <div className = "user-show-container">
+                        <div className = "user-info">
+                            <i className="fas fa-user"></i>
+                            <h1 className = "username">{this.props.user.firstname}</h1>
+                        </div>
+                        <div className = "video-row-container">
+                            <h1 className = "user-show-upload">Uploads</h1>
+                            <ul className = "video-row">{user_video}</ul>
+                        </div>
                     </div>
                 </div>
             </div>

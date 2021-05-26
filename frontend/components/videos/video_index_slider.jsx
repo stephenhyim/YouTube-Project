@@ -66,20 +66,18 @@ class VideoIndexSlider extends React.Component {
             if (video.id !== parseInt(ownVideo) ) {
             
                 return (
-                    <li className='video-slide-content' key={idx}>
-                        <div className = "video-slide-thumbnail">
-                            <div onClick={() => this.props.updateVideo(video.id)}><video width = '168' height = '94'><source src={ video.videoUrl } type='video/mp4'></source></video></div>
-                        </div>
+                    <div className='video-slide-content' key={idx}>
+                        <div onClick={() => this.props.updateVideo(video.id)}><video width = '168' height = '94'><source src={ video.videoUrl } type='video/mp4'></source></video></div>
                         <div className = "video-slide-info">
                             <div className = "video-slide-title" onClick={() => this.props.updateVideo(video.id)}>{ video.title }</div>
                             <Link className="video-slide-username" to={`/users/${video.user_id}`}>{video.firstname}</Link>
                             <div className = "video-slide-created">
                                 <p>Views Coming</p>
-                                <p>&middot;</p>
+                                {/* <p>&middot;</p> */}
                                 <p>{ viewDate }</p>
                             </div>
                         </div>
-                    </li>
+                    </div>
                 
                 )
             } else {
@@ -87,9 +85,8 @@ class VideoIndexSlider extends React.Component {
             }
         })
         return (
-
             <div className = 'video-slide-main'>
-                <ul className = 'video-slide-container'>{otherVideos}</ul>
+                {otherVideos}
             </div>
         )
     }

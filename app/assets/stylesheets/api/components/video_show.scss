@@ -25,7 +25,7 @@ $font-stack: 'Roboto', sans-serif;
         align-self: start;
         justify-content: center;
         align-items: center;
-        // margin: 0px 74.5px;
+        margin: 0px 74.5px;
         padding-top: 25px;
         box-sizing: border-box;
         width: 70vw;
@@ -41,11 +41,12 @@ $font-stack: 'Roboto', sans-serif;
             font-family: $font-stack;
             display: flex;
             flex-direction: column;
+            justify-content: center;
             align-self: start;
             border-bottom: 1px solid rgba(225,225,225, 0.1);
-            // width: 1325px;
-            // height: 108px;
-            padding: 20px 0px 8px;
+            width: 100%;
+            height: 108px;
+            // padding: 20px 0px 8px;
         
 
             
@@ -63,7 +64,7 @@ $font-stack: 'Roboto', sans-serif;
                 justify-content: space-between;
                 color: white;
                 // width: 1325px;
-                height: 40px;
+                // height: 40px;
                 
                 .show-metrics-left {
                     font-size: 14px;
@@ -74,7 +75,7 @@ $font-stack: 'Roboto', sans-serif;
                     display: flex;
                     justify-content: space-around;
                     width: 140px;
-                    height: 40px;
+                    // height: 40px;
                     font-size: 20px;
                     cursor: pointer;
                     color: #AAAAAA;
@@ -97,8 +98,8 @@ $font-stack: 'Roboto', sans-serif;
 
         .user-info {
             font-family: $font-stack;
-            // width: 1325px;
-            // height: 108px;
+            width: 100%;
+            height: 108px;
             color: white;
             border-bottom: 1px solid rgba(225, 225, 225, 0.1);
             display: flex;
@@ -131,6 +132,7 @@ $font-stack: 'Roboto', sans-serif;
         display: flex;
         padding-top: 25px;
         font-family: $font-stack;
+        width: 20vw;
     }
 
     .video-slide-content {
@@ -161,14 +163,18 @@ $font-stack: 'Roboto', sans-serif;
     }
 
     .video-slide-created {
-        display: flex;
+        // display: flex;
         font-size: 14px;
         color: gray;
     }
 
 }
 
-
+@media (max-width: 768px) {
+    .show-container .video-show-right {
+        display: none;
+    }
+}
 
 
 

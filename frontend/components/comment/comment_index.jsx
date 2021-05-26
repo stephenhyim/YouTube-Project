@@ -157,11 +157,11 @@ class CommentIndex extends React.Component {
                     <div className = "comment-list-wrapper">
                         <div className = "comment-details">
                             <div className = "comment-info">
-                                <p className = "comment-top"><Link to = {`/users/${comment.user_id}`}>{comment.nickname}</Link>{commentDate}</p>
-                                {/* <div className = "comment-top">
+                                {/* <p className = "comment-top"><Link to = {`/users/${comment.user_id}`}>{comment.nickname}</Link>{commentDate}</p> */}
+                                <div className = "comment-top">
                                     <Link to = {`/users/${comment.user_id}`}>{comment.nickname}</Link>
                                     <p className = "comment-date">{commentDate}</p>
-                                </div> */}
+                                </div>
                                 <p className = "comment-body">{comment.body}</p>
                                 <div className = "comment-likes-container">
                                     <i onClick = {() => this.createLike(like, comment, this.props.currentUser, dislike)} className="fas fa-thumbs-up comment-icons"></i>
@@ -200,11 +200,11 @@ class CommentIndex extends React.Component {
                         <div className = "comment-list-wrapper">
                             <div className = "comment-details">
                                 <div className = "comment-info">
-                                    <p className = "comment-top"><Link to = {`/users/${comment.user_id}`}>{comment.nickname}</Link>{commentDate}</p>
-                                    {/* <div className = "comment-top">
+                                    {/* <p className = "comment-top"><Link to = {`/users/${comment.user_id}`}>{comment.nickname}</Link>{commentDate}</p> */}
+                                    <div className = "comment-top">
                                         <Link to = {`/users/${comment.user_id}`}>{comment.nickname}</Link>
                                         <p className = "comment-date">{commentDate}</p>
-                                    </div> */}
+                                    </div>
                                     <p className = "comment-body">{comment.body}</p>
                                     <div className = "comment-likes-container">
                                         <i onClick = {() => this.createLike(like, comment, this.props.currentUser, dislike)} className="fas fa-thumbs-up comment-icons"></i>

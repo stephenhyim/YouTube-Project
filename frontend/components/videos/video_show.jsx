@@ -90,6 +90,7 @@ class VideoShow extends React.Component {
         return (
             <div className = "show-main">
                 <TopNavBarContainer />
+                
                 <div className = "show-container">
                     <div className = "video-show-left">
                         <video className = "video" controls src={ video.videoUrl }></video>
@@ -125,6 +126,7 @@ class VideoShow extends React.Component {
                         <VideoIndexSlider updateVideo = {this.updateVideo} user = {this.props.user} ownVideo = {this.props.video} videos = {this.props.videos} />
                     </div>
                 </div>
+
             </div>
            
         )
