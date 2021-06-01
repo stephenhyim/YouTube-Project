@@ -15,7 +15,7 @@ class VideoShow extends React.Component {
         this.createLike = this.createLike.bind(this)
         this.updateVideo = this.updateVideo.bind(this)
         this.createDislike = this.createDislike.bind(this)
-        this.changeColor = this.changeColor.bind(this)
+        // this.changeColor = this.changeColor.bind(this)
     }
 
 
@@ -62,9 +62,9 @@ class VideoShow extends React.Component {
         }
     }
 
-    changeColor() {
-        this.setState({grey: !this.state.grey})
-    }
+    // changeColor() {
+    //     this.setState({grey: !this.state.grey})
+    // }
 
     updateVideo(videoId) {
         this.props.history.push(`/videos/${videoId}`)
@@ -102,7 +102,7 @@ class VideoShow extends React.Component {
                                     <p>{this.videoShowDate(video.created_at)}</p>
                                 </div>
                                 <div className = "show-metrics-right"> 
-                                    <div className = {btn_class} onClick={ () => {this.createLike(); this.changeColor();}}><i className="fas fa-thumbs-up"></i></div>
+                                    <div className = {btn_class} onClick={ () => {this.createLike();}}><i className="fas fa-thumbs-up"></i></div>
                                     <p className = {btn_class}>{video.likes.length}</p>
                                     <div onClick={ () => {this.createDislike();}}><i className="fas fa-thumbs-down"></i></div>
                                     <p>{video.dislikes.length}</p>
