@@ -4123,8 +4123,8 @@ var VideoShow = /*#__PURE__*/function (_React$Component) {
     };
     _this.createLike = _this.createLike.bind(_assertThisInitialized(_this));
     _this.updateVideo = _this.updateVideo.bind(_assertThisInitialized(_this));
-    _this.createDislike = _this.createDislike.bind(_assertThisInitialized(_this));
-    _this.changeColor = _this.changeColor.bind(_assertThisInitialized(_this));
+    _this.createDislike = _this.createDislike.bind(_assertThisInitialized(_this)); // this.changeColor = this.changeColor.bind(this)
+
     return _this;
   }
 
@@ -4193,14 +4193,10 @@ var VideoShow = /*#__PURE__*/function (_React$Component) {
       } else {
         this.props.unhateVideo(dislike);
       }
-    }
-  }, {
-    key: "changeColor",
-    value: function changeColor() {
-      this.setState({
-        grey: !this.state.grey
-      });
-    }
+    } // changeColor() {
+    //     this.setState({grey: !this.state.grey})
+    // }
+
   }, {
     key: "updateVideo",
     value: function updateVideo(videoId) {
@@ -4253,8 +4249,6 @@ var VideoShow = /*#__PURE__*/function (_React$Component) {
         className: btn_class,
         onClick: function onClick() {
           _this2.createLike();
-
-          _this2.changeColor();
         }
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         className: "fas fa-thumbs-up"
