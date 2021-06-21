@@ -1,5 +1,5 @@
 # uTube
-uTube is a YouTube clone, where logged-in users can upload videos as well as like, dislike, and comment on other videos within the uTube community. All users regardless of being logged-in will be able to playback and search for videos. 
+uTube is a YouTube clone, where logged-in users can upload videos as well as like, dislike, and comment on other videos within the uTube community. All users regardless of being logged in will be able to play back and search for videos. 
   ![videoindex](https://user-images.githubusercontent.com/66839642/117038675-eaaab680-acd5-11eb-86cc-23e6edf63907.PNG)
 
 # Features
