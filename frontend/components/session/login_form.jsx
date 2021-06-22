@@ -15,9 +15,6 @@ class LoginForm extends React.Component {
     this.props.login(guest)
   }
 
-  
-
-
   renderErrors() {
     return(
       <ul>

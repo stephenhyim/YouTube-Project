@@ -44,10 +44,10 @@ v7 = Video.create!(title: "Coffee", description: "Must needed coffee in the morn
 v7_file = URI.open("https://s3.amazonaws.com/youtube-seeds/video7.mp4")
 v7.video.attach(io: v7_file, filename: "video7.mp4")
 
-v8 = Video.create!(title: "Flight", description: "Get ready for takeoff", user_id: u2.id)
+v8 = Video.create!(title: "Flight", description: "Get ready for takeoff", user_id: guestuser.id)
 v8_file = URI.open("https://s3.amazonaws.com/youtube-seeds/video8.mp4")
 v8.video.attach(io: v8_file, filename: "video8.mp4")
 
-v9 = Video.create!(title: "Beach", description: "Watching the waves crash into the shore", user_id: u3.id)
+v9 = Video.create!(title: "Beach", description: "Watching the waves crash into the shore", user_id: guestuser.id)
 v9_file = URI.open("https://s3.amazonaws.com/youtube-seeds/video9.mp4")
 v9.video.attach(io: v9_file, filename: "video9.mp4")
