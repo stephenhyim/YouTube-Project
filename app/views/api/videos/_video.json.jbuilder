@@ -7,3 +7,5 @@ json.likes video.likes.pluck(:user_id) # gives array of user_ids
 # json.likes video.likes.count total counts of likes
 
 json.dislikes video.dislikes.pluck(:user_id)
+
+# json.comments video.comments.pluck(:user_id)
