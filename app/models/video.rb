@@ -2,7 +2,7 @@ class Video < ApplicationRecord
     validates :title, :description, presence: true
     validates :user_id, presence: true
 
-    validate :ensure_video
+    # validate :ensure_video
 
     belongs_to :user,
         primary_key: :id,
@@ -18,10 +18,10 @@ class Video < ApplicationRecord
     has_many :dislikes, as: :dislikable, dependent: :destroy
 
 
-    def ensure_video
-        unless self.video.attached?
-            errors[:video] << "must be attached"
-        end
-    end
+    # def ensure_video
+    #     unless self.video.attached?
+    #         errors[:video] << "must be attached"
+    #     end
+    # end
 
 end
