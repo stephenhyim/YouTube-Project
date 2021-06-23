@@ -4,8 +4,19 @@ import {Link, withRouter } from 'react-router-dom';
 
 
 class SignupForm extends React.Component {
+  // constructor(props) {
+  //   super(props)
+  //   this.state = {
+  //     firstNameError = "",
+  //     lastNameError = "",
+  //     emailError = "",
+  //     pwError = "",
+  //     confirmpwError = ""
+  //   }
+  // }
 
   renderErrors() {
+    
     return(
       <ul>
         {this.props.errors.map((error, i) => (
@@ -33,11 +44,8 @@ class SignupForm extends React.Component {
             <div className="signup-form">
               
               <span className='signupform-name'>
-                
                   <input className='signup-firstname' placeholder='First name' type="text" value = {this.props.values.firstname} onChange = {this.props.update('firstname')}/>
-                
                   <input className='signup-lastname' placeholder='Last name' type="text" value = {this.props.values.lastname} onChange = {this.props.update('lastname')}/>
-               
               </span>
 
               
@@ -55,6 +63,8 @@ class SignupForm extends React.Component {
                 <input className='signup-pw-confirm' placeholder='Confirm' type="password" value = {this.props.values.confirmPassword} onChange = {this.props.update('confirmPassword')}/>
                 
               </span>
+
+              
 
               <div className='signupform-buttons'>
                 <div className='signup-container'> 

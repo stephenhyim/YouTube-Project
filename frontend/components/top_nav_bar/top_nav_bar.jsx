@@ -59,7 +59,7 @@ class TopNavBar extends React.Component {
       <div className = 'top-nav-container'>
         
         <div className = 'left-top-nav'>
-          <i className="fas fa-bars"></i>
+          {/* <i className="fas fa-bars"></i> */}
           <Link className='top-nav-youtube-icon' to = {`/`}><i className="fab fa-youtube"></i></Link>
         </div>
     
@@ -115,7 +115,7 @@ class TopNavBar extends React.Component {
       <div className = 'top-nav-container'>
 
         <div className = 'left-top-nav'>
-          <i className="fas fa-bars"></i>
+          {/* <i className="fas fa-bars"></i> */}
           <Link className='top-nav-youtube-icon' to = {`/`}><i className="fab fa-youtube"></i></Link>
         </div>
     
